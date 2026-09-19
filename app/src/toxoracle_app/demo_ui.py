@@ -225,7 +225,7 @@ def candidate_explorer(study: Study) -> None:
                 st.caption(f"Source: {feature['source']} · atom maps: {', '.join(map(str, sorted(feature['atom_map_ids'])))}")
                 if feature["ambiguous"]:
                     note("This fingerprint feature maps to multiple environments. All supplied matching atoms are highlighted; they do not identify a unique causal fragment.")
-            st.caption("Coral: positive contribution. Teal: negative contribution. Highlights describe model attribution, not causal toxicity.")
+            st.caption("Coral: positive contribution. Blue: negative contribution. Highlights describe model attribution, not causal toxicity.")
         with right, st.container(key="feature_panel"):
             section("What influenced the model", "Top recorded features")
             if groups:
@@ -455,7 +455,7 @@ def main() -> None:
     if "uploaded_study" in st.session_state:
         options["Uploaded study"] = None
     with st.sidebar:
-        symbol = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 40" fill="none"><ellipse cx="20" cy="20" rx="17" ry="8" transform="rotate(-45 20 20)" stroke="#c6d8af" stroke-width="1.2"/><ellipse cx="20" cy="20" rx="17" ry="8" transform="rotate(45 20 20)" stroke="#87ad96" stroke-width="1.2"/><circle cx="20" cy="20" r="3" fill="#cfddba"/><circle cx="8" cy="8" r="2.2" fill="#cfddba"/></svg>'
+        symbol = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 40" fill="none"><ellipse cx="20" cy="20" rx="17" ry="8" transform="rotate(-45 20 20)" stroke="#b9d6f2" stroke-width="1.2"/><ellipse cx="20" cy="20" rx="17" ry="8" transform="rotate(45 20 20)" stroke="#87a8ce" stroke-width="1.2"/><circle cx="20" cy="20" r="3" fill="#dce8f5"/><circle cx="8" cy="8" r="2.2" fill="#dce8f5"/></svg>'
         st.html('<div class="brand">' + svg_image(symbol, "", class_name="brand-symbol") + '<span class="brand-name">ToxOracle</span></div><div class="brand-sub">EVIDENCE TO DECISION</div>')
         st.divider()
         st.html('<div class="rail-heading">Your workspace</div>')

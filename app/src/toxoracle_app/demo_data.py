@@ -253,7 +253,7 @@ def export_csv(study: Study) -> str:
 def export_html(study: Study) -> str:
     if study.combined:
         report = render_combined_report(study.combined)
-        banner = '<aside style="padding:16px;background:#eef4ed">Cached replay · ' + escape(study.title) + '</aside>'
+        banner = '<aside style="padding:16px;background:#edf2f8;color:#002147">Cached replay · ' + escape(study.title) + '</aside>'
         return report.replace("<body>", "<body>" + banner, 1)
     rows = candidate_rows(study)
     headings = "".join(f"<th>{escape(k)}</th>" for k in rows[0])
@@ -261,7 +261,7 @@ def export_html(study: Study) -> str:
     notes = "".join(f"<li>{escape(note)}</li>" for note in study.metadata["limitations"])
     evidence = escape(json.dumps(study.toxicity, indent=2, allow_nan=False))
     return f'''<!doctype html><html lang="en"><meta charset="utf-8"><title>ToxOracle study</title>
-    <style>body{{font:16px system-ui;max-width:1100px;margin:48px auto;color:#173c36;padding:24px}}th,td{{padding:12px;border-bottom:1px solid #ddd;text-align:left}}table{{border-collapse:collapse;width:100%}}pre{{white-space:pre-wrap;overflow-wrap:anywhere}}h1{{font-size:36px}}</style>
+    <style>body{{font:16px system-ui;max-width:1100px;margin:48px auto;color:#002147;padding:24px}}th,td{{padding:12px;border-bottom:1px solid #dce3ec;text-align:left}}table{{border-collapse:collapse;width:100%}}pre{{white-space:pre-wrap;overflow-wrap:anywhere}}h1{{font-size:36px}}</style>
     <body><p>TOXORACLE · CACHED SCIENTIFIC RESULTS</p><h1>{escape(study.title)}</h1>
     <table><thead><tr>{headings}</tr></thead><tbody>{body}</tbody></table><h2>Study context</h2><ul>{notes}</ul>
     <details><summary>Complete source evidence</summary><pre>{evidence}</pre></details></body></html>'''
