@@ -15,6 +15,10 @@ first command. The dependency lock records the tested Streamlit, Plotly and RDKi
 versions. The app uses local assets and saved results; the presentation needs no
 NVIDIA/OpenAI credentials, model weights, retraining or remote scientific calls.
 
+For Streamlit Community Cloud, use branch `main`, entry point `streamlit_app.py`,
+and Python 3.11. The root `packages.txt` supplies `libxrender1`, which RDKit needs
+to draw the molecular structures on the Linux host.
+
 ## Presentation sequence
 
 1. **Overview:** introduce the selected study and show the candidate scores. The
