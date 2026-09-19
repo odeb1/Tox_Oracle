@@ -4,6 +4,18 @@ Date: 19 September 2026
 Audience: Team A (Rosalind discovery workflow) and Team B (human DILI model)  
 Status: implementation guideline; revised to require a shared toxicity assessment and structural evidence from both streams. Model/endpoint choices must be frozen jointly at kickoff.
 
+**19 September implementation update:** The user has promoted the standalone local
+privacy gateway into this Team B build alongside the structure-only baseline. It
+filters text/CSV/JSON before file handoff to either agent stream. The OFF toggle is
+local preview only; exports require a completed scan and approval of the sanitized
+snapshot. This supersedes the optional timing of privacy work below. Exposure-aware
+training and live provider integration remain deferred. See
+`docs/runbooks/team-b-local-mvp.md` for the implemented commands and boundary.
+
+The user additionally approved explicit per-field retention of privacy-model false
+positives only after scientific validation and local acknowledgement. Generic PII
+redactions are not automatically reversible through this exception.
+
 ## 1. Product and definition of success
 
 Build one researcher-facing workflow in which Rosalind uses existing BioNeMo tools to assess drug candidates, calls a separate ToxOracle model to predict human liver-toxicity concern, and combines the evidence into candidate priorities and recommended experiments.

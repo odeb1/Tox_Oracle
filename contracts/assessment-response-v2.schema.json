@@ -1,0 +1,446 @@
+{
+  "type": "object",
+  "properties": {
+    "schema_version": {
+      "const": "2.0"
+    },
+    "request_id": {
+      "type": "string"
+    },
+    "stream": {
+      "enum": [
+        "discovery",
+        "toxicity"
+      ]
+    },
+    "results": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "compound_id": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "structure_id": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "status": {
+            "enum": [
+              "ok",
+              "invalid_input",
+              "unsupported",
+              "failed",
+              "not_run"
+            ]
+          },
+          "assessment": {
+            "type": "object",
+            "properties": {
+              "endpoint_id": {
+                "type": "string"
+              },
+              "positive_definition": {
+                "type": "string"
+              },
+              "negative_definition": {
+                "type": "string"
+              },
+              "context": {
+                "type": "object",
+                "properties": {
+                  "species": {
+                    "type": "string"
+                  },
+                  "system": {
+                    "type": "string"
+                  },
+                  "conditions": {}
+                },
+                "required": [
+                  "species",
+                  "system",
+                  "conditions"
+                ],
+                "additionalProperties": true
+              },
+              "evidence_type": {
+                "enum": [
+                  "model_prediction",
+                  "measured_assay"
+                ]
+              },
+              "risk_score": {
+                "type": [
+                  "number",
+                  "null"
+                ],
+                "minimum": 0,
+                "maximum": 1
+              },
+              "score_kind": {
+                "enum": [
+                  "calibrated_probability",
+                  "uncalibrated_score",
+                  "unavailable"
+                ]
+              },
+              "direction": {
+                "type": "string"
+              },
+              "threshold": {
+                "type": [
+                  "number",
+                  "null"
+                ],
+                "minimum": 0,
+                "maximum": 1
+              },
+              "call": {
+                "enum": [
+                  "positive",
+                  "negative",
+                  "unavailable"
+                ]
+              },
+              "calibration": {
+                "type": "object",
+                "properties": {
+                  "status": {
+                    "type": "string"
+                  },
+                  "reference": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  }
+                },
+                "required": [
+                  "status",
+                  "reference"
+                ],
+                "additionalProperties": false
+              },
+              "uncertainty": {
+                "type": "object",
+                "properties": {
+                  "method": {
+                    "type": "string"
+                  },
+                  "value": {}
+                },
+                "required": [
+                  "method",
+                  "value"
+                ],
+                "additionalProperties": false
+              },
+              "applicability": {
+                "type": "object",
+                "properties": {
+                  "method": {
+                    "type": "string"
+                  },
+                  "value": {
+                    "type": [
+                      "number",
+                      "null"
+                    ]
+                  }
+                },
+                "required": [
+                  "method",
+                  "value"
+                ],
+                "additionalProperties": false
+              }
+            },
+            "required": [
+              "endpoint_id",
+              "positive_definition",
+              "negative_definition",
+              "context",
+              "evidence_type",
+              "risk_score",
+              "score_kind",
+              "direction",
+              "threshold",
+              "call",
+              "calibration",
+              "uncertainty",
+              "applicability"
+            ],
+            "additionalProperties": false
+          },
+          "structural_evidence": {
+            "type": "object",
+            "properties": {
+              "canonical_smiles": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "atom_mapped_smiles": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "standardization_version": {
+                "type": "string"
+              },
+              "attribution_status": {
+                "enum": [
+                  "available",
+                  "unavailable"
+                ]
+              },
+              "attribution_method": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "attribution_target": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "attribution_scale": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "attribution_reference": {},
+              "fragments": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "fragment_id": {
+                      "type": "string"
+                    },
+                    "atom_map_ids": {
+                      "type": "array",
+                      "items": {
+                        "type": "integer",
+                        "minimum": 1
+                      }
+                    },
+                    "pattern": {
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    },
+                    "contribution": {
+                      "type": "number"
+                    },
+                    "evidence_kind": {
+                      "type": "string"
+                    },
+                    "source_ref": {
+                      "type": "string"
+                    },
+                    "mapping_ambiguous": {
+                      "type": "boolean"
+                    }
+                  },
+                  "required": [
+                    "fragment_id",
+                    "atom_map_ids",
+                    "pattern",
+                    "contribution",
+                    "evidence_kind",
+                    "source_ref",
+                    "mapping_ambiguous"
+                  ],
+                  "additionalProperties": false
+                }
+              },
+              "structure_artifacts": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "artifact_id": {},
+                    "format": {},
+                    "uri": {},
+                    "checksum": {},
+                    "origin": {},
+                    "atom_mapping_ref": {}
+                  },
+                  "required": [
+                    "artifact_id",
+                    "format",
+                    "uri",
+                    "checksum",
+                    "origin",
+                    "atom_mapping_ref"
+                  ],
+                  "additionalProperties": true
+                }
+              },
+              "interactions": {
+                "type": "array",
+                "items": {
+                  "type": "object"
+                }
+              },
+              "mechanism_hypotheses": {
+                "type": "array",
+                "items": {
+                  "type": "object"
+                }
+              }
+            },
+            "required": [
+              "canonical_smiles",
+              "atom_mapped_smiles",
+              "standardization_version",
+              "attribution_status",
+              "attribution_method",
+              "attribution_target",
+              "attribution_scale",
+              "attribution_reference",
+              "fragments",
+              "structure_artifacts",
+              "interactions",
+              "mechanism_hypotheses"
+            ],
+            "additionalProperties": false
+          },
+          "supplementary_metrics": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "name": {},
+                "value": {},
+                "unit": {},
+                "direction": {},
+                "meaning": {},
+                "source_ref": {}
+              },
+              "required": [
+                "name",
+                "value",
+                "unit",
+                "direction",
+                "meaning",
+                "source_ref"
+              ],
+              "additionalProperties": false
+            }
+          },
+          "provenance": {
+            "type": "object",
+            "properties": {
+              "method_id": {
+                "type": "string"
+              },
+              "model_origin": {
+                "type": "string"
+              },
+              "data_version": {
+                "type": "string"
+              },
+              "training_membership": {
+                "enum": [
+                  "included",
+                  "excluded",
+                  "unknown"
+                ]
+              },
+              "evidence_refs": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            },
+            "required": [
+              "method_id",
+              "model_origin",
+              "data_version",
+              "training_membership",
+              "evidence_refs"
+            ],
+            "additionalProperties": false
+          },
+          "warnings": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "error": {
+            "type": [
+              "string",
+              "null"
+            ]
+          }
+        },
+        "required": [
+          "compound_id",
+          "structure_id",
+          "status",
+          "assessment",
+          "structural_evidence",
+          "supplementary_metrics",
+          "provenance",
+          "warnings",
+          "error"
+        ],
+        "additionalProperties": false,
+        "allOf": [
+          {
+            "if": {
+              "properties": {
+                "status": {
+                  "enum": [
+                    "failed",
+                    "invalid_input",
+                    "unsupported",
+                    "not_run"
+                  ]
+                }
+              }
+            },
+            "then": {
+              "properties": {
+                "assessment": {
+                  "properties": {
+                    "risk_score": {
+                      "type": "null"
+                    },
+                    "call": {
+                      "const": "unavailable"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        ]
+      }
+    }
+  },
+  "required": [
+    "schema_version",
+    "request_id",
+    "stream",
+    "results"
+  ],
+  "additionalProperties": false,
+  "$schema": "https://json-schema.org/draft/2020-12/schema"
+}

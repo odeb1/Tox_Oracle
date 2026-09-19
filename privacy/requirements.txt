@@ -1,0 +1,5 @@
+-r ../toxicity/requirements-model.txt
+fastapi==0.115.12
+uvicorn==0.34.3
+httpx==0.28.1
+opf @ git+https://github.com/openai/privacy-filter.git@f7f00ca7fb869683eb732c010299d901457f19c3

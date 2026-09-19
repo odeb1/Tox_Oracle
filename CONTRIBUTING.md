@@ -19,4 +19,7 @@ Add dependency manifests and lockfiles alongside each independently runnable com
 
 Test meaningful behaviour as it is implemented: input validation, compound grouping, preprocessing consistency, contract compatibility and error handling. Keep ordinary tests offline; mark external-service and GPU tests explicitly. Model changes need appropriate held-out evaluation in addition to software checks.
 
-The repository currently contains a documented scaffold. No runtime, automated test suite or CI pipeline is claimed to be operational yet. Add CI once there are real commands to run.
+The toxicity workspace contains runnable curation, baseline training/evaluation and v2
+inference. The privacy workspace contains the local gateway and offline tests. See
+`docs/runbooks/team-b-local-mvp.md` for commands. Live discovery integration and CI remain
+separate work; ordinary tests must not download weights or call external services.

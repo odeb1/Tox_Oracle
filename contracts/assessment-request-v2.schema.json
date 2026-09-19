@@ -1,0 +1,51 @@
+{
+  "type": "object",
+  "properties": {
+    "schema_version": {
+      "const": "2.0"
+    },
+    "request_id": {
+      "type": "string"
+    },
+    "compounds": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "compound_id": {
+            "type": "string"
+          },
+          "canonical_smiles": {
+            "type": "string"
+          },
+          "atom_mapped_smiles": {
+            "type": "string"
+          },
+          "structure_id": {
+            "type": "string"
+          },
+          "standardization_version": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "compound_id",
+          "canonical_smiles",
+          "atom_mapped_smiles",
+          "structure_id",
+          "standardization_version"
+        ],
+        "additionalProperties": false
+      },
+      "minItems": 1,
+      "maxItems": 1000
+    }
+  },
+  "required": [
+    "schema_version",
+    "request_id",
+    "compounds"
+  ],
+  "additionalProperties": false,
+  "$schema": "https://json-schema.org/draft/2020-12/schema"
+}

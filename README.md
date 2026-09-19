@@ -4,7 +4,10 @@ An agentic drug-discovery workflow with a separate human liver-toxicity assessme
 
 Rosalind coordinates existing BioNeMo discovery tools and a ToxOracle DILI predictor to help researchers prioritise candidates and choose follow-up experiments.
 
-**Status:** repository scaffold and shared build plan. Discovery integrations, model training and the application are not implemented yet.
+**Status:** runnable [DILIrank 2.0 curation and DILI baseline](toxicity/README.md), held-out evaluation,
+v2 batch predictions and a [standalone local privacy gateway](privacy/README.md).
+Live discovery integration remains Team A work. Start with the
+[Team B local MVP runbook](docs/runbooks/team-b-local-mvp.md).
 
 ## Start here
 

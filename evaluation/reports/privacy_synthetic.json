@@ -1,0 +1,119 @@
+{
+  "model_revision": "7ffa9a043d54d1be65afb281eddf0ffbe629385b",
+  "metric": "character-level coverage; includes rule supplementation; overlap counted once",
+  "precision": 0.967741935483871,
+  "recall": 1.0,
+  "true_positive_characters": 210,
+  "false_positive_characters": 7,
+  "missed_characters": 0,
+  "cases": [
+    {
+      "id": "contact",
+      "true_positive_characters": 36,
+      "false_positive_characters": 0,
+      "missed_characters": 0,
+      "preserved_all_scientific_values": true,
+      "detected_labels": [
+        "private_email",
+        "private_person"
+      ]
+    },
+    {
+      "id": "phone",
+      "true_positive_characters": 15,
+      "false_positive_characters": 0,
+      "missed_characters": 0,
+      "preserved_all_scientific_values": true,
+      "detected_labels": [
+        "private_phone"
+      ]
+    },
+    {
+      "id": "subject",
+      "true_positive_characters": 9,
+      "false_positive_characters": 0,
+      "missed_characters": 0,
+      "preserved_all_scientific_values": true,
+      "detected_labels": [
+        "subject_identifier"
+      ]
+    },
+    {
+      "id": "birth",
+      "true_positive_characters": 22,
+      "false_positive_characters": 0,
+      "missed_characters": 0,
+      "preserved_all_scientific_values": true,
+      "detected_labels": [
+        "private_date",
+        "private_person"
+      ]
+    },
+    {
+      "id": "address",
+      "true_positive_characters": 25,
+      "false_positive_characters": 0,
+      "missed_characters": 0,
+      "preserved_all_scientific_values": true,
+      "detected_labels": [
+        "private_address"
+      ]
+    },
+    {
+      "id": "secret",
+      "true_positive_characters": 25,
+      "false_positive_characters": 0,
+      "missed_characters": 0,
+      "preserved_all_scientific_values": true,
+      "detected_labels": [
+        "secret"
+      ]
+    },
+    {
+      "id": "unicode",
+      "true_positive_characters": 32,
+      "false_positive_characters": 0,
+      "missed_characters": 0,
+      "preserved_all_scientific_values": true,
+      "detected_labels": [
+        "private_email",
+        "private_person"
+      ]
+    },
+    {
+      "id": "scientific_control",
+      "true_positive_characters": 0,
+      "false_positive_characters": 0,
+      "missed_characters": 0,
+      "preserved_all_scientific_values": true,
+      "detected_labels": []
+    },
+    {
+      "id": "assay_control",
+      "true_positive_characters": 0,
+      "false_positive_characters": 0,
+      "missed_characters": 0,
+      "preserved_all_scientific_values": true,
+      "detected_labels": []
+    },
+    {
+      "id": "repeat",
+      "true_positive_characters": 46,
+      "false_positive_characters": 7,
+      "missed_characters": 0,
+      "preserved_all_scientific_values": true,
+      "detected_labels": [
+        "private_email",
+        "private_person"
+      ]
+    }
+  ],
+  "real_local_handoff": "passed",
+  "outbound_socket_connections": "blocked during full evaluation",
+  "elapsed_seconds": 46.07,
+  "limitations": [
+    "Ten hand-written synthetic examples, not a population benchmark or anonymity guarantee.",
+    "Input values and labels in the fixture are synthetic; no patient records used.",
+    "Character-level metrics may penalize punctuation and boundary differences."
+  ]
+}

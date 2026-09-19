@@ -1,0 +1,12 @@
+[
+  {"id":"contact","text":"Contact Alice Morgan at alice.morgan@example.com. Proposed concentration: 10 uM.","sensitive":["Alice Morgan","alice.morgan@example.com"],"preserve":["10 uM"]},
+  {"id":"phone","text":"Patient phone: +44 7700 900123. Sample concentration is 2.5 uM.","sensitive":["+44 7700 900123"],"preserve":["2.5 uM"]},
+  {"id":"subject","text":"Subject ID: SYN-12345; compound C001; dose 25 mg.","sensitive":["SYN-12345"],"preserve":["25 mg"]},
+  {"id":"birth","text":"Patient Alice Morgan was born on 1990-01-02. Exposure: 3 uM.","sensitive":["Alice Morgan","1990-01-02"],"preserve":["3 uM"]},
+  {"id":"address","text":"The patient's home address is 12 Example Street, London. Assay duration: 24 hours.","sensitive":["12 Example Street, London"],"preserve":["24 hours"]},
+  {"id":"secret","text":"Password: SyntheticDemoPassword123! Do not include it in the report.","sensitive":["SyntheticDemoPassword123!"],"preserve":[]},
+  {"id":"unicode","text":"Patient Zoë Martin can be reached at zoe.martin@example.com. Dose: 5 mg.","sensitive":["Zoë Martin","zoe.martin@example.com"],"preserve":["5 mg"]},
+  {"id":"scientific_control","text":"Acetaminophen: SMILES CC(=O)Nc1ccc(O)cc1. Hepatocyte viability measured at 10 uM for 24 hours.","sensitive":[],"preserve":["CC(=O)Nc1ccc(O)cc1","10 uM","24 hours"]},
+  {"id":"assay_control","text":"Candidate C001: total Cmax 0.5 uM; AUC 2.4 uM*h; assay viability 82%.","sensitive":[],"preserve":["0.5 uM","2.4 uM*h","82%"]},
+  {"id":"repeat","text":"Alice Morgan's notes: email alice@example.com; backup alice@example.com. Dose 10 mg.","sensitive":["Alice Morgan","alice@example.com","alice@example.com"],"preserve":["10 mg"]}
+]

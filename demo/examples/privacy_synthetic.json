@@ -1,0 +1,11 @@
+{
+  "compounds": [
+    {
+      "compound_id": "candidate_001",
+      "smiles": "CCO",
+      "patient_name": "Alice Morgan",
+      "patient_id": "SYN-12345",
+      "notes": "Contact Alice Morgan at alice.morgan@example.com. Proposed concentration: 10 uM."
+    }
+  ]
+}

@@ -29,7 +29,7 @@ coverage/
 
 # Local datasets and generated artifacts
 /data/raw/
-/data/interim/
+/data/cache/
 /data/processed/
 /data/private/
 /artifacts/*

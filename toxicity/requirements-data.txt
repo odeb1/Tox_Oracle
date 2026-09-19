@@ -1,0 +1,4 @@
+rdkit==2025.9.6
+openpyxl==3.1.5
+requests==2.32.5
+pytest==8.4.2

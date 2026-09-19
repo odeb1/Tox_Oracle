@@ -1,0 +1,27 @@
+{
+  "schema_version": "2.0",
+  "request_id": "heldout_demo_v1",
+  "compounds": [
+    {
+      "compound_id": "LT03773",
+      "canonical_smiles": "CN1Cc2c(Cl)cc(Cl)cc2[C@H](c2cccc(S(=O)(=O)NCCOCCOCCNC(=O)NCCCCNC(=O)NCCOCCOCCNS(=O)(=O)c3cccc([C@@H]4CN(C)Cc5c(Cl)cc(Cl)cc54)c3)c2)C1",
+      "atom_mapped_smiles": "[CH3:1][N:2]1[CH2:3][c:4]2[c:5]([Cl:6])[cH:7][c:8]([Cl:9])[cH:10][c:11]2[C@H:12]([c:13]2[cH:14][cH:15][cH:16][c:17]([S:18](=[O:19])(=[O:20])[NH:21][CH2:22][CH2:23][O:24][CH2:25][CH2:26][O:27][CH2:28][CH2:29][NH:30][C:31](=[O:32])[NH:33][CH2:34][CH2:35][CH2:36][CH2:37][NH:38][C:39](=[O:40])[NH:41][CH2:42][CH2:43][O:44][CH2:45][CH2:46][O:47][CH2:48][CH2:49][NH:50][S:51](=[O:52])(=[O:53])[c:54]3[cH:55][cH:56][cH:57][c:58]([C@@H:59]4[CH2:60][N:61]([CH3:62])[CH2:63][c:64]5[c:65]([Cl:66])[cH:67][c:68]([Cl:69])[cH:70][c:71]54)[cH:72]3)[cH:73]2)[CH2:74]1",
+      "structure_id": "3624b3219a6ee068a0b26c450ffa5df80b7ce3c00f1c73657e0fcf280f4cd641",
+      "standardization_version": "dilirank_parent_v1"
+    },
+    {
+      "compound_id": "LT01263",
+      "canonical_smiles": "CCN(CC)C(=O)[C@]1(c2ccccc2)C[C@@H]1CN",
+      "atom_mapped_smiles": "[CH3:1][CH2:2][N:3]([CH2:4][CH3:5])[C:6](=[O:7])[C@:8]1([c:9]2[cH:10][cH:11][cH:12][cH:13][cH:14]2)[CH2:15][C@@H:16]1[CH2:17][NH2:18]",
+      "structure_id": "1482b3f8547c50df716b1e2f649b3424e4848e8460927089f4245e497c9c8ffc",
+      "standardization_version": "dilirank_parent_v1"
+    },
+    {
+      "compound_id": "LT00507",
+      "canonical_smiles": "CC1(C)S[C@@H]2[C@H](NC(=O)[C@H](N)c3ccc(O)cc3)C(=O)N2[C@H]1C(=O)O",
+      "atom_mapped_smiles": "[CH3:1][C:2]1([CH3:3])[S:4][C@@H:5]2[C@H:6]([NH:7][C:8](=[O:9])[C@H:10]([NH2:11])[c:12]3[cH:13][cH:14][c:15]([OH:16])[cH:17][cH:18]3)[C:19](=[O:20])[N:21]2[C@H:22]1[C:23](=[O:24])[OH:25]",
+      "structure_id": "199307d2cc4f26deefd2fb090b3b81ef08fb0b2eb5517a127926813e5d21c9d6",
+      "standardization_version": "dilirank_parent_v1"
+    }
+  ]
+}
