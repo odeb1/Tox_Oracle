@@ -1,0 +1,34 @@
+{
+  "experiment_id": "abl1_retrospective_v1",
+  "status": "frozen_before_panel_inference",
+  "frozen_at": "2026-09-19T18:22:48.118215+00:00",
+  "target": "../../discovery/configs/targets/abl1.json",
+  "request": "abl1_request.json",
+  "request_sha256": "833a760f7fd799d0d524c17825785b2ef7b1d73a8cda3bb91c412cc728b58fc6",
+  "target_sha256": "588d9dbe5b823d2cf5899d3f0ae8ab5199901d37f9be29c05d71088f1b8bf3b6",
+  "candidates": [
+    {
+      "compound_id": "LT00107",
+      "name": "Imatinib mesylate",
+      "role": "reference"
+    },
+    {
+      "compound_id": "LT01248",
+      "name": "Dasatinib",
+      "role": "candidate"
+    },
+    {
+      "compound_id": "LT00607",
+      "name": "Nilotinib hydrochloride",
+      "role": "candidate"
+    },
+    {
+      "compound_id": "LT02349",
+      "name": "Bosutinib monohydrate",
+      "role": "candidate"
+    }
+  ],
+  "selection_reason": "Fixed panel of known ATP-site ABL1 inhibitors, selected for target relevance without inspecting panel DILI predictions.",
+  "ranking_rule": "Descending arithmetic mean of all returned affinity_probability_binary values; compound_id ascending breaks exact ties; top two successful scored candidates shortlisted.",
+  "claims": "Retrospective workflow illustration. Report DILI training/validation membership; do not claim unseen-drug validation. Do not change panel or thresholds to manufacture a priority change."
+}

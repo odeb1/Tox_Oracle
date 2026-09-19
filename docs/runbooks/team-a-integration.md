@@ -1,5 +1,9 @@
 # Team A integration runbook
 
+**Legacy v2 path.** The current discovery-first workflow is documented in
+[Rosalind screening](rosalind-screening.md). Its v3 discovery result is independent
+of toxicity, and no conventional comparator is required for candidate triage.
+
 ## Purpose and current boundary
 
 This runbook covers the offline Team A integration path: validate shared v2 requests and responses, preserve molecular identity, compute only eligible comparisons, apply the versioned triage policy, and render JSON and HTML reports.

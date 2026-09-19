@@ -1,5 +1,11 @@
 # Combined experience — Team A
 
+The current discovery-first path is `toxoracle-screen` (or the repository wrapper
+`./scripts/toxoracle-screen`). It joins discovery v3 with unchanged DILI v2 results
+and emits a v3 report without requiring a conventional toxicity assessment. See
+[the screening runbook](../docs/runbooks/rosalind-screening.md). The instructions
+below describe the retained **legacy v2 comparison** command.
+
 This workspace contains Team A's offline integration path. It validates both v2 response envelopes, checks candidate and structure identity, and joins discovery and toxicity records without requiring live services or a GPU.
 
 ## Local setup
