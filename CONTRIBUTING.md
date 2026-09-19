@@ -11,7 +11,7 @@ Add dependency manifests and lockfiles alongside each independently runnable com
 ## Files and artifacts
 
 - Commit source, configuration without secrets, small fixtures, provenance and reviewed reports.
-- Keep datasets in ignored local data directories and generated weights/outputs under `artifacts/`. Keep sensitive subject-level data outside the repository entirely.
+- Keep datasets in ignored local data directories, except the explicitly shared DILIrank 2.0 CSV snapshot documented in `data/README.md`. Keep generated weights/outputs under `artifacts/` and sensitive subject-level data outside the repository entirely.
 - A `.gitignore` is an accident-prevention aid, not access control; it does not protect files already tracked by Git.
 - Preserve source licences and attribution for third-party datasets, papers and models. The root licence does not override their terms.
 

@@ -1,0 +1,113 @@
+{
+  "generated_at": "2026-09-19T15:39:41.975343+00:00",
+  "source_entries": 1336,
+  "acquisition_complete": true,
+  "missing_or_failed_name_lookups": 0,
+  "missing_synonym_cids": [],
+  "source_categories": {
+    "Most-DILI-concern": 217,
+    "No-DILI-concern": 414,
+    "Less-DILI-concern": 351,
+    "Ambiguous-DILI-concern": 354
+  },
+  "matched_pubchem_entries": 1213,
+  "standardized_entries": 1104,
+  "eligible_source_entries": 804,
+  "model_ready_unique_structures": 802,
+  "model_ready_class_counts": {
+    "1": 508,
+    "0": 294
+  },
+  "review_entries": 232,
+  "exclusion_counts": {
+    "outside_initial_size_scope": 27,
+    "name_not_found": 113,
+    "ambiguous_dili_label": 300,
+    "unresolved_multicomponent_structure": 71,
+    "inorganic_structure": 7,
+    "peptide_outside_initial_scope": 3,
+    "multiple_exact_matches": 7,
+    "no_supported_organic_parent": 1,
+    "name_structure_salt_mismatch": 1,
+    "no_exact_synonym_match": 2
+  },
+  "coverage_by_category": {
+    "Most-DILI-concern": {
+      "total": 217,
+      "matched": 206,
+      "standardized": 198
+    },
+    "Less-DILI-concern": {
+      "total": 351,
+      "matched": 329,
+      "standardized": 311
+    },
+    "No-DILI-concern": {
+      "total": 414,
+      "matched": 349,
+      "standardized": 295
+    },
+    "Ambiguous-DILI-concern": {
+      "total": 354,
+      "matched": 329,
+      "standardized": 300
+    }
+  },
+  "duplicate_groups": [
+    {
+      "source_compound_ids": [
+        "LT03376",
+        "LT03895"
+      ],
+      "labels": [
+        0
+      ],
+      "conflicting_binary_labels": false
+    },
+    {
+      "source_compound_ids": [
+        "LT00160",
+        "LT00684"
+      ],
+      "labels": [
+        1
+      ],
+      "conflicting_binary_labels": false
+    },
+    {
+      "source_compound_ids": [
+        "LT01316",
+        "LT02330"
+      ],
+      "labels": [
+        0
+      ],
+      "conflicting_binary_labels": false
+    },
+    {
+      "source_compound_ids": [
+        "LT00309",
+        "LT00946"
+      ],
+      "labels": [
+        1
+      ],
+      "conflicting_binary_labels": false
+    }
+  ],
+  "rdkit_version": "2025.09.6",
+  "standardization_version": "dilirank_parent_v1",
+  "pipeline_sha256": "364dd5e6ec633b4f4f1281b87daa05749b234c39a4756cde15b992cbe5f0b3c5",
+  "dependency_lock_sha256": "7c941f110b88d423f53d114448c5e4cae4ede3d715d5f29fcade63eaea650d4b",
+  "source_sha256": "1ca1352ff727af68e68e250eae2ed775bca8492335140ac0afd2233248694993",
+  "artifacts": {
+    "dilirank2_enriched.csv": "6f1521f69f503b3366c57ac897622a14c01b6515ed90d53d6a8edc8e222c05da",
+    "dilirank2_model_ready.csv": "997ad736dc1d282c2a0b3b4a7f9fca2d05740eacb7c6ec9d7cdf7919f312d750",
+    "dilirank2_review.csv": "e47487cc9689cb8ab008c14d7e40ced6c168235430ecf8568a1203289e0ebbf1"
+  },
+  "limitations": [
+    "Exact PubChem synonyms are database identity evidence, not manual verification of every structure.",
+    "Unresolved, unsupported and conflicting records are retained but excluded from the model-ready subset.",
+    "No train/validation/test split or model has been created. Group related chemical forms before splitting."
+  ]
+}

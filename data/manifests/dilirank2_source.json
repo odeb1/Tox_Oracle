@@ -1,0 +1,32 @@
+{
+  "dataset": "FDA DILIrank 2.0",
+  "url": "https://www.fda.gov/media/113052/download?attachment=",
+  "landing_page": "https://www.fda.gov/science-research/liver-toxicity-knowledge-base-ltkb/drug-induced-liver-injury-rank-dilirank-20-dataset",
+  "local_path": "data/raw/dilirank_2.0.xlsx",
+  "sheet": "version 2",
+  "header_row": 2,
+  "retrieved_at": "2026-09-19T15:04:36.870319+00:00",
+  "retrieval_timestamp_basis": "local download file modification time",
+  "sha256": "1ca1352ff727af68e68e250eae2ed775bca8492335140ac0afd2233248694993",
+  "source_columns": [
+    "LTKBID",
+    "CompoundName",
+    "SeverityClass",
+    "LabelSection",
+    "vDILI-Concern",
+    "Comment"
+  ],
+  "entries": 1336,
+  "category_counts": {
+    "Most-DILI-concern": 217,
+    "Less-DILI-concern": 351,
+    "No-DILI-concern": 414,
+    "Ambiguous-DILI-concern": 354
+  },
+  "access_conditions": {
+    "fda": "Public FDA download; preserve attribution. No dataset-specific licence stated on landing page; repository licence does not relicense source data.",
+    "fda_notice": "FDA asks downloaders to notify NCTRBioinformaticsSupport@fda.hhs.gov. No email sent by this pipeline.",
+    "pubchem": "Public PUG REST; retain source attribution and contributing-source rights. Cache locally; do not assume all contributed data share a single licence.",
+    "pubchem_policy_url": "https://pubchem.ncbi.nlm.nih.gov/docs/pug-rest"
+  }
+}

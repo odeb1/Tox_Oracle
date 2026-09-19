@@ -30,7 +30,11 @@ coverage/
 # Local datasets and generated artifacts
 /data/raw/
 /data/interim/
-/data/processed/
+/data/cache/
+/data/processed/*
+!/data/processed/dilirank2_enriched.csv
+!/data/processed/dilirank2_model_ready.csv
+!/data/processed/dilirank2_review.csv
 /data/private/
 /artifacts/*
 !/artifacts/README.md
