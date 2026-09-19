@@ -6,19 +6,6 @@ frozen evaluation split, batch v2 inference and fragment attribution are now imp
 See the [local MVP runbook](../docs/runbooks/team-b-local-mvp.md) and
 [baseline model card](model_cards/dili_baseline_v1.md).
 
-The optional BioNeMo comparison is implemented separately and does not replace the
-baseline or change the v2 response contract. Its status and prespecified design are in
-the [MolMIM compatibility audit](model_cards/dili_bionemo_molmim_experiment.md) and
-[completed MegaMolBART experiment](model_cards/dili_bionemo_megamolbart_experiment.md).
-MegaMolBART covered all 802 structures but did not outperform the RF on the frozen
-test cohort (AUROC 0.612 versus 0.760). The RF remains the baseline.
-The subsequent [train/validation-only diagnosis](model_cards/dili_bionemo_train_validation_diagnosis.md)
-finds overfitting in the fixed logistic head. It does not evaluate new heads on the
-test partition or change the deployed model.
-An [experimental regularized candidate](model_cards/dili_bionemo_regularized_candidate.md)
-is now saved separately, selecting C with training-only grouped CV. It is not a
-production replacement and has no new test-set evaluation.
-
 Model commands from the repository root:
 
 ```sh
@@ -27,24 +14,6 @@ toxicity/.venv/bin/python -m toxicity.src.baseline train
 toxicity/.venv/bin/python -m toxicity.src.baseline evaluate
 toxicity/.venv/bin/python -m toxicity.src.baseline predict --input demo/examples/dili_request.json --output artifacts/runs/dili_predictions.json
 ```
-
-Frozen-split audit and completed MegaMolBART experiment (offline with cached output):
-
-```sh
-toxicity/.venv/bin/python -m toxicity.src.bionemo_experiment audit
-toxicity/.venv/bin/python -m toxicity.src.bionemo_experiment import-megamolbart \
-  --raw artifacts/embeddings/megamolbart_output.json \
-  --cache artifacts/embeddings/megamolbart_dilirank2.json
-toxicity/.venv/bin/python -m toxicity.src.bionemo_experiment evaluate \
-  --cache artifacts/embeddings/megamolbart_dilirank2.json \
-  --output artifacts/runs/bionemo_megamolbart_logistic_test.json
-```
-
-The optional live/GPU worker and reproducible commands are documented in the
-MegaMolBART card. Keep NGC credentials outside the repository; the GPU worker needs
-none after downloading the checkpoint. Generated caches and detailed experiment
-reports remain under ignored `artifacts/`. MolMIM's adapter is retained, but its
-128-token limit prevents this full-cohort comparison; do not drop long compounds.
 
 The model consumes SMILES only. It does not use uploaded notes, dose or exposure fields.
 Training artifacts are ignored locally; reports, split manifests and public demo
@@ -106,11 +75,3 @@ The model-ready file contains `compound_id`, name, standardised SMILES, structur
 Manual resolution must record the original LTKBID/name, a specific source identifier or structure, supporting URL, rationale and reviewer before changing eligibility. Do not edit generated CSVs: incorporate reviewed changes into the reproducible curation pipeline. Do not assume unresolved entries are negative.
 
 Before training, reserve demonstration cases, resolve any remaining label conflicts intended for inclusion, and freeze compound/scaffold grouping and splits. This data task deliberately does not train or inspect a test-set result.
-
-## External evaluation source audit
-
-The [external DILI source audit](model_cards/dili_external_validation_audit.md)
-checks FDA DILIst, TDC DILI and DILImap against the frozen cohort and available
-full-source structures. None is approved as an independent test set. It includes
-checksum-pinned offline commands and tests; no predictions or training occur.
-Raw sources and record-level results remain ignored under `artifacts/external_audit/`.

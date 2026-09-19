@@ -15,6 +15,44 @@ v2 `stream: discovery` envelope.
 
 Official source: [NVIDIA DiffDock NIM reference](https://docs.api.nvidia.com/nim/reference/mit-diffdock-infer).
 
+## Verified public smoke test
+
+On 2026-09-19, the public 8G43/ZU6 example completed against the hosted route
+`https://health.api.nvidia.com/v1/biology/mit/diffdock` using
+`NVIDIA_BIONEMO_API_KEY`. NVIDIA returned HTTP 200, vendor status `success`, one
+ligand pose, and pose confidence `0.004754878580570221`. The request ID was
+`e5518f23-54c4-47cd-871b-ff539991d567`; the served model version was not reported.
+This verifies authenticated inference and artifact export. The example is not
+the project's frozen therapeutic target, a toxicity assessment, or an accuracy
+benchmark.
+
+From the repository root, with the key already in the environment:
+
+```bash
+python3 infra/diffdock_smoke.py \
+  --api-key-env NVIDIA_BIONEMO_API_KEY \
+  --output-directory artifacts/runs/nvidia-bionemo-smoke
+```
+
+Use a new output directory for each run; the script preserves earlier attempts.
+`--api-key-env` takes an environment-variable name, never a credential value.
+It defaults to `NVIDIA_API_KEY` for compatibility, so select the BioNeMo variable
+explicitly when the two contain different keys.
+
+The successful local run is in
+`artifacts/runs/nvidia-bionemo-live-20260919-04/`. It contains `run.json`, the
+request and raw response, source and prepared inputs, `evidence.json`, the pose
+SDF, and `verification.json`. RDKit 2025.09.2 verified one pose with 21 heavy
+atoms, finite 3D coordinates, and the same structure and stereochemistry as the
+reference ligand. All eight referenced file checksums matched. Atom-map
+identity, contacts, and biological activity were not assessed.
+
+The hosted response uses `ligand_positions` and `position_confidence`; the
+adapter supports these alongside `docked_ligand` and `pose_confidence`. At the
+time of this check, the API reference's
+`/v1/molecular-docking/diffdock/generate` route returned HTTP 404 on the public
+host. The successful run above uses the verified hosted route instead.
+
 ## Inputs to freeze before a live run
 
 1. Copy `discovery/configs/targets/target-manifest.template.json` to a
@@ -33,7 +71,8 @@ Official source: [NVIDIA DiffDock NIM reference](https://docs.api.nvidia.com/nim
 
 ## Setup and offline check
 
-The component uses only the Python standard library. From `discovery/`:
+The HTTP client and smoke script use only the Python standard library. Optional
+shared-structure validation uses RDKit. From `discovery/`:
 
 ```bash
 python3 -m unittest discover -s tests -v
@@ -64,5 +103,5 @@ status and error; it is never treated as a low-risk result.
 - Team A and the biologist must select the conventional liver-toxicity comparator
   and its endpoint/conditions.
 - The Workbench tool inventory and custom-tool connection mechanism still require
-  an authenticated in-session check. This environment has neither an NVIDIA API
-  key nor an enabled Workbench browser surface, so no live call is claimed.
+  an authenticated in-session check. The successful hosted API smoke test above
+  does not establish Workbench integration.

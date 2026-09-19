@@ -35,23 +35,3 @@ Merge verification: all 57 Team A offline checks passed with RDKit installed, in
 the new real cached Team B handoff test. Team B's 51-test suite passed before the final
 shared-schema regression addition; the seven-test baseline suite then passed, bringing
 the current Team B test count to 52. No model retraining or score tuning occurred.
-
-The MolMIM embedding comparison is prepared but has no tracked result. Its live/GPU
-embedding cache and initial report are intentionally ignored under `artifacts/`. A
-tracked result must identify the exact deployed model/version, preserve the checked-in
-split checksum and include the stated unknown ZINC15 pretraining-overlap limitation.
-The real deployment passed a smoke test on 2026-09-19, but full-cohort acquisition is
-blocked: 11 frozen structures exceed the deployed checkpoint's 128-token limit.
-No compounds were excluded and no candidate evaluation was run; see the
-[experiment card](../../toxicity/model_cards/dili_bionemo_molmim_experiment.md).
-
-The subsequent [MegaMolBART experiment](../../toxicity/model_cards/dili_bionemo_megamolbart_experiment.md)
-completed on all 802 structures with the unchanged split. Its fixed logistic head
-scored test AUROC 0.612467 and AP 0.805224, below the published RF's 0.759808 and
-0.880970. No improvement is supported. Detailed predictions, reliability observations,
-nearest-training structures and checksums remain in ignored
-`artifacts/runs/bionemo_megamolbart_logistic_test.json`. That original evaluation is
-unchanged. A later user-requested
-[train/validation-only diagnosis](../../toxicity/model_cards/dili_bionemo_train_validation_diagnosis.md)
-examines regularization without scoring new candidates on the test partition;
-it is explicitly exploratory, not additional held-out improvement evidence.

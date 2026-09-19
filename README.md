@@ -4,10 +4,37 @@ An agentic drug-discovery workflow with a separate human liver-toxicity assessme
 
 Rosalind coordinates existing BioNeMo discovery tools and a ToxOracle DILI predictor to help researchers prioritise candidates and choose follow-up experiments.
 
-**Status:** Team B's evaluated DILI baseline, local privacy gateway and v2 handoff are implemented. Team A's offline reporting application, demo runner, DiffDock adapter and CI are also present. Real discovery execution and a conventional toxicity comparator remain integration dependencies.
+**Status:** The discovery-first workflow now screens a frozen public ABL1 panel with
+BioNeMo Boltz-2, adds the existing local DILI model and produces a v3 before/after
+report. A real reference check and four-compound terminal run succeeded, followed
+by a verified desktop Rosalind replay using the exact-input cache. Team B's evaluated baseline,
+privacy gateway and v2 handoff remain unchanged; a second toxicity predictor is not
+required for this workflow. Legacy DiffDock and v2 comparison commands remain available.
+
+Start with the [Rosalind screening runbook](docs/runbooks/rosalind-screening.md) and
+`./scripts/toxoracle-screen preflight`. The policy is provisional and the demonstration
+is retrospective; candidate training membership is displayed.
 
 See the [Team B runbook](docs/runbooks/team-b-local-mvp.md) for reproducible training,
 privacy setup and real cached DILI outputs. The user has passed the browser smoke test.
+
+## Interactive demo
+
+```bash
+python3 -m pip install -r requirements.txt
+python3 -m streamlit run streamlit_app.py --server.address 127.0.0.1
+```
+
+Open **http://127.0.0.1:8501**. The Streamlit dashboard includes candidate comparison,
+interactive molecular feature highlights, a rotatable saved NVIDIA docking pose,
+model evaluation, study imports and HTML/CSV/JSON exports. The bundled public results
+work offline without API credentials or model weights.
+
+Complete discovery/toxicity case folders are picked up from `demo/examples/` and
+`artifacts/runs/`, or can be opened as ZIP bundles in **Load a study**. Use
+`TOXORACLE_DEMO_CASE=/path/to/case` to select another local case. The UI reuses the
+existing validation, comparison and triage code; it does not train models or
+change scientific results. See the [presentation guide](docs/runbooks/streamlit-demo.md).
 
 ## Start here
 

@@ -1,0 +1,23 @@
+{
+  "status": "passed",
+  "verified_at": "2026-09-19T16:38:29.861597+00:00",
+  "rdkit_version": "2025.09.2",
+  "http_status": 200,
+  "vendor_status": "success",
+  "pose_count": 1,
+  "pose_confidence": [
+    0.004754878580570221
+  ],
+  "ligand_heavy_atom_count": 21,
+  "pose_has_finite_3d_coordinates": true,
+  "pose_matches_reference_structure_and_stereochemistry": true,
+  "checksums_verified": 8,
+  "credentials_absent_from_artifacts": true,
+  "limitations": [
+    "Connectivity and pose-generation smoke test only",
+    "Protein preparation retains ATOM records only",
+    "Atom-map identity and protein contacts are not verified",
+    "Confidence is pose reliability, not affinity, efficacy, or toxicity",
+    "Served model version was not reported"
+  ]
+}

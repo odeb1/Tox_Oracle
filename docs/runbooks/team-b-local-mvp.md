@@ -102,58 +102,6 @@ Re-run the explicit setup command before accepting user data. There is no hidden
 fallback. If the DILI artifact is missing, train/evaluate again from the frozen dataset.
 Cached demo requests/responses remain available for a disclosed offline illustration.
 
-## Optional BioNeMo representation experiment
-
-**Current blocker (2026-09-19):** the verified MolMIM NIM is healthy, but its
-128-token limit excludes 11 frozen compounds, including two test compounds.
-Do not run the full comparison by filtering or truncating those inputs. See the
-[compatibility audit](../../toxicity/model_cards/dili_bionemo_molmim_experiment.md)
-before running the acquisition/evaluation commands below. This limitation applies
-to MolMIM, not the separately completed MegaMolBART experiment.
-
-**Completed alternative:** [MegaMolBART + logistic regression](../../toxicity/model_cards/dili_bionemo_megamolbart_experiment.md)
-covered all 802 frozen structures, but test AUROC/AP were 0.612/0.805 versus the
-RF's 0.760/0.881. Keep the RF. The linked card contains the verified GPU worker,
-offline import/evaluation commands, calibration assessment and limitations.
-
-This comparison preserves the random forest and its frozen split. It uses the same
-train, validation and test compounds with a fixed standardized logistic regression on
-MolMIM embeddings. It does not change the v2 inference interface.
-
-First run the offline integrity check:
-
-```sh
-toxicity/.venv/bin/python -m toxicity.src.bionemo_experiment audit
-```
-
-For the optional live/GPU step, deploy the NVIDIA MolMIM NIM separately. NVIDIA's
-current documentation identifies container `nvcr.io/nim/nvidia/molmim:1.0.0` and
-`POST /embedding`. Keep `NGC_CLI_API_KEY` in the shell/container environment; never
-place it in repository files or command arguments. Record the exact deployed model or
-checkpoint version supplied by the deployment and run:
-
-```sh
-toxicity/.venv/bin/python -m toxicity.src.bionemo_experiment fetch \
-  --endpoint http://127.0.0.1:8000 \
-  --model-version '<exact-deployed-version>'
-```
-
-This writes an ignored, checksummed cache under `artifacts/embeddings/`. The cache
-contains structures and vectors, not labels. The endpoint's returned dimension is
-discovered and checked; it is not hard-coded. Then disconnect the live dependency and
-run the experiment offline:
-
-```sh
-toxicity/.venv/bin/python -m toxicity.src.bionemo_experiment evaluate
-```
-
-The output is ignored under `artifacts/runs/` until reviewed. Do not copy test metrics
-into a tracked report and claim improvement without checking cohort identity,
-pretraining-overlap limitations and sampling uncertainty. NVIDIA references:
-<https://docs.nvidia.com/nim/bionemo/molmim/latest/endpoints.html>,
-<https://docs.nvidia.com/nim/bionemo/molmim/latest/deployment-guide.html>, and
-<https://docs.nvidia.com/nim/bionemo/molmim/latest/support-matrix.html>.
-
 ## Boundary and limits
 
 The independent gateway uses an OpenAI-authored open-weight model locally; it does not

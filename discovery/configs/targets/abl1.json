@@ -1,0 +1,28 @@
+{
+  "schema_version": "1.0",
+  "target_id": "human_abl1_2hyy_A",
+  "protein_name": "Human ABL1 kinase domain",
+  "species": "Homo sapiens",
+  "uniprot_id": "P00519",
+  "pdb_id": "2HYY",
+  "chain": "A",
+  "entity_id": "1",
+  "sequence": "VSPNYDKWEMERTDITMKHKLGGGQYGEVYEGVWKKYSLTVAVKTLKEDTMEVEEFLKEAAVMKEIKHPNLVQLLGVCTREPPFYIITEFMTYGNLLDYLRECNRQEVNAVVLLYMATQISSAMEYLEKKNFIHRDLAARNCLVGENHLVKVADFGLSRLMTGDTYTAHAGAKFPIKWTAPESLAYNKFSIKSDVWAFGVLLWEIATYGMSPYPGIDLSQVYELLEKDYRMERPEGCPEKVYELMRACWQWNPSDRPSFAEIHQAFETMFQES",
+  "sequence_sha256": "eab4f833c92a3db389a6701fedc6437c549c67e517d23400b2cca23eacfbd736",
+  "sequence_source": "https://data.rcsb.org/rest/v1/core/polymer_entity/2HYY/1",
+  "source_sha256": "990d60b0c22536cb9d3b3d5ce69d121415c68c251330d6a30ec55ea14d643729",
+  "retrieved_at": "2026-09-19T18:22:48.100903+00:00",
+  "reference_compound_id": "LT00107",
+  "reference_ligand": "imatinib",
+  "inference_settings": {
+    "recycling_steps": 3,
+    "sampling_steps": 50,
+    "diffusion_samples": 1,
+    "sampling_steps_affinity": 200,
+    "diffusion_samples_affinity": 5,
+    "output_format": "mmcif",
+    "affinity_mw_correction": false
+  },
+  "preparation": "Use deposited polymer entity sequence for chain A. No ligand coordinates, pocket constraint, structural template or custom MSA supplied. This is sequence-based cofolding; structure is a reference, not an input template.",
+  "interpretation": "Retrospective computational screening; not therapeutic efficacy or prospective validation."
+}

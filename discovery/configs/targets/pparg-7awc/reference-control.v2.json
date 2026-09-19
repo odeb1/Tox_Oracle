@@ -1,0 +1,13 @@
+{
+  "schema_version": "2.0",
+  "request_id": "pparg_7awc_reference_v1",
+  "compounds": [
+    {
+      "compound_id": "RCSB_7AWC_BRL_A501",
+      "canonical_smiles": "CN(CCOc1ccc(C[C@@H]2SC(=O)NC2=O)cc1)c1ccccn1",
+      "structure_id": "87e42b89784b2fe565a4b50fe2639d064f9e6d78006a29926db87f88ede0738c",
+      "standardization_version": "rcsb_ccd_brl_v1",
+      "atom_mapped_smiles": "[CH3:1][N:2]([CH2:3][CH2:4][O:5][c:6]1[cH:7][cH:8][c:9]([CH2:10][C@@H:11]2[S:12][C:13](=[O:14])[NH:15][C:16]2=[O:17])[cH:18][cH:19]1)[c:20]1[cH:21][cH:22][cH:23][cH:24][n:25]1"
+    }
+  ]
+}

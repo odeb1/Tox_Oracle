@@ -94,6 +94,7 @@ class DiffDockNIMClient:
         self.endpoint = endpoint
         self.timeout_seconds = timeout_seconds
         self._transport = transport or self._urllib_transport
+        self.last_response_metadata: Dict[str, Any] = {}
 
     @classmethod
     def from_environment(cls, environment_variable: str = "NVIDIA_API_KEY") -> "DiffDockNIMClient":
@@ -107,6 +108,7 @@ class DiffDockNIMClient:
         return cls(api_key)
 
     def dock(self, request: DiffDockRequest) -> Mapping[str, Any]:
+        self.last_response_metadata = {}
         headers = {
             "Accept": "application/json",
             "Authorization": "Bearer {}".format(self._api_key),
@@ -121,6 +123,12 @@ class DiffDockNIMClient:
         request = Request(endpoint, data=encoded, headers=dict(headers), method="POST")
         try:
             with urlopen(request, timeout=self.timeout_seconds) as response:  # nosec B310: configured NIM URL
+                # Retain only non-secret response metadata for run provenance.
+                self.last_response_metadata = {
+                    "http_status": response.status,
+                    "request_id": response.headers.get("nvcf-reqid"),
+                    "service_date": response.headers.get("Date"),
+                }
                 body = response.read().decode("utf-8")
         except HTTPError as error:
             detail = error.read().decode("utf-8", errors="replace")
@@ -211,7 +219,29 @@ class DockingEvidence:
             "DiffDock pose confidence describes pose reliability; it is not binding affinity, "
             "therapeutic efficacy, or a toxicity score."
         ]
-        confidence = _finite_numbers(response.get("pose_confidence"))
+        confidence_field = "pose_confidence" if "pose_confidence" in response else "position_confidence"
+        confidence = _finite_numbers(response.get(confidence_field))
+        docked_ligand = response.get("docked_ligand")
+        if docked_ligand is None and "ligand_positions" in response:
+            # The hosted service also returns one SDF string per pose. Each
+            # request here contains one ligand, so nested batch output must not
+            # be flattened or silently associated with the wrong confidences.
+            poses = response["ligand_positions"]
+            if not isinstance(poses, list) or not poses or not all(
+                isinstance(pose, str) and pose.strip() for pose in poses
+            ):
+                raise DiffDockError("Expected a non-empty list of ligand pose SDF strings")
+            raw_confidence = response.get(confidence_field)
+            if (
+                not isinstance(raw_confidence, list)
+                or len(poses) != len(raw_confidence)
+                or len(confidence) != len(poses)
+            ):
+                raise DiffDockError("Pose count differs from finite confidence count")
+            docked_ligand = "".join(
+                pose.rstrip() + ("\n" if pose.rstrip().endswith("$$$$") else "\n$$$$\n")
+                for pose in poses
+            )
         metrics: List[Dict[str, Any]] = []
         if confidence:
             metrics.extend(
@@ -235,7 +265,7 @@ class DockingEvidence:
                 ]
             )
         else:
-            warnings.append("No finite pose_confidence values were returned by DiffDock.")
+            warnings.append("No finite pose-confidence values were returned by DiffDock.")
 
         artifacts: List[Dict[str, str]] = []
         service_artifacts: List[Dict[str, str]] = []
@@ -245,7 +275,6 @@ class DockingEvidence:
                     artifact_directory, compound_id + "_diffdock_response", response
                 )
             )
-            docked_ligand = response.get("docked_ligand")
             if isinstance(docked_ligand, str) and docked_ligand.strip():
                 artifacts.append(
                     _write_text_artifact(
@@ -286,11 +315,12 @@ class DockingEvidence:
     def failed(
         cls, compound_id: str, message: str, status: str = "failed", error_type: str = "diffdock_request_failed"
     ) -> "DockingEvidence":
-        warning = (
-            "No discovery conclusion can be made for invalid input."
-            if status == "invalid_input"
-            else "No discovery conclusion can be made because the DiffDock request failed."
-        )
+        if status == "invalid_input":
+            warning = "No discovery conclusion can be made for invalid input."
+        elif status == "unsupported":
+            warning = "No discovery conclusion can be made for unsupported input."
+        else:
+            warning = "No discovery conclusion can be made because the DiffDock request failed."
         return cls(
             compound_id=compound_id,
             status=status,
