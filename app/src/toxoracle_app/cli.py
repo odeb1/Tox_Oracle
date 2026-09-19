@@ -8,6 +8,7 @@ from pathlib import Path
 from typing import Any, Sequence
 
 from .join import combine_responses
+from .report import render_combined_report
 from .validation import ContractValidationError
 
 
@@ -23,6 +24,11 @@ def _write_json(path: Path, document: dict[str, Any]) -> None:
         file.write("\n")
 
 
+def _write_text(path: Path, content: str) -> None:
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_text(content, encoding="utf-8")
+
+
 def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(
         description="Validate and combine ToxOracle discovery and toxicity responses."
@@ -34,6 +40,7 @@ def build_parser() -> argparse.ArgumentParser:
     combine.add_argument("--toxicity", required=True, type=Path)
     combine.add_argument("--config", required=True, type=Path)
     combine.add_argument("--output", required=True, type=Path)
+    combine.add_argument("--html-output", type=Path)
     return parser
 
 
@@ -47,11 +54,15 @@ def main(argv: Sequence[str] | None = None) -> int:
             _load_json(args.config),
         )
         _write_json(args.output, combined)
+        if args.html_output is not None:
+            _write_text(args.html_output, render_combined_report(combined))
     except (ContractValidationError, OSError, json.JSONDecodeError) as error:
         print(f"error: {error}")
         return 1
 
     print(f"Wrote {args.output}")
+    if args.html_output is not None:
+        print(f"Wrote {args.html_output}")
     return 0
 
 
