@@ -2,7 +2,7 @@
 
 Date: 19 September 2026  
 Audience: Team A (Rosalind discovery workflow) and Team B (human DILI model)  
-Status: implementation guideline; proposed defaults below can be adjusted jointly at kickoff.
+Status: implementation guideline; revised to require a shared toxicity assessment and structural evidence from both streams. Model/endpoint choices must be frozen jointly at kickoff.
 
 ## 1. Product and definition of success
 
@@ -18,7 +18,8 @@ The MVP predicts drug-level DILI concern, not individual patient outcomes, overa
 
 - A candidate list enters the workflow as compound IDs and SMILES.
 - One defined discovery task runs using existing tools/models.
-- A separate toxicity tool returns a DILI score, model provenance, and applicability/uncertainty information.
+- Both streams return the same toxicity-assessment envelope: Team A supplies a conventional/preclinical assessment; Team B supplies a human DILI assessment. Both include provenance, reliability and structural evidence.
+- A comparison layer computes the defined disagreement output when the inputs support it, and otherwise returns an explicit unavailable reason.
 - The same candidate IDs appear in both outputs and the combined report.
 - Users can compare discovery-only priorities with priorities after toxicity assessment.
 - Recommendations explain which evidence supports the next experiment.
@@ -29,7 +30,6 @@ The MVP predicts drug-level DILI concern, not individual patient outcomes, overa
 - Candidate generation, additional targets, or additional toxicity endpoints.
 - Optional human exposure input through an independent local privacy boundary.
 - Exposure-aware retraining, mechanistic proxy models, molecular foundation embeddings.
-- Quantitative preclinical-human discrepancy, if comparable evidence supports its definition.
 - Formal hallucination assessment or token-efficiency benchmarking.
 
 ## 2. Architecture and resource assumptions
@@ -44,9 +44,9 @@ flowchart TD
     T[One prepared therapeutic target] --> R
     R --> A[Team A: existing BioNeMo discovery tools]
     R --> B[Team B: ToxOracle DILI tool]
-    A --> C[Structured discovery evidence]
-    B --> D[DILI score and reliability information]
-    C --> J[Joint report and prioritisation]
+    A --> C[Conventional toxicity assessment and structural evidence]
+    B --> D[Human DILI assessment and structural evidence]
+    C --> J[Disagreement and joint prioritisation]
     D --> J
     E[Published preclinical and human evidence] --> J
     H[Optional sensitive exposure upload] --> P[Independent local privacy layer]
@@ -55,7 +55,7 @@ flowchart TD
     S --> J
 ```
 
-The toxicity model is computationally separate but callable within the same researcher workflow. It does not need to be a BioNeMo model. Only Team B trains a model in the core plan; Team A uses existing models.
+The toxicity model is computationally separate but callable within the same researcher workflow. It does not need to be a BioNeMo model. Only Team B trains a model in the core plan; Team A integrates an existing toxicity predictor or sourced assay assessment in addition to discovery tools. If neither provides the required comparator, report the dependency as unresolved; do not substitute a binding score or reuse Team B's score. Fitting a new endpoint translation/calibration layer would be additional joint modelling work, not an assumed existing capability.
 
 ## 3. Ownership and handoffs
 
@@ -63,7 +63,10 @@ The toxicity model is computationally separate but callable within the same rese
 |---|---|---|
 | Workbench access, callable tool inventory and orchestration | A | Verified invocation path and one real tool result |
 | Discovery objective, target preparation and reference ligand | A, with biologist | Target manifest and candidate fixture |
-| BioNeMo execution and discovery evidence | A | Discovery result contract |
+| BioNeMo execution and discovery evidence | A | Supplementary discovery metrics and poses |
+| Conventional/preclinical toxicity comparator | A, with biologist | Shared toxicity assessment with exact endpoint and conditions |
+| Structural evidence and atom mapping | Each team; shared identity policy | Aligned molecular graph, fragments/attributions, source artifacts |
+| Comparison eligibility and disagreement computation | Joint | Versioned formula, status and reason |
 | DILI data, structures, splitting, training and evaluation | B | Versioned model and evaluation report |
 | Pretrained fallback assessment | B | Reproducible inference and documented training membership limitations |
 | Toxicity tool interface | B | Prediction contract and working adapter/service |
@@ -98,13 +101,22 @@ DiffDock is a concrete option for ligand poses from protein PDB plus ligand SMIL
 
 If only docking is available, present pose plausibility and calculated molecular properties, with a clearly labelled provisional discovery rubric agreed with the biologist. If no defensible ranking is available, keep candidates unranked and demonstrate how toxicity changes the follow-up shortlist.
 
-### A3. Deliver structured evidence
+### A3. Add the conventional toxicity assessment
 
-- Canonical candidate IDs and submitted structures.
-- Target and tool/model versions.
-- Named scores, units where applicable, and whether higher or lower is preferred.
-- Pose/artifact references and execution status.
-- Discovery priority and the explicit rule producing it, if ranking is supported.
+This is now a required Team A output, alongside the conventional discovery outputs. At kickoff, identify an existing model/tool or a documented experimental result for a specified liver-relevant endpoint. Do not assume the selected BioNeMo docking/generation tool supplies toxicity predictions.
+
+Preferred numerical comparison: an existing conventional predictor estimates the same drug-level human DILI label used by Team B, using its own conventional evidence/features. Both models must have compatible label definitions and assessed calibration. This produces **model discordance**, not direct proof of an experimental preclinical miss.
+
+If the available comparator predicts a different endpoint (for example, hepatocyte viability or mitochondrial toxicity), retain that exact endpoint and its species, cell system, dose/concentration and duration. Compare thresholded calls as **cross-endpoint discordance**; do not subtract its raw score from human DILI probability. A measured result may supply the call without a probability. Missing assay data are not negative results.
+
+For structure-only inference on new candidates, Team A needs a predictor that accepts structure. A literature lookup can support named historical cases but is not a predictor for novel compounds. Freeze this availability distinction before promising the demo scope.
+
+### A4. Deliver primary and supplementary evidence
+
+- Primary: the common toxicity assessment and structural evidence contract in section 6.
+- Supplementary: therapeutic target, named discovery scores/units, generated molecules if used, pose artifacts, interaction annotations if computed, and discovery priority with its explicit rule.
+- Structural output: shared atom-mapped molecular graph plus any actual docked ligand SDF/protein PDB artifacts, pose confidence, and atom-to-residue contacts. Mark the protein as a therapeutic target or a toxicity-related target; therapeutic docking alone does not explain liver toxicity.
+- If the comparator supports feature attribution or validated structural alerts, return affected fragments/atoms, attribution method and source. Otherwise mark attribution unavailable; retain the molecular graph and available structural artifacts.
 
 Optional GenMol generation comes after the screening flow works. Its generated SMILES must go through the same validation and toxicity pipeline as uploaded molecules.
 
@@ -164,51 +176,89 @@ Before relying on a fallback, verify its actual code/artifacts, dependencies, in
 
 Mark model origin `pretrained`. If case membership is unknown, mark it `unknown` and describe the example as retrospective illustration. The same prediction contract must work for trained and pretrained models.
 
-## 6. Shared interface: agree before building independently
+### B5. Deliver structural evidence
 
-These are ToxOracle application contracts, not claimed vendor API schemas. Team B implements `predict_dili` as a batch callable, with JSON file input/output as the guaranteed fallback. An HTTP or Workbench adapter can wrap the same function.
+Return the same atom-mapped molecule used by Team A, along with model-supported fragment/feature evidence where available. For the fingerprint baseline, retain the fingerprint configuration and bit-to-atom-environment mapping during featurisation. An attribution method may rank feature contributions, then map them to candidate fragments.
 
-### Prediction request
+Record the attribution target, method/version, baseline/reference and output scale. Hashed fingerprint bits may map to multiple environments: return all matching environments and an ambiguity flag rather than claiming a unique toxic atom. Global descriptor contributions remain global; do not force them onto atoms. A fallback model without explanation support must return an explicit unavailable status.
+
+A 2D atom-mapped graph with highlighted supported fragments is a valid structural output. Do not fabricate a 3D toxicity structure. Model attribution supports mechanistic hypotheses, not causal proof.
+
+## 6. Shared interface: consistent assessments and structural outputs
+
+Both teams implement a batch callable returning schema version `2.0`. Team A returns `stream: discovery`; Team B returns `stream: toxicity`. JSON files remain the guaranteed fallback; HTTP/Workbench adapters wrap the same records. This replaces the earlier asymmetric v1 contracts.
+
+### Shared request
 
 ```json
 {
-  "schema_version": "1.0",
+  "schema_version": "2.0",
   "request_id": "demo_run_01",
   "compounds": [
-    {"compound_id": "candidate_001", "smiles": "CCO"}
+    {
+      "compound_id": "candidate_001",
+      "canonical_smiles": "CCO",
+      "atom_mapped_smiles": "[CH3:1][CH2:2][OH:3]",
+      "structure_id": "example_structure_v1",
+      "standardization_version": "example_policy_v1"
+    }
   ]
 }
 ```
 
-`CCO` is a schema example only, not a nominated discovery candidate. Require unique nonempty IDs, valid JSON and a bounded batch size agreed by both teams. Return a result for each input ID, including failures. Never silently drop an invalid or unsupported structure.
+The molecule is a schema example, not a nominated candidate. Shared preprocessing assigns the standardised structure, stable structure ID and atom-map IDs once. Both teams preserve them. Any internal salt/protonation/conformer transformation must retain a mapping back to these IDs and disclose unmapped atoms. Do not silently join different parent structures. Require unique candidate IDs and return a record for every input, including failures.
 
-### Prediction response
+### Common per-compound response
 
-The null fields below illustrate unavailable values, not computed predictions.
+This Team B example contains no computed scores. Team A uses the identical core fields, its own endpoint/method metadata, and `stream: discovery`.
 
 ```json
 {
-  "schema_version": "1.0",
+  "schema_version": "2.0",
   "request_id": "demo_run_01",
-  "model": {
-    "id": "toxoracle_dili_v1",
-    "origin": "trained",
-    "training_data_version": "curated_dilirank2_v1",
-    "target": "most_or_less_DILI_concern_vs_no_concern"
-  },
+  "stream": "toxicity",
   "results": [
     {
       "compound_id": "candidate_001",
+      "structure_id": "example_structure_v1",
       "status": "not_run",
-      "canonical_smiles": "CCO",
-      "score": null,
-      "score_kind": "uncalibrated_model_score",
-      "decision_threshold": null,
-      "risk_band": "unavailable",
-      "uncertainty": {"method": "not_implemented", "value": null},
-      "applicability": {"method": "nearest_train_tanimoto", "value": null},
-      "training_membership": "unknown",
-      "evidence_refs": [],
+      "assessment": {
+        "endpoint_id": "human_dili_binary_v1",
+        "positive_definition": "Most or Less DILI concern",
+        "negative_definition": "No DILI concern",
+        "context": {"species": "human", "system": "drug_level_annotation", "conditions": null},
+        "evidence_type": "model_prediction",
+        "risk_score": null,
+        "score_kind": "uncalibrated_score",
+        "direction": "higher_is_more_toxic",
+        "threshold": null,
+        "call": "unavailable",
+        "calibration": {"status": "not_assessed", "reference": null},
+        "uncertainty": {"method": "not_implemented", "value": null},
+        "applicability": {"method": "nearest_train_tanimoto", "value": null}
+      },
+      "structural_evidence": {
+        "canonical_smiles": "CCO",
+        "atom_mapped_smiles": "[CH3:1][CH2:2][OH:3]",
+        "standardization_version": "example_policy_v1",
+        "attribution_status": "unavailable",
+        "attribution_method": null,
+        "attribution_target": null,
+        "attribution_scale": null,
+        "attribution_reference": null,
+        "fragments": [],
+        "structure_artifacts": [],
+        "interactions": [],
+        "mechanism_hypotheses": []
+      },
+      "supplementary_metrics": [],
+      "provenance": {
+        "method_id": "toxoracle_dili_v1",
+        "model_origin": "trained",
+        "data_version": "curated_dilirank2_v1",
+        "training_membership": "unknown",
+        "evidence_refs": []
+      },
       "warnings": ["Schema example; inference has not run"],
       "error": null
     }
@@ -216,17 +266,39 @@ The null fields below illustrate unavailable values, not computed predictions.
 }
 ```
 
-Status values: `ok`, `invalid_input`, `unsupported`, `failed`, `not_run`. A failed prediction is never a low-risk result. Successful scores must be finite and within their documented range. A binary threshold is sufficient for v1; do not add multiple risk bands without defining their thresholds.
+Contract rules:
 
-Team A's matching discovery record must include:
+- `status`: `ok`, `invalid_input`, `unsupported`, `failed`, `not_run`. Failure never becomes low risk.
+- `risk_score`: finite 0–1 model score/probability when supported; otherwise null. Never min-max scale arbitrary assay measurements to imply probability. Retain raw assay values and units in supplementary metrics.
+- `score_kind`: `calibrated_probability`, `uncalibrated_score`, or `unavailable`. `call`: `positive`, `negative`, or `unavailable`; record the threshold or source assay positivity rule.
+- `evidence_type`: `model_prediction` or `measured_assay`. Measured binary calls do not become certain 0/1 probabilities.
+- Each supplementary metric has `name`, `value`, `unit`, `direction`, `meaning`, and `source_ref`. Discovery examples include pose confidence/properties; toxicity examples include auxiliary endpoint scores or exposure margins.
+- Each fragment has `fragment_id`, `atom_map_ids`, `pattern` (if available), `contribution`, `evidence_kind`, `source_ref`, and `mapping_ambiguous`. Specify whether contribution is an attribution, a structural alert or a perturbation result; these are not interchangeable. Contributions from different methods are not directly comparable.
+- Each structure artifact has `artifact_id`, `format`, `uri`, `checksum`, `origin` (experimental/predicted/generated), `atom_mapping_ref`, and relevant model/target/conformer identifiers.
+- Each interaction has ligand `atom_map_ids`, protein target/chain/residue identifiers, `interaction_type`, `distance_angstrom` where available, and `artifact_ref`.
+- Each mechanism hypothesis has `claim`, supporting `evidence_refs`, `evidence_level` and `proposed_validation`. Unsupported arrays stay empty with a reason in warnings.
 
-```text
-compound_id, status, target_id, tools_and_versions,
-scores[{name,value,unit,direction,meaning}],
-artifact_refs[], discovery_priority, priority_method
-```
+### Comparison and combined scores
 
-The joint record adds `toxicity_result`, `preclinical_evidence_refs`, `recommendation`, `recommendation_rule_version`, and `rationale`. Keep discovery scores and toxicity scores separate; do not subtract docking confidence from DILI prediction.
+The joint layer checks compound/structure identity, endpoints, conditions, score type, calibration and availability before selecting a comparison mode. It returns `comparison_mode`, `status`, `reason`, both source assessment references, `formula_version`, and the following nullable results:
+
+| Output | Definition | When allowed |
+|---|---|---|
+| `signed_disagreement` | `p_human - p_conventional` (range -1 to +1) | Same human DILI endpoint/label definition, compatible assessment context and assessed calibration on a common reference population |
+| `absolute_disagreement` | `abs(signed_disagreement)` | Same eligibility as signed disagreement |
+| `call_disagreement` | 1 if calls differ, otherwise 0 | Both endpoint-specific calls available; identify same-endpoint versus cross-endpoint mode |
+| `hidden_liability_flag` | 1 if conventional call is negative and human call is positive, otherwise 0 | Both calls available; a potential liability, not confirmed human toxicity |
+| `conservative_risk_score` | `max(p_human, p_conventional)` | Same eligibility as signed disagreement; label as a triage heuristic, not a calibrated combined probability |
+
+Positive signed disagreement means the human model assigns higher concern. For illustration only, 0.80 minus 0.25 is +0.55 (+55 percentage points). Even same-endpoint disagreement is not the probability of translational failure.
+
+For different endpoints or uncalibrated scores, signed/absolute disagreement and conservative risk remain null. Return thresholded discordance with exact endpoint names; shared JSON shape and 0–1 scales alone do not make quantities comparable. If either call is missing, call-based scores are null too. Never substitute docking confidence for toxicity.
+
+**Kickoff decision:** prefer a same-endpoint conventional predictor if available and evaluable. Otherwise use a documented preclinical endpoint with categorical cross-endpoint discordance. This still gives both streams consistent outputs and an executable comparison, without manufacturing probabilities. Do not train an additional translation model unless the teams explicitly expand scope and have matched labels.
+
+### Structural explanation handoff
+
+The joint report aligns atoms/fragments by shared map IDs and shows evidence from each stream side by side. Keep the chain explicit: highlighted fragment or interaction → model/assay evidence → mechanism hypothesis → proposed experiment. Attributions explain model behaviour; a docking contact shows a predicted interaction. Neither establishes that a fragment causes human DILI. Later causal investigation may use controlled matched molecular pairs, targeted assays or other intervention evidence. Generated counterfactual score changes alone remain model sensitivity evidence.
 
 ## 7. Prioritisation and researcher output
 
@@ -242,9 +314,18 @@ Agree the discovery criterion with the biologist and the DILI threshold from val
 
 High toxicity alone does not establish that a costly 3D experiment is worthwhile. Include therapeutic promise, uncertainty and whether the result could change the decision.
 
-Return a table with candidate, discovery evidence, DILI assessment, reliability, original priority, revised priority and next experiment. Add a candidate detail view with artifacts and sources. An agent narrative must be generated from these records, not used to invent quantitative results.
+Return a table with candidate, conventional toxicity assessment, human DILI assessment, comparison mode/disagreement, reliability, supplementary discovery evidence, original priority, revised priority and next experiment. Add an atom-mapped structure view with fragment highlights and source links from both streams. Add a candidate detail view with artifacts and sources. An agent narrative must be generated from these records, not used to invent quantitative results.
 
 For experiments, name the question, relevant assay/model and proposed readouts. Mechanistic claims require evidence; fingerprint feature attribution alone does not establish a biological mechanism. If mechanism evidence is absent, recommend broader liver-safety characterisation and say why.
+
+### Joint evaluation of assessments and explanations
+
+- For predictors of the same human DILI target, report each stream's AUROC, average precision, sensitivity/specificity and calibration on the same held-out compounds where feasible. Assess calibration on compatible reference data; separate source training overlap from evaluation membership.
+- For different targets, evaluate each against its own ground truth. Do not claim that accuracy on one assay measures human DILI accuracy.
+- Report comparison coverage: eligible scored pairs / submitted compounds, plus reasons for exclusions. Unavailable comparisons must not count as agreement.
+- Report call-disagreement rate on available pairs. This describes disagreement, not correctness.
+- On a defined held-out cohort with measured preclinical calls and human labels, report recovery of assay-negative/human-positive cases and false-positive rate among assay-negative/human-negative controls. Use this to assess whether prioritisation helps.
+- Check that atom references resolve to the shared molecule, artifact mappings survive preparation, and every structural claim has a source. Report attribution coverage; unsupported explanations remain unavailable. Perturbation checks, if used, assess model sensitivity rather than causality.
 
 ## 8. Historical preclinical-miss cases
 
@@ -267,7 +348,7 @@ Claim levels:
 3. **Held-out case:** a model flags a documented miss excluded from training and tuning. Supports a case-level result.
 4. **General performance claim:** requires a suitable evaluated cohort, including negatives, with held-out metrics and limitations.
 
-Do not keep searching for attractive cases after inspecting the test results and present them as a prespecified evaluation. Report case selection honestly. No numerical translational gap is required for the MVP; use a sourced side-by-side comparison.
+Do not keep searching for attractive cases after inspecting the test results and present them as a prespecified evaluation. Report case selection honestly. Use section 6 comparison modes; the MVP must report numeric model discordance when eligible, categorical cross-endpoint discordance otherwise, or an explicit unavailable reason. A confirmed preclinical-miss claim still requires human outcome evidence.
 
 ## 9. Optional exposure and privacy branch
 
@@ -287,10 +368,10 @@ Use these as timeboxes from kickoff; compress proportionally if less than a day 
 
 | Time | Team A | Team B | Joint gate |
 |---|---|---|---|
-| 0–1 h | Verify tools; choose task/target | Confirm data/pretrained path | Freeze candidate IDs and v1 contracts |
-| 1–3 h | Run one real discovery call | Curate initial data; provide labelled mock response | A successfully consumes B's response |
+| 0–1 h | Verify tools; choose task/target and toxicity comparator | Confirm data/pretrained path | Freeze v2 contract, atom mapping, endpoint definitions and comparison mode |
+| 1–3 h | Run discovery and comparator calls | Curate initial data; provide labelled v2 mock response | Join both envelopes and structural IDs |
 | 3–6 h | Build structured discovery output | Train first baseline or run fallback; begin case curation | Replace mock with real toxicity inference |
-| 6–10 h | Connect tool and combined report | Freeze model/threshold; evaluate | One complete real end-to-end run |
+| 6–10 h | Connect comparator, structural artifacts and combined report | Freeze model/threshold; export fragment evidence; evaluate | Real run with eligible disagreement or explicit fallback mode |
 | 10–16 h | Before/after priorities and artifact display | Reliability report and case evidence | Verify claims and recommendation logic |
 | Final 2–3 h | Cache, rehearse and record | Freeze model/results | Three cases, backup workflow, pitch audit |
 
@@ -316,7 +397,11 @@ Keep restricted datasets, credentials and large model artifacts out of Git. Each
 ## 12. Final acceptance checklist
 
 - [ ] Candidate IDs survive both branches and the join without mismatches.
-- [ ] At least one real BioNeMo discovery task and one real DILI prediction run.
+- [ ] Real BioNeMo discovery, conventional toxicity assessment and human DILI inference run.
+- [ ] Both streams emit v2 assessment and structural-evidence envelopes with matching structure/atom IDs.
+- [ ] Comparison eligibility is checked; formulas and cross-endpoint/unavailable modes are displayed correctly.
+- [ ] Each stream returns a molecular graph and available source-backed structural/fragment evidence; absent attribution is explicit.
+- [ ] Structural hypotheses are distinguishable from causal evidence.
 - [ ] Invalid SMILES, unsupported compounds and a tool failure are handled visibly.
 - [ ] Every score has a defined meaning and model/source provenance.
 - [ ] Model evaluation uses appropriate held-out compounds; pretrained overlap is disclosed.
@@ -339,4 +424,4 @@ Keep restricted datasets, credentials and large model artifacts out of Git. Each
 - `refs/papers/Eltahir(2026).pdf`: multi-endpoint structure-based approach; supplied version is a preprint.
 - `refs/papers/Ewart(2022).pdf` and `refs/papers/Bergen(2025).pdf`: potential experimental-context and case-evidence sources; verify the exact assay/compound claims.
 
-The present plan supersedes the earlier sketches for the agreed first-build scope: **existing discovery tools plus one additional human DILI model**, with published preclinical evidence used for case studies when available.
+The present plan supersedes the earlier sketches for the agreed first-build scope: **existing discovery tools plus an existing conventional toxicity comparator and one additional human DILI model**, with consistent assessment/structural outputs and an explicit comparison layer. Published preclinical evidence supports case studies and can supply comparator calls for named compounds.
