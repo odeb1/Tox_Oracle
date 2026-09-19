@@ -8,6 +8,7 @@ from toxoracle_app.join import combine_responses
 
 REPOSITORY_ROOT = Path(__file__).resolve().parents[2]
 EXAMPLES_DIR = REPOSITORY_ROOT / "contracts" / "examples"
+POLICY_PATH = REPOSITORY_ROOT / "configs" / "triage-v1.json"
 
 
 def load_example(name: str) -> dict:
@@ -20,9 +21,13 @@ class JoinTests(unittest.TestCase):
         self.request = load_example("request.valid.json")
         self.discovery = load_example("discovery.not-run.json")
         self.toxicity = load_example("toxicity.not-run.json")
+        with POLICY_PATH.open(encoding="utf-8") as file:
+            self.policy = json.load(file)
 
     def test_combine_preserves_identity_and_both_streams(self) -> None:
-        combined = combine_responses(self.request, self.discovery, self.toxicity)
+        combined = combine_responses(
+            self.request, self.discovery, self.toxicity, self.policy
+        )
 
         self.assertEqual(combined["schema_version"], "2.0")
         self.assertEqual(combined["request_id"], "demo_run_01")
@@ -33,6 +38,12 @@ class JoinTests(unittest.TestCase):
         self.assertEqual(result["identity_status"], "matched")
         self.assertEqual(result["discovery_result"]["compound_id"], "candidate_001")
         self.assertEqual(result["toxicity_result"]["compound_id"], "candidate_001")
+        self.assertEqual(result["comparison"]["comparison_mode"], "unavailable")
+        self.assertEqual(result["comparison"]["status"], "unavailable")
+        self.assertEqual(result["priority"]["status"], "unavailable")
+        self.assertEqual(
+            result["priority"]["revised_priority"], "assessment_incomplete"
+        )
 
     def test_combine_uses_request_order(self) -> None:
         request = copy.deepcopy(self.request)
@@ -50,7 +61,7 @@ class JoinTests(unittest.TestCase):
             second_result["structure_id"] = "example_structure_v2"
             response["results"] = [second_result, response["results"][0]]
 
-        combined = combine_responses(request, discovery, toxicity)
+        combined = combine_responses(request, discovery, toxicity, self.policy)
 
         self.assertEqual(
             [result["compound_id"] for result in combined["results"]],

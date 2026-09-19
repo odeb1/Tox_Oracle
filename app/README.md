@@ -17,10 +17,13 @@ toxoracle-combine combine \
   --request contracts/examples/request.valid.json \
   --discovery contracts/examples/discovery.not-run.json \
   --toxicity contracts/examples/toxicity.not-run.json \
+  --config configs/triage-v1.json \
   --output artifacts/runs/combined.json
 ```
 
-The current output is an identity-preserving joined record. Comparison, prioritisation and report rendering are added in later milestones. The example inputs are labelled `not_run` and contain no scientific results.
+The output is an identity-preserving joined record with comparison and priority results for each candidate. Numeric disagreement is emitted only for compatible assessed calibrated probabilities for the same endpoint and context. Other eligible pairs receive same-endpoint or cross-endpoint call disagreement; incomplete inputs receive an explicit unavailable reason.
+
+The triage policy is currently marked provisional. Its applicability threshold is intentionally `null` until Team B and the biologist approve a method-specific value. With no approved threshold, the policy requests more safety evidence rather than treating a toxicity call as reliably supported. Report rendering is added in a later milestone. The example inputs are labelled `not_run` and contain no scientific results.
 
 ## Tests
 

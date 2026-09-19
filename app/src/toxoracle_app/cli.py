@@ -32,6 +32,7 @@ def build_parser() -> argparse.ArgumentParser:
     combine.add_argument("--request", required=True, type=Path)
     combine.add_argument("--discovery", required=True, type=Path)
     combine.add_argument("--toxicity", required=True, type=Path)
+    combine.add_argument("--config", required=True, type=Path)
     combine.add_argument("--output", required=True, type=Path)
     return parser
 
@@ -43,6 +44,7 @@ def main(argv: Sequence[str] | None = None) -> int:
             _load_json(args.request),
             _load_json(args.discovery),
             _load_json(args.toxicity),
+            _load_json(args.config),
         )
         _write_json(args.output, combined)
     except (ContractValidationError, OSError, json.JSONDecodeError) as error:
