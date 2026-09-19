@@ -11,8 +11,18 @@ dependencies = [
   "jsonschema>=4.23,<5",
 ]
 
+[project.optional-dependencies]
+demo = [
+  "streamlit==1.64.0",
+  "plotly==6.9.0",
+  "rdkit==2025.9.2",
+]
+
 [project.scripts]
 toxoracle-combine = "toxoracle_app.cli:main"
 
 [tool.setuptools.packages.find]
 where = ["src"]
+
+[tool.setuptools.package-data]
+toxoracle_app = ["demo.css"]

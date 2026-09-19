@@ -1,0 +1,3 @@
+# Streamlit entry point dependencies (also usable by Streamlit Community Cloud).
+-r app/requirements-demo.lock
+-e app

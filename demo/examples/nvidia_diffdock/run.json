@@ -1,0 +1,23 @@
+{
+  "purpose": "public NVIDIA connectivity example; not a frozen therapeutic target or toxicity assessment",
+  "started_at": "2026-09-19T16:37:13.085649+00:00",
+  "finished_at": "2026-09-19T16:37:21.176189+00:00",
+  "status": "ok",
+  "service_endpoint": "https://health.api.nvidia.com/v1/biology/mit/diffdock",
+  "served_model_version": null,
+  "served_model_version_status": "not_reported",
+  "example_reference": "https://build.nvidia.com/mit/diffdock/deploy",
+  "model_reference": "https://docs.api.nvidia.com/nim/reference/mit-diffdock-infer",
+  "execution_mode": "cached",
+  "original_run_id": "nvidia-bionemo-live-20260919-04",
+  "http_status": 200,
+  "request_id": "e5518f23-54c4-47cd-871b-ff539991d567",
+  "pose_count": 1,
+  "pose_confidence": 0.004754878580570221,
+  "protein_file": "8G43_atoms.pdb",
+  "protein_sha256": "sha256:27febdc59ecd129f8dcf50e2a30b4bf9aff12a94ee32a0878d01ef9596b34f6b",
+  "protein_source": "https://files.rcsb.org/download/8G43.pdb",
+  "pose_file": "ZU6_pose.sdf",
+  "pose_sha256": "sha256:3fa5be0c0b5a64335bc9963c10d07f02dd7731b3e00e57839afe09c5d2ecc6e1",
+  "verification_file": "verification.json"
+}
