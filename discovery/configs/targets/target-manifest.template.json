@@ -1,0 +1,16 @@
+{
+  "target_id": "replace_with_stable_target_id",
+  "protein_name": "replace_with_target_name",
+  "species": "replace_with_species",
+  "uniprot_id": "optional_accession",
+  "pdb_id": "replace_with_pdb_id",
+  "chain": "replace_with_chain",
+  "biological_action": "replace_with_intended_action",
+  "reference_ligand": "replace_with_reference_ligand_identifier",
+  "protein_pdb_path": "../../../artifacts/targets/replace_with_prepared_target.pdb",
+  "protein_pdb_sha256": "sha256:replace_after_preparation",
+  "preparation_version": "target_preparation_v1",
+  "cofactors_retained": [],
+  "components_removed": [],
+  "preparation_notes": "Record protonation, missing residues, waters, ligand handling and structural constraints."
+}

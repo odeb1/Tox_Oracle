@@ -1,0 +1,115 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://toxoracle.example/schemas/demo-case.schema.json",
+  "title": "ToxOracle demo case manifest",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "case_id",
+    "status",
+    "execution_mode",
+    "result_class",
+    "training_membership",
+    "request_file",
+    "discovery_response_file",
+    "toxicity_response_file",
+    "tool_versions",
+    "provenance_refs",
+    "limitations"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "1.0"
+    },
+    "case_id": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]*$"
+    },
+    "status": {
+      "enum": [
+        "pending",
+        "ready"
+      ]
+    },
+    "execution_mode": {
+      "enum": [
+        "live",
+        "cached"
+      ]
+    },
+    "result_class": {
+      "enum": [
+        "real",
+        "interface_fixture"
+      ]
+    },
+    "training_membership": {
+      "enum": [
+        "held_out",
+        "included",
+        "unknown",
+        "not_applicable"
+      ]
+    },
+    "request_file": {
+      "type": "string",
+      "minLength": 1
+    },
+    "discovery_response_file": {
+      "type": "string",
+      "minLength": 1
+    },
+    "toxicity_response_file": {
+      "type": "string",
+      "minLength": 1
+    },
+    "tool_versions": {
+      "type": "object",
+      "additionalProperties": {
+        "type": [
+          "string",
+          "null"
+        ]
+      }
+    },
+    "provenance_refs": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "limitations": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "result_class": {
+            "const": "real"
+          }
+        },
+        "required": [
+          "result_class"
+        ]
+      },
+      "then": {
+        "properties": {
+          "tool_versions": {
+            "minProperties": 1
+          },
+          "provenance_refs": {
+            "minItems": 1
+          }
+        }
+      }
+    }
+  ]
+}

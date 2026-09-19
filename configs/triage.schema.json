@@ -1,0 +1,134 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://toxoracle.example/schemas/triage.schema.json",
+  "title": "ToxOracle triage policy",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "policy_version",
+    "status",
+    "discovery_priority_metric",
+    "promising_values",
+    "weak_values",
+    "toxicity_reliability",
+    "experiments"
+  ],
+  "properties": {
+    "policy_version": {
+      "type": "string",
+      "minLength": 1
+    },
+    "status": {
+      "enum": [
+        "provisional",
+        "approved"
+      ]
+    },
+    "discovery_priority_metric": {
+      "type": "string",
+      "minLength": 1
+    },
+    "promising_values": {
+      "$ref": "#/$defs/nonEmptyUniqueStrings"
+    },
+    "weak_values": {
+      "$ref": "#/$defs/nonEmptyUniqueStrings"
+    },
+    "toxicity_reliability": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "applicability_method",
+        "credible_minimum"
+      ],
+      "properties": {
+        "applicability_method": {
+          "type": "string",
+          "minLength": 1
+        },
+        "credible_minimum": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "minimum": 0,
+          "maximum": 1
+        }
+      }
+    },
+    "experiments": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "targeted_liver_validation",
+        "resolve_safety_uncertainty"
+      ],
+      "properties": {
+        "targeted_liver_validation": {
+          "$ref": "#/$defs/experiment"
+        },
+        "resolve_safety_uncertainty": {
+          "$ref": "#/$defs/experiment"
+        }
+      }
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "status": {
+            "const": "approved"
+          }
+        },
+        "required": [
+          "status"
+        ]
+      },
+      "then": {
+        "properties": {
+          "toxicity_reliability": {
+            "properties": {
+              "credible_minimum": {
+                "type": "number"
+              }
+            }
+          }
+        }
+      }
+    }
+  ],
+  "$defs": {
+    "nonEmptyUniqueStrings": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "experiment": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "question",
+        "assay",
+        "readouts"
+      ],
+      "properties": {
+        "question": {
+          "type": "string",
+          "minLength": 1
+        },
+        "assay": {
+          "type": "string",
+          "minLength": 1
+        },
+        "readouts": {
+          "$ref": "#/$defs/nonEmptyUniqueStrings"
+        }
+      }
+    }
+  }
+}

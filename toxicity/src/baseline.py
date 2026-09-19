@@ -235,7 +235,7 @@ def empty_result(row):
         evidence_type='model_prediction',risk_score=None,score_kind='unavailable',direction='higher_is_more_toxic',
         threshold=None,call='unavailable',calibration=dict(status='not_assessed',reference=None),
         uncertainty=dict(method='not_implemented',value=None),applicability=dict(method='nearest_train_tanimoto',value=None)),
-      structural_evidence=dict(canonical_smiles=None,atom_mapped_smiles=None,standardization_version=POLICY,
+      structural_evidence=dict(canonical_smiles=row.get('canonical_smiles'),atom_mapped_smiles=row.get('atom_mapped_smiles'),standardization_version=row.get('standardization_version',POLICY),
         attribution_status='unavailable',attribution_method=None,attribution_target=None,attribution_scale=None,
         attribution_reference=None,fragments=[],structure_artifacts=[],interactions=[],mechanism_hypotheses=[]),
       supplementary_metrics=[],provenance=dict(method_id='toxoracle_dili_rf_v1',model_origin='trained',
@@ -297,7 +297,7 @@ def predict(request, artifact=None):
             out.update(structure_id=prepared['structure_id'],status='ok')
             out['assessment'].update(risk_score=score,score_kind='calibrated_probability' if a['calibrated'] else 'uncalibrated_score',
                 threshold=a['threshold'],call='positive' if score >= a['threshold'] else 'negative',
-                calibration=dict(status='assessed_sigmoid' if a['calibrated'] else 'assessed_raw_retained',reference='evaluation/reports/baseline_test.json'),
+                calibration=dict(status='assessed',reference='evaluation/reports/baseline_test.json'),
                 applicability=dict(method='nearest_train_tanimoto',value=similarity))
             out['structural_evidence'].update({k:prepared[k] for k in ['canonical_smiles','atom_mapped_smiles','standardization_version']})
             try:
@@ -305,7 +305,7 @@ def predict(request, artifact=None):
                 import shap
                 out['structural_evidence'].update(attribution_status='available',attribution_method=f'TreeSHAP {shap.__version__} tree_path_dependent',
                     attribution_target='raw_random_forest_positive_class',attribution_scale='raw_class_probability',
-                    attribution_reference=dict(expected_value=base,background='training tree path counts'),fragments=fr)
+                    attribution_reference=f'Training tree path counts; expected raw positive-class value={base:.16g}',fragments=fr)
                 out['warnings'].append('Fragment evidence shows top present fingerprint features only; repeated bit contributions must not be summed. Calibrated scores have a different explanation scale.')
             except Exception:
                 out['warnings'].append('Attribution computation failed; score remains available.')
@@ -317,9 +317,9 @@ def predict(request, artifact=None):
         except ValueError as e:
             allowed = {'invalid_smiles','invalid_compound_id','identity_mismatch','atom_map_mismatch','duplicate_compound_id'}
             reason = str(e) if str(e) in allowed else 'unsupported_structure'
-            out.update(status='invalid_input' if reason in allowed else 'unsupported',error=reason)
+            out.update(status='invalid_input' if reason in allowed else 'unsupported',error=dict(code=reason,message=reason))
         except Exception:
-            out.update(status='failed',error='prediction_failed')
+            out.update(status='failed',error=dict(code='prediction_failed',message='Local model inference failed'))
         results.append(out)
     return dict(schema_version='2.0',request_id=request['request_id'],stream='toxicity',results=results)
 

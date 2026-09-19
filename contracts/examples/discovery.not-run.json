@@ -1,0 +1,66 @@
+{
+  "schema_version": "2.0",
+  "request_id": "demo_run_01",
+  "stream": "discovery",
+  "results": [
+    {
+      "compound_id": "candidate_001",
+      "structure_id": "example_structure_v1",
+      "status": "not_run",
+      "assessment": {
+        "endpoint_id": "conventional_toxicity_endpoint_pending",
+        "positive_definition": "Positive definition pending comparator selection",
+        "negative_definition": "Negative definition pending comparator selection",
+        "context": {
+          "species": null,
+          "system": null,
+          "conditions": null
+        },
+        "evidence_type": "model_prediction",
+        "risk_score": null,
+        "score_kind": "unavailable",
+        "direction": "unavailable",
+        "threshold": null,
+        "call": "unavailable",
+        "calibration": {
+          "status": "unknown",
+          "reference": null
+        },
+        "uncertainty": {
+          "method": "not_implemented",
+          "value": null
+        },
+        "applicability": {
+          "method": "not_selected",
+          "value": null
+        }
+      },
+      "structural_evidence": {
+        "canonical_smiles": "CCO",
+        "atom_mapped_smiles": "[CH3:1][CH2:2][OH:3]",
+        "standardization_version": "example_policy_v1",
+        "attribution_status": "unavailable",
+        "attribution_method": null,
+        "attribution_target": null,
+        "attribution_scale": null,
+        "attribution_reference": null,
+        "fragments": [],
+        "structure_artifacts": [],
+        "interactions": [],
+        "mechanism_hypotheses": []
+      },
+      "supplementary_metrics": [],
+      "provenance": {
+        "method_id": "team_a_comparator_pending",
+        "model_origin": "unknown",
+        "data_version": null,
+        "training_membership": "unknown",
+        "evidence_refs": []
+      },
+      "warnings": [
+        "Interface fixture only; Team A scientific execution has not run and the conventional toxicity comparator has not been selected."
+      ],
+      "error": null
+    }
+  ]
+}

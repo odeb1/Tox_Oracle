@@ -1,0 +1,18 @@
+[build-system]
+requires = ["setuptools>=69"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "toxoracle-app"
+version = "0.1.0"
+description = "Offline validation and integration layer for ToxOracle"
+requires-python = ">=3.11"
+dependencies = [
+  "jsonschema>=4.23,<5",
+]
+
+[project.scripts]
+toxoracle-combine = "toxoracle_app.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]

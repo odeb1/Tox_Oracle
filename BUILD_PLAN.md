@@ -91,6 +91,98 @@ At kickoff, each team names one integration contact. Team A owns the canonical c
 
 ## 4. Team A: conventional discovery workflow
 
+### Team A split for two people
+
+| **Owner**                 | **Main responsibility**                                                                                     | **Files**                                                                    |
+| ------------------------- | ----------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------- |
+| Person 1 — Integration/UI | Contracts, orchestration, comparison logic, combined report, Team B integration                             | `contracts/`, `app/`, `tests/integration/`, `discovery/prompts/`, `demo/`    |
+| Person 2 — NVIDIA/GPU     | Real BioNeMo/DiffDock execution, target preparation, conventional toxicity comparator, structural artifacts | `discovery/src/`, `discovery/configs/targets/`, `discovery/tests/`, `infra/` |
+
+### 4.1A. Person 1: Integration and combined workflow
+
+1. Implement or finalize the v2 request/response JSON schema.
+2. Create valid, invalid, failed, and `not_run` fixtures.
+3. Preserve `compound_id`, `structure_id`, and atom-map IDs across both streams.
+4. Build the Team A batch/orchestration command.
+5. Accept Team B’s toxicity JSON and join it with Team A output.
+6. Implement comparison eligibility:
+   - Same calibrated endpoint → numeric disagreement.
+   - Different endpoints → call/cross-endpoint disagreement only.
+   - Missing or failed assessment → explicit unavailable reason.
+7. Implement discovery-only versus revised priority tables.
+8. Produce the combined report and three cached demo cases.
+9. Add integration tests for invalid SMILES, missing records, ID mismatches, and tool failure.
+
+### 4.1B. Person 2: NVIDIA/GPU and scientific execution
+
+1. Inventory the actual NVIDIA/BioNeMo tools and record versions.
+2. Run one real BioNeMo request immediately.
+3. With the biologist, freeze:
+   - Therapeutic target and species.
+   - PDB structure, chain, cofactors, and preparation.
+   - Reference ligand.
+   - Small candidate set and controls.
+4. Run DiffDock or the selected discovery tool.
+5. Save poses, confidence values, prepared structures, logs, checksums, and provenance.
+6. Select and run an existing conventional/preclinical toxicity comparator.
+7. Return Team A’s v2 assessment envelope.
+8. Export atom-mapped structures, pose artifacts, and real contacts where available.
+9. Clearly mark unsupported toxicity attribution as unavailable.
+
+The NVIDIA-access person should concentrate on the real BioNeMo/DiffDock execution and artifacts. Team A should not use that GPU to train the human DILI model—that belongs to Team B.
+
+### Work together first
+
+Spend the first hour jointly freezing:
+
+- Candidate IDs and canonical structures.
+- Target and discovery criterion.
+- Conventional toxicity endpoint.
+- Same-endpoint versus cross-endpoint comparison mode.
+- Exact v2 contract expected from Team B.
+- File naming and artifact handoff locations.
+
+Ask Team B for a labelled `not_run` mock response immediately. Person 1 can integrate against it while Person 2 runs the real NVIDIA workflow.
+
+### Suggested order
+
+**First 3 hours**
+
+- Person 1: contracts, fixtures, join skeleton.
+- Person 2: tool inventory, target manifest, first real BioNeMo run.
+
+**Hours 3–6**
+
+- Person 1: comparison and priority logic.
+- Person 2: batch discovery adapter and conventional comparator.
+
+**Hours 6–10**
+
+- Replace mocks with real Team A and Team B results.
+- Validate identities and structural mappings.
+- Create the first complete combined report.
+
+**Final phase**
+
+- Three cached cases.
+- Failure-mode tests.
+- Reproducible commands and runbook.
+- Claims audit and demo rehearsal.
+
+Cut generation, extra targets, exposure processing, and UI polish if time becomes tight.
+
+### Working directly on `main`
+
+The repository recommends short-lived branches, but if both of you must use `main`, use strict directory ownership:
+
+- Person 1 does not modify `discovery/src/` while Person 2 is working there.
+- Person 2 does not modify `contracts/` or `app/` without coordinating.
+- Pull before each work block and before pushing.
+- Make small commits with descriptive messages.
+- Announce any shared-schema change before committing it.
+
+Your minimum Team A completion condition is: one real BioNeMo result, one real conventional toxicity assessment, a valid v2 discovery envelope, a successful join with Team B, and a before/after candidate-priority report.
+
 ### A1. Verify the actual execution path
 
 1. Inspect the Workbench's available scientific tools and supported custom-tool connection mechanism.

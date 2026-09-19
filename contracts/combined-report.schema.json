@@ -1,0 +1,268 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://toxoracle.example/schemas/combined-report.schema.json",
+  "title": "ToxOracle combined report",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "request_id",
+    "policy_version",
+    "results"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "2.0"
+    },
+    "request_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "policy_version": {
+      "type": "string",
+      "minLength": 1
+    },
+    "results": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "$ref": "#/$defs/combinedResult"
+      }
+    }
+  },
+  "$defs": {
+    "nullableNumber": {
+      "type": [
+        "number",
+        "null"
+      ]
+    },
+    "nullableBinary": {
+      "type": [
+        "integer",
+        "null"
+      ],
+      "minimum": 0,
+      "maximum": 1
+    },
+    "combinedResult": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "compound_id",
+        "structure_id",
+        "canonical_smiles",
+        "atom_mapped_smiles",
+        "standardization_version",
+        "identity_status",
+        "discovery_result",
+        "toxicity_result",
+        "comparison",
+        "priority"
+      ],
+      "properties": {
+        "compound_id": {"type": "string", "minLength": 1},
+        "structure_id": {"type": "string", "minLength": 1},
+        "canonical_smiles": {"type": "string", "minLength": 1},
+        "atom_mapped_smiles": {"type": "string", "minLength": 1},
+        "standardization_version": {"type": "string", "minLength": 1},
+        "identity_status": {"const": "matched"},
+        "discovery_result": {"type": "object"},
+        "toxicity_result": {"type": "object"},
+        "comparison": {"$ref": "#/$defs/comparison"},
+        "priority": {"$ref": "#/$defs/priority"}
+      }
+    },
+    "sourceAssessment": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "stream",
+        "compound_id",
+        "structure_id",
+        "endpoint_id"
+      ],
+      "properties": {
+        "stream": {"enum": ["discovery", "toxicity"]},
+        "compound_id": {"type": "string", "minLength": 1},
+        "structure_id": {"type": "string", "minLength": 1},
+        "endpoint_id": {"type": "string", "minLength": 1}
+      }
+    },
+    "comparison": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "comparison_mode",
+        "status",
+        "reason",
+        "source_assessments",
+        "formula_version",
+        "signed_disagreement",
+        "absolute_disagreement",
+        "call_disagreement",
+        "hidden_liability_flag",
+        "conservative_risk_score"
+      ],
+      "properties": {
+        "comparison_mode": {
+          "enum": [
+            "same_endpoint_probability",
+            "same_endpoint_calls",
+            "cross_endpoint_calls",
+            "unavailable"
+          ]
+        },
+        "status": {"enum": ["available", "unavailable"]},
+        "reason": {"type": "string", "minLength": 1},
+        "source_assessments": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["conventional", "human"],
+          "properties": {
+            "conventional": {"$ref": "#/$defs/sourceAssessment"},
+            "human": {"$ref": "#/$defs/sourceAssessment"}
+          }
+        },
+        "formula_version": {"type": "string", "minLength": 1},
+        "signed_disagreement": {
+          "$ref": "#/$defs/nullableNumber",
+          "minimum": -1,
+          "maximum": 1
+        },
+        "absolute_disagreement": {
+          "$ref": "#/$defs/nullableNumber",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "call_disagreement": {"$ref": "#/$defs/nullableBinary"},
+        "hidden_liability_flag": {"$ref": "#/$defs/nullableBinary"},
+        "conservative_risk_score": {
+          "$ref": "#/$defs/nullableNumber",
+          "minimum": 0,
+          "maximum": 1
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {"comparison_mode": {"const": "unavailable"}},
+            "required": ["comparison_mode"]
+          },
+          "then": {
+            "properties": {
+              "status": {"const": "unavailable"},
+              "signed_disagreement": {"type": "null"},
+              "absolute_disagreement": {"type": "null"},
+              "call_disagreement": {"type": "null"},
+              "hidden_liability_flag": {"type": "null"},
+              "conservative_risk_score": {"type": "null"}
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "comparison_mode": {"const": "same_endpoint_probability"}
+            },
+            "required": ["comparison_mode"]
+          },
+          "then": {
+            "properties": {
+              "status": {"const": "available"},
+              "signed_disagreement": {"type": "number"},
+              "absolute_disagreement": {"type": "number"},
+              "conservative_risk_score": {"type": "number"}
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "comparison_mode": {
+                "enum": ["same_endpoint_calls", "cross_endpoint_calls"]
+              }
+            },
+            "required": ["comparison_mode"]
+          },
+          "then": {
+            "properties": {
+              "status": {"const": "available"},
+              "signed_disagreement": {"type": "null"},
+              "absolute_disagreement": {"type": "null"},
+              "call_disagreement": {"type": "integer"},
+              "hidden_liability_flag": {"type": "integer"},
+              "conservative_risk_score": {"type": "null"}
+            }
+          }
+        }
+      ]
+    },
+    "experiment": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["question", "assay", "readouts"],
+      "properties": {
+        "question": {"type": "string", "minLength": 1},
+        "assay": {"type": "string", "minLength": 1},
+        "readouts": {
+          "type": "array",
+          "minItems": 1,
+          "items": {"type": "string", "minLength": 1}
+        }
+      }
+    },
+    "priority": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "policy_version",
+        "policy_status",
+        "status",
+        "original_priority",
+        "revised_priority",
+        "recommendation",
+        "toxicity_reliability",
+        "evidence_refs",
+        "limitations",
+        "proposed_experiment"
+      ],
+      "properties": {
+        "policy_version": {"type": "string", "minLength": 1},
+        "policy_status": {"enum": ["provisional", "approved"]},
+        "status": {"enum": ["available", "unavailable"]},
+        "original_priority": {
+          "enum": ["promising", "weak", "unavailable"]
+        },
+        "revised_priority": {
+          "enum": [
+            "assessment_incomplete",
+            "hold_for_safety_validation",
+            "deprioritize",
+            "continue_evaluation",
+            "low_priority",
+            "safety_evidence_required"
+          ]
+        },
+        "recommendation": {"type": "string", "minLength": 1},
+        "toxicity_reliability": {
+          "enum": ["credible", "outside_supported_space", "unknown"]
+        },
+        "evidence_refs": {
+          "type": "array",
+          "items": {"type": "string", "minLength": 1}
+        },
+        "limitations": {
+          "type": "array",
+          "items": {"type": "string", "minLength": 1}
+        },
+        "proposed_experiment": {
+          "oneOf": [
+            {"type": "null"},
+            {"$ref": "#/$defs/experiment"}
+          ]
+        }
+      }
+    }
+  }
+}

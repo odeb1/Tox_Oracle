@@ -1,0 +1,27 @@
+{
+  "schema_version": "2.0",
+  "request_id": "failure_cases_01",
+  "compounds": [
+    {
+      "compound_id": "invalid_smiles_001",
+      "canonical_smiles": "NOT_A_SMILES",
+      "atom_mapped_smiles": "NOT_A_SMILES",
+      "structure_id": "invalid_structure_v1",
+      "standardization_version": "example_policy_v1"
+    },
+    {
+      "compound_id": "unsupported_001",
+      "canonical_smiles": "[U]",
+      "atom_mapped_smiles": "[U:1]",
+      "structure_id": "unsupported_structure_v1",
+      "standardization_version": "example_policy_v1"
+    },
+    {
+      "compound_id": "tool_failure_001",
+      "canonical_smiles": "CCO",
+      "atom_mapped_smiles": "[CH3:1][CH2:2][OH:3]",
+      "structure_id": "tool_failure_structure_v1",
+      "standardization_version": "example_policy_v1"
+    }
+  ]
+}

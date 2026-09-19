@@ -30,3 +30,8 @@ Live loopback HTTP verification passed for the served UI assets, real synthetic 
 approval, sanitized export, local DILI prediction and reset. JavaScript syntax and Python
 compilation checks pass. The user completed the browser smoke test successfully after the server was started
 for them. Browser smoke verification is complete (user-reported).
+
+Merge verification: all 57 Team A offline checks passed with RDKit installed, including
+the new real cached Team B handoff test. Team B's 51-test suite passed before the final
+shared-schema regression addition; the seven-test baseline suite then passed, bringing
+the current Team B test count to 52. No model retraining or score tuning occurred.

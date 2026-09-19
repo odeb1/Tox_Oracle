@@ -117,3 +117,20 @@ Only deliberately downloaded sanitized artifacts are persisted by the UI.
 Sources: [OpenAI Privacy Filter](https://github.com/openai/privacy-filter), source revision
 `f7f00ca7fb869683eb732c010299d901457f19c3`; checkpoint
 `openai/privacy-filter@7ffa9a043d54d1be65afb281eddf0ffbe629385b`, Apache 2.0.
+
+## Merge handoff to Team A
+
+The authoritative contracts are `contracts/request.schema.json` and
+`contracts/response.schema.json`; both streams now use these schemas. Team B outputs
+`calibration.status: assessed`, a string attribution reference, and structured error
+objects. Valid request identities are retained in failed records. The three cached
+DILI outputs pass Team A's identity-aware validator and combined-report runtime.
+
+`tests/integration/test_team_b_handoff.py` tests this using an explicitly not-run
+conventional comparator. Missing conventional evidence produces unavailable comparison,
+not an invented disagreement score. Team A must supply its real comparator next.
+
+The user completed the local browser smoke test successfully. Team B's implementation
+handoff is complete; improvement of model performance is deferred. Public CSVs are
+tracked on main; weights are intentionally not committed. A fresh checkout can train
+from the shared CSV using the commands above, or use the cached outputs immediately.

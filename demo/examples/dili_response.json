@@ -23,7 +23,7 @@
         "threshold": 0.558199001521947,
         "call": "positive",
         "calibration": {
-          "status": "assessed_sigmoid",
+          "status": "assessed",
           "reference": "evaluation/reports/baseline_test.json"
         },
         "uncertainty": {
@@ -43,10 +43,7 @@
         "attribution_method": "TreeSHAP 0.49.1 tree_path_dependent",
         "attribution_target": "raw_random_forest_positive_class",
         "attribution_scale": "raw_class_probability",
-        "attribution_reference": {
-          "expected_value": 0.6287792207792227,
-          "background": "training tree path counts"
-        },
+        "attribution_reference": "Training tree path counts; expected raw positive-class value=0.6287792207792227",
         "fragments": [
           {
             "fragment_id": "bit_1174_env_0",
@@ -475,7 +472,7 @@
         "threshold": 0.558199001521947,
         "call": "positive",
         "calibration": {
-          "status": "assessed_sigmoid",
+          "status": "assessed",
           "reference": "evaluation/reports/baseline_test.json"
         },
         "uncertainty": {
@@ -495,10 +492,7 @@
         "attribution_method": "TreeSHAP 0.49.1 tree_path_dependent",
         "attribution_target": "raw_random_forest_positive_class",
         "attribution_scale": "raw_class_probability",
-        "attribution_reference": {
-          "expected_value": 0.6287792207792227,
-          "background": "training tree path counts"
-        },
+        "attribution_reference": "Training tree path counts; expected raw positive-class value=0.6287792207792227",
         "fragments": [
           {
             "fragment_id": "bit_981_env_0",
@@ -755,7 +749,7 @@
         "threshold": 0.558199001521947,
         "call": "positive",
         "calibration": {
-          "status": "assessed_sigmoid",
+          "status": "assessed",
           "reference": "evaluation/reports/baseline_test.json"
         },
         "uncertainty": {
@@ -775,10 +769,7 @@
         "attribution_method": "TreeSHAP 0.49.1 tree_path_dependent",
         "attribution_target": "raw_random_forest_positive_class",
         "attribution_scale": "raw_class_probability",
-        "attribution_reference": {
-          "expected_value": 0.6287792207792227,
-          "background": "training tree path counts"
-        },
+        "attribution_reference": "Training tree path counts; expected raw positive-class value=0.6287792207792227",
         "fragments": [
           {
             "fragment_id": "bit_1604_env_0",

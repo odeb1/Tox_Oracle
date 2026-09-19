@@ -1,0 +1,37 @@
+{
+  "policy_version": "triage_v1_draft",
+  "status": "provisional",
+  "discovery_priority_metric": "discovery_priority",
+  "promising_values": [
+    "promising",
+    "high"
+  ],
+  "weak_values": [
+    "weak",
+    "low"
+  ],
+  "toxicity_reliability": {
+    "applicability_method": "nearest_train_tanimoto",
+    "credible_minimum": null
+  },
+  "experiments": {
+    "targeted_liver_validation": {
+      "question": "Does the candidate produce a concentration-dependent liver-injury signal in a human-relevant system?",
+      "assay": "Human-relevant liver model selected with the biologist",
+      "readouts": [
+        "Cell viability",
+        "Liver-injury biomarkers",
+        "Concentration-response relationship"
+      ]
+    },
+    "resolve_safety_uncertainty": {
+      "question": "Is the predicted liver-safety concern reproducible within a supported concentration range?",
+      "assay": "Fit-for-purpose liver-safety assay selected with the biologist",
+      "readouts": [
+        "Concentration-response relationship",
+        "Assay-specific liver-injury markers",
+        "Technical replicate consistency"
+      ]
+    }
+  }
+}

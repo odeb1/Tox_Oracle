@@ -11,7 +11,7 @@ Add dependency manifests and lockfiles alongside each independently runnable com
 ## Files and artifacts
 
 - Commit source, configuration without secrets, small fixtures, provenance and reviewed reports.
-- Keep datasets in ignored local data directories and generated weights/outputs under `artifacts/`. Keep sensitive subject-level data outside the repository entirely.
+- Keep datasets in ignored local data directories, except the explicitly shared DILIrank 2.0 CSV snapshot documented in `data/README.md`. Keep generated weights/outputs under `artifacts/` and sensitive subject-level data outside the repository entirely.
 - A `.gitignore` is an accident-prevention aid, not access control; it does not protect files already tracked by Git.
 - Preserve source licences and attribution for third-party datasets, papers and models. The root licence does not override their terms.
 
@@ -21,5 +21,6 @@ Test meaningful behaviour as it is implemented: input validation, compound group
 
 The toxicity workspace contains runnable curation, baseline training/evaluation and v2
 inference. The privacy workspace contains the local gateway and offline tests. See
-`docs/runbooks/team-b-local-mvp.md` for commands. Live discovery integration and CI remain
-separate work; ordinary tests must not download weights or call external services.
+`docs/runbooks/team-b-local-mvp.md` for commands. Live discovery integration remains separate work; ordinary tests must not download weights or call external services.
+
+The repository now has an offline integration runtime and automated checks in `.github/workflows/ci.yml`. Run `./scripts/check.sh` before pushing changes to the shared contracts, application, demo tooling or discovery adapter. Live external-service, GPU, RDKit pose-mapping and model-evaluation checks remain outside the default CI job and must be documented separately when run.

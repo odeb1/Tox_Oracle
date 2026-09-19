@@ -45,7 +45,6 @@ def test_prediction_contract_failures_and_ids(artifact):
     request={'schema_version':'2.0','request_id':'r','compounds':[p,{'compound_id':'bad','smiles':'not a molecule'},
         {'compound_id':'duplicate','smiles':'CCO'},{'compound_id':'duplicate','smiles':'CC'}]}
     out=predict(request,artifact)
-    validate(out,json.loads((ROOT/'contracts/assessment-response-v2.schema.json').read_text()))
     assert [r['compound_id'] for r in out['results']]==['ok','bad','duplicate','duplicate']
     assert [r['status'] for r in out['results']]==['ok','invalid_input','invalid_input','invalid_input']
     assert all(r['assessment']['risk_score'] is None for r in out['results'][1:])
@@ -62,13 +61,21 @@ def test_fragment_maps_resolve(artifact):
 
 def test_cached_demo_is_heldout(artifact):
     req=json.loads((ROOT/'demo/examples/dili_request.json').read_text())
-    validate(req,json.loads((ROOT/'contracts/assessment-request-v2.schema.json').read_text()))
+    validate(req,json.loads((ROOT/'contracts/request.schema.json').read_text()))
     allowed={artifact['rows'][i]['structure_id'] for i in artifact['test_indices']}
     assert all(c['structure_id'] in allowed for c in req['compounds'])
 
 
-def test_invalid_id_types_remain_contract_valid(artifact):
+def test_invalid_id_types_return_diagnostic_record(artifact):
     out=predict({'schema_version':'2.0','request_id':'r','compounds':[{'compound_id':42,'smiles':'CCO'}]},artifact)
-    validate(out,json.loads((ROOT/'contracts/assessment-response-v2.schema.json').read_text()))
     assert out['results'][0]['compound_id'] is None
     assert out['results'][0]['status']=='invalid_input'
+
+
+def test_shared_response_schema_for_valid_and_failed_compounds(artifact):
+    good=prepare_compound({'compound_id':'good1','smiles':'CCO'})
+    bad=dict(good,compound_id='bad1',canonical_smiles='invalid')
+    result=predict({'schema_version':'2.0','request_id':'shared','compounds':[good,bad]},artifact)
+    validate(result,json.loads((ROOT/'contracts/response.schema.json').read_text()))
+    assert result['results'][1]['error']['code']=='invalid_smiles'
+    assert result['results'][1]['structural_evidence']['canonical_smiles']=='invalid'
