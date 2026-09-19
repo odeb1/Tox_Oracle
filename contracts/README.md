@@ -1,13 +1,5 @@
 # Shared interface
 
-The current screening command consumes `request.schema.json` (v2),
-`discovery-v3.schema.json` (binding evidence) and `response.schema.json` (unchanged
-Team B toxicity v2). It produces `screening-report-v3.schema.json`. Runtime
-validation also checks nested toxicity v2 records, identities, ranking, and
-follow-up consistency; the report schema alone is not the complete validator.
-The discovery stream has no required toxicity assessment. Legacy v2 schemas and
-the legacy combine command are retained for genuine toxicity comparisons.
-
 The authoritative v2 schemas are `request.schema.json` and `response.schema.json`.
 `combined-report.schema.json` validates the joined output. Follow BUILD_PLAN.md for
 endpoint compatibility and calibrated comparison eligibility.
