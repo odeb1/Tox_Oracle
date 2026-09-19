@@ -145,7 +145,11 @@
           "if": {
             "properties": {
               "status": {
-                "const": "failed"
+                "enum": [
+                  "invalid_input",
+                  "unsupported",
+                  "failed"
+                ]
               }
             },
             "required": [

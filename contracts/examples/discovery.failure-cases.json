@@ -1,0 +1,148 @@
+{
+  "schema_version": "2.0",
+  "request_id": "failure_cases_01",
+  "stream": "discovery",
+  "results": [
+    {
+      "compound_id": "invalid_smiles_001",
+      "structure_id": "invalid_structure_v1",
+      "status": "invalid_input",
+      "assessment": {
+        "endpoint_id": "conventional_toxicity_endpoint_pending",
+        "positive_definition": "Positive definition pending comparator selection",
+        "negative_definition": "Negative definition pending comparator selection",
+        "context": {"species": null, "system": null, "conditions": null},
+        "evidence_type": "model_prediction",
+        "risk_score": null,
+        "score_kind": "unavailable",
+        "direction": "unavailable",
+        "threshold": null,
+        "call": "unavailable",
+        "calibration": {"status": "unknown", "reference": null},
+        "uncertainty": {"method": "not_implemented", "value": null},
+        "applicability": {"method": "not_selected", "value": null}
+      },
+      "structural_evidence": {
+        "canonical_smiles": "NOT_A_SMILES",
+        "atom_mapped_smiles": "NOT_A_SMILES",
+        "standardization_version": "example_policy_v1",
+        "attribution_status": "unavailable",
+        "attribution_method": null,
+        "attribution_target": null,
+        "attribution_scale": null,
+        "attribution_reference": null,
+        "fragments": [],
+        "structure_artifacts": [],
+        "interactions": [],
+        "mechanism_hypotheses": []
+      },
+      "supplementary_metrics": [],
+      "provenance": {
+        "method_id": "team_a_comparator_pending",
+        "model_origin": "unknown",
+        "data_version": null,
+        "training_membership": "unknown",
+        "evidence_refs": []
+      },
+      "warnings": ["Interface failure fixture; no scientific assessment ran."],
+      "error": {
+        "code": "INVALID_SMILES",
+        "message": "The submitted structure could not be parsed."
+      }
+    },
+    {
+      "compound_id": "unsupported_001",
+      "structure_id": "unsupported_structure_v1",
+      "status": "unsupported",
+      "assessment": {
+        "endpoint_id": "conventional_toxicity_endpoint_pending",
+        "positive_definition": "Positive definition pending comparator selection",
+        "negative_definition": "Negative definition pending comparator selection",
+        "context": {"species": null, "system": null, "conditions": null},
+        "evidence_type": "model_prediction",
+        "risk_score": null,
+        "score_kind": "unavailable",
+        "direction": "unavailable",
+        "threshold": null,
+        "call": "unavailable",
+        "calibration": {"status": "unknown", "reference": null},
+        "uncertainty": {"method": "not_implemented", "value": null},
+        "applicability": {"method": "not_selected", "value": null}
+      },
+      "structural_evidence": {
+        "canonical_smiles": "[U]",
+        "atom_mapped_smiles": "[U:1]",
+        "standardization_version": "example_policy_v1",
+        "attribution_status": "unavailable",
+        "attribution_method": null,
+        "attribution_target": null,
+        "attribution_scale": null,
+        "attribution_reference": null,
+        "fragments": [],
+        "structure_artifacts": [],
+        "interactions": [],
+        "mechanism_hypotheses": []
+      },
+      "supplementary_metrics": [],
+      "provenance": {
+        "method_id": "team_a_comparator_pending",
+        "model_origin": "unknown",
+        "data_version": null,
+        "training_membership": "unknown",
+        "evidence_refs": []
+      },
+      "warnings": ["Interface failure fixture; no scientific assessment ran."],
+      "error": {
+        "code": "UNSUPPORTED_COMPOUND",
+        "message": "The submitted structure is outside the supported chemical scope."
+      }
+    },
+    {
+      "compound_id": "tool_failure_001",
+      "structure_id": "tool_failure_structure_v1",
+      "status": "failed",
+      "assessment": {
+        "endpoint_id": "conventional_toxicity_endpoint_pending",
+        "positive_definition": "Positive definition pending comparator selection",
+        "negative_definition": "Negative definition pending comparator selection",
+        "context": {"species": null, "system": null, "conditions": null},
+        "evidence_type": "model_prediction",
+        "risk_score": null,
+        "score_kind": "unavailable",
+        "direction": "unavailable",
+        "threshold": null,
+        "call": "unavailable",
+        "calibration": {"status": "unknown", "reference": null},
+        "uncertainty": {"method": "not_implemented", "value": null},
+        "applicability": {"method": "not_selected", "value": null}
+      },
+      "structural_evidence": {
+        "canonical_smiles": "CCO",
+        "atom_mapped_smiles": "[CH3:1][CH2:2][OH:3]",
+        "standardization_version": "example_policy_v1",
+        "attribution_status": "unavailable",
+        "attribution_method": null,
+        "attribution_target": null,
+        "attribution_scale": null,
+        "attribution_reference": null,
+        "fragments": [],
+        "structure_artifacts": [],
+        "interactions": [],
+        "mechanism_hypotheses": []
+      },
+      "supplementary_metrics": [],
+      "provenance": {
+        "method_id": "team_a_comparator_pending",
+        "model_origin": "unknown",
+        "data_version": null,
+        "training_membership": "unknown",
+        "evidence_refs": []
+      },
+      "warnings": ["Interface failure fixture; no scientific assessment ran."],
+      "error": {
+        "code": "DISCOVERY_TOOL_FAILURE",
+        "message": "The external discovery tool failed before returning an assessment."
+      }
+    }
+  ]
+}

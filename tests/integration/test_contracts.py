@@ -29,6 +29,10 @@ class ContractSchemaTests(unittest.TestCase):
             EXAMPLES_DIR / "discovery.not-run.json"
         )
         cls.toxicity_response = load_json(EXAMPLES_DIR / "toxicity.not-run.json")
+        cls.failure_request = load_json(EXAMPLES_DIR / "request.failure-cases.json")
+        cls.discovery_failures = load_json(
+            EXAMPLES_DIR / "discovery.failure-cases.json"
+        )
 
     def test_schemas_are_valid_draft_2020_12(self) -> None:
         Draft202012Validator.check_schema(self.request_schema)
@@ -40,6 +44,24 @@ class ContractSchemaTests(unittest.TestCase):
     def test_not_run_response_fixtures(self) -> None:
         self.response_validator.validate(self.discovery_response)
         self.response_validator.validate(self.toxicity_response)
+
+    def test_failure_fixtures_validate_and_preserve_identity(self) -> None:
+        self.request_validator.validate(self.failure_request)
+        self.response_validator.validate(self.discovery_failures)
+        requested = {
+            compound["compound_id"]: compound
+            for compound in self.failure_request["compounds"]
+        }
+        self.assertEqual(
+            {result["compound_id"] for result in self.discovery_failures["results"]},
+            set(requested),
+        )
+        for result in self.discovery_failures["results"]:
+            compound = requested[result["compound_id"]]
+            self.assertEqual(result["structure_id"], compound["structure_id"])
+            self.assertIsNone(result["assessment"]["risk_score"])
+            self.assertEqual(result["assessment"]["call"], "unavailable")
+            self.assertIsNotNone(result["error"])
 
     def test_response_identities_match_the_request(self) -> None:
         requested = {
@@ -107,6 +129,14 @@ class ContractSchemaTests(unittest.TestCase):
 
         with self.assertRaises(ValidationError):
             self.response_validator.validate(invalid)
+
+    def test_invalid_and_unsupported_responses_require_errors(self) -> None:
+        for status in ("invalid_input", "unsupported"):
+            invalid = copy.deepcopy(self.toxicity_response)
+            invalid["results"][0]["status"] = status
+
+            with self.subTest(status=status), self.assertRaises(ValidationError):
+                self.response_validator.validate(invalid)
 
     def test_calibrated_probability_requires_assessed_calibration(self) -> None:
         invalid = copy.deepcopy(self.toxicity_response)

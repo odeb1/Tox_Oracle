@@ -68,6 +68,39 @@ class JoinTests(unittest.TestCase):
             ["candidate_001", "candidate_002"],
         )
 
+    def test_failure_cases_never_become_low_risk_results(self) -> None:
+        request = load_example("request.failure-cases.json")
+        discovery = load_example("discovery.failure-cases.json")
+        toxicity = copy.deepcopy(self.toxicity)
+        toxicity["request_id"] = request["request_id"]
+        toxicity["results"] = []
+        base_result = self.toxicity["results"][0]
+        for compound in request["compounds"]:
+            result = copy.deepcopy(base_result)
+            result["compound_id"] = compound["compound_id"]
+            result["structure_id"] = compound["structure_id"]
+            result["structural_evidence"]["canonical_smiles"] = compound[
+                "canonical_smiles"
+            ]
+            result["structural_evidence"]["atom_mapped_smiles"] = compound[
+                "atom_mapped_smiles"
+            ]
+            result["structural_evidence"]["standardization_version"] = compound[
+                "standardization_version"
+            ]
+            toxicity["results"].append(result)
+
+        combined = combine_responses(request, discovery, toxicity, self.policy)
+
+        self.assertEqual(len(combined["results"]), 3)
+        for result in combined["results"]:
+            self.assertEqual(result["comparison"]["status"], "unavailable")
+            self.assertIsNone(result["comparison"]["conservative_risk_score"])
+            self.assertEqual(result["priority"]["status"], "unavailable")
+            self.assertEqual(
+                result["priority"]["revised_priority"], "assessment_incomplete"
+            )
+
 
 if __name__ == "__main__":
     unittest.main()
