@@ -73,6 +73,17 @@ The triage policy remains `provisional` while `credible_minimum` is `null`. An `
 
 ## Discovery-evidence wrapping checklist
 
+First normalize a saved Person 2 result:
+
+```bash
+toxoracle-combine normalize-discovery \
+  --request path/to/candidates.v2.json \
+  --evidence artifacts/runs/diffdock/run.json \
+  --output artifacts/runs/diffdock/normalized-evidence.json
+```
+
+This step preserves request order and molecular identity, normalizes supplementary metrics, graph/pose artifacts, protein-contact fields and error codes, and excludes artifacts whose origin or atom-mapping reference is not declared. Its output is labelled `normalized_discovery_evidence`, deliberately omits `assessment`, and cannot be passed to the final join as a discovery response.
+
 When the conventional comparator is selected, the adapter that wraps DiffDock evidence into the shared discovery response must:
 
 - Change the final stream to `discovery`; retain raw `discovery_evidence` as supplementary provenance.

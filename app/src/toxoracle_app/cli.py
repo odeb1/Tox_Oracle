@@ -7,6 +7,7 @@ import json
 from pathlib import Path
 from typing import Any, Sequence
 
+from .discovery_bridge import normalize_discovery_evidence
 from .join import combine_responses
 from .report import render_combined_report
 from .validation import ContractValidationError
@@ -41,27 +42,40 @@ def build_parser() -> argparse.ArgumentParser:
     combine.add_argument("--config", required=True, type=Path)
     combine.add_argument("--output", required=True, type=Path)
     combine.add_argument("--html-output", type=Path)
+    normalize = subparsers.add_parser(
+        "normalize-discovery",
+        help="Normalize discovery-only evidence without creating a toxicity assessment.",
+    )
+    normalize.add_argument("--request", required=True, type=Path)
+    normalize.add_argument("--evidence", required=True, type=Path)
+    normalize.add_argument("--output", required=True, type=Path)
     return parser
 
 
 def main(argv: Sequence[str] | None = None) -> int:
     args = build_parser().parse_args(argv)
     try:
-        combined = combine_responses(
-            _load_json(args.request),
-            _load_json(args.discovery),
-            _load_json(args.toxicity),
-            _load_json(args.config),
-        )
-        _write_json(args.output, combined)
-        if args.html_output is not None:
-            _write_text(args.html_output, render_combined_report(combined))
+        if args.command == "combine":
+            combined = combine_responses(
+                _load_json(args.request),
+                _load_json(args.discovery),
+                _load_json(args.toxicity),
+                _load_json(args.config),
+            )
+            _write_json(args.output, combined)
+            if args.html_output is not None:
+                _write_text(args.html_output, render_combined_report(combined))
+        else:
+            normalized = normalize_discovery_evidence(
+                _load_json(args.request), _load_json(args.evidence)
+            )
+            _write_json(args.output, normalized)
     except (ContractValidationError, OSError, json.JSONDecodeError) as error:
         print(f"error: {error}")
         return 1
 
     print(f"Wrote {args.output}")
-    if args.html_output is not None:
+    if args.command == "combine" and args.html_output is not None:
         print(f"Wrote {args.html_output}")
     return 0
 

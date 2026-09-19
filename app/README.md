@@ -26,6 +26,19 @@ The output is an identity-preserving joined record with comparison and priority 
 
 The triage policy is currently marked provisional. Its applicability threshold is intentionally `null` until Team B and the biologist approve a method-specific value. With no approved threshold, the policy requests more safety evidence rather than treating a toxicity call as reliably supported. The optional HTML output is a self-contained offline report with a candidate summary, assessment details, comparison eligibility, limitations, structural evidence and recommended experiments. The example inputs are labelled `not_run` and contain no scientific results.
 
+## Normalize discovery-only evidence
+
+Person 2's DiffDock adapter intentionally produces `stream: discovery_evidence`. Normalize its identity, metrics, artifacts, contacts and errors with:
+
+```bash
+toxoracle-combine normalize-discovery \
+  --request path/to/candidates.v2.json \
+  --evidence artifacts/runs/diffdock/run.json \
+  --output artifacts/runs/diffdock/normalized-evidence.json
+```
+
+The normalized output still is not a final `stream: discovery` response and contains no `assessment`. It must later be merged with a selected conventional liver-toxicity comparator. DiffDock pose confidence remains supplementary pose-reliability evidence and is never used as a toxicity score.
+
 ## Tests
 
 ```bash
