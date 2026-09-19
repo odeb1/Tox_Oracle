@@ -7,7 +7,6 @@
 .stApp { background: var(--oracle-canvas); }
 .block-container { padding: 4.2rem 3.5rem 2.5rem; max-width: 1460px; }
 [data-testid="stHeader"] { background: var(--oracle-canvas); }
-[data-testid="stAppDeployButton"] { display: none; }
 h1, h2, h3 { color: var(--oracle-ink); }
 p { line-height: 1.65; }
 button, input { transition: background-color 160ms ease, border-color 160ms ease; }
