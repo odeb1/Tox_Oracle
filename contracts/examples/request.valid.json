@@ -1,0 +1,13 @@
+{
+  "schema_version": "2.0",
+  "request_id": "demo_run_01",
+  "compounds": [
+    {
+      "compound_id": "candidate_001",
+      "canonical_smiles": "CCO",
+      "atom_mapped_smiles": "[CH3:1][CH2:2][OH:3]",
+      "structure_id": "example_structure_v1",
+      "standardization_version": "example_policy_v1"
+    }
+  ]
+}

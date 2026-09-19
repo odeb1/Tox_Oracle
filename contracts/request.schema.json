@@ -1,0 +1,64 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://toxoracle.example/schemas/request.schema.json",
+  "title": "ToxOracle v2 batch request",
+  "description": "Shared candidate request consumed by the discovery and toxicity streams.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "request_id",
+    "compounds"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "2.0"
+    },
+    "request_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "compounds": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "$ref": "#/$defs/compound"
+      }
+    }
+  },
+  "$defs": {
+    "compound": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "compound_id",
+        "canonical_smiles",
+        "atom_mapped_smiles",
+        "structure_id",
+        "standardization_version"
+      ],
+      "properties": {
+        "compound_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "canonical_smiles": {
+          "type": "string",
+          "minLength": 1
+        },
+        "atom_mapped_smiles": {
+          "type": "string",
+          "minLength": 1
+        },
+        "structure_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "standardization_version": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    }
+  }
+}
