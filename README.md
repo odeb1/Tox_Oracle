@@ -2,7 +2,7 @@
 
 An agentic drug-discovery workflow with a separate human liver-toxicity assessment, built for the London AI × Bio Hackathon.
 
-Rosalind coordinates existing BioNeMo discovery tools and a ToxOracle DILI predictor to help researchers prioritise candidates and choose follow-up experiments.
+The researcher workspace coordinates existing BioNeMo discovery tools and a ToxOracle DILI predictor to help researchers prioritise candidates and choose follow-up experiments. Optional Rosalind notes require a verified callable API and explicit sharing approval.
 
 **Status:** The discovery-first workflow now screens a frozen public ABL1 panel with
 BioNeMo Boltz-2, adds the existing local DILI model and produces a v3 before/after
@@ -25,7 +25,31 @@ status. This does not change the frozen MVP demonstration above.
 See the [Team B runbook](docs/runbooks/team-b-local-mvp.md) for reproducible training,
 privacy setup and real cached DILI outputs. The user has passed the browser smoke test.
 
-## Interactive demo
+## Researcher web app
+
+The standalone Oxford Blue workspace owns study input, local privacy review and
+approval, background execution, progress, and the discovery/DILI results dashboard.
+Binding and DILI remain separate. The top-two discovery shortlist is frozen before
+local DILI inference, making changes in follow-up visible.
+
+```bash
+python3 -m venv app/.venv
+app/.venv/bin/python -m pip install -r app/requirements-web.lock -e app -e discovery
+PYTHONPATH=app/src:discovery/src:. app/.venv/bin/python -m toxoracle_app.web
+```
+
+Open **http://127.0.0.1:8766**. This starts the interface and local report viewer.
+Executing studies additionally requires the existing trained DILI artifact,
+scientific environment and verified local privacy checkpoint/runtime. See the
+[research workspace runbook](docs/runbooks/research-workspace.md) for full setup.
+Missing privacy assets block submission. No models are trained or downloaded at startup.
+
+Rosalind API aliases were callable in a connection test but returned a GPT-5.5
+identity, so the app does **not** claim verified Rosalind inference. Its optional
+adapter stays disabled until API access and response identity pass verification.
+The Workbench launcher is not used as a backend API.
+
+## Streamlit presentation demo
 
 ```bash
 python3 -m pip install -r requirements.txt

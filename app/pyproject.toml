@@ -22,9 +22,10 @@ demo = [
 toxoracle-combine = "toxoracle_app.cli:main"
 toxoracle-screen = "toxoracle_app.screen_cli:main"
 toxoracle-design = "toxoracle_app.design_cli:main"
+toxoracle-web = "toxoracle_app.web:main"
 
 [tool.setuptools.packages.find]
 where = ["src"]
 
 [tool.setuptools.package-data]
-toxoracle_app = ["demo.css"]
+toxoracle_app = ["demo.css", "web_static/*"]

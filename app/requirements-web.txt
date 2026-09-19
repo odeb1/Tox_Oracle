@@ -1,0 +1,5 @@
+# Local researcher workspace; the OPF checkpoint/runtime is installed separately.
+-r ../toxicity/requirements-model.txt
+fastapi==0.115.12
+uvicorn==0.34.3
+httpx==0.28.1
