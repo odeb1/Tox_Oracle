@@ -1,0 +1,67 @@
+{
+  "status": "proposed",
+  "scientific_review": "pending_team_and_biologist_selection",
+  "target_id": "human_pparg_7awc_A",
+  "source_refs": [
+    "https://www.rcsb.org/structure/7AWC",
+    "https://www.rcsb.org/ligand/BRL",
+    "https://pubmed.ncbi.nlm.nih.gov/31611383/"
+  ],
+  "candidate_table": {
+    "path": "../../../../data/processed/dilirank2_model_ready.csv",
+    "checksum": "sha256:997ad736dc1d282c2a0b3b4a7f9fca2d05740eacb7c6ec9d7cdf7919f312d750"
+  },
+  "atom_mapping_policy": "One-based atom order from parsing each unchanged shared canonical_smiles; RDKit 2025.09.2",
+  "candidates": [
+    {
+      "compound_id": "LT00140",
+      "source_name": "Rosiglitazone maleate",
+      "structure_source": "https://pubchem.ncbi.nlm.nih.gov/compound/5281055",
+      "source_pubchem_cid": "5281055",
+      "unspecified_stereocenter_atom_map_ids": [
+        11
+      ],
+      "stereochemistry_policy": "Preserve the shared unspecified stereochemistry; do not invent an isomer",
+      "evaluation_membership": "retrospective_illustration; present in model-ready source data; training split unknown"
+    },
+    {
+      "compound_id": "LT00134",
+      "source_name": "Pioglitazone hydrochloride",
+      "structure_source": "https://pubchem.ncbi.nlm.nih.gov/compound/60560",
+      "source_pubchem_cid": "60560",
+      "unspecified_stereocenter_atom_map_ids": [
+        15
+      ],
+      "stereochemistry_policy": "Preserve the shared unspecified stereochemistry; do not invent an isomer",
+      "evaluation_membership": "retrospective_illustration; present in model-ready source data; training split unknown"
+    },
+    {
+      "compound_id": "LT00168",
+      "source_name": "Troglitazone",
+      "structure_source": "https://pubchem.ncbi.nlm.nih.gov/compound/5591",
+      "source_pubchem_cid": "5591",
+      "unspecified_stereocenter_atom_map_ids": [
+        13,
+        22
+      ],
+      "stereochemistry_policy": "Preserve the shared unspecified stereochemistry; do not invent an isomer",
+      "evaluation_membership": "retrospective_illustration; present in model-ready source data; training split unknown"
+    }
+  ],
+  "reference_control": {
+    "compound_id": "RCSB_7AWC_BRL_A501",
+    "role": "experimental_binding_reference_for_redocking",
+    "source_ref": "https://www.rcsb.org/ligand/BRL",
+    "note": "S enantiomer; intentionally distinct from the stereo-unspecified LT00140 parent"
+  },
+  "negative_binding_control": {
+    "status": "not_selected",
+    "reason": "No source-validated non-binder nominated"
+  },
+  "discovery_priority_policy": "unranked; compare pose plausibility and reference recovery, not cross-compound confidence as affinity",
+  "decisions_remaining": [
+    "Confirm therapeutic target, chain, reference, candidate IDs, and control selection",
+    "Review missing residues/atoms and protonation/water/cofactor preparation choices",
+    "Agree handling of unspecified candidate stereochemistry before target-specific docking"
+  ]
+}

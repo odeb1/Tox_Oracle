@@ -1,0 +1,47 @@
+{
+  "selection_status": "proposed",
+  "target_id": "human_pparg_7awc_A",
+  "target_role": "therapeutic_target",
+  "protein_name": "Peroxisome proliferator-activated receptor gamma ligand-binding domain",
+  "species": "Homo sapiens",
+  "uniprot_id": "P37231",
+  "pdb_id": "7AWC",
+  "chain": "A",
+  "biological_action": "PPARgamma agonism; docking assesses pose plausibility only",
+  "reference_ligand": "BRL (S-rosiglitazone), author chain A residue 501",
+  "protein_pdb_path": "../../../../artifacts/targets/pparg_7awc/prepared/7AWC_chain_A_prepared.pdb",
+  "protein_pdb_sha256": "sha256:a09df70f8fc9fb5a87bcd91b517e04f622c6b902b49ec2aecc4d929359e7f82d",
+  "preparation_version": "pparg_7awc_chain_a_altloc_a_v1",
+  "cofactors_retained": [],
+  "components_removed": [
+    {
+      "component_id": "BRL",
+      "residue_count": 1
+    },
+    {
+      "component_id": "GOL",
+      "residue_count": 5
+    },
+    {
+      "component_id": "HOH",
+      "residue_count": 195
+    }
+  ],
+  "preparation_notes": "Select chain A ATOM records, retain blank/A alternate locations, clear the selected altloc flag, and preserve coordinates and residue numbering. Separate bound BRL as an experimental reference; remove GOL and HOH. No protonation, atom/loop repair, or minimisation. Missing residues A264-A269 and LEU A270 side-chain atoms remain unresolved.",
+  "source": {
+    "url": "https://files.rcsb.org/download/7AWC.pdb",
+    "path": "../../../../artifacts/targets/pparg_7awc/7AWC.pdb",
+    "checksum": "sha256:f1678df596916a7da38842bd50002fbf61fc38a36e8adf43006940cb944f6b1f"
+  },
+  "preparation_report": {
+    "path": "../../../../artifacts/targets/pparg_7awc/prepared/preparation-report.json",
+    "checksum": "sha256:f3a509091854d632d84387fb9f62d0d41be68dff2cd179d156c506fbdb9fa2de"
+  },
+  "experimental_reference": {
+    "path": "../../../../artifacts/targets/pparg_7awc/prepared/7AWC_BRL_A501_experimental.pdb",
+    "checksum": "sha256:9b7c427e648add5c33757cb4fb3b8a795d8e23bdd3745fc2910acec0052bf908"
+  },
+  "candidate_request_path": "candidates.v2.json",
+  "reference_control_request_path": "reference-control.v2.json",
+  "selection_record_path": "selection.proposed.json"
+}

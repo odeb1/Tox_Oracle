@@ -9,3 +9,10 @@ python3 -m unittest discover -s tests -v
 ```
 
 Add shared-output contract tests when Team A's conventional toxicity comparator is selected and the discovery evidence is wrapped in the joint v2 envelope.
+
+Target-preparation tests also exercise chain/alternate-location selection,
+candidate identity preservation, and the prepared request schemas. Run the full
+suite from the repository root with `.venv/bin/python -m unittest discover -s
+discovery/tests -v` after installing the `discovery[chemistry]` extra and
+`tests/integration/requirements.txt`. Chemistry/schema tests are explicitly
+skipped when their optional dependencies are absent.

@@ -44,6 +44,36 @@ class DiffDockClientTest(unittest.TestCase):
 
 
 class DockingEvidenceTest(unittest.TestCase):
+    def test_hosted_response_exports_each_pose_in_order_with_confidence(self):
+        with tempfile.TemporaryDirectory() as directory:
+            evidence = DockingEvidence.from_response(
+                "candidate_hosted",
+                {
+                    "status": "success",
+                    "position_confidence": [0.23, -0.4],
+                    "ligand_positions": ["first pose\nM  END\n$$$$\n", "second pose\nM  END\n"],
+                },
+                Path(directory),
+            )
+            metrics = {metric["name"]: metric["value"] for metric in evidence.supplementary_metrics}
+            self.assertEqual(metrics["diffdock_best_pose_confidence"], 0.23)
+            self.assertEqual(metrics["diffdock_returned_pose_count"], 2)
+            saved = Path(evidence.structure_artifacts[0]["uri"]).read_text()
+            self.assertEqual(saved, "first pose\nM  END\n$$$$\nsecond pose\nM  END\n$$$$\n")
+            raw = json.loads(Path(evidence.service_artifacts[0]["uri"]).read_text())
+            self.assertEqual(raw["position_confidence"], [0.23, -0.4])
+
+    def test_hosted_response_rejects_ambiguous_pose_score_associations(self):
+        responses = [
+            {"ligand_positions": [["pose"]], "position_confidence": [[0.23]]},
+            {"ligand_positions": ["pose", "another pose"], "position_confidence": [0.23]},
+            {"ligand_positions": ["pose"], "position_confidence": [float("nan")]},
+        ]
+        for response in responses:
+            with self.subTest(response=response):
+                with self.assertRaises(DiffDockError):
+                    DockingEvidence.from_response("invalid_hosted", response)
+
     def test_response_keeps_confidence_as_pose_reliability_and_saves_artifacts(self):
         with tempfile.TemporaryDirectory() as directory:
             evidence = DockingEvidence.from_response(

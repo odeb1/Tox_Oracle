@@ -107,11 +107,12 @@ def run_batch(
     # transport and offline adapter usable in minimal environments where the
     # optional chemistry dependency is not installed.
     try:
-        from .structures import shared_graph_artifact, validate_compound
+        from .structures import StructureError, shared_graph_artifact, validate_compound
     except ImportError:
         # Minimal/offline installations can still exercise the HTTP adapter;
         # the chemistry validation layer will be enabled when RDKit is present.
         shared_graph_artifact = validate_compound = None
+        StructureError = None
     compounds = request.get("compounds")
     if not isinstance(compounds, list):
         raise ValueError("request compounds must be a JSON array")
@@ -149,7 +150,11 @@ def run_batch(
         except ValueError as error:
             # The optional RDKit validator raises StructureError (a ValueError)
             # with an input status. Keep the same status with and without RDKit.
-            status = getattr(error, "status", "failed")
+            status = (
+                error.status
+                if StructureError is not None and isinstance(error, StructureError)
+                else "failed"
+            )
             evidence = DockingEvidence.failed(
                 compound["compound_id"], str(error), status=status,
                 error_type=status if status != "failed" else "service_error",

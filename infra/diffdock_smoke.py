@@ -1,7 +1,8 @@
 """Reproduce NVIDIA's public 8G43/ZU6 example; this is not a project target.
 
-Run from the repository root with NVIDIA_API_KEY in the environment:
-    python3 infra/diffdock_smoke.py --output-directory artifacts/runs/nvidia-smoke
+Run from the repository root with NVIDIA_BIONEMO_API_KEY in the environment:
+    python3 infra/diffdock_smoke.py --api-key-env NVIDIA_BIONEMO_API_KEY \
+        --output-directory artifacts/runs/nvidia-smoke
 """
 
 from __future__ import annotations
@@ -39,6 +40,10 @@ def save(directory: Path, name: str, content: str) -> dict:
 def main(argv=None) -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--output-directory", type=Path, required=True)
+    parser.add_argument(
+        "--api-key-env", default="NVIDIA_API_KEY",
+        help="Name of the environment variable holding the API key (never the key itself)",
+    )
     args = parser.parse_args(argv)
     directory = args.output_directory
     # Preserve earlier runs, including failed attempts.
@@ -49,6 +54,7 @@ def main(argv=None) -> int:
         "python_version": platform.python_version(),
         "example_reference": EXAMPLE_REFERENCE,
         "model_reference": MODEL_REFERENCE,
+        "credential_environment_variable": args.api_key_env,
         "served_model_version": None,
         "served_model_version_status": "not_reported",
         "inputs": {},
@@ -56,7 +62,7 @@ def main(argv=None) -> int:
     }
     exit_code = 0
     try:
-        client = DiffDockNIMClient.from_environment()
+        client = DiffDockNIMClient.from_environment(args.api_key_env)
         manifest["service_endpoint"] = client.endpoint
         inputs = {}
         for name, url in SOURCES.items():
@@ -71,13 +77,26 @@ def main(argv=None) -> int:
         request = DiffDockRequest(protein=protein, ligand=inputs["ZU6_ideal.sdf"], ligand_file_type="sdf", num_poses=1)
         manifest["request_artifact"] = save(directory, "request.json", json.dumps(request.to_payload(), indent=2) + "\n")
         response = client.dock(request)
+        manifest["service_response_metadata"] = client.last_response_metadata
+        manifest["response_fields"] = sorted(response)
+        manifest["vendor_status"] = response.get("status")
+        # Save the original response before parsing, including unfamiliar
+        # service payloads, so a parsing failure never loses the live result.
+        manifest["raw_response_artifact"] = save(
+            directory, "response.json", json.dumps(response, indent=2, allow_nan=False) + "\n"
+        )
+        if response.get("status") not in (None, "success"):
+            raise ValueError("Service did not report a successful inference")
         evidence = DockingEvidence.from_response("nvidia_example_ZU6", response, directory)
         manifest["evidence_artifact"] = save(directory, "evidence.json", json.dumps(evidence.to_dict(), indent=2, allow_nan=False) + "\n")
         manifest["status"] = evidence.status
         # An empty/unusable response is not a successful smoke test.
-        if not evidence.supplementary_metrics or not evidence.structure_artifacts:
+        if not evidence.supplementary_metrics or not any(
+            artifact["format"] == "sdf" for artifact in evidence.structure_artifacts
+        ):
             raise ValueError("Service did not return both pose confidence and pose artifacts")
-        manifest["response_fields"] = sorted(response)
+        manifest["supplementary_metrics"] = evidence.supplementary_metrics
+        manifest["structure_artifacts"] = evidence.structure_artifacts
     except Exception as error:
         manifest["status"] = "failed"
         manifest["error"] = {"type": type(error).__name__, "message": str(error)}
