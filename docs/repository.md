@@ -1,6 +1,8 @@
 # Repository map
 
-The repository uses two workspaces with a shared contract boundary. Keep components independently runnable so discovery integration does not depend on installing the toxicity training stack. READMEs preserve directories in Git and explain their responsibility; source subpackages should be introduced as implementation lands.
+The repository uses two team workspaces with a shared contract boundary. Team B also
+owns the standalone `privacy/` gateway and its UI; `app/` remains the Team A combined
+experience. Keep discovery independently runnable from the toxicity training stack.
 
 ```text
 Tox_Oracle/
@@ -27,7 +29,7 @@ Tox_Oracle/
 │   ├── model_cards/              Versioned model documentation and artifact references
 │   └── tests/                    Toxicity component checks
 ├── app/                          Combined report/UI, if needed beyond Workbench
-├── privacy/                      Optional independent local input boundary
+├── privacy/                      Independent local privacy gateway, UI and tests
 ├── configs/                      Shared integration and triage rules
 ├── data/
 │   └── manifests/                Source, curation and split provenance
@@ -62,7 +64,8 @@ Tox_Oracle/
 | Target identity and preparation metadata | `discovery/configs/targets/` |
 | DILI standardisation/feature/model code | `toxicity/src/` |
 | Downloaded FDA data | `data/raw/` (local, ignored; ingestion creates it) |
-| Intermediate and curated training tables | `data/interim/`, `data/processed/` (local, ignored) |
+| Cached source API responses | `data/cache/` (local, ignored) |
+| Curated training tables | `data/processed/` (local, ignored) |
 | Data download URLs, checksums and exclusions | `data/manifests/` |
 | Model weights and full prediction runs | `artifacts/models/`, `artifacts/runs/` (local, ignored) |
 | Source-backed historical assay evidence | `cases/` |
@@ -73,7 +76,7 @@ Tox_Oracle/
 
 ## Boundaries
 
-Discovery and toxicity exchange versioned records through `contracts/`; neither should import the other's training or vendor implementation internals. The app joins these records and applies an explicit prioritisation rule. Evaluation consumes saved outputs and split manifests. The optional privacy boundary executes locally and releases only permitted summaries.
+Discovery and toxicity exchange versioned records through `contracts/`; neither should import the other's training or vendor implementation internals. The app joins these records and applies an explicit prioritisation rule. Evaluation consumes saved outputs and split manifests. The standalone privacy gateway executes locally and releases only reviewed, approved payloads.
 
 Add a dependency manifest and lockfile in each runnable workspace when its stack is selected. Do not add empty CI jobs, unused services or deployment manifests merely to fill the tree. A root shared package can be introduced later if actual code duplication warrants it.
 

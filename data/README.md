@@ -20,7 +20,7 @@ CSV encoding is UTF-8. Cells such as `source_compound_ids`, `source_original_cat
 - The initial subset requires carbon, allows H/B/C/N/O/F/Si/P/S/Se/Cl/Br/I in the retained structure, and limits structures to 100 heavy atoms and 1,500 Da. Structures with at least 10 peptide-backbone matches are excluded. These are MVP scope rules, not universal small-molecule definitions.
 - Deduplication uses canonical isomeric parent SMILES. Conflicting positive/negative labels would exclude the group; none were observed in this snapshot. Ambiguous membership is retained without overriding a non-ambiguous label.
 - `structure_key` is the parent InChIKey. `structure_id` hashes the policy version and canonical isomeric SMILES. `connectivity_group` is an additional hint for grouping related chemical forms before evaluation splitting; it does not imply identical labels across stereoisomers.
-- There is no training/evaluation split or trained model in this snapshot. Reserve demonstration cases and freeze compound/scaffold groups before fitting a model. These drug-level labels are not patient-level event probabilities.
+- The source snapshot is unchanged; Team B now supplies a separate frozen split manifest and evaluated baseline (see `toxicity/README.md`). These drug-level labels are not patient-level event probabilities.
 
 ## Provenance and integrity
 

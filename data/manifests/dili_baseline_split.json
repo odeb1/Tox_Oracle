@@ -1,0 +1,4819 @@
+{
+  "seed": 42,
+  "data_sha256": "997ad736dc1d282c2a0b3b4a7f9fca2d05740eacb7c6ec9d7cdf7919f312d750",
+  "method": "scaffold_and_connectivity",
+  "records": [
+    {
+      "structure_id": "0013c19e6ad3463cbe9158a3d3e3a25a2d1ee4539f4890711ac07bb241af0c97",
+      "compound_id": "LT00999",
+      "group": 0,
+      "partition": "validation"
+    },
+    {
+      "structure_id": "00fd78e5f574536be88d0a16fedb5e15d1cbe8467dd9911055c0bfa3fefa9f49",
+      "compound_id": "LT02229",
+      "group": 1,
+      "partition": "train"
+    },
+    {
+      "structure_id": "019103ad18eaf5501b180fb35e5ffbfe07f63425897b13f6ac7b5a16af2d01e2",
+      "compound_id": "LT00397",
+      "group": 2,
+      "partition": "train"
+    },
+    {
+      "structure_id": "01c605a8bdc5bde5f03bba12a18e7a066b4b7d7bf5498c7041ace4ae1ad8ff08",
+      "compound_id": "LT01574",
+      "group": 3,
+      "partition": "train"
+    },
+    {
+      "structure_id": "0206a5874c3efc93974e8b73b37ea4741eae9b81353567ddce11f61b402759aa",
+      "compound_id": "LT00265",
+      "group": 4,
+      "partition": "validation"
+    },
+    {
+      "structure_id": "0274b7b3943e58ddf8b38c4c22b93c7306fd6a7ea227ad62479aeec0bdd5f9df",
+      "compound_id": "LT00332",
+      "group": 5,
+      "partition": "train"
+    },
+    {
+      "structure_id": "02b97b981205a3a0524d70a8c00285f9d19888bb464e58a957b1626426b15027",
+      "compound_id": "LT01250",
+      "group": 6,
+      "partition": "validation"
+    },
+    {
+      "structure_id": "02e66c5c3d86d495c5f7aca9c0680c1cb8de4ef6ce42933ebde140a4a80a6946",
+      "compound_id": "LT00519",
+      "group": 7,
+      "partition": "train"
+    },
+    {
+      "structure_id": "02fb49322d7d6ab41abd3a3f68112333dbe305c02c2b849e40dab5f451f4fc1d",
+      "compound_id": "LT01981",
+      "group": 8,
+      "partition": "train"
+    },
+    {
+      "structure_id": "0313f15e5332ac0501a383ab2353a8f57795ed8c316e33c032a1ce29ec6221be",
+      "compound_id": "LT00727",
+      "group": 9,
+      "partition": "train"
+    },
+    {
+      "structure_id": "03426a3618ffaf41b2e956862c32f78cb061f28ed226abfec60348b712b0c0f5",
+      "compound_id": "LT02413",
+      "group": 10,
+      "partition": "train"
+    },
+    {
+      "structure_id": "045924780148a14c916222134b55fe983e0ccbd9bfb410815c6a655d20e188b9",
+      "compound_id": "LT01252",
+      "group": 11,
+      "partition": "train"
+    },
+    {
+      "structure_id": "045fb6c251eff4200bab38d98d27f0d63d2f4e706025e8e7ec49dd57882e1af6",
+      "compound_id": "LT01928",
+      "group": 12,
+      "partition": "train"
+    },
+    {
+      "structure_id": "04757b1ff7524e46b98a47590ca93dbfdda1477262e0dd1e79df96b12cf214a1",
+      "compound_id": "LT01394",
+      "group": 13,
+      "partition": "validation"
+    },
+    {
+      "structure_id": "05285c4b5120646040257c4f25d3e3feb1a448b4e7ac6aace7d6f2baf1367143",
+      "compound_id": "LT00580",
+      "group": 14,
+      "partition": "train"
+    },
+    {
+      "structure_id": "056586dc1d17ff5689005c5d60b4b9cdd21acb85f671dff345f7ed0d32dd0922",
+      "compound_id": "LT03788",
+      "group": 15,
+      "partition": "train"
+    },
+    {
+      "structure_id": "05822f4b5bc4384563c2dfcd374ac93b03ea59aab6a03399e230360bc419f478",
+      "compound_id": "LT02217",
+      "group": 16,
+      "partition": "validation"
+    },
+    {
+      "structure_id": "0665facfe216de53bd685be6258a542d33d70fb713e9c05280eb430d72d393fd",
+      "compound_id": "LT00300",
+      "group": 17,
+      "partition": "validation"
+    },
+    {
+      "structure_id": "06ecd800483f9e348ccb360caf4824d728e81575281447fe337f0c1dcbf21055",
+      "compound_id": "LT01680",
+      "group": 18,
+      "partition": "train"
+    },
+    {
+      "structure_id": "07693591ad358e7ee364c3d8b431aa08c04f5eb0c0badf28ac34530443eb06ed",
+      "compound_id": "LT01316",
+      "group": 19,
+      "partition": "train"
+    },
+    {
+      "structure_id": "0769a7112b651693a64f92cca34c12cf73e7de76b238450d6334090a3b3a7da7",
+      "compound_id": "LT01972",
+      "group": 20,
+      "partition": "train"
+    },
+    {
+      "structure_id": "0852ce16b521c89d20fa035f8cad2cb1fff0180df77b0193c36ac88fa9d01f3d",
+      "compound_id": "LT01514",
+      "group": 21,
+      "partition": "train"
+    },
+    {
+      "structure_id": "08bc8dee9985e6c63f96cdedfd5bc2bfb07fa868c4485926fb7df1501831b9db",
+      "compound_id": "LT00612",
+      "group": 22,
+      "partition": "train"
+    },
+    {
+      "structure_id": "08fbd9ef3b0fedeb8a191d07d63582181fa6a025a629095cf424c6413e9a5484",
+      "compound_id": "LT00144",
+      "group": 23,
+      "partition": "train"
+    },
+    {
+      "structure_id": "0911e8029482b602278c149641707317488f360b8c62dadec46250e1a0b12b1b",
+      "compound_id": "LT03729",
+      "group": 24,
+      "partition": "validation"
+    },
+    {
+      "structure_id": "092e99b8d55ddcd9d52f1f636523de337a51ad26cb5c841be82aab8331ccc0df",
+      "compound_id": "LT00095",
+      "group": 25,
+      "partition": "train"
+    },
+    {
+      "structure_id": "0949748dbd06aaaeaf101751b411297dfa8cc66cf6da33a1bbc61e8fbfc21f8c",
+      "compound_id": "LT00141",
+      "group": 26,
+      "partition": "train"
+    },
+    {
+      "structure_id": "0992151a9deae326a7642506112eefcd599c21c025eeffbd77d69acb60fca766",
+      "compound_id": "LT03760",
+      "group": 27,
+      "partition": "train"
+    },
+    {
+      "structure_id": "0994357f14c62b935cc70e4fa97bdc84500a2845bae270e27c80a0c91ec67113",
+      "compound_id": "LT01602",
+      "group": 28,
+      "partition": "validation"
+    },
+    {
+      "structure_id": "0a14902f37f01d4467fde1cc1ff780d0ed4224c1d682df91a58c9ba9ca00712f",
+      "compound_id": "LT01477",
+      "group": 29,
+      "partition": "train"
+    },
+    {
+      "structure_id": "0ad0a4823376465d1ba764b4cb1ba891240ff5e963a3e16afdb6489675ff0a85",
+      "compound_id": "LT00060",
+      "group": 30,
+      "partition": "train"
+    },
+    {
+      "structure_id": "0aefd81e13613257a8200740b3760e19d0cad0e956b37a322d4505a3c3f7c0dc",
+      "compound_id": "LT00067",
+      "group": 31,
+      "partition": "train"
+    },
+    {
+      "structure_id": "0af895e96bef7b4d06a1e8828b623ba6012a16fe27fa16d2109626cad561b3fd",
+      "compound_id": "LT00107",
+      "group": 32,
+      "partition": "train"
+    },
+    {
+      "structure_id": "0afc985a0cbfa5e7db1deb3c2660f8a10b9afa290031393cfc8a01875f53e922",
+      "compound_id": "LT03748",
+      "group": 33,
+      "partition": "train"
+    },
+    {
+      "structure_id": "0b286d1fcda1d7030684ae1e1b842f20f1acbe9151568ef836494f90e79194a4",
+      "compound_id": "LT03792",
+      "group": 34,
+      "partition": "validation"
+    },
+    {
+      "structure_id": "0bdf540743237bede205467455c4c554b11a242354e13ebe53f380a7ca3a496e",
+      "compound_id": "LT01185",
+      "group": 35,
+      "partition": "train"
+    },
+    {
+      "structure_id": "0be8cb32c8812263227ebe6a6753d5f0daa6751b7b50065c10c88d89ce2d23e7",
+      "compound_id": "LT00486",
+      "group": 36,
+      "partition": "train"
+    },
+    {
+      "structure_id": "0c669b4dd894241124320ac6cc6ad7b7600f20b39d9743004b1c55ab409928e6",
+      "compound_id": "LT00066",
+      "group": 37,
+      "partition": "train"
+    },
+    {
+      "structure_id": "0cb019d049dc3a0fcef8140702aea7a1ff34e7ed1ae348765a79851eb494f848",
+      "compound_id": "LT00881",
+      "group": 38,
+      "partition": "train"
+    },
+    {
+      "structure_id": "0cd516c4f1c8049f2adbb4ebff880f804615e037e7b58c6bccc985a3bcd83d52",
+      "compound_id": "LT01521",
+      "group": 39,
+      "partition": "train"
+    },
+    {
+      "structure_id": "0ce4315ad0b1e045682d9c59e13a5a77b36e0a06f3f60e89f87ebcabb8e539c3",
+      "compound_id": "LT01285",
+      "group": 40,
+      "partition": "train"
+    },
+    {
+      "structure_id": "0d897c2a41f9cae928c6520fece5dc2e2f17a16126becdf41641ca4a60535201",
+      "compound_id": "LT01129",
+      "group": 41,
+      "partition": "train"
+    },
+    {
+      "structure_id": "0d8f6ef61beb970ffe335bb341b5e445632b55d068ec314d6833f844ed64642d",
+      "compound_id": "LT00800",
+      "group": 3,
+      "partition": "train"
+    },
+    {
+      "structure_id": "0dc2b372e90d0e8af4ba1dc42d69e29506d8c5fae0dea1093c641cab18aef36d",
+      "compound_id": "LT02431",
+      "group": 43,
+      "partition": "train"
+    },
+    {
+      "structure_id": "0e08dc691f56d236f1e6a6a045c5746a6eb03fa52eff91708d6946d5bfcfbb7f",
+      "compound_id": "LT01618",
+      "group": 44,
+      "partition": "validation"
+    },
+    {
+      "structure_id": "0e45dbc21f6a4276a3f1131c86dc2abc56debe32766eec7b0b485a9413382f5c",
+      "compound_id": "LT01980",
+      "group": 45,
+      "partition": "train"
+    },
+    {
+      "structure_id": "0e8cc79fbbf1cb1ff1fecc2504876a122cbaab4f7865e5096347f1c94d1cd9c5",
+      "compound_id": "LT01005",
+      "group": 46,
+      "partition": "train"
+    },
+    {
+      "structure_id": "0f0a04e724e68b2bba324fb90d022940391ec8969c93059f645976f5e6ef54e4",
+      "compound_id": "LT00286",
+      "group": 3,
+      "partition": "train"
+    },
+    {
+      "structure_id": "0f1ccfe646a4d3ba1962a1486dc5ffeb67579ee8a9a1cf28e8abbb00dfa13b1e",
+      "compound_id": "LT03666",
+      "group": 48,
+      "partition": "train"
+    },
+    {
+      "structure_id": "104f928a300a27cdb2de484eab3c6a72298ba9484cd61194ed0f608f0f0b92f9",
+      "compound_id": "LT00433",
+      "group": 49,
+      "partition": "validation"
+    },
+    {
+      "structure_id": "10565cb01b2d5d59578050f9650872c6155ceb5daea616b0265703d9091fe59e",
+      "compound_id": "LT03787",
+      "group": 50,
+      "partition": "train"
+    },
+    {
+      "structure_id": "105aabab60b9569500a3f1ed9199bbeb2ff6738fcd7f9bfa791596f826c472e3",
+      "compound_id": "LT00798",
+      "group": 51,
+      "partition": "train"
+    },
+    {
+      "structure_id": "1079bf63878c8551327b28afd93c389502f948542ab37c7cb48487390577dcea",
+      "compound_id": "LT00637",
+      "group": 52,
+      "partition": "validation"
+    },
+    {
+      "structure_id": "107f178c3aff9a014f8c7f2daf1d6a7bbb7446c30fb0ac443a86973847f2129f",
+      "compound_id": "LT03746",
+      "group": 53,
+      "partition": "train"
+    },
+    {
+      "structure_id": "10dfda2eb25588b500645078a4582cd43ecdbb1a53e56f16b049cd5d75d15a86",
+      "compound_id": "LT01255",
+      "group": 54,
+      "partition": "train"
+    },
+    {
+      "structure_id": "10fe19f25bfeb2ca7d4317e47ae2feabec8c6f891806a97f801a94a9b6b289c3",
+      "compound_id": "LT01184",
+      "group": 55,
+      "partition": "train"
+    },
+    {
+      "structure_id": "111f2e586c3e6297264d47df54f997b1abed9bf78f491340b5997a5a7c6b8196",
+      "compound_id": "LT01203",
+      "group": 56,
+      "partition": "validation"
+    },
+    {
+      "structure_id": "11b8a71de719c6ade4708f81339a0c34caa162f807f95aae4b3a2c819dd150d8",
+      "compound_id": "LT01867",
+      "group": 57,
+      "partition": "train"
+    },
+    {
+      "structure_id": "11de4dabdc60a61fef6a18c58a0aab48266ebc5fa7174a7c1c142a6ecadb1886",
+      "compound_id": "LT01828",
+      "group": 58,
+      "partition": "train"
+    },
+    {
+      "structure_id": "12b06da1b45dea8170ce26c9fd1eae3d9415dbc1590f14b26d6d45510c489033",
+      "compound_id": "LT00188",
+      "group": 59,
+      "partition": "train"
+    },
+    {
+      "structure_id": "13c54afa77a9b0be270f0fe672c33b4e84a3a9011f4b3fc25b95e358f29619a7",
+      "compound_id": "LT01208",
+      "group": 60,
+      "partition": "train"
+    },
+    {
+      "structure_id": "143ed55432472f0dba01386147fde54da05f2d5891ab569e7f08144707ef4ea1",
+      "compound_id": "LT01190",
+      "group": 37,
+      "partition": "train"
+    },
+    {
+      "structure_id": "14711ff236c865aee245a90095601401761f8f1f1084de6b7201c1cfa20f1f3d",
+      "compound_id": "LT00783",
+      "group": 62,
+      "partition": "train"
+    },
+    {
+      "structure_id": "1482b3f8547c50df716b1e2f649b3424e4848e8460927089f4245e497c9c8ffc",
+      "compound_id": "LT01263",
+      "group": 63,
+      "partition": "test"
+    },
+    {
+      "structure_id": "15c957195cee05e60ea1a0329c61987eed7fdc0c904fc2feeb9cb4b2dd4d0f7d",
+      "compound_id": "LT00207",
+      "group": 64,
+      "partition": "train"
+    },
+    {
+      "structure_id": "162f495e303bcb4be3e6f09fd94c30a5c0abf7cc5b942be6a90c1e63636ae293",
+      "compound_id": "LT00243",
+      "group": 65,
+      "partition": "validation"
+    },
+    {
+      "structure_id": "16afa161180256691a581c51ebdb2c5a74bad200e7f3a182824eda095e44596b",
+      "compound_id": "LT03653",
+      "group": 45,
+      "partition": "train"
+    },
+    {
+      "structure_id": "1751ca8c66478255b7e2251cb250235aa97c8ade52dc9a9b5f1a4765052e6113",
+      "compound_id": "LT01196",
+      "group": 3,
+      "partition": "train"
+    },
+    {
+      "structure_id": "1788a9b5fd51a343224b372117c2dfa7150f894fbaa6d9792722d83f7858d032",
+      "compound_id": "LT01479",
+      "group": 68,
+      "partition": "train"
+    },
+    {
+      "structure_id": "1793431a6311ce95ddf44dfa8847de69247d562ae9f16350cf96be540f4b1cc4",
+      "compound_id": "LT00146",
+      "group": 69,
+      "partition": "train"
+    },
+    {
+      "structure_id": "17a4e83f85015a1882dd93b932704f3a9048b50ce2706d53dbf9dee3c9bc8054",
+      "compound_id": "LT00867",
+      "group": 70,
+      "partition": "train"
+    },
+    {
+      "structure_id": "17cd9ac2377767f80caebef9550a5e1d83089ac1a393e9412c71a5e770ad8679",
+      "compound_id": "LT00153",
+      "group": 71,
+      "partition": "validation"
+    },
+    {
+      "structure_id": "187cba9927eb379372fbead7ba78d103daca77af7b10281612f5787400bfdbbc",
+      "compound_id": "LT01407",
+      "group": 72,
+      "partition": "train"
+    },
+    {
+      "structure_id": "19556d78d05abba34a135a49a8dde5bd6155315077bc521c2d0b9f3d0a848b1d",
+      "compound_id": "LT01201",
+      "group": 73,
+      "partition": "train"
+    },
+    {
+      "structure_id": "199307d2cc4f26deefd2fb090b3b81ef08fb0b2eb5517a127926813e5d21c9d6",
+      "compound_id": "LT00507",
+      "group": 74,
+      "partition": "test"
+    },
+    {
+      "structure_id": "1993cbd5f117a319d936b90cd724e4aaf318872cfcb1eeb547806191b56bf86f",
+      "compound_id": "LT01139",
+      "group": 75,
+      "partition": "validation"
+    },
+    {
+      "structure_id": "19bf2214eddad370ad0c076bd3cb26e1037773eaf80a89c6ea1bbc8561464f91",
+      "compound_id": "LT01143",
+      "group": 76,
+      "partition": "train"
+    },
+    {
+      "structure_id": "1a0631d8e5856e2b0ed145f35d80ec49ee941007729ea3a0ee235a451a44824b",
+      "compound_id": "LT02345",
+      "group": 77,
+      "partition": "train"
+    },
+    {
+      "structure_id": "1a4f56e7e493476880e64a7826a6b1554731278e143cce958f496a6f32fc1b16",
+      "compound_id": "LT01207",
+      "group": 78,
+      "partition": "train"
+    },
+    {
+      "structure_id": "1a72c9e6df03c5d0304af8deff0e9a38664abe6d3fa36142abc0da58a2f70bd1",
+      "compound_id": "LT00634",
+      "group": 79,
+      "partition": "train"
+    },
+    {
+      "structure_id": "1a7e3fa452650fe96c7d00a48eede80d48f404e35f77a6495ce5c704c89cd19b",
+      "compound_id": "LT02356",
+      "group": 3,
+      "partition": "train"
+    },
+    {
+      "structure_id": "1aaa9f1701fed2800891778350fb31010fb2169e38cd3a6ca719bb1233f60587",
+      "compound_id": "LT00296",
+      "group": 81,
+      "partition": "test"
+    },
+    {
+      "structure_id": "1adbb0421207e6a2e1ea81df089f808e51fa38658d91f171f7228f9af0e115ca",
+      "compound_id": "LT00671",
+      "group": 82,
+      "partition": "validation"
+    },
+    {
+      "structure_id": "1ae1d7bd7dfbfe3582e93305a2d14511fb8c3b458a67ae6bf8b6ff4ed6211a3c",
+      "compound_id": "LT00587",
+      "group": 83,
+      "partition": "validation"
+    },
+    {
+      "structure_id": "1b1259934e85d021d92c0d559f44492397d4b0c3c4eddd532ef573a59f98f746",
+      "compound_id": "LT00810",
+      "group": 9,
+      "partition": "train"
+    },
+    {
+      "structure_id": "1b6a95b18794e3ef977d30549634cc7d8007dba6d7387b3b5ca44e7639fd670d",
+      "compound_id": "LT01187",
+      "group": 85,
+      "partition": "train"
+    },
+    {
+      "structure_id": "1b9da41e0e775bea3103dd3fb25f05eac719e326acf9c0024cd53d3ccc2adaf0",
+      "compound_id": "LT01309",
+      "group": 86,
+      "partition": "train"
+    },
+    {
+      "structure_id": "1bee423cbce8deef8a53fd5dc14564c3d6d03cec069323b5fd6b900fc6d63aab",
+      "compound_id": "LT01644",
+      "group": 87,
+      "partition": "train"
+    },
+    {
+      "structure_id": "1c97b6deb680e8ccca16366df0f72c67fca6c8c20fe29d137b5be4922322eab1",
+      "compound_id": "LT03630",
+      "group": 88,
+      "partition": "validation"
+    },
+    {
+      "structure_id": "1ca781a9dee2c8d244ac98e0d81cec5b5e5cd90c067cd2e5d99e915fca41f880",
+      "compound_id": "LT03623",
+      "group": 89,
+      "partition": "train"
+    },
+    {
+      "structure_id": "1ca85f38c6f2198fadccaa293feaf39fee25fdc52b5b60231b24c9a07cf39d51",
+      "compound_id": "LT00187",
+      "group": 90,
+      "partition": "train"
+    },
+    {
+      "structure_id": "1cadba2fe4293c871bd3970de5b9d8cc0b1bbcffb12f80ee5d21dbc0bf6b0f92",
+      "compound_id": "LT00713",
+      "group": 91,
+      "partition": "train"
+    },
+    {
+      "structure_id": "1cbaf0525b189e1691dd305fe34bc489cad34e49ab0740fa3fccbcc3961d6723",
+      "compound_id": "LT02084",
+      "group": 92,
+      "partition": "validation"
+    },
+    {
+      "structure_id": "1d54c7c19bdcba94848c54b610838cd7505dc27f410eeb6cbf502e947bfe6928",
+      "compound_id": "LT01874",
+      "group": 93,
+      "partition": "train"
+    },
+    {
+      "structure_id": "1d6ae5b9c5fe6b35622e7d36d3e0bce6ea9212b2a6f48e8b8cd71c43b0984504",
+      "compound_id": "LT01861",
+      "group": 94,
+      "partition": "train"
+    },
+    {
+      "structure_id": "1dcb0ed798e7acb99b68ea0aded0ccd5acb2955b70705e63cfb50d603d3f33a3",
+      "compound_id": "LT01173",
+      "group": 95,
+      "partition": "train"
+    },
+    {
+      "structure_id": "1de6f846b650c27cfa1c4241b1ea06659457c381bff134c248b588fa5b69f62d",
+      "compound_id": "LT01944",
+      "group": 96,
+      "partition": "train"
+    },
+    {
+      "structure_id": "1e7a57f087268ac17ce696adb6dc7b9302239533bd4adc81b5745661fa7817fa",
+      "compound_id": "LT00138",
+      "group": 97,
+      "partition": "validation"
+    },
+    {
+      "structure_id": "1e8ec3992a406f13696868fcae29fdfe5dfe94f696fd79e53fef26ac8025ca14",
+      "compound_id": "LT01820",
+      "group": 98,
+      "partition": "test"
+    },
+    {
+      "structure_id": "1ea3e38561ff29c659c5d4958ad04a9e8fc407f0c9e0f5a10367c64af7b8b750",
+      "compound_id": "LT02397",
+      "group": 3,
+      "partition": "train"
+    },
+    {
+      "structure_id": "1ebc3d9d72d1cb40ec4a98981b6280a7b4efdf0284397cde2ec5f152aa4a582c",
+      "compound_id": "LT00672",
+      "group": 100,
+      "partition": "train"
+    },
+    {
+      "structure_id": "1f5757549dfb1c7aa772334b5a45858c49e1912e9d9df953df731bea6c60ee9b",
+      "compound_id": "LT03903",
+      "group": 101,
+      "partition": "train"
+    },
+    {
+      "structure_id": "1f9f338cb6e504962e0e8119330bda284f2b3e82655bba73bf7259672ab3ca4c",
+      "compound_id": "LT02041",
+      "group": 102,
+      "partition": "train"
+    },
+    {
+      "structure_id": "2010af79c522f020d516413305239c104e6c6c636c58316577e1b4f3ad1892b4",
+      "compound_id": "LT00817",
+      "group": 103,
+      "partition": "validation"
+    },
+    {
+      "structure_id": "2087a33564659b0e270780981fb86911640510f4222176d02f4963cebbb8663c",
+      "compound_id": "LT03606",
+      "group": 104,
+      "partition": "test"
+    },
+    {
+      "structure_id": "211d1eb07a570473b1f38d3984397d345753fe69ae1040e82baf3cd944b540ce",
+      "compound_id": "LT01716",
+      "group": 105,
+      "partition": "train"
+    },
+    {
+      "structure_id": "21584c6595e7c7245f15122013e002bc559a3b1d05b294ecbc75e25de5a1e8a8",
+      "compound_id": "LT01466",
+      "group": 106,
+      "partition": "train"
+    },
+    {
+      "structure_id": "218c0c00a054748917da808c031c2287c657c9844530c78951b4ddcdbae5f7a7",
+      "compound_id": "LT01869",
+      "group": 107,
+      "partition": "train"
+    },
+    {
+      "structure_id": "21f1af4e3dff633789706f160d611bf33e5a5b9a7fd4ec0ccdda286ed00433cc",
+      "compound_id": "LT02436",
+      "group": 108,
+      "partition": "validation"
+    },
+    {
+      "structure_id": "22616a31c9241ebdc94a55d15265d1ab837e2a765d1c9a18786685ff6aad02f0",
+      "compound_id": "LT02018",
+      "group": 72,
+      "partition": "train"
+    },
+    {
+      "structure_id": "22a8b33fcc3f9cd994e86f2f2284a23764c8e630bb69c040d380f0bb6968ef0d",
+      "compound_id": "LT00179",
+      "group": 110,
+      "partition": "train"
+    },
+    {
+      "structure_id": "23e0031494b941e3e561ad299b4854ae5c8eeaf3528e1f13e376878bbe5618c6",
+      "compound_id": "LT00937",
+      "group": 111,
+      "partition": "train"
+    },
+    {
+      "structure_id": "244f971e3633678fb96142bd8871ce4d7309a0f1d9520c0fe6a0d893c2fec79f",
+      "compound_id": "LT00836",
+      "group": 112,
+      "partition": "train"
+    },
+    {
+      "structure_id": "255c142fd7e4c904edda9888a8305bbac8aac5e4312da437dbd6215f49fd8d6c",
+      "compound_id": "LT03716",
+      "group": 113,
+      "partition": "validation"
+    },
+    {
+      "structure_id": "258aa9e2d90474f7b8b227840a6db6fe6fc67c023dbe77b610281d16459795af",
+      "compound_id": "LT01558",
+      "group": 3,
+      "partition": "train"
+    },
+    {
+      "structure_id": "25b4ba129bd7bb2e9f09e2dbcb2c917b9bb3d934e573652c7dedd5aee7e2c048",
+      "compound_id": "LT01249",
+      "group": 115,
+      "partition": "train"
+    },
+    {
+      "structure_id": "25cdac67c979fcabf86e25cd160ac3fe12b7b79f62c3a6314f63827667850c68",
+      "compound_id": "LT01167",
+      "group": 116,
+      "partition": "test"
+    },
+    {
+      "structure_id": "262e33a8791c046d84489d51d5aaa22dc08f807aab0353ab21b9b9efdf195797",
+      "compound_id": "LT00570",
+      "group": 117,
+      "partition": "train"
+    },
+    {
+      "structure_id": "26c5edff67332a24ad89e5faa84b7a08909a4e64490459fcc6f6ed173eb741ee",
+      "compound_id": "LT00200",
+      "group": 3,
+      "partition": "train"
+    },
+    {
+      "structure_id": "27a193a8f29687cfc6bd25657b860ed4f147876cf68c7a3115860599383bfd9a",
+      "compound_id": "LT00178",
+      "group": 119,
+      "partition": "train"
+    },
+    {
+      "structure_id": "27b70e97d90842648dfe90dd7910d9cb7f56cf4e83c736ce4910193bfa8be906",
+      "compound_id": "LT00145",
+      "group": 120,
+      "partition": "train"
+    },
+    {
+      "structure_id": "280c083aa00ef270ae906a5662c17a99965ab80ea373e0b8e5ec8555849b4234",
+      "compound_id": "LT01497",
+      "group": 121,
+      "partition": "validation"
+    },
+    {
+      "structure_id": "2a0b45765060d1741a13ee0431661dac4793f01771957785d8032b61e7f183ab",
+      "compound_id": "LT00148",
+      "group": 122,
+      "partition": "validation"
+    },
+    {
+      "structure_id": "2a52308c6898f0662d59ddc410e497cfdc9250437318308b2d41d59a41d792cc",
+      "compound_id": "LT00640",
+      "group": 123,
+      "partition": "train"
+    },
+    {
+      "structure_id": "2a76337ea6429c55166aaf91f6968e7c0f0e4b80565de63d274989604ef680f1",
+      "compound_id": "LT03766",
+      "group": 124,
+      "partition": "train"
+    },
+    {
+      "structure_id": "2b0065622fea787bca1ceab29c80df6e13bf64b5722e6d7f44518abe0a46aa86",
+      "compound_id": "LT02444",
+      "group": 125,
+      "partition": "train"
+    },
+    {
+      "structure_id": "2b42370beea5ea66bd3c29e4a9f13307a9f16bde6ee56d061032eb1a96c6592c",
+      "compound_id": "LT01933",
+      "group": 126,
+      "partition": "test"
+    },
+    {
+      "structure_id": "2ba5c8339e903f2e477d61286c2e647754ce919032f3e2f51ec73997d9e21976",
+      "compound_id": "LT02891",
+      "group": 127,
+      "partition": "validation"
+    },
+    {
+      "structure_id": "2bf1de81941ac9a07d517ecfea52de7f853bf0aba3fb503ef59116dc70c44aa3",
+      "compound_id": "LT02121",
+      "group": 128,
+      "partition": "train"
+    },
+    {
+      "structure_id": "2c10e615dc9c12d7915297606f81b6e3be380059d9d3bfbc51039933aa591488",
+      "compound_id": "LT00589",
+      "group": 129,
+      "partition": "train"
+    },
+    {
+      "structure_id": "2ca593599f8c4cc5be8a30721a743fe861b29547f49a1d72874d986718432935",
+      "compound_id": "LT01492",
+      "group": 81,
+      "partition": "test"
+    },
+    {
+      "structure_id": "2cfddc31025310105338da899a56e6e0e303eb40ecb549549dc168a68d3ec7f2",
+      "compound_id": "LT00335",
+      "group": 131,
+      "partition": "train"
+    },
+    {
+      "structure_id": "2d13c34fc706e22f965d1afd8ae0fbbd7ab6f71b6101fca2c2466e444d5dced8",
+      "compound_id": "LT00260",
+      "group": 132,
+      "partition": "train"
+    },
+    {
+      "structure_id": "2d221a30772b9db0cf92a2b0f0403c4f548d9e987215a7dbe8f7b1d2d3361a22",
+      "compound_id": "LT02929",
+      "group": 133,
+      "partition": "train"
+    },
+    {
+      "structure_id": "2d766a62c84f35ef2f3278da85c4466dc4da64586fe2aee98a4fb2d4e2d2ad57",
+      "compound_id": "LT00043",
+      "group": 134,
+      "partition": "validation"
+    },
+    {
+      "structure_id": "2dcb69a055c9daef82a4460235583687307e05000f1bfc72cca93928401fa4a4",
+      "compound_id": "LT00516",
+      "group": 135,
+      "partition": "train"
+    },
+    {
+      "structure_id": "2def41aa69c4477e58b28b575a0793ea2ad58ce138ac988a15d9449fef5921fe",
+      "compound_id": "LT02269",
+      "group": 59,
+      "partition": "train"
+    },
+    {
+      "structure_id": "2e5e100a66dc355f40298d45467d79225bef94f50011b8546dc1bb0c1ae41b62",
+      "compound_id": "LT01141",
+      "group": 137,
+      "partition": "train"
+    },
+    {
+      "structure_id": "2eb70a6cd9e8927d98ae486ca40547435211401e9cf38d252c9e441552468fba",
+      "compound_id": "LT02004",
+      "group": 138,
+      "partition": "train"
+    },
+    {
+      "structure_id": "2ecd9d2575d4e074299d8dab493f7e7ffb6af23c5b1a78c4b3be611b4ad8a46a",
+      "compound_id": "LT01468",
+      "group": 139,
+      "partition": "train"
+    },
+    {
+      "structure_id": "2f6069cd0b8d143f9f162a382b2c9588ac0b7dc9bea0a6691f90194ac111baff",
+      "compound_id": "LT01793",
+      "group": 140,
+      "partition": "train"
+    },
+    {
+      "structure_id": "2f6b7cc95b111fd57acefbe3f2a66a1d72e2d054e7ab96231aa005b6387d869a",
+      "compound_id": "LT01657",
+      "group": 3,
+      "partition": "train"
+    },
+    {
+      "structure_id": "2f9837a0d2fdf839b460271b8725a7a497893367993ce6827945d31d708baf9d",
+      "compound_id": "LT02081",
+      "group": 142,
+      "partition": "test"
+    },
+    {
+      "structure_id": "2f997b26bec22054325fab9f60ec01b56d44755a800aea771c0c01a2d93e59cd",
+      "compound_id": "LT00659",
+      "group": 143,
+      "partition": "validation"
+    },
+    {
+      "structure_id": "2fd9587a726f116fb9e24846f08e6074b8b7c3293b38d4bddb075517a0ba65c7",
+      "compound_id": "LT00206",
+      "group": 144,
+      "partition": "train"
+    },
+    {
+      "structure_id": "2fe2c27ef2339151ac838d00566bbaea0c3dc5853313cac583a39ec33c9f209e",
+      "compound_id": "LT03712",
+      "group": 145,
+      "partition": "train"
+    },
+    {
+      "structure_id": "301686f87d99960ceac26fe07ebf32081c82506ad60b63bedb44fcdceb2b0a9a",
+      "compound_id": "LT00818",
+      "group": 146,
+      "partition": "train"
+    },
+    {
+      "structure_id": "3030492ea03c0557691f1e14fa4ed653310aeeac7a2508ec7611b52afaa9cc49",
+      "compound_id": "LT00547",
+      "group": 147,
+      "partition": "validation"
+    },
+    {
+      "structure_id": "313fe08a5370078e5e484d15044ae0e894c41841bce529c1dc3478c983c9cde6",
+      "compound_id": "LT01262",
+      "group": 148,
+      "partition": "train"
+    },
+    {
+      "structure_id": "31ee2b2c991c2a414b47947ae9f63dce4429016e5bf46f525b6daaf27d308a12",
+      "compound_id": "LT01400",
+      "group": 149,
+      "partition": "train"
+    },
+    {
+      "structure_id": "32e103e3fd87d8cee27d55f5561ae596b1d7ba553d7b43ad71547e6355e8598b",
+      "compound_id": "LT01655",
+      "group": 150,
+      "partition": "train"
+    },
+    {
+      "structure_id": "32f47139aee0f6c0ce6c505fd7dca2e2cf3d3aed975a2da1946b2ba297378178",
+      "compound_id": "LT01666",
+      "group": 3,
+      "partition": "train"
+    },
+    {
+      "structure_id": "33044d5316c971ea19133dfcd5373ff481904fdde221bb3a4210b1207f0e8222",
+      "compound_id": "LT01210",
+      "group": 152,
+      "partition": "validation"
+    },
+    {
+      "structure_id": "333e536a8de141146dbd23c421af70909f44dd4d658da25ad48e24a4cb770c9e",
+      "compound_id": "LT01012",
+      "group": 153,
+      "partition": "test"
+    },
+    {
+      "structure_id": "334fa57250d03a5627ad8343f0c7d23e4a48b8d6a44438abc4e65bb48a883354",
+      "compound_id": "LT03770",
+      "group": 154,
+      "partition": "train"
+    },
+    {
+      "structure_id": "336dd8a4bfbc4c23498931b44207fb2f38d37531b40714de018046761bac5b9f",
+      "compound_id": "LT01729",
+      "group": 155,
+      "partition": "validation"
+    },
+    {
+      "structure_id": "33dd1530be0d058cb351b38653d561221a2ebeae5735c81ce46bd87e88b2657e",
+      "compound_id": "LT01041",
+      "group": 156,
+      "partition": "train"
+    },
+    {
+      "structure_id": "346202a08271f129f6b607fd51529d812b7522fb759c7031a237f7f63472263f",
+      "compound_id": "LT01202",
+      "group": 157,
+      "partition": "train"
+    },
+    {
+      "structure_id": "353afe5ef6be7819b9b3c2b8263653a8b8886998bbd9f53c9c1eb6e63f7f69d3",
+      "compound_id": "LT01721",
+      "group": 158,
+      "partition": "train"
+    },
+    {
+      "structure_id": "3583b59fa4b2fd5096ea46f751294a6bf1a69117b9066cca611985de23acc55e",
+      "compound_id": "LT00186",
+      "group": 159,
+      "partition": "validation"
+    },
+    {
+      "structure_id": "35ace4a216ae71e2bb842713ec31cef7e9c1d40a5f684d6f5babd6965e506fac",
+      "compound_id": "LT03658",
+      "group": 160,
+      "partition": "train"
+    },
+    {
+      "structure_id": "3624b3219a6ee068a0b26c450ffa5df80b7ce3c00f1c73657e0fcf280f4cd641",
+      "compound_id": "LT03773",
+      "group": 161,
+      "partition": "test"
+    },
+    {
+      "structure_id": "3664e9a955ee4872f259104e8289e22ffc2dd5bb8d142a32e26f30ef1792abae",
+      "compound_id": "LT01735",
+      "group": 11,
+      "partition": "train"
+    },
+    {
+      "structure_id": "36d7826133cd288ba228915cf2934de8a94c61d27a413d81105bf10c92c21796",
+      "compound_id": "LT00117",
+      "group": 163,
+      "partition": "train"
+    },
+    {
+      "structure_id": "36dea301794c412e41ffa58cd131d5d0e547fae0e854707fea14570ba5c7918e",
+      "compound_id": "LT00696",
+      "group": 164,
+      "partition": "train"
+    },
+    {
+      "structure_id": "37878b53e6e3dbfcce6ff55d73f2f5c6371d346f22820e866fe5d18aa38d7d87",
+      "compound_id": "LT00894",
+      "group": 165,
+      "partition": "validation"
+    },
+    {
+      "structure_id": "37c3c6714010150e4f18c6f1d0c79146704061aa576afa1009fb011dbd64cf19",
+      "compound_id": "LT01342",
+      "group": 166,
+      "partition": "train"
+    },
+    {
+      "structure_id": "37f196e8034637674a4d577fcb84c89853b78379e9d27b6934235600d22aa6b6",
+      "compound_id": "LT01517",
+      "group": 3,
+      "partition": "train"
+    },
+    {
+      "structure_id": "3803702e965115d917b2c573b5b24a34e777ee643b536aff032f6cd653e9146d",
+      "compound_id": "LT00905",
+      "group": 168,
+      "partition": "train"
+    },
+    {
+      "structure_id": "38fe822767ebf993d2f1a7f11b40678b2550617f4734783b7c0ef76fac060837",
+      "compound_id": "LT00699",
+      "group": 3,
+      "partition": "train"
+    },
+    {
+      "structure_id": "3925d9c2c634780f7359f0e4bff4fb685dca4a6e5f9e2df1619d1750e65695c7",
+      "compound_id": "LT01051",
+      "group": 3,
+      "partition": "train"
+    },
+    {
+      "structure_id": "39291aebe19658ca16e3aad876f63a18c25c9dfe7181e72996e5e2b4f2226eac",
+      "compound_id": "LT00058",
+      "group": 3,
+      "partition": "train"
+    },
+    {
+      "structure_id": "3935f6f2264efd0e7b65a0630a5543d04dc76cd651e5c36eaa8a494fd75c75e2",
+      "compound_id": "LT02063",
+      "group": 172,
+      "partition": "train"
+    },
+    {
+      "structure_id": "3939ea68c2df1b0294d98a1ef2c91d149cd09461a50ac20a386d648d8a1c0ffb",
+      "compound_id": "LT01564",
+      "group": 129,
+      "partition": "train"
+    },
+    {
+      "structure_id": "39ef6c02b672d45cb1e8b4779aeb284d198cde5bdc9bbb59a1f914a021787834",
+      "compound_id": "LT00665",
+      "group": 174,
+      "partition": "validation"
+    },
+    {
+      "structure_id": "3a55e0c52836b00d88a6c440b0ab36869493d2e6096fc777d76c6ba61aaf6415",
+      "compound_id": "LT01594",
+      "group": 175,
+      "partition": "train"
+    },
+    {
+      "structure_id": "3a97404a288a7aae804353da111d9567150c73a6ea03e111a148b14667aa32b0",
+      "compound_id": "LT03629",
+      "group": 176,
+      "partition": "train"
+    },
+    {
+      "structure_id": "3aa136bb930dc6873839e2ed33c7bd3b6b8febb810d45f441684e2e5af7389c6",
+      "compound_id": "LT01199",
+      "group": 177,
+      "partition": "test"
+    },
+    {
+      "structure_id": "3abd9f44e74c09be4b40b7fb1c44e65281916bbbbebd793f832aac47dc25eef3",
+      "compound_id": "LT01971",
+      "group": 178,
+      "partition": "train"
+    },
+    {
+      "structure_id": "3abda980325eec47ef33de752d3c3c4e9b609d4a176a43a36becc82cc973461f",
+      "compound_id": "LT00219",
+      "group": 133,
+      "partition": "train"
+    },
+    {
+      "structure_id": "3b03d866c0d92242ae02b7399a97216b4ca16fd856212f6648a0a6443cf60b5f",
+      "compound_id": "LT00298",
+      "group": 180,
+      "partition": "train"
+    },
+    {
+      "structure_id": "3b1548675c974ae1b5000fe5a9b66fa0cd247da0fa29fa7c4ec3f4c94081e136",
+      "compound_id": "LT03639",
+      "group": 181,
+      "partition": "validation"
+    },
+    {
+      "structure_id": "3b1fea7c74234e589a6beeb0e85ab9fe546554eb5f2d8fd8541b6ac04b956b9d",
+      "compound_id": "LT03905",
+      "group": 182,
+      "partition": "train"
+    },
+    {
+      "structure_id": "3c2acb254f65054d3d2af1484bc6c787cc05e2c2ad1b9b667a7ca3d6003a7820",
+      "compound_id": "LT01224",
+      "group": 183,
+      "partition": "train"
+    },
+    {
+      "structure_id": "3c9e56fd95c9ee9c12f70e1fe51fabfa0836bce01e53b14169c49d770025f8b2",
+      "compound_id": "LT00049",
+      "group": 74,
+      "partition": "test"
+    },
+    {
+      "structure_id": "3d31a77330c29a82bf53e92545f38c4c7522ffb81dd0f98a2c7119c40711c7e5",
+      "compound_id": "LT02516",
+      "group": 183,
+      "partition": "train"
+    },
+    {
+      "structure_id": "3e2fe6c610d84b27ce1eb65e6d2ffb7d6ba006db0472ea5c52f2978cb6fb3026",
+      "compound_id": "LT00112",
+      "group": 186,
+      "partition": "train"
+    },
+    {
+      "structure_id": "3e4583363be058a6b655b148b801251198fa3e54959878e15cc8c78709fd2293",
+      "compound_id": "LT00703",
+      "group": 3,
+      "partition": "train"
+    },
+    {
+      "structure_id": "3e668905bc2349297279807f7b637a9ea4d2d78c1b2d3d38f71c6b7e03fbd744",
+      "compound_id": "LT00246",
+      "group": 188,
+      "partition": "validation"
+    },
+    {
+      "structure_id": "3f1ee20105c3b4197cf8d49442f83dba5c1c7a2983a31c9d6fe507a097170951",
+      "compound_id": "LT03744",
+      "group": 189,
+      "partition": "train"
+    },
+    {
+      "structure_id": "3f692a53c37544d22d7401dafaac0b2add0dcec96359e8f19390b497ca8ffe97",
+      "compound_id": "LT02189",
+      "group": 190,
+      "partition": "test"
+    },
+    {
+      "structure_id": "3f7d2e515c5a85c5d88cbae7636c1d4444fe1ffbf3373c985e0a79007d1a21a4",
+      "compound_id": "LT00287",
+      "group": 191,
+      "partition": "train"
+    },
+    {
+      "structure_id": "3f91a17c6f054dd27175ed006332cffa503b96838ec8c591b932143f1f7e6333",
+      "compound_id": "LT01017",
+      "group": 192,
+      "partition": "validation"
+    },
+    {
+      "structure_id": "3fb7c764d4813139e54eb40c4456d6a2fc91be06065757db7744025b582f0ae3",
+      "compound_id": "LT02086",
+      "group": 3,
+      "partition": "train"
+    },
+    {
+      "structure_id": "3fe21e053455a1e9965b4a886101f116a8038cff4e83a235a80b491340be0146",
+      "compound_id": "LT00292",
+      "group": 194,
+      "partition": "train"
+    },
+    {
+      "structure_id": "4022728464bd1495a46932c6cc3b83189dd7aad8a2aa6c45574f8605a029b07e",
+      "compound_id": "LT01545",
+      "group": 195,
+      "partition": "validation"
+    },
+    {
+      "structure_id": "404d2fc133b942a3ceac1c2594549ad49fca3d55a1caf7b6473cc0e9a7f06c5d",
+      "compound_id": "LT00302",
+      "group": 196,
+      "partition": "train"
+    },
+    {
+      "structure_id": "40843cb1db77e91260d2b9e1b4a60702ef210871720a72e3e2b40ed1c424a65d",
+      "compound_id": "LT03619",
+      "group": 197,
+      "partition": "train"
+    },
+    {
+      "structure_id": "40d5836617de1e92e65d98c3f4b3dff81c36d1bec4aeaebb9b237064c9175496",
+      "compound_id": "LT01087",
+      "group": 198,
+      "partition": "train"
+    },
+    {
+      "structure_id": "41192d03d4276980c01949e80b8dada4ee3c8489d7e5ce716d317072306cd800",
+      "compound_id": "LT00166",
+      "group": 199,
+      "partition": "train"
+    },
+    {
+      "structure_id": "4187b27055dd478e4304dc2f84bfa5554aac08121aaf8b9300c5ed43f5246a78",
+      "compound_id": "LT00980",
+      "group": 200,
+      "partition": "test"
+    },
+    {
+      "structure_id": "41fa983f335b5743e57171d85945609e168fe7e0426fb4bcdea18d715fab8f4f",
+      "compound_id": "LT02427",
+      "group": 201,
+      "partition": "validation"
+    },
+    {
+      "structure_id": "423899c981d82c9603bf293fdeca9884bd9ef95be3da3cdb9420fc907bbcfa19",
+      "compound_id": "LT00184",
+      "group": 202,
+      "partition": "train"
+    },
+    {
+      "structure_id": "42d66e2672b714a3cb42236403aa8fb31c53c82fee961e5c1571b541f5e618f8",
+      "compound_id": "LT00308",
+      "group": 203,
+      "partition": "train"
+    },
+    {
+      "structure_id": "44274fdfbc15d1f4995e8f4ee135f4a8bfac177f2ca4749903ae50bbffe85502",
+      "compound_id": "LT03699",
+      "group": 204,
+      "partition": "validation"
+    },
+    {
+      "structure_id": "44afecf06707f29e6418408d21be0ec69e5d1b756ba7605ee430b59997c41153",
+      "compound_id": "LT00899",
+      "group": 205,
+      "partition": "train"
+    },
+    {
+      "structure_id": "455fe52327f3243677d00a1318fbbd3f6e41aaaee0509f2bea184b248cb5dea9",
+      "compound_id": "LT01481",
+      "group": 206,
+      "partition": "train"
+    },
+    {
+      "structure_id": "45829fc48483a218deb789641fac0a2103ad7c3d50b8933fc69dec18576f222c",
+      "compound_id": "LT00101",
+      "group": 3,
+      "partition": "train"
+    },
+    {
+      "structure_id": "4640c346e9769ded26a949ac8baa96c5b431c8c36358ba3225883f4d473c600d",
+      "compound_id": "LT01225",
+      "group": 208,
+      "partition": "train"
+    },
+    {
+      "structure_id": "473a01c5b79cba1e359a5745318a845f9c894a236d45726484ed606e89473c63",
+      "compound_id": "LT00505",
+      "group": 3,
+      "partition": "train"
+    },
+    {
+      "structure_id": "474fb9d90a6abd681b8b994d1f48417a56d5b493ae148a0551e4c6e5d916b99a",
+      "compound_id": "LT01153",
+      "group": 210,
+      "partition": "test"
+    },
+    {
+      "structure_id": "476a11444f847b91e8a25de6682ba14cd5b9d7b0441c5e5fea45e79bc15de783",
+      "compound_id": "LT01437",
+      "group": 37,
+      "partition": "train"
+    },
+    {
+      "structure_id": "47db3384fb7e9084cc6feb53a361df5ead6d93c5d3363476b166dba22e408cb0",
+      "compound_id": "LT02443",
+      "group": 202,
+      "partition": "train"
+    },
+    {
+      "structure_id": "48154e35ee805fcc8347ecf5281283e9fdb88e54bcb50530233c313e35600a93",
+      "compound_id": "LT00252",
+      "group": 213,
+      "partition": "validation"
+    },
+    {
+      "structure_id": "486c459672355ecaa48722d1c043a0c3b35645141a85df7dbd465489f7405dbb",
+      "compound_id": "LT00137",
+      "group": 3,
+      "partition": "train"
+    },
+    {
+      "structure_id": "490c6a976498a0fc127a55fbecf07ad46c96a6ea3e420391b0d0b3941e6e8b29",
+      "compound_id": "LT02337",
+      "group": 215,
+      "partition": "train"
+    },
+    {
+      "structure_id": "4a018ecf83258f608790d1b3336a3dca06f941d64f49694e63a57cdb6fe18d84",
+      "compound_id": "LT00455",
+      "group": 216,
+      "partition": "train"
+    },
+    {
+      "structure_id": "4a71f44f3eb2a9412e4581f2ac8903f41c855237509f1be6e37a35e59a2503bb",
+      "compound_id": "LT00240",
+      "group": 217,
+      "partition": "validation"
+    },
+    {
+      "structure_id": "4a8f46b29b10b0d681658e8cdc1d7f3fe827f57f87f2108141dc62533f488bee",
+      "compound_id": "LT00160",
+      "group": 218,
+      "partition": "train"
+    },
+    {
+      "structure_id": "4ab0c07a29e0acbddd605ea5fec6720471aa987c5104f842cc6d35747e96821b",
+      "compound_id": "LT00280",
+      "group": 219,
+      "partition": "train"
+    },
+    {
+      "structure_id": "4b5eb1189c4ca15db45afd4f4feeac55074c280187dc0bacdebda94490b249ab",
+      "compound_id": "LT01816",
+      "group": 3,
+      "partition": "train"
+    },
+    {
+      "structure_id": "4b788a9090943c4e38208aa9c90a642990d1d7456c7207037994397cc2e321ab",
+      "compound_id": "LT00742",
+      "group": 3,
+      "partition": "train"
+    },
+    {
+      "structure_id": "4c049e54ab680b3ef8a45058e88e08f4021c0b1ec325a6d923f04483c69fdec0",
+      "compound_id": "LT00288",
+      "group": 52,
+      "partition": "validation"
+    },
+    {
+      "structure_id": "4c166c45d8550dff13517088b2352d0a83aed90ceb6ba75627fc2fb39c748c22",
+      "compound_id": "LT00113",
+      "group": 223,
+      "partition": "validation"
+    },
+    {
+      "structure_id": "4c1c5c4b2e3c9b8dc4e2255e438b7fa5169d0d972b2dba91dee3034bf785e30d",
+      "compound_id": "LT00808",
+      "group": 224,
+      "partition": "train"
+    },
+    {
+      "structure_id": "4c629d434dfd57152180e8ab27b5f597ed2169687e7948cab6fc5bfc3b843554",
+      "compound_id": "LT03663",
+      "group": 225,
+      "partition": "train"
+    },
+    {
+      "structure_id": "4c695ffc04bf95f8794862e01be583e81897da7fd5038f76b8024cdfc9cf0890",
+      "compound_id": "LT00693",
+      "group": 226,
+      "partition": "test"
+    },
+    {
+      "structure_id": "4cd084d1ee17b3d827e56dbf89778f29cdc2f4f5b8fe462e2dcb79a57ddaa9a4",
+      "compound_id": "LT02435",
+      "group": 227,
+      "partition": "validation"
+    },
+    {
+      "structure_id": "4d033557bd6075b42f27e6178651a8da6f4c707b30f72465aa8ccef5a62dfb01",
+      "compound_id": "LT02009",
+      "group": 228,
+      "partition": "train"
+    },
+    {
+      "structure_id": "4d165da1e6b276d75e95ab29b357fdcfc4377fa3207dcacd62a5ec1e98d9a514",
+      "compound_id": "LT01651",
+      "group": 229,
+      "partition": "train"
+    },
+    {
+      "structure_id": "4df5194699b8cddda085842d6715c9ab0b2ad0f0694367f075fdbcfff84dd77a",
+      "compound_id": "LT01629",
+      "group": 230,
+      "partition": "train"
+    },
+    {
+      "structure_id": "4e2440bf7a2bfb9211731f6ad37b7f25d07771ef5ee820d35a384ee91da1edc5",
+      "compound_id": "LT01248",
+      "group": 231,
+      "partition": "train"
+    },
+    {
+      "structure_id": "4ecb28c39d95bc2c6c135e49bc01bd1d6f7febb71cd151b3ec0f13c30093eb33",
+      "compound_id": "LT01214",
+      "group": 232,
+      "partition": "train"
+    },
+    {
+      "structure_id": "4ee87fe43ff08d58929d5c264488b6703f0134bd4fb2224e8bbdf1a54000a66e",
+      "compound_id": "LT03717",
+      "group": 233,
+      "partition": "train"
+    },
+    {
+      "structure_id": "4f5448b0a3968d71d048b3a71d4de25aacbc842b80b21d08cd859b0884c7dc7f",
+      "compound_id": "LT03915",
+      "group": 45,
+      "partition": "train"
+    },
+    {
+      "structure_id": "4f6830a29d95033ab8bd52b02e2c5a86ebc511dfbbfb122b1246c4e38b97356d",
+      "compound_id": "LT00706",
+      "group": 52,
+      "partition": "validation"
+    },
+    {
+      "structure_id": "4fbe210693f98c0ab8b7f403ec2990005e77e6b572be3c9bfeaedd1d08a20adb",
+      "compound_id": "LT00452",
+      "group": 236,
+      "partition": "validation"
+    },
+    {
+      "structure_id": "4fd48c16fa6d9b01fca4276f47b9ecc9d2d0d366673b9e742c3c6f392d5aba66",
+      "compound_id": "LT01033",
+      "group": 237,
+      "partition": "train"
+    },
+    {
+      "structure_id": "50ed5c48cd289604dc34e8118848669697c167741b32f21a424a98cb82d4b927",
+      "compound_id": "LT02035",
+      "group": 238,
+      "partition": "test"
+    },
+    {
+      "structure_id": "50ef09c1035decac498d355629911e3d76eff3c2142a93bc958956c512a99820",
+      "compound_id": "LT00074",
+      "group": 239,
+      "partition": "validation"
+    },
+    {
+      "structure_id": "50efb5251a758ec76e2c1bec432a57065e641b01deb37c3f6260c01c0d0c549b",
+      "compound_id": "LT01824",
+      "group": 240,
+      "partition": "train"
+    },
+    {
+      "structure_id": "50f90c8fbf36a14e047d6b437929a27c5910c33658c144642c387f6fd148db39",
+      "compound_id": "LT00379",
+      "group": 3,
+      "partition": "train"
+    },
+    {
+      "structure_id": "51d27ac1807041f31d1aba6c72e50ce280b5728bd565af8ffbbf3d7bd131e032",
+      "compound_id": "LT00119",
+      "group": 242,
+      "partition": "train"
+    },
+    {
+      "structure_id": "5283e4b8b19f106fd2804cdba61def2c49d772adeefb2a0aa7b479f8244d0d56",
+      "compound_id": "LT01022",
+      "group": 243,
+      "partition": "train"
+    },
+    {
+      "structure_id": "52a2f1b4d0d6a6261b20f7c4171845eb9ded23846ee462bd2fd6e3445e7b6ebe",
+      "compound_id": "LT00619",
+      "group": 244,
+      "partition": "train"
+    },
+    {
+      "structure_id": "52afd00fdcd92cd27471c39ad272fc116c23217e4729e659eed4a2fa8b87bd4e",
+      "compound_id": "LT01382",
+      "group": 183,
+      "partition": "train"
+    },
+    {
+      "structure_id": "53e7575c72b831523904b465d54d703009bcd00d4eb6d86918b8b584ac13436d",
+      "compound_id": "LT00350",
+      "group": 246,
+      "partition": "test"
+    },
+    {
+      "structure_id": "53fc53272e854429473057efa3ac519964c8a2b98196ea2d94a122a339fea7a8",
+      "compound_id": "LT01266",
+      "group": 144,
+      "partition": "train"
+    },
+    {
+      "structure_id": "5489c444e35c538b90f85cf6960421ee032cd861a0c949020f1b9cf5bc347f77",
+      "compound_id": "LT03763",
+      "group": 3,
+      "partition": "train"
+    },
+    {
+      "structure_id": "548e24979ac40f51c8545328b1d5f20a7ccef9226a06eed08ae5a6c21c3f0ffe",
+      "compound_id": "LT03790",
+      "group": 249,
+      "partition": "train"
+    },
+    {
+      "structure_id": "5493485c48d45e9a2ccd321e1578473d37659f95a34011cde577f6e7fc25e335",
+      "compound_id": "LT03646",
+      "group": 250,
+      "partition": "validation"
+    },
+    {
+      "structure_id": "54954e9aba1bde1815de3fb92eae707f403f69eecb77cb5a45da306869af33d4",
+      "compound_id": "LT01220",
+      "group": 251,
+      "partition": "train"
+    },
+    {
+      "structure_id": "55b03df0e019870f674924e355f79818a900bb73e4e7f6ff79d7d083c1405049",
+      "compound_id": "LT00289",
+      "group": 252,
+      "partition": "train"
+    },
+    {
+      "structure_id": "5699308921803db6ee00518a5e12bc946d02785065b51d018010a5fb26ee970e",
+      "compound_id": "LT01107",
+      "group": 253,
+      "partition": "train"
+    },
+    {
+      "structure_id": "56f76e6618dedcaa9d06b674e25db9f6450397f6ed299f2fc812e37ba8605c64",
+      "compound_id": "LT01030",
+      "group": 254,
+      "partition": "test"
+    },
+    {
+      "structure_id": "5766070150ac0674d831746dde0efb2f5c2bcd9fdbc8c3838488b318903d44ec",
+      "compound_id": "LT00234",
+      "group": 255,
+      "partition": "validation"
+    },
+    {
+      "structure_id": "57fac41251f550bcab0d6085ac78c09030a9d8ea4e8f4e7702875b7341ecd6b2",
+      "compound_id": "LT02037",
+      "group": 256,
+      "partition": "train"
+    },
+    {
+      "structure_id": "584a8282eb453e84b7b65eb7a31534ec6e0cbacfc7761d12d544eff941a9c07b",
+      "compound_id": "LT00625",
+      "group": 257,
+      "partition": "test"
+    },
+    {
+      "structure_id": "588ab869f82cad0cf7b2842f4c54b557b3f5cb61393c284770b879bc30240b7a",
+      "compound_id": "LT01070",
+      "group": 258,
+      "partition": "validation"
+    },
+    {
+      "structure_id": "5925e566c383e29397057a14218984356939915ab175b46b28201e0abe0adea6",
+      "compound_id": "LT00223",
+      "group": 59,
+      "partition": "train"
+    },
+    {
+      "structure_id": "597730e8c51c3d71cee2ce1cca7e8ee7bdd3b38a15e7407f4f0279f6bf54a1c3",
+      "compound_id": "LT00592",
+      "group": 224,
+      "partition": "train"
+    },
+    {
+      "structure_id": "59a68987ccb360d6a1cf75ae8b5bf02ef6861a039b7844edd4c0fccf4545fe8b",
+      "compound_id": "LT01333",
+      "group": 3,
+      "partition": "train"
+    },
+    {
+      "structure_id": "59f24de65bdec05a67c975c035f0fa818d675915135c00a3f3bf49cc158a55fe",
+      "compound_id": "LT00734",
+      "group": 262,
+      "partition": "train"
+    },
+    {
+      "structure_id": "5a39b821b456cd966ceeb5a0ba1d5eb18cb59b7db0a366e5664503207bf7e728",
+      "compound_id": "LT00315",
+      "group": 25,
+      "partition": "train"
+    },
+    {
+      "structure_id": "5a3d2c6f1800fe7f07a03e3f3b33d10086eaae0f2f7bb9fb0fd6b8a06c67e1c7",
+      "compound_id": "LT00419",
+      "group": 3,
+      "partition": "train"
+    },
+    {
+      "structure_id": "5ae8fa972541d625e99e535f7e0a8c743f2ddc1f14bfff90e2b1b9e727fef003",
+      "compound_id": "LT02085",
+      "group": 129,
+      "partition": "train"
+    },
+    {
+      "structure_id": "5bc19a0bc9c096d5f0b7e63011b90ee89ccbfac3646b21fd0cd081bee6fd53df",
+      "compound_id": "LT01186",
+      "group": 266,
+      "partition": "validation"
+    },
+    {
+      "structure_id": "5bd29c9999275994e4c6ab424c9083e0ff506766c5c43ea9b72f8ff7ff69fa13",
+      "compound_id": "LT00653",
+      "group": 267,
+      "partition": "train"
+    },
+    {
+      "structure_id": "5c92130c3047259cad9c04d3bf9a682c06b608c47eb00909f7faa3123d3e5fe2",
+      "compound_id": "LT00183",
+      "group": 268,
+      "partition": "test"
+    },
+    {
+      "structure_id": "5c99dc9b8432491aed3bbb46e099f855c0134eecd678a2a4398b1e857fc8b3dd",
+      "compound_id": "LT01016",
+      "group": 3,
+      "partition": "train"
+    },
+    {
+      "structure_id": "5cb009784d78090417aec960961077d871afdf8313128061d11a7cf5471b567d",
+      "compound_id": "LT00006",
+      "group": 270,
+      "partition": "train"
+    },
+    {
+      "structure_id": "5d25759336d37357c3d5d0d2a32d9aff703e49f3d2c1b2efaf68de5010afd98f",
+      "compound_id": "LT03780",
+      "group": 271,
+      "partition": "validation"
+    },
+    {
+      "structure_id": "5d3972b409788808ad6bc410d12d073972010be9b1575063fb855fed629ad90d",
+      "compound_id": "LT00593",
+      "group": 79,
+      "partition": "train"
+    },
+    {
+      "structure_id": "5e75659d7fdf6ad64704b2c281d2fa78436c0129bb61d8acd304396eeafeb303",
+      "compound_id": "LT00590",
+      "group": 129,
+      "partition": "train"
+    },
+    {
+      "structure_id": "5ea85f85e8c0225624e173ec14e719da1c0d2bd75de3f418cbd1cdda3ebf8fbe",
+      "compound_id": "LT03753",
+      "group": 274,
+      "partition": "test"
+    },
+    {
+      "structure_id": "5eee8c6110f9b3d73179cd8c30eb09937ef339091c56ac899b8fbf0ff49ae9bc",
+      "compound_id": "LT01611",
+      "group": 275,
+      "partition": "train"
+    },
+    {
+      "structure_id": "5eff1726b0881c472a09b4ddc1b090bb79b608f00c8b1453d5c3ee467a0dcf08",
+      "compound_id": "LT00279",
+      "group": 276,
+      "partition": "test"
+    },
+    {
+      "structure_id": "5f14b50c14610f97eab042cbf2035f5d1dac51f8ff09305435a1d92a76d27cf0",
+      "compound_id": "LT00950",
+      "group": 277,
+      "partition": "validation"
+    },
+    {
+      "structure_id": "5f2973b2d9417f7fb4c0ca288e5ba590208ce3601f1ddead5dd15f3fe537ed57",
+      "compound_id": "LT00787",
+      "group": 278,
+      "partition": "train"
+    },
+    {
+      "structure_id": "5f42c2f1540bff1d8534b19d7295fa1ffdb57b488b166972d17fd8e786de2dab",
+      "compound_id": "LT00877",
+      "group": 3,
+      "partition": "train"
+    },
+    {
+      "structure_id": "5f9164b94baebe3ba80423eb25dd83cd9139bcec19355c5e6a895fc40ff3987c",
+      "compound_id": "LT02451",
+      "group": 280,
+      "partition": "train"
+    },
+    {
+      "structure_id": "5fa315b7de7f414f7d38a78c836d76090ea72ad926098feda38ef67c95b1cb1b",
+      "compound_id": "LT02726",
+      "group": 281,
+      "partition": "validation"
+    },
+    {
+      "structure_id": "5fb74783b085a5832a62add2cdd79242f0aa8ab12fe547f4ce5dcc8b7956d62d",
+      "compound_id": "LT00923",
+      "group": 17,
+      "partition": "validation"
+    },
+    {
+      "structure_id": "6126d4afe6eb5f79fa3ba3919ec39423ac2a37164251851feb127805ea930dbd",
+      "compound_id": "LT03679",
+      "group": 283,
+      "partition": "train"
+    },
+    {
+      "structure_id": "614721bdc88c39aa10856df47ab4c17d90cc83e2674c1a9b77946bb19dc10640",
+      "compound_id": "LT00192",
+      "group": 59,
+      "partition": "train"
+    },
+    {
+      "structure_id": "616c7669049b8e01e8bb7d227e15e93a3bbc023fc66bcd9d03328b45481b3947",
+      "compound_id": "LT02339",
+      "group": 285,
+      "partition": "test"
+    },
+    {
+      "structure_id": "61c2c217335503b28fdc39ba1e0fd503e6dac985d255b7c5728c025e323c6dbd",
+      "compound_id": "LT03908",
+      "group": 166,
+      "partition": "train"
+    },
+    {
+      "structure_id": "629bdb33095abd23906cc315198914fc1dad2da61d7153a30f00dbd04583d574",
+      "compound_id": "LT02089",
+      "group": 287,
+      "partition": "train"
+    },
+    {
+      "structure_id": "62f17b411dbd46f51bb0639b59bd24b5cdb2a2a8773a763b7657423230296d19",
+      "compound_id": "LT01842",
+      "group": 288,
+      "partition": "test"
+    },
+    {
+      "structure_id": "631fdcea494a0e4b59a6c2c8d4c04aea4257b4d776435e01c955d1d9c27a2618",
+      "compound_id": "LT01854",
+      "group": 289,
+      "partition": "validation"
+    },
+    {
+      "structure_id": "6354428043cc09f187942b94efa948c366cd319c890f5b8149eed50480901f70",
+      "compound_id": "LT00539",
+      "group": 290,
+      "partition": "train"
+    },
+    {
+      "structure_id": "63545f251cb9d1db342925d7ed07d57a8bc6debc804914a6c859dcadb646fc15",
+      "compound_id": "LT00675",
+      "group": 291,
+      "partition": "train"
+    },
+    {
+      "structure_id": "64086e9d74f5f7254fc063e79df85918c8dd6a80717ddee824f38e100aeff344",
+      "compound_id": "LT02665",
+      "group": 292,
+      "partition": "train"
+    },
+    {
+      "structure_id": "640fc145bbe655e41be6c4759ee85a2e1589d4291e24de8634d5dc2c6e218db8",
+      "compound_id": "LT00108",
+      "group": 293,
+      "partition": "test"
+    },
+    {
+      "structure_id": "642e02cbc23976d01138d2b8f95d635b0b0279736846fc141a4ae0821a296bdc",
+      "compound_id": "LT01251",
+      "group": 294,
+      "partition": "validation"
+    },
+    {
+      "structure_id": "6484100a716aa566027d6a686481bdb19aca0e9470afcda5f9f68673e9ba3eb1",
+      "compound_id": "LT02899",
+      "group": 295,
+      "partition": "train"
+    },
+    {
+      "structure_id": "6495f6d892b5398ca39150e71fd12e9627e246f3bcd8f66e24b5789df3cf2c83",
+      "compound_id": "LT00559",
+      "group": 296,
+      "partition": "train"
+    },
+    {
+      "structure_id": "649918665df879f51b6fb956254779ede685008b231aafd52e482f9d536b526e",
+      "compound_id": "LT00607",
+      "group": 297,
+      "partition": "train"
+    },
+    {
+      "structure_id": "6529f10644fe6201f32ba28262d137c4c3a4ff0b18728058b1d578b84189abef",
+      "compound_id": "LT01684",
+      "group": 298,
+      "partition": "train"
+    },
+    {
+      "structure_id": "659a9f661b700f96dd2bc1d5c907ecf274546408d36b2f3d1955ccc1c9dc6fef",
+      "compound_id": "LT01833",
+      "group": 299,
+      "partition": "test"
+    },
+    {
+      "structure_id": "65f4612820e0f2c51c9717e783dcb8b29b67d77ea893cb0f2b5bbe1ff50d0081",
+      "compound_id": "LT00859",
+      "group": 300,
+      "partition": "validation"
+    },
+    {
+      "structure_id": "6672e59a6cc40369d5888792f01b06aecc17d163cb3b42bf0d498190c6691c68",
+      "compound_id": "LT00806",
+      "group": 3,
+      "partition": "train"
+    },
+    {
+      "structure_id": "66987b27e27f3701be0e897154e77d0816a222af7dfed8895288b11f211bbd41",
+      "compound_id": "LT01217",
+      "group": 302,
+      "partition": "validation"
+    },
+    {
+      "structure_id": "675404e31bca6cb3a56b49097c28ef4dd09073c5e09581251b3faedcdabb7fa8",
+      "compound_id": "LT00647",
+      "group": 303,
+      "partition": "train"
+    },
+    {
+      "structure_id": "67555ed6a67e094afe7585474f5ee7182d67913a5635a6294fae2fb97ffdbb7c",
+      "compound_id": "LT02082",
+      "group": 304,
+      "partition": "test"
+    },
+    {
+      "structure_id": "67961b097c0f310468fb1fc4dd39e8f3135de89355f62d71984ae3b659168c34",
+      "compound_id": "LT00560",
+      "group": 3,
+      "partition": "train"
+    },
+    {
+      "structure_id": "67aeea62e54eca53b58690677d309060cdeaa37838664eb1c60d1d2a7a241129",
+      "compound_id": "LT02087",
+      "group": 306,
+      "partition": "train"
+    },
+    {
+      "structure_id": "68e0979906d1273ed4d1c17b8175035dee7f251c5a1a8310ddd7021ca3ce95be",
+      "compound_id": "LT02074",
+      "group": 307,
+      "partition": "train"
+    },
+    {
+      "structure_id": "694c8ba1b8cb42e1996d5c13599c1c3159cd532557bdfd44f6aa38bd8b1356d2",
+      "compound_id": "LT00084",
+      "group": 308,
+      "partition": "test"
+    },
+    {
+      "structure_id": "69a7902f6e52326aad77f90a1baf38b939d5d679f691d9359fd2863d1b4c4c16",
+      "compound_id": "LT00832",
+      "group": 309,
+      "partition": "train"
+    },
+    {
+      "structure_id": "6a33b0da92f0389645455c528b7481be3c1ef9e705a6630627312b73dbd00074",
+      "compound_id": "LT00974",
+      "group": 3,
+      "partition": "train"
+    },
+    {
+      "structure_id": "6a894447a8d9797d0c203831fcaee6fb4c5c0acefccfc2110908c03b97291174",
+      "compound_id": "LT03667",
+      "group": 311,
+      "partition": "train"
+    },
+    {
+      "structure_id": "6b45b81371034dce4d047c436018ee80bdcbeca65c3d0ffb2133f87800c42d77",
+      "compound_id": "LT00375",
+      "group": 312,
+      "partition": "validation"
+    },
+    {
+      "structure_id": "6b5f14f873131de3597786444e9e2684ffac261137da9273d6022736ec5b45d1",
+      "compound_id": "LT01071",
+      "group": 313,
+      "partition": "test"
+    },
+    {
+      "structure_id": "6b6ca0fb04df83e98e48c45e55e8f4711955f415ec73c2b9d1f3743519cb4d56",
+      "compound_id": "LT00635",
+      "group": 314,
+      "partition": "train"
+    },
+    {
+      "structure_id": "6bac706a23dd83e4e4add460091fc73ad29cf8c6b9e1f1e8c88ba2770cd843ed",
+      "compound_id": "LT03673",
+      "group": 315,
+      "partition": "train"
+    },
+    {
+      "structure_id": "6c45d9a9e7494cc66297e0ccd010156d8d0ede1b4a1b20f48edb207ae046b33c",
+      "compound_id": "LT01489",
+      "group": 59,
+      "partition": "train"
+    },
+    {
+      "structure_id": "6c5f87d182105287c68b00332dcb7553a75a8cf6f34db9e107b6ea3e8faaa50c",
+      "compound_id": "LT03708",
+      "group": 317,
+      "partition": "train"
+    },
+    {
+      "structure_id": "6cf038e52f699283bb1768286f35286778d5680ac513de9d265c73fbaa4faf45",
+      "compound_id": "LT01787",
+      "group": 318,
+      "partition": "train"
+    },
+    {
+      "structure_id": "6d14690f500896cfa17ec53f8f0f59b002b76f819841abc77d65d1061955dbe7",
+      "compound_id": "LT01054",
+      "group": 319,
+      "partition": "train"
+    },
+    {
+      "structure_id": "6d1527d36f3f801e0d7df0116e41d2b1e1367ba1f47cc44a201b68883d15bcaf",
+      "compound_id": "LT01553",
+      "group": 3,
+      "partition": "train"
+    },
+    {
+      "structure_id": "6e1f2b7dd4bc76957ee8d557aa435ca3c8e028ecff93e1957d28b18300717bb0",
+      "compound_id": "LT01870",
+      "group": 321,
+      "partition": "test"
+    },
+    {
+      "structure_id": "6e47573a52fde3aefa28f5faf7545f79d06346a9e6be29c6fdf477cce92c0113",
+      "compound_id": "LT02007",
+      "group": 322,
+      "partition": "train"
+    },
+    {
+      "structure_id": "6eab195e993c8f35c806fe47768c54db29fdf71448ecf897c94a9cfc1e3d3a18",
+      "compound_id": "LT00016",
+      "group": 166,
+      "partition": "train"
+    },
+    {
+      "structure_id": "6ed418c9f23d6cb6a11dc0a167756818e06c6093cdb79d736055412a943bf4b2",
+      "compound_id": "LT03603",
+      "group": 181,
+      "partition": "validation"
+    },
+    {
+      "structure_id": "6f0155014f6991bf01e1361bfe06c360b6bb5cd602dc6efa0fae1abbaa2e7ac2",
+      "compound_id": "LT00261",
+      "group": 325,
+      "partition": "train"
+    },
+    {
+      "structure_id": "6f0b8a37393e7e8c115815fd0a8e08c0b6a7ab0db93fc343a63d0ff8538b8858",
+      "compound_id": "LT01243",
+      "group": 326,
+      "partition": "validation"
+    },
+    {
+      "structure_id": "6f2c9e5ce8df357f4b0fe4dba031b4c75f0191704a203bf0f39deed9b0d17cce",
+      "compound_id": "LT00306",
+      "group": 45,
+      "partition": "train"
+    },
+    {
+      "structure_id": "6fa7f317ad643979f093042f96345ea7f4421d09ce3cc44595b68f3a827eb378",
+      "compound_id": "LT03596",
+      "group": 328,
+      "partition": "train"
+    },
+    {
+      "structure_id": "6fba6ee62df07b049f8dda8a1fe5421bc877120b923635f43e623e3f9ba2415b",
+      "compound_id": "LT00259",
+      "group": 329,
+      "partition": "test"
+    },
+    {
+      "structure_id": "707b54a57a57f2e7620bf56c8372380ebc9f2b66e12e61dae4399582bb5deaac",
+      "compound_id": "LT01580",
+      "group": 330,
+      "partition": "validation"
+    },
+    {
+      "structure_id": "727124008cec6c6393a5f1ff23f10b900c94cfea383849d78575208ec37e7ea7",
+      "compound_id": "LT01624",
+      "group": 102,
+      "partition": "train"
+    },
+    {
+      "structure_id": "7276dd90938776ef2ce04c528eea319996887039a3366fbea7de682b599e18e4",
+      "compound_id": "LT00925",
+      "group": 332,
+      "partition": "train"
+    },
+    {
+      "structure_id": "728bf678771e61a7499e897470e6666c65811debfdcbf85a5cb9233a5a49abe7",
+      "compound_id": "LT00126",
+      "group": 333,
+      "partition": "train"
+    },
+    {
+      "structure_id": "72d43b8a6a1b45045c826d25dde1f92a69d6896225daac58d381f8d85797c135",
+      "compound_id": "LT02449",
+      "group": 334,
+      "partition": "train"
+    },
+    {
+      "structure_id": "72f328308e1b39998d23cc977865ee941e545cf4d75edf51573e8e72717569ab",
+      "compound_id": "LT00205",
+      "group": 335,
+      "partition": "train"
+    },
+    {
+      "structure_id": "730b5f3ef517e637097daebf262579830499ac6584ca3be529acc39429e231a3",
+      "compound_id": "LT00009",
+      "group": 9,
+      "partition": "train"
+    },
+    {
+      "structure_id": "733490a3801d47f5118adfe1690f1f360a96df47662edea59984a71949a343cf",
+      "compound_id": "LT01557",
+      "group": 337,
+      "partition": "validation"
+    },
+    {
+      "structure_id": "73a40fd09947f83a74c14c6d052328b279a8a3931d64723fcbd5105487acadae",
+      "compound_id": "LT03722",
+      "group": 338,
+      "partition": "train"
+    },
+    {
+      "structure_id": "73e4493eccdf9eee4ca67acbc19c7a9dd34aac61b247ff9fff38eccff5cdf5ef",
+      "compound_id": "LT00982",
+      "group": 287,
+      "partition": "train"
+    },
+    {
+      "structure_id": "7440bc5508e6b25b15b445d56663795352b557889bc285889e07516310a91b00",
+      "compound_id": "LT01228",
+      "group": 340,
+      "partition": "test"
+    },
+    {
+      "structure_id": "74e342987361b4ccad1ed3628b6eaefa5378868514b33e78ecabc9481cfa4d48",
+      "compound_id": "LT01177",
+      "group": 95,
+      "partition": "train"
+    },
+    {
+      "structure_id": "74e40436ad91cc29efc8c8b1b95502a753b574d8cd80dfde74a4e4b861c7d7b1",
+      "compound_id": "LT01215",
+      "group": 342,
+      "partition": "train"
+    },
+    {
+      "structure_id": "757f71c7206567d8ce8dc48ad1c2751f9bde3ab9416a708f7feda20cc6e1e7f4",
+      "compound_id": "LT00041",
+      "group": 343,
+      "partition": "train"
+    },
+    {
+      "structure_id": "75bdc26a7fdd0f087b5a6edc87121dea68e76a35c86bdab5205534b131fa26e6",
+      "compound_id": "LT00829",
+      "group": 344,
+      "partition": "test"
+    },
+    {
+      "structure_id": "75c602ad462cc98c3923bb952c79d03159ed3617662a6a0b48d13e0a45964e8a",
+      "compound_id": "LT00054",
+      "group": 3,
+      "partition": "train"
+    },
+    {
+      "structure_id": "75ecdfb12444023ad68e24fb79bd22a1871b5939649ec96ae8aa5a0926948754",
+      "compound_id": "LT03709",
+      "group": 346,
+      "partition": "validation"
+    },
+    {
+      "structure_id": "760e7bc4299c152a631bd55600e033e0210301fd71ee06a8a142c808cffde201",
+      "compound_id": "LT00414",
+      "group": 3,
+      "partition": "train"
+    },
+    {
+      "structure_id": "76233f874352cec443c308c564580805cec18b55fe46ec47ea74c26cb738f78d",
+      "compound_id": "LT00185",
+      "group": 293,
+      "partition": "test"
+    },
+    {
+      "structure_id": "7662ab3c9bfa4fb9c7a6ae43dbe5b0ea7c196e2288a09af0653096b54f991949",
+      "compound_id": "LT00125",
+      "group": 349,
+      "partition": "train"
+    },
+    {
+      "structure_id": "76cb59876cbce386d11e293178dc16fc67ed6aea43db573a211ca2e2a48b9ab6",
+      "compound_id": "LT01776",
+      "group": 350,
+      "partition": "train"
+    },
+    {
+      "structure_id": "7750bfa9226da089858a2cd0381b4a6e51a3605cf56252475832277db3aae431",
+      "compound_id": "LT01198",
+      "group": 351,
+      "partition": "train"
+    },
+    {
+      "structure_id": "776a95f8c3d8cb2270349007e0546672c90e7f813ece562b97c26e3322916f3c",
+      "compound_id": "LT01619",
+      "group": 352,
+      "partition": "test"
+    },
+    {
+      "structure_id": "77f6096aaed70c9e4ce4a784119c518e98fcf4b7c933a45e74bfaee651f6c5f3",
+      "compound_id": "LT00018",
+      "group": 75,
+      "partition": "validation"
+    },
+    {
+      "structure_id": "7855e9f14242eec641f3bf24eddcda6e4216d185bba38d03c7620d36c8c7b53c",
+      "compound_id": "LT00134",
+      "group": 354,
+      "partition": "validation"
+    },
+    {
+      "structure_id": "7864cd3f61f4d7ccd03cf37d3e0ab0d23b14ab2daefe7d05e30eb0825ba7fdff",
+      "compound_id": "LT01292",
+      "group": 355,
+      "partition": "train"
+    },
+    {
+      "structure_id": "7874126917e7c64c62ff75507cd671ec964a0fe40daac92587b09d5e89313bba",
+      "compound_id": "LT03868",
+      "group": 356,
+      "partition": "train"
+    },
+    {
+      "structure_id": "78896f85a6e24a58b4f60f34c07c192ecf1fb5266f298a595f1506ca8be71dd2",
+      "compound_id": "LT00386",
+      "group": 357,
+      "partition": "validation"
+    },
+    {
+      "structure_id": "78cacc48e5c8ee03ddf9dc2309e05a15a844fad86ce97791bb1595e89146168a",
+      "compound_id": "LT00595",
+      "group": 358,
+      "partition": "validation"
+    },
+    {
+      "structure_id": "7998f165f0345f8ebb4117e67d1482a9314384c9c1ac38f1caa95e539c59a70e",
+      "compound_id": "LT01140",
+      "group": 359,
+      "partition": "train"
+    },
+    {
+      "structure_id": "79cb56addae8a941a9b2df93ff05b7f4294ecc3e5c0ce063bcd375bff556c860",
+      "compound_id": "LT01508",
+      "group": 3,
+      "partition": "train"
+    },
+    {
+      "structure_id": "7a4b554797d3822e1a36bea73583e73b3b51db702d3b92773a7aab663c2f9b05",
+      "compound_id": "LT00987",
+      "group": 361,
+      "partition": "train"
+    },
+    {
+      "structure_id": "7a70d9b57e1eec8799fdc4df198fe86fd777ccf5a8d59e591f13416fd13ffe13",
+      "compound_id": "LT00003",
+      "group": 236,
+      "partition": "validation"
+    },
+    {
+      "structure_id": "7acad11270d46e651e984c455bf18490e8f874c9dbbfe4bc8c8d1a5d2bd7a181",
+      "compound_id": "LT00172",
+      "group": 363,
+      "partition": "train"
+    },
+    {
+      "structure_id": "7b4faac4f57c4257cdefceba11627a9fb9d94596d4353afb76c49dc432e93b99",
+      "compound_id": "LT00979",
+      "group": 224,
+      "partition": "train"
+    },
+    {
+      "structure_id": "7b9685f3d431a125ed7b71705465ac647bc5048211797fb987c020df690d3d5d",
+      "compound_id": "LT01156",
+      "group": 365,
+      "partition": "test"
+    },
+    {
+      "structure_id": "7b9ffea8d95e206c41bc425e897784e48b918687904d3145b965a84f1e67a3fc",
+      "compound_id": "LT01839",
+      "group": 366,
+      "partition": "validation"
+    },
+    {
+      "structure_id": "7baec907dc7d6dbd164d5ff6fba4e5c5af7cec02963043f5197f25209dd7d3e3",
+      "compound_id": "LT00168",
+      "group": 367,
+      "partition": "train"
+    },
+    {
+      "structure_id": "7d62d08ec3a3ec50b43ca03cb3f65aa0105be8598e189ac9653519b00d0ddff1",
+      "compound_id": "LT02218",
+      "group": 368,
+      "partition": "train"
+    },
+    {
+      "structure_id": "7d876504a5c7ca145b8862b7bca53581b0061654d677e02d14aa100077ae2941",
+      "compound_id": "LT00513",
+      "group": 369,
+      "partition": "train"
+    },
+    {
+      "structure_id": "7e22854a9a9a852a7ee3acd1e4415c23d86e96643476a77868b0c51641ae97e6",
+      "compound_id": "LT01433",
+      "group": 370,
+      "partition": "test"
+    },
+    {
+      "structure_id": "7e26bf7f3768a225b500fbe29c8240a01f5c906e19ded1729b8d487918b86d37",
+      "compound_id": "LT01766",
+      "group": 371,
+      "partition": "validation"
+    },
+    {
+      "structure_id": "7ed41bdca5755dc037ace8c725a879ae53de2b8f28edb8973d45af193cfb470d",
+      "compound_id": "LT00752",
+      "group": 372,
+      "partition": "train"
+    },
+    {
+      "structure_id": "7f108725099493e31b1c5699a4a4b0c649fac703e2cd65cab3126fa8472fd718",
+      "compound_id": "LT01323",
+      "group": 373,
+      "partition": "train"
+    },
+    {
+      "structure_id": "7f23b9040764a4a52c06cde1298e613fa60327df2ace794e9fa45dab31d56ee9",
+      "compound_id": "LT00194",
+      "group": 205,
+      "partition": "train"
+    },
+    {
+      "structure_id": "7f53968f059a6ea959653e129678c5558cfb1613cc598bdefd7274155c1a40a1",
+      "compound_id": "LT02387",
+      "group": 375,
+      "partition": "train"
+    },
+    {
+      "structure_id": "7fff9b4cc3a1512d2330322c28115520fff99f2a1a41b66d0ef047ef15a4fb6c",
+      "compound_id": "LT01547",
+      "group": 376,
+      "partition": "validation"
+    },
+    {
+      "structure_id": "800235cc39112facb9fc21411a4639df0d08ccd97e26e66605b8a94690006600",
+      "compound_id": "LT00022",
+      "group": 377,
+      "partition": "train"
+    },
+    {
+      "structure_id": "8058e96628356f68329545d3b817639300b2445c827168e89280f8c6397c6294",
+      "compound_id": "LT03600",
+      "group": 378,
+      "partition": "train"
+    },
+    {
+      "structure_id": "807d016809bbcad25e609e113f954ecef7ea95ca3a17c744293878fb12099431",
+      "compound_id": "LT02093",
+      "group": 3,
+      "partition": "train"
+    },
+    {
+      "structure_id": "80a31e6100ed04894151a297e833f780e165864e11ca5fd2055d1a2cb84bb286",
+      "compound_id": "LT01454",
+      "group": 380,
+      "partition": "test"
+    },
+    {
+      "structure_id": "8149b1655e566d748b3169771d4585ddb42d88bf74a90c7da5e297aff45f81a4",
+      "compound_id": "LT03907",
+      "group": 3,
+      "partition": "train"
+    },
+    {
+      "structure_id": "8171071e110073e8dc85681b6622653c4136ce1758944a9feecef2d0074bb9ea",
+      "compound_id": "LT01154",
+      "group": 382,
+      "partition": "validation"
+    },
+    {
+      "structure_id": "81d7be8f95fc6542663e75b17c39663de50bbb11c43e5431aa6562c93d6e113c",
+      "compound_id": "LT00690",
+      "group": 383,
+      "partition": "train"
+    },
+    {
+      "structure_id": "81f177fe2673343638115650dd3054c3118c68f186d1e2ade2ce02d361074515",
+      "compound_id": "LT01068",
+      "group": 29,
+      "partition": "train"
+    },
+    {
+      "structure_id": "82887210cef72fe97d3990e4c670aff4cb32e1c037927d383da4f0923dc42ca3",
+      "compound_id": "LT00080",
+      "group": 385,
+      "partition": "train"
+    },
+    {
+      "structure_id": "8289aa33c6b7d0180791e8fdc18eb7e7557d1ab923d66c48a1d3666639c7c90b",
+      "compound_id": "LT00443",
+      "group": 386,
+      "partition": "validation"
+    },
+    {
+      "structure_id": "82a6fd67a5ac4cfed66b3354df1517e36e092057d1c2e992e3975d1e36fb118c",
+      "compound_id": "LT00079",
+      "group": 387,
+      "partition": "test"
+    },
+    {
+      "structure_id": "830b56b5d7c10dcd8861e014ca87a2e6eb4caafc87004d9069b8bce03946c17f",
+      "compound_id": "LT01608",
+      "group": 388,
+      "partition": "train"
+    },
+    {
+      "structure_id": "832ee5f6d2207497a11c2f2d98eb1ab162f8cc75fa7ee7e280bdcfa2e74c9cc4",
+      "compound_id": "LT02072",
+      "group": 307,
+      "partition": "train"
+    },
+    {
+      "structure_id": "8432b19ceef17cec77842ffe1c82acbc81b39d9e243d9361f53c9d1c859107e9",
+      "compound_id": "LT00749",
+      "group": 390,
+      "partition": "train"
+    },
+    {
+      "structure_id": "845cc227514ece818f6db89080eea38241fbaf6ed4389ff6d682d35c5a004d71",
+      "compound_id": "LT00053",
+      "group": 3,
+      "partition": "train"
+    },
+    {
+      "structure_id": "847eff6cf9361ce83b67e9b43a51bd8317cd53d26b348a5c0060e609f4fa5f9a",
+      "compound_id": "LT01355",
+      "group": 392,
+      "partition": "train"
+    },
+    {
+      "structure_id": "84966a24114aec29aa17fecf7258721211858176eaa0a41774616f0e3ced8ca3",
+      "compound_id": "LT01059",
+      "group": 393,
+      "partition": "train"
+    },
+    {
+      "structure_id": "84fb927f3a13bb0450f959bdb07c1565c8fb261b4a169544ab5f48f9ae1d25f1",
+      "compound_id": "LT00869",
+      "group": 394,
+      "partition": "test"
+    },
+    {
+      "structure_id": "852c11768c6b246cf3e15da21648e821200a6aba3857c9c03bd4e049ff207e20",
+      "compound_id": "LT00451",
+      "group": 395,
+      "partition": "train"
+    },
+    {
+      "structure_id": "857348a4dfc58a01553e3a0f8d7771ab824992d0575d0648bee102500a6e4b9d",
+      "compound_id": "LT00588",
+      "group": 396,
+      "partition": "train"
+    },
+    {
+      "structure_id": "85cf93ee26419dfa83baffffff5704b08aea6d90324d067a6d246026e790f0f6",
+      "compound_id": "LT01218",
+      "group": 52,
+      "partition": "validation"
+    },
+    {
+      "structure_id": "85dfa92e6cc50bda4d7532e40843353da561d0059ab0b57f020aa7b248ae6309",
+      "compound_id": "LT01126",
+      "group": 145,
+      "partition": "train"
+    },
+    {
+      "structure_id": "85f6c608b28b22b301588497cf913a7ee20144eb708cbab34cd00c2328af5551",
+      "compound_id": "LT01171",
+      "group": 399,
+      "partition": "test"
+    },
+    {
+      "structure_id": "8650a9eb555ba7fe0fea52f3b0fb7d075a368709d0acdf56912ce57aeb284367",
+      "compound_id": "LT00121",
+      "group": 3,
+      "partition": "train"
+    },
+    {
+      "structure_id": "86c49784a6625af65531fb4b8d5c7d2f6308c4cda7196c036ef31a2146c8efbf",
+      "compound_id": "LT01499",
+      "group": 401,
+      "partition": "train"
+    },
+    {
+      "structure_id": "87138928d8793197ec521a4c483c272995773b1d949aa20fb0490590ef7985fe",
+      "compound_id": "LT00694",
+      "group": 402,
+      "partition": "train"
+    },
+    {
+      "structure_id": "872af04bd8d2ce57cbd0eb19216c32306426778b695e2b135e3f2933d56f6c86",
+      "compound_id": "LT03755",
+      "group": 403,
+      "partition": "train"
+    },
+    {
+      "structure_id": "87c503416029788bed508923145463325b357a7231904dceaeb8b418048555a3",
+      "compound_id": "LT00307",
+      "group": 144,
+      "partition": "train"
+    },
+    {
+      "structure_id": "87fa76340a6e80c28cd0a4dcd9e4c9d090ef6e2600ab6365c869f38409b38e1a",
+      "compound_id": "LT01313",
+      "group": 405,
+      "partition": "test"
+    },
+    {
+      "structure_id": "8848c7a4a4d3b5ef1eea70dc97f6f0f43affa89b3fe44db2a9bf7b235bfe4d04",
+      "compound_id": "LT00480",
+      "group": 406,
+      "partition": "validation"
+    },
+    {
+      "structure_id": "88767ca6c475d486177fb2689d39bae0213713710b147585197ef82a58bb6ea9",
+      "compound_id": "LT02909",
+      "group": 195,
+      "partition": "validation"
+    },
+    {
+      "structure_id": "891dc7d6e11d5d2bd8e8350842255f0243c8091a4cc506aa3255578f14ffdde3",
+      "compound_id": "LT01908",
+      "group": 111,
+      "partition": "train"
+    },
+    {
+      "structure_id": "893452b04d8a9d477c3a04152ed251a0d1582431a8b2b4552804a9b1c2f2d674",
+      "compound_id": "LT03745",
+      "group": 409,
+      "partition": "train"
+    },
+    {
+      "structure_id": "895df97977ba3e5a5fad7c79f451c7353555ef58639bd1753dfafe3125f216e7",
+      "compound_id": "LT02210",
+      "group": 255,
+      "partition": "validation"
+    },
+    {
+      "structure_id": "89a73ba113f86bd68c9d1ad6d5816b1788f877b30197a7845cc075e98c84ec40",
+      "compound_id": "LT01097",
+      "group": 411,
+      "partition": "train"
+    },
+    {
+      "structure_id": "89c2a08d6a755311e282a95ebe457708d02a83b4c73feb73e61116c95c3bdfb1",
+      "compound_id": "LT00698",
+      "group": 412,
+      "partition": "train"
+    },
+    {
+      "structure_id": "8ac30493cf445c3b037738d9314e4a04bd8e1074f79f36b9f8f870df54f144ac",
+      "compound_id": "LT00584",
+      "group": 52,
+      "partition": "validation"
+    },
+    {
+      "structure_id": "8ae3c4ce7a0f3575ad136476e062040cf8b9a8225b3c63f0ce1a2f3c3434e395",
+      "compound_id": "LT00140",
+      "group": 414,
+      "partition": "validation"
+    },
+    {
+      "structure_id": "8b05518b6d3b0392ab1025f07173587edf44ce4c898dc647ad0ebe2bd7e78f62",
+      "compound_id": "LT00155",
+      "group": 415,
+      "partition": "train"
+    },
+    {
+      "structure_id": "8b11d69f09278ce76d7a48efd10e3135fb72480317809adae5cf555af2e0912d",
+      "compound_id": "LT02222",
+      "group": 416,
+      "partition": "train"
+    },
+    {
+      "structure_id": "8bd23ca3deef4f6e717602ad52fa7d7edfbd55b48b5f4b3ae3d4aa96b9a0543b",
+      "compound_id": "LT00838",
+      "group": 417,
+      "partition": "test"
+    },
+    {
+      "structure_id": "8c1759a7ad577352f2afa82d7bdf260c9cb5f2c673d4ce853ad6288e452e85c9",
+      "compound_id": "LT00124",
+      "group": 418,
+      "partition": "validation"
+    },
+    {
+      "structure_id": "8c30e01a5f7c210c1a44ca01e63b6f85916ecc2151e45d14ddebcf1c22254fcb",
+      "compound_id": "LT01056",
+      "group": 419,
+      "partition": "train"
+    },
+    {
+      "structure_id": "8c34a44948a7ebe1cd78d54ebf2c9da72611f6aa0031988ce82a8882d9fda897",
+      "compound_id": "LT00870",
+      "group": 3,
+      "partition": "train"
+    },
+    {
+      "structure_id": "8c3c51e682330957e38eb528ece487db186013f1c753d1a0e915ccecb3ccef2a",
+      "compound_id": "LT03652",
+      "group": 421,
+      "partition": "train"
+    },
+    {
+      "structure_id": "8c9a8ba9a9690b27498a3c9b25f95f860568f2b7fa28f07e0059b809e89020ba",
+      "compound_id": "LT02395",
+      "group": 422,
+      "partition": "test"
+    },
+    {
+      "structure_id": "8c9addd985498adb697b8d56f11503cf2b54f6f7e43d33123834dad2bb0d9aec",
+      "compound_id": "LT00448",
+      "group": 423,
+      "partition": "train"
+    },
+    {
+      "structure_id": "8cff2a1973eacbbd84edfb8f725d05dd21fd9c61139fe9be32465a774c9bff1e",
+      "compound_id": "LT00024",
+      "group": 424,
+      "partition": "validation"
+    },
+    {
+      "structure_id": "8d02fde3d1c3df217878da7adeadc4532a38731d9c6150397dfcb397c0c595d9",
+      "compound_id": "LT01002",
+      "group": 425,
+      "partition": "train"
+    },
+    {
+      "structure_id": "8d89a398103f635f0cea8bec220274b794b3553564bcf0e1a917e4f2eb6c85ee",
+      "compound_id": "LT01830",
+      "group": 426,
+      "partition": "test"
+    },
+    {
+      "structure_id": "8d9a5a201d5b12a41fde64a25b4d631ef50c6f07befbc0171e666dab1c0337d2",
+      "compound_id": "LT00895",
+      "group": 3,
+      "partition": "train"
+    },
+    {
+      "structure_id": "8dbbe825f60071561962ba8633f10e7fb4449178c907321bbbd4cd9445c125fb",
+      "compound_id": "LT01152",
+      "group": 428,
+      "partition": "train"
+    },
+    {
+      "structure_id": "8e3c1a62a3bd3c0064da116d3fb5f9ac4ab37c229385567f4a42670fee747ce5",
+      "compound_id": "LT01345",
+      "group": 429,
+      "partition": "validation"
+    },
+    {
+      "structure_id": "8e3edcf112e3438d43d20100dcf59a1eb3de70da295610a16fb2bec9365fe223",
+      "compound_id": "LT01737",
+      "group": 430,
+      "partition": "train"
+    },
+    {
+      "structure_id": "8e48c98fdf684b386a1951d78894f73c19eb092316b17e0e9d33801da71abc28",
+      "compound_id": "LT00488",
+      "group": 431,
+      "partition": "train"
+    },
+    {
+      "structure_id": "8e97f1923df62e405488d7431ee097c51cc47b45c9c8005fbc804bf2b76929d0",
+      "compound_id": "LT01849",
+      "group": 432,
+      "partition": "validation"
+    },
+    {
+      "structure_id": "8ea6dbdf61a9dd2eadb754d42382f669308b737ac6744bdf45aa93a6b93a75d1",
+      "compound_id": "LT01302",
+      "group": 9,
+      "partition": "train"
+    },
+    {
+      "structure_id": "8f844fa05bdbfcf751af80a45c7fbc1bb4f325656f292d58eb20a1b288017234",
+      "compound_id": "LT00099",
+      "group": 62,
+      "partition": "train"
+    },
+    {
+      "structure_id": "8fbc2e6ef2038e45dfe3a9623d54638d299e23c14eca5bd3a81ebe392449ac33",
+      "compound_id": "LT00759",
+      "group": 9,
+      "partition": "train"
+    },
+    {
+      "structure_id": "9018fcdd27ba260bd4b1e29117b011b40be90cd3863320a783a7c0aca7af1bfb",
+      "compound_id": "LT03622",
+      "group": 436,
+      "partition": "test"
+    },
+    {
+      "structure_id": "9050944ef349632e51c39ffc6d40c4f1f0f5d35d9cdcb6f7d7886132043ecf91",
+      "compound_id": "LT01238",
+      "group": 437,
+      "partition": "train"
+    },
+    {
+      "structure_id": "913fdd3890e8367b6916a32ed0bc36e9fe5c8657242ad4d9f325df25f5c1716a",
+      "compound_id": "LT00929",
+      "group": 438,
+      "partition": "train"
+    },
+    {
+      "structure_id": "918586d872eb4aa618c3b374d5abda598a1c2f5251822d6c6ec59fe78457d4c1",
+      "compound_id": "LT01615",
+      "group": 439,
+      "partition": "test"
+    },
+    {
+      "structure_id": "91aca42dbc9c4e3099eaf2950d99a2eda3d64f91bacfb9efe5358be42bc96398",
+      "compound_id": "LT00606",
+      "group": 144,
+      "partition": "train"
+    },
+    {
+      "structure_id": "92279a9388f8703dff0323fac92eaa91e4f2921e60347028f1ee4c60d109b201",
+      "compound_id": "LT00248",
+      "group": 441,
+      "partition": "train"
+    },
+    {
+      "structure_id": "9262fb316169ffa3eafdbfd44ed49d4c03f0edb8bced4d5a36e9134dd5d3bef9",
+      "compound_id": "LT01085",
+      "group": 442,
+      "partition": "validation"
+    },
+    {
+      "structure_id": "9287ca49d4c311f2e114f0897781d48db238ebdb557c05c63770b7ac212be8e3",
+      "compound_id": "LT01637",
+      "group": 443,
+      "partition": "train"
+    },
+    {
+      "structure_id": "9369c0c14b88a855f856cbaa7a00135328947b6a6f53cc50d32a425b3f078178",
+      "compound_id": "LT01317",
+      "group": 444,
+      "partition": "train"
+    },
+    {
+      "structure_id": "9436f86f66c576f66aa184e5d15075d8483582d20e184aadda4a66443e384ab8",
+      "compound_id": "LT02433",
+      "group": 445,
+      "partition": "train"
+    },
+    {
+      "structure_id": "9468594526de1c3aed7b35218af887a3b1314ab227a38a2ae7294a96e6d26f96",
+      "compound_id": "LT01475",
+      "group": 446,
+      "partition": "validation"
+    },
+    {
+      "structure_id": "9498722d5398310b416da101e6e717a8e2bbb990823cb3acdb2a106f69476227",
+      "compound_id": "LT01705",
+      "group": 447,
+      "partition": "train"
+    },
+    {
+      "structure_id": "9547b3d6b8c792f8c5a72fe4a08a84ef1abbc6c6463a9148b652e57153f58b0f",
+      "compound_id": "LT01846",
+      "group": 448,
+      "partition": "train"
+    },
+    {
+      "structure_id": "95ed60d4f76b10ea761a207882f1a15af31a4b8c52410dee389c6c3e2dede29e",
+      "compound_id": "LT01240",
+      "group": 449,
+      "partition": "test"
+    },
+    {
+      "structure_id": "95fdd7a096be2f80cf39df213e92379a0845412eecc705743fa31f9c7dd1ac0d",
+      "compound_id": "LT02745",
+      "group": 450,
+      "partition": "train"
+    },
+    {
+      "structure_id": "96229927b5b17e02f99547d865a1c4ea4d81f52c8e7be41f55ae9dfcb5d2a9e3",
+      "compound_id": "LT00692",
+      "group": 3,
+      "partition": "train"
+    },
+    {
+      "structure_id": "969b4f8f543b27baa4617e1a3a63a7b7c0648d205725e35b9da2defc08fe612e",
+      "compound_id": "LT00330",
+      "group": 452,
+      "partition": "test"
+    },
+    {
+      "structure_id": "96fc68b80c96c5091816822401eae6fde30b6641a102a9d0df5d207a5cf7a8e0",
+      "compound_id": "LT00730",
+      "group": 453,
+      "partition": "validation"
+    },
+    {
+      "structure_id": "9796f88248a5fd64b1bb0897424925f2e4e5444334a02d8979a301848189902f",
+      "compound_id": "LT01749",
+      "group": 3,
+      "partition": "train"
+    },
+    {
+      "structure_id": "97aa066b96b0c27351d67c0415921a2dae7a42a7f34d755cc56f013da0395fd1",
+      "compound_id": "LT00916",
+      "group": 455,
+      "partition": "train"
+    },
+    {
+      "structure_id": "97fbd1d0658ab0977b8062d4389133a6f3b6f6409808d944afb50082918270bb",
+      "compound_id": "LT00165",
+      "group": 456,
+      "partition": "train"
+    },
+    {
+      "structure_id": "9829f2c9561b79779cc415c06c6e7a84915b7d6b13c61542eb2b8678448c503d",
+      "compound_id": "LT00175",
+      "group": 2,
+      "partition": "train"
+    },
+    {
+      "structure_id": "983bb042ca9bcdfd365a90455f4121d62c6205842473a2a17a77419310ad1fcc",
+      "compound_id": "LT00394",
+      "group": 458,
+      "partition": "train"
+    },
+    {
+      "structure_id": "985bdb75e1ea84a05b964634fbd73bae3078b60f471e3d8147d1b49643d5a9b0",
+      "compound_id": "LT02219",
+      "group": 459,
+      "partition": "train"
+    },
+    {
+      "structure_id": "98b57ace7a118b746bc499d27e445ecd8a864e4cd9062e3dffadc9228bbc0f76",
+      "compound_id": "LT00826",
+      "group": 460,
+      "partition": "train"
+    },
+    {
+      "structure_id": "98d1c183d89f749124c0e2f79e065a3d328b5064fee607b92577eefc679dac37",
+      "compound_id": "LT01600",
+      "group": 461,
+      "partition": "test"
+    },
+    {
+      "structure_id": "9934a211b4ad3e0f1e275505d7942500acf8ac081fa01723903b98f4fd8390b5",
+      "compound_id": "LT01730",
+      "group": 462,
+      "partition": "train"
+    },
+    {
+      "structure_id": "993abef20a6c3b09a920a2313a4b73bbca07776669bafa066b522a36b0b17703",
+      "compound_id": "LT02026",
+      "group": 78,
+      "partition": "train"
+    },
+    {
+      "structure_id": "993e5de48b72c357b6273addc70b8ce797cfa821a350905daab35d44a7736e36",
+      "compound_id": "LT00457",
+      "group": 150,
+      "partition": "train"
+    },
+    {
+      "structure_id": "996c3b1cb2aa319618cba919781f719cc93b100e32cac502c46b972099359ba6",
+      "compound_id": "LT00173",
+      "group": 465,
+      "partition": "validation"
+    },
+    {
+      "structure_id": "99a08aca86aed33fbe8983ec4d2b0d2070d7831cc74abfb21b9090274bcf73be",
+      "compound_id": "LT01176",
+      "group": 466,
+      "partition": "train"
+    },
+    {
+      "structure_id": "99d4191cbdd0a8eece3a0bc51f1b86b05100253f8046938f4e6ee63a0d242320",
+      "compound_id": "LT00600",
+      "group": 37,
+      "partition": "train"
+    },
+    {
+      "structure_id": "9a0b1badfd5b7ad8eab7ee7a69b7d86609b6aecb0d60766d67a5b15d67adc9be",
+      "compound_id": "LT03784",
+      "group": 468,
+      "partition": "train"
+    },
+    {
+      "structure_id": "9a1434b3bacc3c916be3288aedb032fc1de4391a694156287aeccd35ba220cdc",
+      "compound_id": "LT00920",
+      "group": 469,
+      "partition": "validation"
+    },
+    {
+      "structure_id": "9a4cccb0fe5bad55633747f727dae0e77b031026f03e122567c0ccc33429281a",
+      "compound_id": "LT00686",
+      "group": 308,
+      "partition": "test"
+    },
+    {
+      "structure_id": "9a847abfe962d08f566a455f265ee07b31a4df1ce4714f638d4fe93d1bc82df8",
+      "compound_id": "LT00661",
+      "group": 471,
+      "partition": "test"
+    },
+    {
+      "structure_id": "9b53cedfcd14e88e0057bd4b0f1942dd57acbf57153a3d8a0d700bec068dd1da",
+      "compound_id": "LT03681",
+      "group": 472,
+      "partition": "train"
+    },
+    {
+      "structure_id": "9bb0785b4e39f60ddf45f9a9c1cb57c213e29aa3fdccab01944b9ff832d5418a",
+      "compound_id": "LT00034",
+      "group": 473,
+      "partition": "train"
+    },
+    {
+      "structure_id": "9bbd24af15fe220e8e5f8611fc42e2ac91d31dc7fd72a1135bd4585dc3e8e3c9",
+      "compound_id": "LT02190",
+      "group": 474,
+      "partition": "train"
+    },
+    {
+      "structure_id": "9bdc3cb47ed6a2fc7c638b2c6f6b70d99753b4f638a2f3d9f8f2728d2603994b",
+      "compound_id": "LT01399",
+      "group": 475,
+      "partition": "train"
+    },
+    {
+      "structure_id": "9c166a20c992f154916369e6e25e791bf9424fa0905fc51b3c26e266e25c74e9",
+      "compound_id": "LT01672",
+      "group": 476,
+      "partition": "train"
+    },
+    {
+      "structure_id": "9cce9a38d2ccc9fc00ce75663f5f0cd04094dc251b9486cfa69258036ead32b3",
+      "compound_id": "LT02100",
+      "group": 3,
+      "partition": "train"
+    },
+    {
+      "structure_id": "9cec539cf55247e3b6b58327b96cb737ac8ffc1d6d7b9d0162e17740e8a8568a",
+      "compound_id": "LT01244",
+      "group": 3,
+      "partition": "train"
+    },
+    {
+      "structure_id": "9d571d512b3cf6c296b0d0d65270fbb313475570366dfbf5eddc3d231a12a129",
+      "compound_id": "LT01370",
+      "group": 479,
+      "partition": "train"
+    },
+    {
+      "structure_id": "9d86ffd7aba2f79d97778c04d8628e4a5152cfe279160928558e4a80057f3e8e",
+      "compound_id": "LT00338",
+      "group": 255,
+      "partition": "validation"
+    },
+    {
+      "structure_id": "9e18c28f7d7d9fc9ca9c4d5f7d3c4917811d142f7b3b3a5a2a53bd8258769553",
+      "compound_id": "LT00670",
+      "group": 7,
+      "partition": "train"
+    },
+    {
+      "structure_id": "9e44f8fc909d1e93cb7186e354d8777ed6cdbdb24c8dcad84cc0d4c4622f69e8",
+      "compound_id": "LT03621",
+      "group": 482,
+      "partition": "test"
+    },
+    {
+      "structure_id": "9e8bafbac539a491540114797a046836ce26cf2e2cbea1cfd89bb3b890f688d4",
+      "compound_id": "LT00992",
+      "group": 145,
+      "partition": "train"
+    },
+    {
+      "structure_id": "9e96b99fe3feda8ecc843f24c0ccd17a10b91fc04f5db5c239901641ff2ef042",
+      "compound_id": "LT02349",
+      "group": 484,
+      "partition": "validation"
+    },
+    {
+      "structure_id": "9ea6dc71cfe0a3c95e26b887cc444970e254fb1a775c16425c0a9c31bbc15e8a",
+      "compound_id": "LT00399",
+      "group": 59,
+      "partition": "train"
+    },
+    {
+      "structure_id": "9f0ac559d3ba5cfd78fa237b6973fe23775a8e92a22bc546ad26eef9ea9e1746",
+      "compound_id": "LT00540",
+      "group": 131,
+      "partition": "train"
+    },
+    {
+      "structure_id": "9f4e3ce203533fad1422c3f0c3f695edbf77974ee4a03c905ebcefb45ce8c655",
+      "compound_id": "LT00645",
+      "group": 487,
+      "partition": "train"
+    },
+    {
+      "structure_id": "9f9bb82df1a950f35d01d270f0e4b86551d402264f45c56a0b4705bd413b8f41",
+      "compound_id": "LT02440",
+      "group": 488,
+      "partition": "validation"
+    },
+    {
+      "structure_id": "9fbdfe16d2a66d64619a8928908a6a8c0d491f0433fcadfb88da9d38b6490d19",
+      "compound_id": "LT03819",
+      "group": 489,
+      "partition": "train"
+    },
+    {
+      "structure_id": "9ffe3c771f6c73efea842d2edb74e57bce423e3b52ea8bfc4d382d1caeb5db51",
+      "compound_id": "LT01209",
+      "group": 490,
+      "partition": "train"
+    },
+    {
+      "structure_id": "a029e0ad5b86a795609111856ba19dc2f595cdb015cce30c10ace8ec6d5cfea8",
+      "compound_id": "LT01565",
+      "group": 491,
+      "partition": "test"
+    },
+    {
+      "structure_id": "a0525f64fef1b8c15edf5b8f8d1d3a73feec2bfa345d98b2d1573aaaa7059532",
+      "compound_id": "LT01726",
+      "group": 492,
+      "partition": "train"
+    },
+    {
+      "structure_id": "a07519c9126f6c6348afc214ad361ad4a3d4e3ff34d9d1e713153e597f9d44e2",
+      "compound_id": "LT00841",
+      "group": 493,
+      "partition": "test"
+    },
+    {
+      "structure_id": "a0da7943a22a052e11c31cdb60ffa27060dad169c24a48d8e90c4a56077f05ce",
+      "compound_id": "LT00062",
+      "group": 494,
+      "partition": "train"
+    },
+    {
+      "structure_id": "a2411ec48bbd292b7eab0e803914f9ba36e1df1feaf9a35d5ffb37cbd628f88d",
+      "compound_id": "LT01235",
+      "group": 102,
+      "partition": "train"
+    },
+    {
+      "structure_id": "a26196980e7386526f63717a110727db6074ea0a4ec6e961fe8bd15700fa8737",
+      "compound_id": "LT00263",
+      "group": 496,
+      "partition": "train"
+    },
+    {
+      "structure_id": "a310d9fa18dd8788e6055bc3e7a2644ab94966c4a81bbc5d7e3c97f175cd1ced",
+      "compound_id": "LT01042",
+      "group": 3,
+      "partition": "train"
+    },
+    {
+      "structure_id": "a33e42987213a6e644f071a132002a5b0c854fd30496bb247973e013ce073a77",
+      "compound_id": "LT01121",
+      "group": 82,
+      "partition": "validation"
+    },
+    {
+      "structure_id": "a3aa7b313a4d2a914ae9ac13f7af936cc8cd60b159d56d9ffc89a32472d1331e",
+      "compound_id": "LT00499",
+      "group": 143,
+      "partition": "validation"
+    },
+    {
+      "structure_id": "a3e79446e197d60a1bedaec5bec2a1b8b131f80cb7f68af1634725fdc03a36af",
+      "compound_id": "LT00792",
+      "group": 500,
+      "partition": "validation"
+    },
+    {
+      "structure_id": "a3f81f170914ea95cb95acd0137ee4a63197421fe8bda2788e6bee8ace7a6bbc",
+      "compound_id": "LT01189",
+      "group": 116,
+      "partition": "test"
+    },
+    {
+      "structure_id": "a44820c5ffe8a2c71cb0beccb0346d6813f9cb53afed828fbb01a1449e612512",
+      "compound_id": "LT01348",
+      "group": 45,
+      "partition": "train"
+    },
+    {
+      "structure_id": "a4d0a081234a4609592007b9348448d5e5cdfa7f6b92787e7e68a9ddfd19a849",
+      "compound_id": "LT00687",
+      "group": 503,
+      "partition": "train"
+    },
+    {
+      "structure_id": "a5103808e35182bf84b1238c399acd2db6d670bc30e12e5aeab42aa0452eacba",
+      "compound_id": "LT01822",
+      "group": 79,
+      "partition": "train"
+    },
+    {
+      "structure_id": "a536ab44e391855b3a58032d4847d2aa7b710a94251a958a0c37d8adf379fd41",
+      "compound_id": "LT00658",
+      "group": 3,
+      "partition": "train"
+    },
+    {
+      "structure_id": "a5ed69c54f4894b78e1ea9123801c9c59068a5e8dbea070eca0e5e18df9a9f33",
+      "compound_id": "LT03798",
+      "group": 506,
+      "partition": "train"
+    },
+    {
+      "structure_id": "a6aa571f839a4429a833513dcccf7aad97f5cee55ed9006ef8615d00698c15af",
+      "compound_id": "LT00682",
+      "group": 9,
+      "partition": "train"
+    },
+    {
+      "structure_id": "a6adff15a18dfa4d0fc7592d3285c5b7b79234f7f7e100c50a419bcff071a03f",
+      "compound_id": "LT02437",
+      "group": 508,
+      "partition": "test"
+    },
+    {
+      "structure_id": "a6e97a7aa711bcecc6ad82c42b6ccb97e1f379751de66a13f59acc33eaff75c1",
+      "compound_id": "LT01155",
+      "group": 509,
+      "partition": "validation"
+    },
+    {
+      "structure_id": "a6f02720ca77d2ee7e459b517e267a5a0632a9f3c518685d2a8680d3f3c978a3",
+      "compound_id": "LT01144",
+      "group": 510,
+      "partition": "train"
+    },
+    {
+      "structure_id": "a77e67bf736b91d7c15f5837ce033554b9a7655bb20f69f756aeea1e872dd3fc",
+      "compound_id": "LT00988",
+      "group": 511,
+      "partition": "train"
+    },
+    {
+      "structure_id": "a822b11a45c7d68ce5aa97103664b5349d2d708eb6d6c14dd5d190d442ac39b9",
+      "compound_id": "LT01269",
+      "group": 168,
+      "partition": "train"
+    },
+    {
+      "structure_id": "a823b48d10465273c46851ee8a657a37114f61090cc04f9dd8e47ed566524b12",
+      "compound_id": "LT00753",
+      "group": 513,
+      "partition": "train"
+    },
+    {
+      "structure_id": "a82be769b894fc5692414843664a39fe03c79f86df2c404149b70040012f3e0e",
+      "compound_id": "LT01191",
+      "group": 514,
+      "partition": "train"
+    },
+    {
+      "structure_id": "a83c5e422e8bbbca631761012c9cbaa0acfd50e1c42593f3fbd9d95b72e1206f",
+      "compound_id": "LT00106",
+      "group": 515,
+      "partition": "test"
+    },
+    {
+      "structure_id": "a841bb6a862c161a1151ca916f9801b2c8e394fa04058776a20e479cdaf49b73",
+      "compound_id": "LT00573",
+      "group": 92,
+      "partition": "validation"
+    },
+    {
+      "structure_id": "a8487fe2044ac2eb6ff60ce461e2deeb48fe8895b8d8ee8492b02db267bf1433",
+      "compound_id": "LT03736",
+      "group": 517,
+      "partition": "train"
+    },
+    {
+      "structure_id": "a89be5082f122fd3043fb446ea13cfc20d53541aab1a510d24253803699c96a9",
+      "compound_id": "LT03657",
+      "group": 181,
+      "partition": "validation"
+    },
+    {
+      "structure_id": "a8abec35e3839cb3aa66a1106fb541c625c608c560a2b28ca40f828d7cd79388",
+      "compound_id": "LT00562",
+      "group": 519,
+      "partition": "train"
+    },
+    {
+      "structure_id": "a92be216186c25ad7f6e82635b6663850efa021f77fb6df8ab23d794446029b3",
+      "compound_id": "LT03725",
+      "group": 520,
+      "partition": "validation"
+    },
+    {
+      "structure_id": "a95cde29c6571b434eda9ddda819cfc6533b83f744427a19951f9cba2552e59d",
+      "compound_id": "LT01149",
+      "group": 521,
+      "partition": "train"
+    },
+    {
+      "structure_id": "a9b963e5cd73933860e3c19090190dd837d76a2b5c77867805300a1fee879069",
+      "compound_id": "LT00978",
+      "group": 522,
+      "partition": "validation"
+    },
+    {
+      "structure_id": "a9ebd117b09eb7591723bc124607e759994e7cd2b22fec0c3b88deb8dee00646",
+      "compound_id": "LT03909",
+      "group": 523,
+      "partition": "train"
+    },
+    {
+      "structure_id": "a9ed2abb16dce9d5a165e3f2c26538e7c655f8be121d5fa6a2ec8a1e7cb9f117",
+      "compound_id": "LT01241",
+      "group": 445,
+      "partition": "train"
+    },
+    {
+      "structure_id": "aa3b768ea688a623aa743197ae2a9c2a6ef5c6eb4247e175fd5736175b13e584",
+      "compound_id": "LT00563",
+      "group": 525,
+      "partition": "test"
+    },
+    {
+      "structure_id": "aa3dd6a6d9b413ea36e3206cdafc42742abd2ff778f583383f24ffa09ed02f47",
+      "compound_id": "LT03659",
+      "group": 526,
+      "partition": "validation"
+    },
+    {
+      "structure_id": "aa57d068a37bd60743a728088a96b13160d3fe712d5b5210474614d8e5830ac2",
+      "compound_id": "LT01486",
+      "group": 527,
+      "partition": "train"
+    },
+    {
+      "structure_id": "aabe1c1d2464709f1d1453e1669df69b9b1af9e1bb010a967a57e30f431b704d",
+      "compound_id": "LT03376",
+      "group": 45,
+      "partition": "train"
+    },
+    {
+      "structure_id": "aad2947c5a6455778ad0e624bae7a042a9668620bb19e1d3027a3204b90192f7",
+      "compound_id": "LT02442",
+      "group": 508,
+      "partition": "test"
+    },
+    {
+      "structure_id": "abd0cffe34261ea71ed99f09a8814221ba0adb2ab4338353db7bc726135d6468",
+      "compound_id": "LT00222",
+      "group": 59,
+      "partition": "train"
+    },
+    {
+      "structure_id": "ac25b08c2d8f05e97d7bd14480248734174e9127cdadf9326346354ed6a14093",
+      "compound_id": "LT01288",
+      "group": 531,
+      "partition": "train"
+    },
+    {
+      "structure_id": "acf67117cb01c53342b9bab64a706b2ed22e3fcd77ea24cd3d67b1b14244d629",
+      "compound_id": "LT00511",
+      "group": 532,
+      "partition": "train"
+    },
+    {
+      "structure_id": "ad0c2750936569a993e23b20e7892d025133ccffc437e219e1fe19dc8f1e3617",
+      "compound_id": "LT00026",
+      "group": 533,
+      "partition": "test"
+    },
+    {
+      "structure_id": "ad241db1c699052b5eaf2852cf37c589fb518f4782e183473294a6dadeb6de10",
+      "compound_id": "LT02446",
+      "group": 534,
+      "partition": "validation"
+    },
+    {
+      "structure_id": "ad5603d6d5e071c47e58270b34263ed2e1c95a63a50f950b56a5780bbc33edee",
+      "compound_id": "LT00011",
+      "group": 3,
+      "partition": "train"
+    },
+    {
+      "structure_id": "ad9ac3725532bcb408e2cd65c7fc371daa0f99614378df983bcf1e86a2da8759",
+      "compound_id": "LT00501",
+      "group": 536,
+      "partition": "train"
+    },
+    {
+      "structure_id": "adcbbc1277d8afb66972c9a9ec6e4ce74d4c88e2449a3cfc9056a49b8ebad241",
+      "compound_id": "LT01384",
+      "group": 537,
+      "partition": "train"
+    },
+    {
+      "structure_id": "adcfb10ffbceef59ba51baf8bc34090fab5a5b20f5c498c06be3a80ee1b7e3ec",
+      "compound_id": "LT03727",
+      "group": 538,
+      "partition": "train"
+    },
+    {
+      "structure_id": "adf2152682993b9d87a86f5edd4400d9df32500997c76c4205afbf7ff4d47bd7",
+      "compound_id": "LT02033",
+      "group": 539,
+      "partition": "train"
+    },
+    {
+      "structure_id": "ae20021e82d3d07d25c69a84ed7c3f22923b448d58eebf85fbeb3e07d02f4762",
+      "compound_id": "LT03640",
+      "group": 540,
+      "partition": "test"
+    },
+    {
+      "structure_id": "ae4fcdbe636e09670eb565e0c49b5372c0b815a4872a134bd7ee36e8b205ebe0",
+      "compound_id": "LT00738",
+      "group": 3,
+      "partition": "train"
+    },
+    {
+      "structure_id": "ae554bb1860c8eec0645722b07a46b876275204677629c92f677d8387807ccd1",
+      "compound_id": "LT02076",
+      "group": 9,
+      "partition": "train"
+    },
+    {
+      "structure_id": "ae5ff59e5d1237ca0ff1dac43dcb66326541d29ba54fd256df2dbee496d27ff6",
+      "compound_id": "LT01034",
+      "group": 543,
+      "partition": "train"
+    },
+    {
+      "structure_id": "af5f57a1c519b8b28aff2298d5c5d1d62cc27be14a2e71913ff85317989f88fa",
+      "compound_id": "LT00059",
+      "group": 544,
+      "partition": "validation"
+    },
+    {
+      "structure_id": "b003979a212997f777dc895cc452f5829342587fb2d770a1d106c4afd1c35596",
+      "compound_id": "LT02342",
+      "group": 3,
+      "partition": "train"
+    },
+    {
+      "structure_id": "b033e46e20a01166c4c92a8156211e4fa8a8436d7250f9ef860b99a49ef78e8b",
+      "compound_id": "LT01151",
+      "group": 546,
+      "partition": "test"
+    },
+    {
+      "structure_id": "b09356e3697106c38bb7d36cf0fe8ca848e2b1cb4f9195f062c0423659c3898f",
+      "compound_id": "LT02204",
+      "group": 547,
+      "partition": "train"
+    },
+    {
+      "structure_id": "b09bad044ebfb89a2b83a26d7a31839a1b10db332a8377db28a02d415df902a3",
+      "compound_id": "LT00998",
+      "group": 3,
+      "partition": "train"
+    },
+    {
+      "structure_id": "b20cbde6ea88b7a18c55abeefe8332b29031ea398f2d75bb0d1f994a706903ad",
+      "compound_id": "LT01620",
+      "group": 549,
+      "partition": "validation"
+    },
+    {
+      "structure_id": "b24c76dca1c23c89146e04ef8b9661f42b40b08e3223113b73329fb709efe058",
+      "compound_id": "LT00780",
+      "group": 550,
+      "partition": "train"
+    },
+    {
+      "structure_id": "b2a4a9cd97861cf70a8517ae4343d226dac274079b0ac6c19b2187a16985846e",
+      "compound_id": "LT02008",
+      "group": 551,
+      "partition": "validation"
+    },
+    {
+      "structure_id": "b2fc3219e7396014ab133b694343af0e4ce0d4bf9c7f2014efd9c4e240c665b9",
+      "compound_id": "LT00181",
+      "group": 13,
+      "partition": "validation"
+    },
+    {
+      "structure_id": "b318994a5135b06a717406821ebc52898e97bcb6d4dd948f3be042612cf30406",
+      "compound_id": "LT02894",
+      "group": 50,
+      "partition": "train"
+    },
+    {
+      "structure_id": "b32297e522ec2c622256d27129d329c0879274e1e85ec0217810199c072fb0cf",
+      "compound_id": "LT01679",
+      "group": 554,
+      "partition": "train"
+    },
+    {
+      "structure_id": "b391fe58c61e1cdd0484c673e46820daa8f454365b8a401833f58dc2c0c0877e",
+      "compound_id": "LT02340",
+      "group": 555,
+      "partition": "train"
+    },
+    {
+      "structure_id": "b40534f20ec1fd7e038eed7d79b19b2c270336240762901340a9810aee129b53",
+      "compound_id": "LT00227",
+      "group": 556,
+      "partition": "test"
+    },
+    {
+      "structure_id": "b48777f257ef1c5233e1e6f71805de73e6aba4d841519814227c144627afc70c",
+      "compound_id": "LT00957",
+      "group": 557,
+      "partition": "validation"
+    },
+    {
+      "structure_id": "b48eff575d5ecd5dbb6dd6f018cd88cd54f945911995b5d2f9b5ac3550bd1bfa",
+      "compound_id": "LT00015",
+      "group": 3,
+      "partition": "train"
+    },
+    {
+      "structure_id": "b4d4f280f76c4bb8e87f26522019aa0cd2f54cf27edd2dc4e59e437aa33df271",
+      "compound_id": "LT01035",
+      "group": 3,
+      "partition": "train"
+    },
+    {
+      "structure_id": "b526fa7899a8b6c2f4ea098ffa1688e235b4593c8b2ede6f4d8d91a23c2d1be4",
+      "compound_id": "LT00450",
+      "group": 560,
+      "partition": "train"
+    },
+    {
+      "structure_id": "b57dc806ad80bd8e68efc7eb3e36346394c1bd3dc770ceb142e5a58cd790f418",
+      "compound_id": "LT03695",
+      "group": 561,
+      "partition": "train"
+    },
+    {
+      "structure_id": "b582af1bb91ade0dc6262d54c201eb316d192b8763c176955f43fb0efb2dbdc8",
+      "compound_id": "LT00142",
+      "group": 562,
+      "partition": "train"
+    },
+    {
+      "structure_id": "b5c64e5dec709fb6a0342232856cd235bb0bba15e0795073740f707afef6ff46",
+      "compound_id": "LT01060",
+      "group": 563,
+      "partition": "train"
+    },
+    {
+      "structure_id": "b5cc2a6e93d859f0b9b52601b96cd2da23f64a61e35f1148af6cad2edb107521",
+      "compound_id": "LT02061",
+      "group": 358,
+      "partition": "validation"
+    },
+    {
+      "structure_id": "b5d50332751911f7ad268874a3ac9a47186f63e45283b3cb4fdff9c7558c7735",
+      "compound_id": "LT01192",
+      "group": 565,
+      "partition": "validation"
+    },
+    {
+      "structure_id": "b5db4763e49c0e4b96784ac16065531168ccf8b42bbab4b3b910634bc610583c",
+      "compound_id": "LT00152",
+      "group": 566,
+      "partition": "test"
+    },
+    {
+      "structure_id": "b613d9652c78a9f8f995a8c1cb2c6b58e31c0d6b9012d1a9fa0e1f9e98d4c1ea",
+      "compound_id": "LT01586",
+      "group": 567,
+      "partition": "validation"
+    },
+    {
+      "structure_id": "b663dc7db827a2a2cc04e933827c51ee057f98a196326516c7765d42d11b780f",
+      "compound_id": "LT01708",
+      "group": 3,
+      "partition": "train"
+    },
+    {
+      "structure_id": "b66de58b44c728de57f60573dabca29b7bb536ce09876cf778a1cdf114d62fc0",
+      "compound_id": "LT00461",
+      "group": 487,
+      "partition": "train"
+    },
+    {
+      "structure_id": "b6883039db71074696d32fdf09e7bd26580c5ff2d172757b34eab2a47faa3d1d",
+      "compound_id": "LT03701",
+      "group": 570,
+      "partition": "train"
+    },
+    {
+      "structure_id": "b7cc0c5f03d04fedbf4428e4ff035513bdff0c4c91735fdabb321a0710be0b97",
+      "compound_id": "LT01242",
+      "group": 571,
+      "partition": "train"
+    },
+    {
+      "structure_id": "b877875e568346042c8158f1d3c1a9ccb2270676c8ac711b5e1b33929722a0a9",
+      "compound_id": "LT01254",
+      "group": 572,
+      "partition": "train"
+    },
+    {
+      "structure_id": "b8fd25c6413232f4aa390e6a8391ce3ed404a28503023940691ecd8ab6dc3f5f",
+      "compound_id": "LT01788",
+      "group": 3,
+      "partition": "train"
+    },
+    {
+      "structure_id": "b95261c442abb8337baa831de8ee014a7ef7fdaee5483a02a2922b5c656db6d1",
+      "compound_id": "LT00013",
+      "group": 519,
+      "partition": "train"
+    },
+    {
+      "structure_id": "b97bee24a1c7e0ee0c47015b064dca34ed1b3ebb1c52ee559f4fb5aa330d8222",
+      "compound_id": "LT00781",
+      "group": 575,
+      "partition": "train"
+    },
+    {
+      "structure_id": "b9951896a4a227742e4c8f8e9ba7fc8574483a16e456d456a94ec4cd9327c46d",
+      "compound_id": "LT02352",
+      "group": 576,
+      "partition": "test"
+    },
+    {
+      "structure_id": "b9b9cba04e552b29d994a5e98d944fdcbf9481dd9d6b95ecbafcd9998a9f131b",
+      "compound_id": "LT00576",
+      "group": 562,
+      "partition": "train"
+    },
+    {
+      "structure_id": "ba79d44250b817a0a8d51f0476bb601c0a60fba0b07156317ab0d57905aa3974",
+      "compound_id": "LT02216",
+      "group": 578,
+      "partition": "validation"
+    },
+    {
+      "structure_id": "bc33061eab4a8045a93bc800fa97f613e49d58774af5c86dc7756a0fbbda3c73",
+      "compound_id": "LT00143",
+      "group": 579,
+      "partition": "train"
+    },
+    {
+      "structure_id": "bca47c189586e3074525c09e56ae55a3154d04c6a7fe2f216548b3e2006fb0ec",
+      "compound_id": "LT00669",
+      "group": 580,
+      "partition": "test"
+    },
+    {
+      "structure_id": "bcb6b67ca54670ffbd67da1c7a728e5d39cd26a1914c1c71da76ea8e406d1d17",
+      "compound_id": "LT02331",
+      "group": 581,
+      "partition": "validation"
+    },
+    {
+      "structure_id": "bdcf3a1028dac549f5ed6fa359efdf96121bacfd0665f49ae3e0535a7fedfd1b",
+      "compound_id": "LT01549",
+      "group": 3,
+      "partition": "train"
+    },
+    {
+      "structure_id": "be65f439edfd68469107ec99e230cd93de51ba5fe7d855b1286013fcb7b0aa36",
+      "compound_id": "LT01182",
+      "group": 116,
+      "partition": "test"
+    },
+    {
+      "structure_id": "be982279987703aae834c461041c20dd2fac0fc1bcdea636d7aaf018c6e483b4",
+      "compound_id": "LT01289",
+      "group": 95,
+      "partition": "train"
+    },
+    {
+      "structure_id": "bf56823ef09613bd31a6e9d1b54f7264c6789e1b855bdf0994e91ca0cc3e0285",
+      "compound_id": "LT02164",
+      "group": 585,
+      "partition": "train"
+    },
+    {
+      "structure_id": "bff7c88c5a92d0efbd86690aad35f6c61e37b8549a68ea8a817253ed4cd4cee6",
+      "compound_id": "LT00790",
+      "group": 586,
+      "partition": "train"
+    },
+    {
+      "structure_id": "c01dd15af4c1b157dc2e2fe6c8caeb8ff7dd4015e78a526652a014917154d7c0",
+      "compound_id": "LT01159",
+      "group": 74,
+      "partition": "test"
+    },
+    {
+      "structure_id": "c0680464d8f7ffd0c10be7b52c47519af269f0f23c3c13097582d369bc9d00f8",
+      "compound_id": "LT00498",
+      "group": 588,
+      "partition": "train"
+    },
+    {
+      "structure_id": "c0a3b38dad198b623c9cb57c73fbce3ad3c1891675007deba471f2a9ebbfcb0d",
+      "compound_id": "LT02070",
+      "group": 199,
+      "partition": "train"
+    },
+    {
+      "structure_id": "c0ab58a0f0ffcf3eb82a8c3a771596785956b50b0309cd282743731f1de4461c",
+      "compound_id": "LT00266",
+      "group": 590,
+      "partition": "test"
+    },
+    {
+      "structure_id": "c0b08c44b62baafa2d44086e2d193f9e57130679d26b614d7476b91938c10479",
+      "compound_id": "LT00109",
+      "group": 45,
+      "partition": "train"
+    },
+    {
+      "structure_id": "c10c8033a8273cb3dbeb08107ff3f301501c67c2dd1698db7d40bb002a61917e",
+      "compound_id": "LT00111",
+      "group": 592,
+      "partition": "validation"
+    },
+    {
+      "structure_id": "c1413d33e3b89564c0a52cdc881ad7533caf6b583f684f8ee0500d40302e67fe",
+      "compound_id": "LT00917",
+      "group": 522,
+      "partition": "validation"
+    },
+    {
+      "structure_id": "c1da466450d915ddb4674037240281fc733dae3dd4dfa363299057bc15fe4622",
+      "compound_id": "LT02728",
+      "group": 594,
+      "partition": "train"
+    },
+    {
+      "structure_id": "c227fee1bbeafb26c1ea26306f74a90d502b963f2a7111a5fa2fa370a2ddd157",
+      "compound_id": "LT03680",
+      "group": 595,
+      "partition": "train"
+    },
+    {
+      "structure_id": "c235a36cccf12241a7dd4e74547b9c37bb0c2907c4364e09128434fcda3b2918",
+      "compound_id": "LT01113",
+      "group": 3,
+      "partition": "train"
+    },
+    {
+      "structure_id": "c2b0643ff849d4abe6acb49920ac3cc589e71b28706aedeec2257db5b473a682",
+      "compound_id": "LT00209",
+      "group": 72,
+      "partition": "train"
+    },
+    {
+      "structure_id": "c33064099745b56c3aaea3b94d2fc3052c50634684c36f5a56d75d9cf4d9730c",
+      "compound_id": "LT00437",
+      "group": 150,
+      "partition": "train"
+    },
+    {
+      "structure_id": "c3942aed3d9a51e121f1a64b1954debf1a7f3117c0319ac7a60cbf4d4d917ec4",
+      "compound_id": "LT00085",
+      "group": 180,
+      "partition": "train"
+    },
+    {
+      "structure_id": "c3caa40738895022f748595b484f69b68467796fa3f3d009ed20992dd018a353",
+      "compound_id": "LT01067",
+      "group": 600,
+      "partition": "validation"
+    },
+    {
+      "structure_id": "c3cbb38d6a7b3a1504da96c7b5ac589052adee1db3992881d390d46c9d98d383",
+      "compound_id": "LT01923",
+      "group": 601,
+      "partition": "train"
+    },
+    {
+      "structure_id": "c3d6bc61439e67998bdeb875cdc4cfd7cb85b2379e9fac7ea1d337beab1b0226",
+      "compound_id": "LT01359",
+      "group": 7,
+      "partition": "train"
+    },
+    {
+      "structure_id": "c416ea2f266c43aa780e554806e1f4cc9a76681908518a616704e0d459141b02",
+      "compound_id": "LT02398",
+      "group": 603,
+      "partition": "train"
+    },
+    {
+      "structure_id": "c5502afb0a2e69d89677f51ce04c0019bb201082edccdf0a85a58c2b3ebb3c26",
+      "compound_id": "LT00116",
+      "group": 308,
+      "partition": "test"
+    },
+    {
+      "structure_id": "c6fbc18868f54dc6576eec1c11bce80dc10f88d8fc089145ae38c2b8d6f39b2a",
+      "compound_id": "LT00020",
+      "group": 3,
+      "partition": "train"
+    },
+    {
+      "structure_id": "c87b36c01c15c739485d3e89346ca764a94ea629692ec7efad53d7d69bfb1be7",
+      "compound_id": "LT01804",
+      "group": 606,
+      "partition": "test"
+    },
+    {
+      "structure_id": "c9b7e59f6f56651ff1a82008eb2449a734513d6d503d22311f740e1372b29557",
+      "compound_id": "LT01100",
+      "group": 3,
+      "partition": "train"
+    },
+    {
+      "structure_id": "ca62218baa7ab3eb418bc6d934a34ac0d2f6d67c7edb9be0589301392be9ce7f",
+      "compound_id": "LT01120",
+      "group": 82,
+      "partition": "validation"
+    },
+    {
+      "structure_id": "ca6e18e97ee086b32e7566457d6c74d1ef92c58810eeb4022745d256c9454660",
+      "compound_id": "LT00944",
+      "group": 609,
+      "partition": "validation"
+    },
+    {
+      "structure_id": "ca7885e4b23e3e83bf0039abe00cf49e903b0ae55914cec1e5a9b1d108714bc3",
+      "compound_id": "LT00430",
+      "group": 610,
+      "partition": "train"
+    },
+    {
+      "structure_id": "cb3cc840095dbb9cc4915c18387379530eb574d5098d1f5c7c81ede3a12aef63",
+      "compound_id": "LT01426",
+      "group": 611,
+      "partition": "train"
+    },
+    {
+      "structure_id": "cb5d4e2a59d8de7fa9646410d95fe229808343f3aa46856d3aa00cafe8bab966",
+      "compound_id": "LT00327",
+      "group": 450,
+      "partition": "train"
+    },
+    {
+      "structure_id": "cc34ea506c6157883da4bfc57f7bb9344449778ae94b82a9cb570db49df8d80a",
+      "compound_id": "LT01853",
+      "group": 308,
+      "partition": "test"
+    },
+    {
+      "structure_id": "cc3e34b92c93b045567702b2c3dd4ad238d4955b5863fc26cade2e8d838cfa27",
+      "compound_id": "LT00740",
+      "group": 614,
+      "partition": "train"
+    },
+    {
+      "structure_id": "cc5a8e763e9070501ea9d7f22bf83245606fe9e657f601b77d8af272f916fd43",
+      "compound_id": "LT00716",
+      "group": 3,
+      "partition": "train"
+    },
+    {
+      "structure_id": "cc79625b0db572f9d79897e5a231b75feda03838809605ef02b48f8f7686f33a",
+      "compound_id": "LT01583",
+      "group": 616,
+      "partition": "test"
+    },
+    {
+      "structure_id": "ccf0f5523257834cd7033ad461a75b5edd3878efdd0599e491ab2ff8403281a7",
+      "compound_id": "LT00083",
+      "group": 617,
+      "partition": "train"
+    },
+    {
+      "structure_id": "cd2e48ed3e48bbd0ba5aab698fee40eb4b576d72065367cf8778984ffc5bcc2e",
+      "compound_id": "LT00613",
+      "group": 78,
+      "partition": "train"
+    },
+    {
+      "structure_id": "cd51817e207b79230c6991a1fa2b469ff0143ee91353740bba0f78cf3b4f2fe6",
+      "compound_id": "LT00700",
+      "group": 383,
+      "partition": "train"
+    },
+    {
+      "structure_id": "cdf28c65974dd682004b103b5c8ffcc430257c3b445602d0cb0ac46e0b84947a",
+      "compound_id": "LT01112",
+      "group": 620,
+      "partition": "validation"
+    },
+    {
+      "structure_id": "ce335d53fc3cbb7d9694ce16f8a4760d3b3b2c98e5283b690ca21a0624fff3d7",
+      "compound_id": "LT00848",
+      "group": 621,
+      "partition": "train"
+    },
+    {
+      "structure_id": "ce855bf6bfd39a4c9c9f2167da52008b8a19c50886298ec58aaf08404cb23115",
+      "compound_id": "LT03197",
+      "group": 622,
+      "partition": "train"
+    },
+    {
+      "structure_id": "cea68da456f55b0eb8d8b7863dc69c589eab8bdff743f9db0c13e9d3ce778814",
+      "compound_id": "LT01372",
+      "group": 623,
+      "partition": "test"
+    },
+    {
+      "structure_id": "cee79cbe40daebc69e4f6bc4f9876c3e427b892917f01181cc4619980938dc6e",
+      "compound_id": "LT01116",
+      "group": 624,
+      "partition": "train"
+    },
+    {
+      "structure_id": "cf4495661fda839b539847d1d0f025f854e686e57c08da724bc5f1872398c7cb",
+      "compound_id": "LT00558",
+      "group": 625,
+      "partition": "validation"
+    },
+    {
+      "structure_id": "d023fb92169fb089c6da8cb31c1597bf4a763be07c240806b73f3636a81a8a50",
+      "compound_id": "LT00845",
+      "group": 626,
+      "partition": "train"
+    },
+    {
+      "structure_id": "d06464e6f51b2489cd3dc4fe29dad0bffd5ac0fd0738424b15cd61ed1ffb83d7",
+      "compound_id": "LT03594",
+      "group": 627,
+      "partition": "train"
+    },
+    {
+      "structure_id": "d082df6fe9d31ace930f7059659d50ed5349ee0a875cbbc54f5983f37fc6b2c8",
+      "compound_id": "LT00277",
+      "group": 3,
+      "partition": "train"
+    },
+    {
+      "structure_id": "d0d3e655f0e7407659bb1179455b0c74d0edc6fe6fe2fc88c100150f8ec6f6c5",
+      "compound_id": "LT02346",
+      "group": 208,
+      "partition": "train"
+    },
+    {
+      "structure_id": "d0f10013267a9165209bcebb403e3ce5dc3e239f3442fdd6948dcef8fe17b241",
+      "compound_id": "LT01862",
+      "group": 630,
+      "partition": "train"
+    },
+    {
+      "structure_id": "d11e89e5b302b8484e566fedb77837e95216a45b73f88a959a2e1fe482d71907",
+      "compound_id": "LT02898",
+      "group": 631,
+      "partition": "train"
+    },
+    {
+      "structure_id": "d13184c3a236b021eeb7e2c7486a1888d4c42abc61402a94c9da97cf235814cd",
+      "compound_id": "LT00314",
+      "group": 62,
+      "partition": "train"
+    },
+    {
+      "structure_id": "d1897865c00f64f8a7f02d69d5873d3cc7341824b090349c0ba1a9e9ee48a28d",
+      "compound_id": "LT02418",
+      "group": 633,
+      "partition": "test"
+    },
+    {
+      "structure_id": "d1c00d1a675bfab653c16ebe097e36c0847d9b2ea6b4b375baae79ccb3aa28c1",
+      "compound_id": "LT01064",
+      "group": 634,
+      "partition": "train"
+    },
+    {
+      "structure_id": "d2343ed537071fd9c5580fa0ad0a84346c6d1470f0a8b7b765dc1b6fe7338e2d",
+      "compound_id": "LT03631",
+      "group": 635,
+      "partition": "validation"
+    },
+    {
+      "structure_id": "d2bd38b6dd74ec9abb8e95c4691a873308ff8b4054b73c57620572067189fab2",
+      "compound_id": "LT00174",
+      "group": 92,
+      "partition": "validation"
+    },
+    {
+      "structure_id": "d2c3cf6c320b9dc8643baaedf11a15c61aa8cddd34778b806458ee7cbbe25e9c",
+      "compound_id": "LT03624",
+      "group": 76,
+      "partition": "train"
+    },
+    {
+      "structure_id": "d2e1e5c2adf9f606ec709e7fe0c72b83c47ebf1801a82eb881e189a324a0a66f",
+      "compound_id": "LT00737",
+      "group": 638,
+      "partition": "train"
+    },
+    {
+      "structure_id": "d2f7637b50f99580ae5867d020c856986d08818faecf94d7afefec01a57ab6d6",
+      "compound_id": "LT01029",
+      "group": 639,
+      "partition": "train"
+    },
+    {
+      "structure_id": "d3044ada2bdf8067c9a0a407a52102d19208d229f22b9cd98255c89f78cbc37a",
+      "compound_id": "LT00052",
+      "group": 640,
+      "partition": "validation"
+    },
+    {
+      "structure_id": "d32838cd9fd9c871c70971450c0efd90f52531d61247f7a7c64e040a94334c24",
+      "compound_id": "LT00648",
+      "group": 641,
+      "partition": "train"
+    },
+    {
+      "structure_id": "d330ec60591f4c9c7d92445352f7c6bea3bc871a857bae910d628b4000d2c5c2",
+      "compound_id": "LT00667",
+      "group": 642,
+      "partition": "test"
+    },
+    {
+      "structure_id": "d39d253bdeb55d253cc4b6e30cf229594d20180bbb180057ddd98c1d27485617",
+      "compound_id": "LT02390",
+      "group": 643,
+      "partition": "train"
+    },
+    {
+      "structure_id": "d3e590b68d55bf5883ec5edffb811e75bb62ba036bc3fef20fea7064915f71e4",
+      "compound_id": "LT00068",
+      "group": 335,
+      "partition": "train"
+    },
+    {
+      "structure_id": "d487e7b6961a9dbd347918d6672d39e659d5e6a8f31b8b09d4c4d8a9a0f8522f",
+      "compound_id": "LT00691",
+      "group": 78,
+      "partition": "train"
+    },
+    {
+      "structure_id": "d4cb55b9273d0faf88abd4a6b3f079bacd504870690efa8fb98de7fafc94c26a",
+      "compound_id": "LT01047",
+      "group": 183,
+      "partition": "train"
+    },
+    {
+      "structure_id": "d52e7c813ccb74e729b45f29102ef9f6e6f4c76b7bf6a3487a5c0dc4bddb3993",
+      "compound_id": "LT03911",
+      "group": 647,
+      "partition": "train"
+    },
+    {
+      "structure_id": "d558312e9bbc763fd587ac43a3ec3d0ccdf5fea41076d171666183d99a37937c",
+      "compound_id": "LT01072",
+      "group": 62,
+      "partition": "train"
+    },
+    {
+      "structure_id": "d569a8b64becf9e06e3c498cce0df6c4c3e94b31108ca36f643a919a639d198d",
+      "compound_id": "LT01857",
+      "group": 649,
+      "partition": "train"
+    },
+    {
+      "structure_id": "d66cbdc868d601ec683c97149688a3f016ce00abd2cc55a9fabc52595d849de1",
+      "compound_id": "LT00462",
+      "group": 3,
+      "partition": "train"
+    },
+    {
+      "structure_id": "d66d5b579faf40d2251e6052fd264fd731aa32a990f7532741de18ac73b63f36",
+      "compound_id": "LT01233",
+      "group": 183,
+      "partition": "train"
+    },
+    {
+      "structure_id": "d67aa4aeef99d09922d5f259aebed863f91ac5436fee2114c79a081508d7296f",
+      "compound_id": "LT00131",
+      "group": 652,
+      "partition": "validation"
+    },
+    {
+      "structure_id": "d6b024a68839d97a01efbbdb255b928c03bdf8628388ff616d0e9e9b8c4cea19",
+      "compound_id": "LT02901",
+      "group": 653,
+      "partition": "test"
+    },
+    {
+      "structure_id": "d6d61bfaa65aaaae71058d637aed7e9a71b9777e7235faed04c890d262996d51",
+      "compound_id": "LT01589",
+      "group": 144,
+      "partition": "train"
+    },
+    {
+      "structure_id": "d6d9a30997b7b9e2649381aa7ce863d2bde906787d1634cde76cc8fd32f4c608",
+      "compound_id": "LT00416",
+      "group": 274,
+      "partition": "test"
+    },
+    {
+      "structure_id": "d7288c161899ec01b0cd3364186e6d5181079a2c8303ac45ddbc643991304aa2",
+      "compound_id": "LT01267",
+      "group": 386,
+      "partition": "validation"
+    },
+    {
+      "structure_id": "d744aaf9106b9f4537a48b9fe6338ba97ad27b865cf340770006a433d1bbbca1",
+      "compound_id": "LT01614",
+      "group": 657,
+      "partition": "train"
+    },
+    {
+      "structure_id": "d79f9a82a6ec181b1e57b8696c0e4b132cfa13a6e9aeb0e39167146cb3ed7309",
+      "compound_id": "LT00572",
+      "group": 658,
+      "partition": "train"
+    },
+    {
+      "structure_id": "d7e20508f88543f8ce250c9ccc0894077c5d78d8a74e6b370e1ebab340f936c3",
+      "compound_id": "LT01525",
+      "group": 659,
+      "partition": "train"
+    },
+    {
+      "structure_id": "d7f444866b1b97ce73a26533a2254c7ece50f425fff2b525a772ec442350face",
+      "compound_id": "LT03550",
+      "group": 660,
+      "partition": "validation"
+    },
+    {
+      "structure_id": "d80b0ee873b08637f995403267e030524d4a04b3d7d7df9f7ff1ab6d60ebaefe",
+      "compound_id": "LT01723",
+      "group": 661,
+      "partition": "train"
+    },
+    {
+      "structure_id": "d85b6dde7dfddaf5e1d4c8814435d2c88c3ade81c1a9460d53f2d707cccfafc2",
+      "compound_id": "LT00167",
+      "group": 662,
+      "partition": "train"
+    },
+    {
+      "structure_id": "d87406609c0c93fb0e2f37cef62090206a25d04777d6728a8d5ce3dcf900215e",
+      "compound_id": "LT00180",
+      "group": 663,
+      "partition": "train"
+    },
+    {
+      "structure_id": "d8e6ef6dbcaaf1a8ebefa3032e029973864e8385b56d92ded19352d4ac280d01",
+      "compound_id": "LT00182",
+      "group": 664,
+      "partition": "test"
+    },
+    {
+      "structure_id": "d9073ee5ce954b6e85e0d4038da1c9dfcd005a87aa742592ed0fd6a88f327dbc",
+      "compound_id": "LT01968",
+      "group": 3,
+      "partition": "train"
+    },
+    {
+      "structure_id": "d92d6b5791b7e59e242983ce808101f4ba1ba11c63ca98e4c361e7003032d53c",
+      "compound_id": "LT00313",
+      "group": 2,
+      "partition": "train"
+    },
+    {
+      "structure_id": "d9420620f6bba2a793b433b8ae23b112bf07a8c0fb8bfac931d3e3a1f6fd5791",
+      "compound_id": "LT03752",
+      "group": 75,
+      "partition": "validation"
+    },
+    {
+      "structure_id": "d991f2ef562779d001dd2b9781b1bab6821a5566b461622c7abc68251e972928",
+      "compound_id": "LT02056",
+      "group": 372,
+      "partition": "train"
+    },
+    {
+      "structure_id": "da681d9406e743fb417e23ead8ce7fc1209197133209e8f6f4b25cd56d5abccf",
+      "compound_id": "LT02877",
+      "group": 669,
+      "partition": "train"
+    },
+    {
+      "structure_id": "da82ad4af0f286fa3f31246493ebcff22fc7c93bf3e34aadd9997417cf7a1fe3",
+      "compound_id": "LT02391",
+      "group": 670,
+      "partition": "test"
+    },
+    {
+      "structure_id": "da830df88503babb7d48208f256f49c0558fc32c6483637cf2a3b09a8b907f22",
+      "compound_id": "LT00644",
+      "group": 2,
+      "partition": "train"
+    },
+    {
+      "structure_id": "da9b8495d064f37ec379c4fa142f2b018bd88aa49174bb4eecd6c705d32c9c00",
+      "compound_id": "LT00030",
+      "group": 672,
+      "partition": "train"
+    },
+    {
+      "structure_id": "dac1a1b535db9b14bcc2a1b9669894d3b7bdb7866672974854265dc0028b2af5",
+      "compound_id": "LT01219",
+      "group": 673,
+      "partition": "train"
+    },
+    {
+      "structure_id": "dadbecee8a7d6149de4d57a3291acb66fcd922f069341f2c27775f7ad6a0309e",
+      "compound_id": "LT03737",
+      "group": 674,
+      "partition": "validation"
+    },
+    {
+      "structure_id": "db2bc4aa24cc15ed894c7a83580457174633649d00bd0f9f2cc11c3205cca7d3",
+      "compound_id": "LT00032",
+      "group": 149,
+      "partition": "train"
+    },
+    {
+      "structure_id": "dc4af8e783d02890f14d8a14ea802d071661ac20facf668663a0171fe5242c5b",
+      "compound_id": "LT01011",
+      "group": 129,
+      "partition": "train"
+    },
+    {
+      "structure_id": "dcba46e7c76fd21e905a858a8eec85735e4a5b4fd09ade1b5496fd3998642e05",
+      "compound_id": "LT02010",
+      "group": 424,
+      "partition": "validation"
+    },
+    {
+      "structure_id": "dce67d583eb9a4f0b545f20efb6510a634be929857923795c4cbe1e4ebc647ad",
+      "compound_id": "LT02902",
+      "group": 678,
+      "partition": "train"
+    },
+    {
+      "structure_id": "dda3a9922d04eb902d8226b4ca3f7966b9c4f30666612b6d84115dd627a81cbb",
+      "compound_id": "LT00004",
+      "group": 3,
+      "partition": "train"
+    },
+    {
+      "structure_id": "de5326665c9d82f50ef694922a9220e735cf74ba45de82f6a6d976ee111e35c8",
+      "compound_id": "LT01172",
+      "group": 680,
+      "partition": "train"
+    },
+    {
+      "structure_id": "de917c1706ba56bb7d50247e1fc0becab8fc8405acdc93f935f37af5688b4ec7",
+      "compound_id": "LT00642",
+      "group": 681,
+      "partition": "train"
+    },
+    {
+      "structure_id": "deb55f2ea4f57a506d450f51bca6fedb22f6eb4acfe2e696531090dffc51c032",
+      "compound_id": "LT00664",
+      "group": 3,
+      "partition": "train"
+    },
+    {
+      "structure_id": "debaf91b0d2767863b7f0c602b6814cce9bb3cb60330fe2d149c15e519fba6d9",
+      "compound_id": "LT02224",
+      "group": 509,
+      "partition": "validation"
+    },
+    {
+      "structure_id": "dedf9fd6d10bd04a93efda5f212dd8b599f26813975f1f3e8bd06eeaa3c856ca",
+      "compound_id": "LT01357",
+      "group": 684,
+      "partition": "test"
+    },
+    {
+      "structure_id": "df297027645e1786a36f5988bbaa9c294e4c3d4e598bafbeab6af9739fc7a45d",
+      "compound_id": "LT00046",
+      "group": 82,
+      "partition": "validation"
+    },
+    {
+      "structure_id": "df892df786f6feef00846f6441b8ea173c86e44128151dd0fb53460f3e498057",
+      "compound_id": "LT01117",
+      "group": 686,
+      "partition": "validation"
+    },
+    {
+      "structure_id": "df92b1ebd2851da803cc9d96197ea58587d7542afb01c329e045ae3315083f13",
+      "compound_id": "LT01560",
+      "group": 687,
+      "partition": "train"
+    },
+    {
+      "structure_id": "dfd052afc28df2df26c44003ad099a51910df0a35e4b901830b47c762327ff53",
+      "compound_id": "LT00701",
+      "group": 688,
+      "partition": "train"
+    },
+    {
+      "structure_id": "dfd33e18840aa1285257baf68a376cae012f2b0bd870b522a37743826fa473a0",
+      "compound_id": "LT02192",
+      "group": 508,
+      "partition": "test"
+    },
+    {
+      "structure_id": "e016970db0d3a95163b372b456449a06476a5b1d99517ed0c3dd285819d6742a",
+      "compound_id": "LT00040",
+      "group": 690,
+      "partition": "validation"
+    },
+    {
+      "structure_id": "e02ad814ce985cd74425c9278fe10eefb30f801c4a5264a138cc8c570f91e902",
+      "compound_id": "LT03904",
+      "group": 691,
+      "partition": "test"
+    },
+    {
+      "structure_id": "e055e558773ef67385ca49c556ef7ec01a3a46cb7fc0866a176d49e34939e26b",
+      "compound_id": "LT00636",
+      "group": 692,
+      "partition": "train"
+    },
+    {
+      "structure_id": "e0f7065280fc4bf47775eb60e39606ea8d156e3b7488000e972838815cfb465a",
+      "compound_id": "LT03735",
+      "group": 693,
+      "partition": "validation"
+    },
+    {
+      "structure_id": "e153ec71539a3356de5f39397d24a4ecc054f579811e2733d312387dbd90203f",
+      "compound_id": "LT00990",
+      "group": 694,
+      "partition": "train"
+    },
+    {
+      "structure_id": "e1b0bcac7c6e4c4388f76bd7557c994c958e0af74a288872d8c7404c701eebc5",
+      "compound_id": "LT00264",
+      "group": 144,
+      "partition": "train"
+    },
+    {
+      "structure_id": "e1e2612a0c590eda7542dd5fd57eacf6d684157b27452772847c19745b7ec714",
+      "compound_id": "LT03651",
+      "group": 696,
+      "partition": "train"
+    },
+    {
+      "structure_id": "e1e9d32d1e9b0d41e627356359bb17659bf3f6fe1b3b2b3c0e2d3cccfdbc309a",
+      "compound_id": "LT01731",
+      "group": 697,
+      "partition": "train"
+    },
+    {
+      "structure_id": "e20713ddf37387eb86f8117068afb05030afb1534156cac20a90123dee27d2b3",
+      "compound_id": "LT00163",
+      "group": 468,
+      "partition": "train"
+    },
+    {
+      "structure_id": "e23a61dd2c06a7d26f4cf24bd9a85d669b0370e9812aa416bb91f8b6eb828e3a",
+      "compound_id": "LT00023",
+      "group": 7,
+      "partition": "train"
+    },
+    {
+      "structure_id": "e29cd0419124bd77bb8e1ca33800c68abe99e877b2a2cac397079fb952113563",
+      "compound_id": "LT00697",
+      "group": 700,
+      "partition": "test"
+    },
+    {
+      "structure_id": "e2eb9d6a29d90b347d93a79a2fc9ecc5e02b586aa2d51b5fb8010364f80ab1c6",
+      "compound_id": "LT00825",
+      "group": 701,
+      "partition": "validation"
+    },
+    {
+      "structure_id": "e2f64db6e0fa86ea3652eb352d77df8d3a90b09579f9331f98c9aa3e15fe6cc3",
+      "compound_id": "LT00087",
+      "group": 129,
+      "partition": "train"
+    },
+    {
+      "structure_id": "e32b9e5e492f702ab869835a1b3fc0204afe245767f5d89cf04b079166079632",
+      "compound_id": "LT02880",
+      "group": 566,
+      "partition": "test"
+    },
+    {
+      "structure_id": "e3aa26e399518d888c207f7c2539cd0f94030f9e3a54b03bfe5f1a6011d2925b",
+      "compound_id": "LT02445",
+      "group": 704,
+      "partition": "train"
+    },
+    {
+      "structure_id": "e3faf7e510e955e7f4d55711386f8ef2c1ecf6b2b5fe7239346a5b89aaf3df09",
+      "compound_id": "LT02110",
+      "group": 705,
+      "partition": "test"
+    },
+    {
+      "structure_id": "e4189af575b68c32822208de75454f71a99702057bdb608932d5f90cbe598a8d",
+      "compound_id": "LT01065",
+      "group": 706,
+      "partition": "train"
+    },
+    {
+      "structure_id": "e41f50de61e17a3fc58669c75cc9394eabf80e287f8b6a7e2a4f0563599a2974",
+      "compound_id": "LT01786",
+      "group": 707,
+      "partition": "validation"
+    },
+    {
+      "structure_id": "e42e9a12169b7c7de7066bbb1427695061bbe7c32812eb7d4fd8f75c7ad78aa8",
+      "compound_id": "LT01829",
+      "group": 63,
+      "partition": "test"
+    },
+    {
+      "structure_id": "e4dedc42c0b7f32fb25f18a3117e3d8053a01b6c64dca87dbfb85b3161a7195c",
+      "compound_id": "LT01222",
+      "group": 274,
+      "partition": "test"
+    },
+    {
+      "structure_id": "e54a47ec1d43d1396759be5fe4d85d840ea211eaf2afb22195e35d572793e72b",
+      "compound_id": "LT01084",
+      "group": 710,
+      "partition": "train"
+    },
+    {
+      "structure_id": "e57fb0ba4edc6a0afd4b3fa3a9ad92c2e3f7b2dada06073a87fd8b76debd2198",
+      "compound_id": "LT00429",
+      "group": 711,
+      "partition": "train"
+    },
+    {
+      "structure_id": "e5a69b0217aef9664913f4668731c283c27d095a395fd99c1bcc5432d407e653",
+      "compound_id": "LT00233",
+      "group": 566,
+      "partition": "test"
+    },
+    {
+      "structure_id": "e5eadb72a669a8b40135083a1828ad2449269c75cfc27015c7a70912bf8cd40a",
+      "compound_id": "LT03782",
+      "group": 713,
+      "partition": "test"
+    },
+    {
+      "structure_id": "e5f8db9fad3ed1e2aceeff1e8c8df43171c90e2740bfc25a7ed491c6d041866f",
+      "compound_id": "LT01888",
+      "group": 614,
+      "partition": "train"
+    },
+    {
+      "structure_id": "e615aa9bd5935038af451311ca38ed914019b025ba65b61d27acddb27fd9a1df",
+      "compound_id": "LT03899",
+      "group": 715,
+      "partition": "validation"
+    },
+    {
+      "structure_id": "e63ad547ce05de56ef849cbca3f717e3f8fea7c31929641617b4bc1c34780a09",
+      "compound_id": "LT02077",
+      "group": 716,
+      "partition": "validation"
+    },
+    {
+      "structure_id": "e670c335d69eb3b8fbe26d674cb37502a7778e89bc1eeec7708ba89d9982d88d",
+      "compound_id": "LT00278",
+      "group": 82,
+      "partition": "validation"
+    },
+    {
+      "structure_id": "e723519b6f359ba197823c80b0b9b2fdaaa8662e31fbf37cd08835b93d8cd570",
+      "compound_id": "LT00147",
+      "group": 718,
+      "partition": "train"
+    },
+    {
+      "structure_id": "e76f42851dc93f0f7fc53915a9ea375cf03062cb4207c9dc04b63348f2fd67c5",
+      "compound_id": "LT00267",
+      "group": 719,
+      "partition": "train"
+    },
+    {
+      "structure_id": "e7fb25af0664b21617702d9f8bab0e81dc22fd6c2f3202c09a7ceafa719e3610",
+      "compound_id": "LT00312",
+      "group": 45,
+      "partition": "train"
+    },
+    {
+      "structure_id": "e88cc87ce869894cfd0f17b799d9557973114d43169a4c858dc76e6985cde493",
+      "compound_id": "LT02096",
+      "group": 721,
+      "partition": "test"
+    },
+    {
+      "structure_id": "e8968d004465d9ee936ef9d055578a590fc7a3cd853e56495ec6972eee880853",
+      "compound_id": "LT03786",
+      "group": 722,
+      "partition": "validation"
+    },
+    {
+      "structure_id": "e8c156092e574488703a4c8cebb0c8d5ca79098dba89d050e02c9e8beb3a7c90",
+      "compound_id": "LT01188",
+      "group": 723,
+      "partition": "validation"
+    },
+    {
+      "structure_id": "e904c48e06529b299fed27afe4015552b816eea21bd34dd976cb418b7e518223",
+      "compound_id": "LT01308",
+      "group": 186,
+      "partition": "train"
+    },
+    {
+      "structure_id": "e90fce5128daec0e2183ab1b3d77430eac83e854e2736b3d19ae5970be3f9187",
+      "compound_id": "LT01498",
+      "group": 442,
+      "partition": "validation"
+    },
+    {
+      "structure_id": "e955bb0908d3328de020a5f18901e0608e6c17de5197c3f94fd2fa28883c5d2a",
+      "compound_id": "LT00048",
+      "group": 726,
+      "partition": "train"
+    },
+    {
+      "structure_id": "e9ad82014f7bfdfc155ed8b2433b48176d133ca541266094dad17691fb31a56a",
+      "compound_id": "LT00199",
+      "group": 3,
+      "partition": "train"
+    },
+    {
+      "structure_id": "ea1d4c10c5b1c40e614e21c81b36dfe7f2f975ae743369372e39c09bfd0a6720",
+      "compound_id": "LT00097",
+      "group": 3,
+      "partition": "train"
+    },
+    {
+      "structure_id": "eb2f3853cdac6de490f988567a9f4b59a10b5aa5b9e2ced1ae754def5b1b15cd",
+      "compound_id": "LT00827",
+      "group": 438,
+      "partition": "train"
+    },
+    {
+      "structure_id": "eb48c594ad688d9caba7c2ba1ceb9c2f831f82b3154687ca24cdee76b522a892",
+      "compound_id": "LT00128",
+      "group": 730,
+      "partition": "train"
+    },
+    {
+      "structure_id": "eb5a3c06c4585d31f6329f6f99f2a22f0e4aa40f7cae7d43f7bcbae876b3e0bf",
+      "compound_id": "LT01856",
+      "group": 343,
+      "partition": "train"
+    },
+    {
+      "structure_id": "eb7e6078d18f1a7dbd73a01dab3700351c4cb98834eb92e27ec73ed457da6305",
+      "compound_id": "LT02019",
+      "group": 732,
+      "partition": "train"
+    },
+    {
+      "structure_id": "ebf85617ee411c4ff4a6c48a1e3fa47a74c325405f86d69ec21877dab8b600e2",
+      "compound_id": "LT00230",
+      "group": 13,
+      "partition": "validation"
+    },
+    {
+      "structure_id": "ec2ea2b42b114f56f73b20418e762a94c5e4001e30937f28e8e6c6ea06397280",
+      "compound_id": "LT02905",
+      "group": 734,
+      "partition": "train"
+    },
+    {
+      "structure_id": "ec2f2a47d84f082db3a51e3fb35965558b90d49eff0653deb4b519d8525c77c0",
+      "compound_id": "LT00649",
+      "group": 735,
+      "partition": "train"
+    },
+    {
+      "structure_id": "ec72dc3e91857dfca2b0054bd45d3af149ef712833d4f137a1a75b02099712cd",
+      "compound_id": "LT00532",
+      "group": 13,
+      "partition": "validation"
+    },
+    {
+      "structure_id": "ec84d96f394b297e99929fe85ea81f734bfa702bcc023eba457faee0d4e49086",
+      "compound_id": "LT02411",
+      "group": 737,
+      "partition": "test"
+    },
+    {
+      "structure_id": "ecc4b34c7549aa20f345c7d3a9c1c274688437a6ae868dc32a87285f01dfe1a0",
+      "compound_id": "LT00309",
+      "group": 3,
+      "partition": "train"
+    },
+    {
+      "structure_id": "ed047bb7b67d3780c8268df65eb24299dbbce65cf660ce74dd230d822d9c416a",
+      "compound_id": "LT01023",
+      "group": 556,
+      "partition": "test"
+    },
+    {
+      "structure_id": "ed3b587bf3702fd66b3bfad4082884ede786fcbbe2cab39979195104deb25492",
+      "compound_id": "LT00774",
+      "group": 3,
+      "partition": "train"
+    },
+    {
+      "structure_id": "ed5c456870a5a2ff519b060b13f5ff9456c30f09d12e903384a6b212e72b4620",
+      "compound_id": "LT00349",
+      "group": 741,
+      "partition": "train"
+    },
+    {
+      "structure_id": "ed722a4aad45c72967195d8ef80024877a40a477cb20725c56aec43f399c740d",
+      "compound_id": "LT00886",
+      "group": 742,
+      "partition": "validation"
+    },
+    {
+      "structure_id": "edf7830e8895e0668772fbf0f8d1e0e5353a9f40ba1b2ca02ab61c2654a27e9b",
+      "compound_id": "LT00478",
+      "group": 22,
+      "partition": "train"
+    },
+    {
+      "structure_id": "ee12d6739f0c2f5c5e468eccae468dd054a4935af469b58c2e54c8985cfa4331",
+      "compound_id": "LT01314",
+      "group": 744,
+      "partition": "train"
+    },
+    {
+      "structure_id": "ee21998c32c242bee352f4025261ee7734149990faebf6880e7989b35e246bd6",
+      "compound_id": "LT03777",
+      "group": 745,
+      "partition": "train"
+    },
+    {
+      "structure_id": "ee4faee1eec4ee2df3191754b92cc0f5cd2b13e2a60077ea0b0622fafa9b6993",
+      "compound_id": "LT00646",
+      "group": 746,
+      "partition": "train"
+    },
+    {
+      "structure_id": "ef6be02ec9adebec92a3677154c2e066a2bcc7fcb4eb9d1f19ed43a5d3d16d75",
+      "compound_id": "LT00156",
+      "group": 7,
+      "partition": "train"
+    },
+    {
+      "structure_id": "ef781fe11e8a7a8efa415795ff144d61f290f63ef132568895b8f03e116ba2e5",
+      "compound_id": "LT01334",
+      "group": 536,
+      "partition": "train"
+    },
+    {
+      "structure_id": "eff744dcd3e61566f8bef554b49fffed1a495597432b6efedc5e4e828965abdd",
+      "compound_id": "LT00258",
+      "group": 749,
+      "partition": "test"
+    },
+    {
+      "structure_id": "f00f5602bd1e541bfe92584044e7aac28a282e74567f8259872994e40a6b769b",
+      "compound_id": "LT00094",
+      "group": 750,
+      "partition": "train"
+    },
+    {
+      "structure_id": "f05be4c36b1943f5157387ec975a9b58ecdda58b1f2fab9f4df5b225ee1d65e2",
+      "compound_id": "LT01746",
+      "group": 751,
+      "partition": "test"
+    },
+    {
+      "structure_id": "f08fb4d60fe32ae26d1dce59f10eb7a1952b947d3a89d7b8860d5440b2dbc82e",
+      "compound_id": "LT03906",
+      "group": 752,
+      "partition": "validation"
+    },
+    {
+      "structure_id": "f094a8bd3d0bec59649c2b2ce16f8dbdc4d0a931febe3eb8bcef642bcb3853e2",
+      "compound_id": "LT00822",
+      "group": 753,
+      "partition": "validation"
+    },
+    {
+      "structure_id": "f0f77bed16b56455849fcc09e3c02a4351b2a122f0cb389b6f27877d37269048",
+      "compound_id": "LT01532",
+      "group": 754,
+      "partition": "train"
+    },
+    {
+      "structure_id": "f18215261c704f442e16696a752df9f2d614dd85eeadba7ec99ac212babb31f3",
+      "compound_id": "LT00632",
+      "group": 755,
+      "partition": "train"
+    },
+    {
+      "structure_id": "f1d74c1eb046b5435d2e05010491dbced6b43c84e31a16d290ba2e897d489eb0",
+      "compound_id": "LT01077",
+      "group": 756,
+      "partition": "train"
+    },
+    {
+      "structure_id": "f1e5a37814da934c568cf9cce54d8003a45c2e4b003fd49b87ebe3585ace79f6",
+      "compound_id": "LT01371",
+      "group": 468,
+      "partition": "train"
+    },
+    {
+      "structure_id": "f231d590dbc028196fa1b9f09c2c6130343814af678bc41cafafcf6b65333282",
+      "compound_id": "LT00136",
+      "group": 758,
+      "partition": "test"
+    },
+    {
+      "structure_id": "f2683d5d4b5ef34662cc5faff16afd108264785fcbce460f4bf703b1abe076f7",
+      "compound_id": "LT01318",
+      "group": 759,
+      "partition": "validation"
+    },
+    {
+      "structure_id": "f2e59e948008192876bd7f6a2b9281f247a1d5bc14cfc537db5a0c4314022b48",
+      "compound_id": "LT01827",
+      "group": 760,
+      "partition": "train"
+    },
+    {
+      "structure_id": "f2f0ec40912b51eb0a1c74ebd2b9079ea49764176a974b7b8f8a298953a6aea1",
+      "compound_id": "LT00098",
+      "group": 7,
+      "partition": "train"
+    },
+    {
+      "structure_id": "f329a7f69bf2f630163c2a2f0ef98fdb698c8f5f4442796442cee3b2812156e3",
+      "compound_id": "LT02213",
+      "group": 3,
+      "partition": "train"
+    },
+    {
+      "structure_id": "f333058e1ed9a8419de3a0f5f773adfdd74cc24c4ef42d7488ddb7ef1c8b3e84",
+      "compound_id": "LT00235",
+      "group": 763,
+      "partition": "train"
+    },
+    {
+      "structure_id": "f333d93d8ab4af6228e3c9aba3c55a452b37bd936ccf6417cae29eca42846d10",
+      "compound_id": "LT03610",
+      "group": 764,
+      "partition": "train"
+    },
+    {
+      "structure_id": "f335a386b4111fd2c55a3e72a32751b04c42f80262d9268eda9ff26bfa113dc2",
+      "compound_id": "LT01375",
+      "group": 765,
+      "partition": "train"
+    },
+    {
+      "structure_id": "f3a398b1870c6ef0525d3efbd6fa501681960ad219587ad53449228a09c5eb3d",
+      "compound_id": "LT01673",
+      "group": 766,
+      "partition": "train"
+    },
+    {
+      "structure_id": "f3a5afbef9a324ab3d30806a9235657cfc01ccb711edf2fa580d57bc7c8f056b",
+      "compound_id": "LT01537",
+      "group": 767,
+      "partition": "train"
+    },
+    {
+      "structure_id": "f3ab3bc2bea29bb1457ea513fc7a87299ae70f81d07f45f09be9e6d39c1f55a5",
+      "compound_id": "LT00614",
+      "group": 3,
+      "partition": "train"
+    },
+    {
+      "structure_id": "f43d3c8b707a02fb9d4b285a7346e38c46cc46cbd8d74718adb550d9c95ca2a8",
+      "compound_id": "LT01161",
+      "group": 769,
+      "partition": "train"
+    },
+    {
+      "structure_id": "f4594b3b2da1099d8c7d4f3b5a729b97602b64104615cd964f9f4bc2b19ae412",
+      "compound_id": "LT00857",
+      "group": 770,
+      "partition": "train"
+    },
+    {
+      "structure_id": "f46194de0eedcd33102ba27918a936dd75b123517717ce922d708636473520e3",
+      "compound_id": "LT01905",
+      "group": 3,
+      "partition": "train"
+    },
+    {
+      "structure_id": "f4641c132a6827f5629506a058ed5d17c47fc93c36c86953541adbf2e278b336",
+      "compound_id": "LT03700",
+      "group": 772,
+      "partition": "test"
+    },
+    {
+      "structure_id": "f4e54007794cc362f6d9429ac1f07fc77e6882dd829a99c7decde459a54a9e31",
+      "compound_id": "LT03643",
+      "group": 393,
+      "partition": "train"
+    },
+    {
+      "structure_id": "f516134c6f065fda882799ab1ed11fc63973c1ee7926639c01cb812db4352eb8",
+      "compound_id": "LT00177",
+      "group": 630,
+      "partition": "train"
+    },
+    {
+      "structure_id": "f59663f3b9d0898dcea2c3336dd3b9540f4074703e9f77c6b569416fa076fba9",
+      "compound_id": "LT00162",
+      "group": 255,
+      "partition": "validation"
+    },
+    {
+      "structure_id": "f6c9a3fddca54acc9f6abdcebda1c901eaed463f1f034ed9aefe80feea291eb9",
+      "compound_id": "LT01102",
+      "group": 776,
+      "partition": "validation"
+    },
+    {
+      "structure_id": "f713c99ea5e6d158b37b007b6141bdf668f36895e4518cc8aafadd90f7075802",
+      "compound_id": "LT01040",
+      "group": 287,
+      "partition": "train"
+    },
+    {
+      "structure_id": "f78cf2bc873409b5fd7f4264d96659642f57e08abaa3ca7af6faa4b4f4035465",
+      "compound_id": "LT01088",
+      "group": 52,
+      "partition": "validation"
+    },
+    {
+      "structure_id": "f7afa5f08645d61a8aafd071dd7a79e76229f9ecc4f90459c690bdd93a336a11",
+      "compound_id": "LT03674",
+      "group": 779,
+      "partition": "train"
+    },
+    {
+      "structure_id": "f8641f4a8a5a81f1d1e66001786794f02982fd5edae8be493940f42b5661b5f0",
+      "compound_id": "LT00047",
+      "group": 439,
+      "partition": "test"
+    },
+    {
+      "structure_id": "f87ff75c50e6dbcc93cfd749cfba034d71b469c9a634f667f049a74a7fa541da",
+      "compound_id": "LT01648",
+      "group": 781,
+      "partition": "test"
+    },
+    {
+      "structure_id": "f8ebdf15f8c674518780844d90748a80ae5773c6b8b2f6f06cfacf2b08ed72c0",
+      "compound_id": "LT00802",
+      "group": 3,
+      "partition": "train"
+    },
+    {
+      "structure_id": "f91ed72d75aec416d5efb1e84b6874dc4bca4008d0ba08c018d1f1c7f9602780",
+      "compound_id": "LT00402",
+      "group": 783,
+      "partition": "train"
+    },
+    {
+      "structure_id": "f97ac52ccfb3ba559b39d3460c0dee6a55b69cca1e0e53c77de28741581b6f3d",
+      "compound_id": "LT00554",
+      "group": 448,
+      "partition": "train"
+    },
+    {
+      "structure_id": "f9c0dca2c3e4d0a75b1c9b2dd6b043f0ee008ed718b8d453862b77a5f968d2f9",
+      "compound_id": "LT00045",
+      "group": 785,
+      "partition": "validation"
+    },
+    {
+      "structure_id": "fb360b11d032eb57c01c3bb638d8940d7fdd0a65471c3aa494512eeecba8b6c8",
+      "compound_id": "LT01166",
+      "group": 116,
+      "partition": "test"
+    },
+    {
+      "structure_id": "fc185e145af4b939bebf73415a4166becdf24f5debb177b64c89b31f5dafb850",
+      "compound_id": "LT00569",
+      "group": 787,
+      "partition": "train"
+    },
+    {
+      "structure_id": "fc7ef4cfa6877dd8de647ad7d5326ff24967d94bf89d2ad01aec2e593c98d9f1",
+      "compound_id": "LT02092",
+      "group": 788,
+      "partition": "train"
+    },
+    {
+      "structure_id": "fcdd2507f7f4aa6f79643ec409b2fac87d8ae6e1bc366f73a46af85dab44edbd",
+      "compound_id": "LT01261",
+      "group": 386,
+      "partition": "validation"
+    },
+    {
+      "structure_id": "fd0e5eeeb074b84df8f96b5160a56791b25f2dff1c39e3831c7897f061fc396b",
+      "compound_id": "LT03684",
+      "group": 17,
+      "partition": "validation"
+    },
+    {
+      "structure_id": "fd40e9fbca8609773ac1f1bd7e42094a2a4224f4ca3854a8fcc69a3c254c0ac4",
+      "compound_id": "LT01623",
+      "group": 306,
+      "partition": "train"
+    },
+    {
+      "structure_id": "fd5c62aee1b51504ca4e88dd6f2c332ac8fc0e0c07dc0ffc21e794fa44510a3a",
+      "compound_id": "LT00295",
+      "group": 792,
+      "partition": "train"
+    },
+    {
+      "structure_id": "fd68a69a01a9f30c13fed4cd7d38aadada672c8924a167612f462896d18af25b",
+      "compound_id": "LT01699",
+      "group": 3,
+      "partition": "train"
+    },
+    {
+      "structure_id": "fdc5bc3618d683c9216062d5ec598bbc79d11ce40a92077c90cb35a25eef588d",
+      "compound_id": "LT01488",
+      "group": 549,
+      "partition": "validation"
+    },
+    {
+      "structure_id": "fdc97b448090adcbf805e8327cee85604a4ebc3cf682d098d74d03a1b891a82a",
+      "compound_id": "LT00056",
+      "group": 795,
+      "partition": "train"
+    },
+    {
+      "structure_id": "fdd941f4f17b61e5d3f94ef0a6823ab8f5eaf526db1673b55764d9b4159b19e5",
+      "compound_id": "LT02883",
+      "group": 560,
+      "partition": "train"
+    },
+    {
+      "structure_id": "fdf988b2fc381e0db9937ad60818eaf1fe3e79a171f702a7d239b109879292e5",
+      "compound_id": "LT00910",
+      "group": 797,
+      "partition": "train"
+    },
+    {
+      "structure_id": "fe532098f4dc611bdc416bf5c7a0b61fb5e79d4ae64a07ee117fd426a2485db6",
+      "compound_id": "LT00575",
+      "group": 17,
+      "partition": "validation"
+    },
+    {
+      "structure_id": "fe646ea9acf0b8691a0c56e2f656b0a36e9f783658db55a7aa6cf6cfbb9b2da8",
+      "compound_id": "LT03749",
+      "group": 799,
+      "partition": "train"
+    },
+    {
+      "structure_id": "ffe819e0eee6306233299e3e771a2a33f3a8fa0cd31f1f5bee2379b595b44f72",
+      "compound_id": "LT03558",
+      "group": 800,
+      "partition": "test"
+    },
+    {
+      "structure_id": "fffc62a125bbe7ab6781dd1b128f9eee211dbe1019f7f6dc8ff6d00bdd33a34d",
+      "compound_id": "LT00393",
+      "group": 274,
+      "partition": "test"
+    }
+  ]
+}

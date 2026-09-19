@@ -19,4 +19,8 @@ Add dependency manifests and lockfiles alongside each independently runnable com
 
 Test meaningful behaviour as it is implemented: input validation, compound grouping, preprocessing consistency, contract compatibility and error handling. Keep ordinary tests offline; mark external-service and GPU tests explicitly. Model changes need appropriate held-out evaluation in addition to software checks.
 
+The toxicity workspace contains runnable curation, baseline training/evaluation and v2
+inference. The privacy workspace contains the local gateway and offline tests. See
+`docs/runbooks/team-b-local-mvp.md` for commands. Live discovery integration remains separate work; ordinary tests must not download weights or call external services.
+
 The repository now has an offline integration runtime and automated checks in `.github/workflows/ci.yml`. Run `./scripts/check.sh` before pushing changes to the shared contracts, application, demo tooling or discovery adapter. Live external-service, GPU, RDKit pose-mapping and model-evaluation checks remain outside the default CI job and must be documented separately when run.
