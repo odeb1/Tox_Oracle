@@ -1,0 +1,469 @@
+{
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {
+      "const": "3.0"
+    },
+    "request_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "target": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "target_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "sequence_sha256": {
+          "type": "string",
+          "minLength": 1
+        },
+        "manifest_sha256": {
+          "type": "string",
+          "minLength": 1
+        },
+        "reference_compound_id": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": [
+        "target_id",
+        "sequence_sha256",
+        "manifest_sha256",
+        "reference_compound_id"
+      ]
+    },
+    "policy_version": {
+      "const": "discovery_dili_triage_v1"
+    },
+    "policy_status": {
+      "const": "provisional"
+    },
+    "results": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "compound_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "canonical_smiles": {
+            "type": "string",
+            "minLength": 1
+          },
+          "atom_mapped_smiles": {
+            "type": "string",
+            "minLength": 1
+          },
+          "structure_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "standardization_version": {
+            "type": "string",
+            "minLength": 1
+          },
+          "discovery_result": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "compound_id": {
+                "type": "string",
+                "minLength": 1
+              },
+              "canonical_smiles": {
+                "type": "string",
+                "minLength": 1
+              },
+              "atom_mapped_smiles": {
+                "type": "string",
+                "minLength": 1
+              },
+              "structure_id": {
+                "type": "string",
+                "minLength": 1
+              },
+              "standardization_version": {
+                "type": "string",
+                "minLength": 1
+              },
+              "status": {
+                "enum": [
+                  "ok",
+                  "invalid_input",
+                  "unsupported",
+                  "failed"
+                ]
+              },
+              "binding_probability": {
+                "type": [
+                  "array",
+                  "null"
+                ],
+                "items": {
+                  "type": "number",
+                  "minimum": 0,
+                  "maximum": 1
+                },
+                "minItems": 1
+              },
+              "mean_binding_probability": {
+                "type": [
+                  "number",
+                  "null"
+                ],
+                "minimum": 0,
+                "maximum": 1
+              },
+              "affinity_pic50": {
+                "type": [
+                  "array",
+                  "null"
+                ],
+                "items": {
+                  "type": "number"
+                },
+                "minItems": 1
+              },
+              "affinity_pred_value": {
+                "type": [
+                  "array",
+                  "null"
+                ],
+                "items": {
+                  "type": "number"
+                },
+                "minItems": 1
+              },
+              "structural_confidence": {
+                "type": [
+                  "array",
+                  "null"
+                ],
+                "items": {
+                  "type": "number",
+                  "minimum": 0,
+                  "maximum": 1
+                },
+                "minItems": 1
+              },
+              "rank": {
+                "type": [
+                  "integer",
+                  "null"
+                ],
+                "minimum": 1
+              },
+              "shortlisted": {
+                "type": "boolean"
+              },
+              "structures": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "properties": {
+                    "uri": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "sha256": {
+                      "type": "string",
+                      "pattern": "^[a-f0-9]{64}$"
+                    },
+                    "format": {
+                      "const": "mmcif"
+                    },
+                    "origin": {
+                      "const": "predicted"
+                    },
+                    "atom_mapping_status": {
+                      "const": "unavailable"
+                    }
+                  },
+                  "required": [
+                    "uri",
+                    "sha256",
+                    "format",
+                    "origin",
+                    "atom_mapping_status"
+                  ]
+                },
+                "minItems": 0
+              },
+              "raw_response": {
+                "oneOf": [
+                  {
+                    "type": "null"
+                  },
+                  {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "properties": {
+                      "uri": {
+                        "type": "string",
+                        "minLength": 1
+                      },
+                      "sha256": {
+                        "type": "string",
+                        "pattern": "^[a-f0-9]{64}$"
+                      }
+                    },
+                    "required": [
+                      "uri",
+                      "sha256"
+                    ]
+                  }
+                ]
+              },
+              "provenance": {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                  "method_id": {
+                    "const": "nvidia_nim_boltz2"
+                  },
+                  "endpoint": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "execution_mode": {
+                    "enum": [
+                      "live",
+                      "cached",
+                      "not_run"
+                    ]
+                  },
+                  "cache_key": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  },
+                  "response_digest": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  },
+                  "served_model_version": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  },
+                  "version_status": {
+                    "enum": [
+                      "reported",
+                      "not_reported"
+                    ]
+                  }
+                },
+                "required": [
+                  "method_id",
+                  "endpoint",
+                  "execution_mode",
+                  "cache_key",
+                  "response_digest",
+                  "served_model_version",
+                  "version_status"
+                ]
+              },
+              "warnings": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "minItems": 0
+              },
+              "error": {
+                "oneOf": [
+                  {
+                    "type": "null"
+                  },
+                  {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "properties": {
+                      "code": {
+                        "type": "string",
+                        "minLength": 1
+                      },
+                      "message": {
+                        "type": "string",
+                        "minLength": 1
+                      }
+                    },
+                    "required": [
+                      "code",
+                      "message"
+                    ]
+                  }
+                ]
+              }
+            },
+            "required": [
+              "compound_id",
+              "canonical_smiles",
+              "atom_mapped_smiles",
+              "structure_id",
+              "standardization_version",
+              "status",
+              "binding_probability",
+              "mean_binding_probability",
+              "affinity_pic50",
+              "affinity_pred_value",
+              "structural_confidence",
+              "rank",
+              "shortlisted",
+              "structures",
+              "raw_response",
+              "provenance",
+              "warnings",
+              "error"
+            ]
+          },
+          "toxicity_result": {
+            "type": "object",
+            "description": "Validated separately against the unchanged v2 toxicity response contract."
+          },
+          "follow_up": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "decision": {
+                "enum": [
+                  "discovery_incomplete",
+                  "not_shortlisted",
+                  "safety_assessment_incomplete",
+                  "hold_for_liver_validation",
+                  "continue_target_validation"
+                ]
+              },
+              "recommendation": {
+                "type": "string",
+                "minLength": 1
+              },
+              "experiment": {
+                "oneOf": [
+                  {
+                    "type": "null"
+                  },
+                  {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "properties": {
+                      "question": {
+                        "type": "string",
+                        "minLength": 1
+                      },
+                      "assay": {
+                        "type": "string",
+                        "minLength": 1
+                      },
+                      "readouts": {
+                        "type": "array",
+                        "items": {
+                          "type": "string",
+                          "minLength": 1
+                        },
+                        "minItems": 1
+                      },
+                      "conditions": {
+                        "type": "string",
+                        "minLength": 1
+                      }
+                    },
+                    "required": [
+                      "question",
+                      "assay",
+                      "readouts",
+                      "conditions"
+                    ]
+                  }
+                ]
+              },
+              "policy_status": {
+                "const": "provisional"
+              }
+            },
+            "required": [
+              "decision",
+              "recommendation",
+              "experiment",
+              "policy_status"
+            ]
+          }
+        },
+        "required": [
+          "compound_id",
+          "canonical_smiles",
+          "atom_mapped_smiles",
+          "structure_id",
+          "standardization_version",
+          "discovery_result",
+          "toxicity_result",
+          "follow_up"
+        ]
+      },
+      "minItems": 1
+    },
+    "discovery_shortlist": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "minItems": 0
+    },
+    "comparison": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "status": {
+          "const": "unavailable"
+        },
+        "reason": {
+          "type": "string",
+          "minLength": 1
+        },
+        "disagreement": {
+          "type": "null"
+        }
+      },
+      "required": [
+        "status",
+        "reason",
+        "disagreement"
+      ]
+    },
+    "limitations": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "minItems": 1
+    }
+  },
+  "required": [
+    "schema_version",
+    "request_id",
+    "target",
+    "policy_version",
+    "policy_status",
+    "results",
+    "discovery_shortlist",
+    "comparison",
+    "limitations"
+  ],
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "ToxOracle discovery plus DILI v3 report"
+}

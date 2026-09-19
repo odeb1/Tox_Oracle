@@ -26,10 +26,12 @@ jobs:
         with:
           python-version: "3.11"
           cache: pip
-          cache-dependency-path: app/pyproject.toml
+          cache-dependency-path: |
+            app/pyproject.toml
+            app/requirements.lock
 
       - name: Install integration application
-        run: python3 -m pip install -e app
+        run: python3 -m pip install -r app/requirements.lock -e app
 
       - name: Run offline checks
         run: ./scripts/check.sh

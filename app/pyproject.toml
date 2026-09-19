@@ -13,6 +13,7 @@ dependencies = [
 
 [project.scripts]
 toxoracle-combine = "toxoracle_app.cli:main"
+toxoracle-screen = "toxoracle_app.screen_cli:main"
 
 [tool.setuptools.packages.find]
 where = ["src"]

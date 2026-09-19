@@ -4,7 +4,16 @@ An agentic drug-discovery workflow with a separate human liver-toxicity assessme
 
 Rosalind coordinates existing BioNeMo discovery tools and a ToxOracle DILI predictor to help researchers prioritise candidates and choose follow-up experiments.
 
-**Status:** Team B's evaluated DILI baseline, local privacy gateway and v2 handoff are implemented. Team A's offline reporting application, demo runner, DiffDock adapter and CI are also present. Real discovery execution and a conventional toxicity comparator remain integration dependencies.
+**Status:** The discovery-first workflow now screens a frozen public ABL1 panel with
+BioNeMo Boltz-2, adds the existing local DILI model and produces a v3 before/after
+report. A real reference check and four-compound terminal run succeeded, followed
+by a verified desktop Rosalind replay using the exact-input cache. Team B's evaluated baseline,
+privacy gateway and v2 handoff remain unchanged; a second toxicity predictor is not
+required for this workflow. Legacy DiffDock and v2 comparison commands remain available.
+
+Start with the [Rosalind screening runbook](docs/runbooks/rosalind-screening.md) and
+`./scripts/toxoracle-screen preflight`. The policy is provisional and the demonstration
+is retrospective; candidate training membership is displayed.
 
 See the [Team B runbook](docs/runbooks/team-b-local-mvp.md) for reproducible training,
 privacy setup and real cached DILI outputs. The user has passed the browser smoke test.
