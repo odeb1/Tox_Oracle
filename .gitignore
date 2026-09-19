@@ -1,0 +1,54 @@
+# Local credentials and environment overrides
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+*.egg-info/
+
+# Frontend and build outputs
+node_modules/
+dist/
+build/
+.next/
+coverage/
+
+# Local datasets and generated artifacts
+/data/raw/
+/data/interim/
+/data/processed/
+/data/private/
+/artifacts/*
+!/artifacts/README.md
+/tmp/
+/output/
+*.log
+*.pkl
+*.joblib
+*.pt
+*.pth
+*.ckpt
+*.safetensors
+*.onnx
+
+# Notebook and editor state
+.ipynb_checkpoints/
+.DS_Store
+.idea/
+.vscode/
+*.swp
+
+# Local experiment tracking
+mlruns/
+wandb/
