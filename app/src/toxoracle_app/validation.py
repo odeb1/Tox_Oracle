@@ -10,6 +10,7 @@ from jsonschema import Draft202012Validator
 
 
 DEFAULT_CONTRACTS_DIR = Path(__file__).resolve().parents[3] / "contracts"
+DEFAULT_CONFIGS_DIR = Path(__file__).resolve().parents[3] / "configs"
 
 
 class ContractValidationError(ValueError):
@@ -148,3 +149,28 @@ def validate_response_against_request(
 
     if messages:
         raise ContractValidationError(messages)
+
+
+def validate_policy(
+    policy: dict[str, Any], configs_dir: Path = DEFAULT_CONFIGS_DIR
+) -> None:
+    """Validate a triage policy before it can affect candidate priorities."""
+
+    _validate_schema(policy, configs_dir / "triage.schema.json", "triage policy")
+    promising = {value.lower() for value in policy["promising_values"]}
+    weak = {value.lower() for value in policy["weak_values"]}
+    overlap = sorted(promising & weak)
+    if overlap:
+        raise ContractValidationError(
+            [f"triage policy priority values overlap: {overlap}"]
+        )
+
+
+def validate_combined_report(
+    combined: dict[str, Any], contracts_dir: Path = DEFAULT_CONTRACTS_DIR
+) -> None:
+    """Validate the generated combined report envelope."""
+
+    _validate_schema(
+        combined, contracts_dir / "combined-report.schema.json", "combined report"
+    )

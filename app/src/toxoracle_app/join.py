@@ -6,7 +6,11 @@ from typing import Any
 
 from .comparison import compare_assessments
 from .prioritization import prioritize_candidate
-from .validation import validate_response_against_request
+from .validation import (
+    validate_combined_report,
+    validate_policy,
+    validate_response_against_request,
+)
 
 
 def combine_responses(
@@ -17,6 +21,7 @@ def combine_responses(
 ) -> dict[str, Any]:
     """Validate and combine one result from each stream for every candidate."""
 
+    validate_policy(policy)
     validate_response_against_request(
         request, discovery_response, expected_stream="discovery"
     )
@@ -57,9 +62,11 @@ def combine_responses(
             }
         )
 
-    return {
+    combined = {
         "schema_version": "2.0",
         "request_id": request["request_id"],
         "policy_version": policy["policy_version"],
         "results": results,
     }
+    validate_combined_report(combined)
+    return combined
