@@ -4,6 +4,11 @@ const path=require('node:path');
 const {StaticStudySource,ReplayState,panelMatches,parsePanel}=require('../src/toxoracle_app/public_static/public-model.js');
 async function main(){
  const root=path.resolve(__dirname,'../../demo/public');let requests=[];
+ const publicRoot=path.resolve(__dirname,'../src/toxoracle_app/public_static');
+ const page=await fs.readFile(path.join(publicRoot,'index.html'),'utf8');
+ const logo=await fs.readFile(path.join(publicRoot,'toxoracle-logo.png'));
+ assert.match(page,/<img class="brand-logo" src="\/static\/toxoracle-logo\.png" alt="">/);
+ assert.equal(logo.subarray(1,4).toString(),'PNG');
  const transport=async(url,options)=>{assert.equal(options.credentials,'omit');assert.ok(url.startsWith('/studies/'));requests.push(url);try{const data=await fs.readFile(root+url);return {ok:true,arrayBuffer:async()=>data};}catch{return {ok:false};}};
  for(const slug of ['generated','supplied']){
   const source=new StaticStudySource(slug,transport);const study=await source.load();
