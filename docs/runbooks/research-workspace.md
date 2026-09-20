@@ -199,3 +199,18 @@ complete result. Restarting the server does not resume vendor requests.
 Prompt-first web acceptance is recorded in
 `evaluation/reports/prompt_first_web_acceptance_v1.json`, including hosted timeouts
 and partial scientific results separately from passing software checks.
+
+### Unified Results
+
+The Results navigation item displays the current run. Overview shows the frozen
+shortlist and DILI follow-up; Candidate explorer includes the teammate dashboard's
+shared molecule/feature renderer; Discovery lab shows current-run Boltz-2 evidence;
+Model & provenance shows the separate held-out baseline evaluation. Completed,
+partial, recorded and imported v3 reports use the same presentation. Results
+remain available while navigating back to the workspace.
+
+Verified structure downloads require a run owned by the current session. An
+imported report is view-only: paths in it are never opened. The Discovery lab does
+not substitute the teammate dashboard's unrelated DiffDock example for missing
+ABL1 evidence. See `docs/decisions/unified-results-and-sharing.md` for the hosting
+recommendation and the separate privacy boundary of a public demo.

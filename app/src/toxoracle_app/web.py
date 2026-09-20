@@ -277,6 +277,45 @@ def create_app(config=None, *, detector=None, token=None, manager=None, prefligh
             raise WorkspaceError("invalid_screening_report") from None
         return dict(report=report, run=None)
 
+    @app.post("/api/results/evidence")
+    async def results_evidence(request: Request):
+        from .workspace_results import candidate_evidence, model_context
+        data = await payload(request)
+        session(data)
+        try:
+            report = data.get("report")
+            validate_screening_report(report)
+            if data.get("view") == "model":
+                return model_context(report)
+            return await run_in_threadpool(candidate_evidence, report, data.get("compound_id"),
+                                           data.get("source"), data.get("labels", False))
+        except (ContractValidationError, KeyError, TypeError, ValueError):
+            raise WorkspaceError("invalid_screening_report") from None
+
+    @app.post("/api/results/structure")
+    async def results_structure(request: Request):
+        job, data = await owned_job(request)
+        if not job.snapshot()["report_available"]:
+            raise WorkspaceError("report_not_ready")
+        try:
+            report = load(job.directory / "science/combined.json")
+            validate_screening_report(report)
+            row = next(r for r in report["results"] if r["compound_id"] == data.get("compound_id"))
+            index = data.get("index")
+            if type(index) is not int or index < 0:
+                raise ValueError("invalid_index")
+            artifact = row["discovery_result"]["structures"][index]
+            path = Path(artifact["uri"]).resolve()
+            # Only owned run artifacts; never dereference an imported report's path or URL.
+            if not path.is_relative_to((job.directory / "science").resolve()) or path.stat().st_size > 10_000_000:
+                raise ValueError("invalid_artifact")
+            raw = path.read_bytes()
+            if hashlib.sha256(raw).hexdigest() != artifact["sha256"]:
+                raise ValueError("changed_artifact")
+            return dict(content=raw.decode("utf-8"), filename=path.name, mime="text/plain")
+        except (ContractValidationError, KeyError, TypeError, ValueError, StopIteration, IndexError, OSError):
+            raise WorkspaceError("artifact_not_ready") from None
+
     return app
 
 

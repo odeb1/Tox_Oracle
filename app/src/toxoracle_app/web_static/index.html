@@ -15,6 +15,7 @@
     <a class="brand" href="/" aria-label="ToxOracle home"><span class="brand-mark" aria-hidden="true">T</span><span>Tox<span class="brand-light">Oracle</span></span></a>
     <nav aria-label="Main navigation">
       <button class="nav active" data-page="workspace" aria-current="page">Workspace</button>
+      <button class="nav" data-page="results">Results</button>
       <button class="nav" data-page="runs">Study runs <span id="run-count">0</span></button>
       <button class="nav" data-page="methods">Methods &amp; setup</button>
     </nav>
@@ -80,18 +81,29 @@
         <button type="button" id="continue-fixed" class="secondary" hidden>Continue with approved fixed protocol</button><button type="button" id="revise-study" class="secondary" hidden>Revise study</button>
       </section>
 
+    </section>
+
+    <section id="results-page" hidden>
+      <div id="results-empty" class="panel results-empty"><p class="eyebrow">FROM QUESTION TO EVIDENCE</p><h1>Your results belong here.</h1><p class="lead-small">Complete a study to explore binding predictions, human liver concern and the next experiment in one dashboard.</p><div class="actions"><button class="primary" data-page="workspace">Start a study →</button><button class="secondary" data-page="runs">Open a saved result</button></div></div>
       <section id="results-section" hidden aria-labelledby="results-heading">
         <div class="section-heading result-heading"><div><p class="eyebrow">YOUR STUDY, IN CONTEXT</p><h2 id="results-heading">What changes after human DILI?</h2><p id="results-meta" class="small"></p></div><div class="actions"><button id="download-html" class="secondary">Export report ↓</button><button id="download-report" class="secondary">Source JSON ↓</button><button id="new-study" class="primary">New study</button></div></div>
+        <div class="results-tabs" role="group" aria-label="Results views"><button class="secondary" data-result-view="overview" aria-pressed="true">Overview</button><button class="secondary" data-result-view="explorer" aria-pressed="false">Candidate explorer</button><button class="secondary" data-result-view="discovery" aria-pressed="false">Discovery lab</button><button class="secondary" data-result-view="model" aria-pressed="false">Model &amp; provenance</button></div>
         <div id="result-notice" class="notice soft" hidden></div>
+        <div id="result-overview">
         <div id="result-metrics" class="metric-grid"></div>
         <div class="panel decision-panel"><div class="section-heading"><div><p class="eyebrow">FROM DISCOVERY TO FOLLOW-UP</p><h3>The shortlist stays. The next step can change.</h3></div><span class="pill">Provisional policy</span></div><div id="decision-cards" class="decision-grid"></div></div>
+        <div id="score-overview" class="panel"></div><div id="explanation-note" class="panel assistant-note" hidden></div>
+        </div>
+        <div id="result-explorer" hidden><div class="explorer-intro"><p class="eyebrow">CANDIDATE EXPLORER</p><h3>From a score to its supporting evidence.</h3><p>Select a molecule to inspect model context, mapped fingerprint features and recommended experiments.</p></div>
         <div class="evidence-switch" role="group" aria-label="Evidence shown"><button type="button" id="discovery-view" class="secondary" aria-pressed="false">Discovery only</button><button type="button" id="dili-view" class="primary" aria-pressed="true">With human DILI</button></div><div class="panel evidence-panel"><div class="section-heading"><div><p class="eyebrow">CANDIDATE EVIDENCE</p><h3>Read both signals together</h3></div><div class="table-controls"><input id="candidate-search" type="search" aria-label="Search candidates" placeholder="Find candidate…"><select id="candidate-filter" aria-label="Filter candidates"><option value="all">All candidates</option><option value="shortlisted">Discovery shortlist</option><option value="hold">Liver validation first</option><option value="incomplete">Incomplete evidence</option></select></div></div>
           <p class="field-note">Binding likelihood and DILI concern are independent model outputs. Structural confidence is a separate Boltz-2 output. Select a candidate to inspect the evidence.</p>
           <div class="table-scroll"><table><caption class="sr-only">Candidate binding, structural confidence, DILI concern and follow-up</caption><thead><tr><th scope="col">Candidate</th><th scope="col">Discovery rank</th><th scope="col">Binder likelihood</th><th scope="col">Predicted affinity</th><th scope="col">Structural confidence</th><th scope="col">Human DILI</th><th scope="col">Follow-up</th></tr></thead><tbody id="candidate-rows"></tbody></table></div><p id="empty-table" class="empty" hidden>No candidates match this view.</p>
         </div>
         <div id="candidate-detail" class="panel" hidden tabindex="-1"></div>
-        <div id="generation-evidence" class="panel" hidden></div><div id="explanation-note" class="panel assistant-note" hidden></div><details id="result-history" class="panel" hidden></details>
-        <details class="panel"><summary>Interpretation, limitations &amp; provenance</summary><ul id="result-limitations"></ul><p>Training similarity describes applicability, not prediction confidence. A lower DILI score does not establish safety. No missing score is treated as zero.</p><pre id="provenance-preview" class="data-preview"></pre></details>
+        </div>
+        <div id="result-discovery" hidden><div id="discovery-lab" class="panel"></div><div id="generation-evidence" class="panel" hidden></div><details id="result-history" class="panel" hidden></details></div>
+        <div id="result-model" hidden><div id="model-evaluation" class="panel"></div>
+        <details class="panel"><summary>Interpretation, limitations &amp; provenance</summary><ul id="result-limitations"></ul><p>Training similarity describes applicability, not prediction confidence. A lower DILI score does not establish safety. No missing score is treated as zero.</p><pre id="provenance-preview" class="data-preview"></pre></details></div>
       </section>
     </section>
 
