@@ -34,6 +34,7 @@ function sortCandidateRows(rows, field='rank', direction='asc') {
 }
 function sortedRows() { return sortCandidateRows(report.results,resultOrder.field,resultOrder.direction); }
 function applyResultOrder() {
+  if(!report)return;
   const positions=new Map(sortedRows().map((r,i)=>[r.compound_id,i]));
   // Move existing nodes so expanded evidence and loaded 3D viewers survive sorting.
   for(const id of ['decision-cards','score-overview','discovery-lab','candidate-rows']){
@@ -43,13 +44,14 @@ function applyResultOrder() {
   }
 }
 function setupResultOrder() {
-  $('result-sort').value=resultOrder.field;$('result-sort-direction').value=resultOrder.direction;
-  $('result-sort').onchange=()=>{
-    resultOrder.field=$('result-sort').value;
-    resultOrder.direction=['binding','dili'].includes(resultOrder.field)?'desc':'asc';
-    $('result-sort-direction').value=resultOrder.direction;applyResultOrder();
+  const field=$('result-sort'),direction=$('result-sort-direction');
+  field.value=resultOrder.field;direction.value=resultOrder.direction;
+  const update=()=>{
+    // Read both controls together; changing the field must not discard direction.
+    resultOrder={field:field.value,direction:direction.value};
+    applyResultOrder();
   };
-  $('result-sort-direction').onchange=()=>{resultOrder.direction=$('result-sort-direction').value;applyResultOrder();};
+  field.oninput=field.onchange=direction.oninput=direction.onchange=update;
 }
 
 function renderResults(result, run) {
@@ -65,7 +67,7 @@ function renderResults(result, run) {
   const metrics=clear('result-metrics');
   [[result.results.length,'Candidates assessed','Independent evidence per candidate'],[result.discovery_shortlist.length,'Discovery shortlist','Selected before toxicity assessment'],[changed,'Liver validation first','Shortlisted candidates held'],[incomplete,'Incomplete decisions','Missing evidence stays visible']].forEach(([value,label,note],i)=>{if(i){const arrow=node('span','→','metric-connector'+(i===3?' status-connector':''));arrow.setAttribute('aria-hidden','true');metrics.append(arrow);}const card=node('div',null,'metric'+(i===2?' emphasis':'')+(i===3?' status-summary':''));card.append(node('span',label),node('span',value,'value'),node('span',note));metrics.append(card);});
   const cards=clear('decision-cards');
-  result.discovery_shortlist.forEach(id=>{const r=result.results.find(c=>c.compound_id===id),card=node('article',null,'decision-card'),head=node('h4');head.append(node('span',id),node('span','Rank '+r.discovery_result.rank,'small'));card.dataset.compoundId=id;card.append(head);const flow=node('div',null,'decision-transition'),before=node('div'),after=node('div');before.append(node('span','Discovery only','small'),node('p','Follow up target binding'));after.append(node('span','With human DILI','small'),node('p',decisions[r.follow_up.decision],r.follow_up.decision==='hold_for_liver_validation'?'hold':''));flow.append(before,node('span','→','arrow'),after);card.append(flow,node('p',r.follow_up.recommendation));cards.append(card);});
+  sortedRows().filter(r=>result.discovery_shortlist.includes(r.compound_id)).forEach(r=>{const id=r.compound_id,card=node('article',null,'decision-card'),head=node('h4');head.append(node('span',id),node('span','Rank '+r.discovery_result.rank,'small'));card.dataset.compoundId=id;card.append(head);const flow=node('div',null,'decision-transition'),before=node('div'),after=node('div');before.append(node('span','Discovery only','small'),node('p','Follow up target binding'));after.append(node('span','With human DILI','small'),node('p',decisions[r.follow_up.decision],r.follow_up.decision==='hold_for_liver_validation'?'hold':''));flow.append(before,node('span','→','arrow'),after);card.append(flow,node('p',r.follow_up.recommendation));cards.append(card);});
   if(!result.discovery_shortlist.length)cards.append(node('p','No discovery shortlist is available. Resolve the incomplete binding evidence before drawing follow-up conclusions.','empty'));
   $('candidate-search').value='';$('candidate-filter').value='all';$('candidate-detail').hidden=true;
   renderRows();
@@ -110,6 +112,7 @@ function renderCandidate(r) {
 }
 
 function resultView(name) {
+  applyResultOrder();
   $('result-order-controls').hidden=name==='model';
   if(name!=='explorer' && !showDili){showDili=true;updateEvidenceSwitch();renderRows();$('candidate-detail').hidden=true;}
   ['overview','explorer','discovery','model'].forEach(v=>{$('result-'+v).hidden=v!==name;});
@@ -272,10 +275,11 @@ function modelSetupSummary(selection) {
 }
 function renderDashboard(result) {
   disposePoseViewers();
+  const ordered=sortCandidateRows(result.results,resultOrder.field,resultOrder.direction);
   const scores=clear('score-overview');scores.append(node('p','HUMAN DILI · ALL CANDIDATES','eyebrow'),node('h3','Concern, in context.'),node('p','Each dot is the candidate’s recorded DILI score. The vertical mark is its own decision threshold. Scores are not patient incidence. Select a candidate to explore its evidence.','field-note'));
-  result.results.forEach(r=>{const a=r.toxicity_result.assessment, row=node('button',null,'score-row');row.type='button';row.dataset.compoundId=r.compound_id;row.append(node('span',r.compound_id),scoreGraphic(a.risk_score,a.threshold),node('strong',number(a.risk_score)),node('small',concern(r.toxicity_result)));row.onclick=()=>{resultView('explorer');renderCandidate(r);};scores.append(row);});
+  ordered.forEach(r=>{const a=r.toxicity_result.assessment, row=node('button',null,'score-row');row.type='button';row.dataset.compoundId=r.compound_id;row.append(node('span',r.compound_id),scoreGraphic(a.risk_score,a.threshold),node('strong',number(a.risk_score)),node('small',concern(r.toxicity_result)));row.onclick=()=>{resultView('explorer');renderCandidate(r);};scores.append(row);});
   const lab=clear('discovery-lab');lab.append(node('p','DISCOVERY LAB · CURRENT STUDY','eyebrow'),node('h3','Binding evidence before liver concern.'),node('p','Expand a candidate below and choose View 3D pose to inspect the predicted ligand inside its protein target.','field-note'),node('p','Boltz-2 outputs below belong to this study. Predicted structures and confidence do not establish measured binding. Atom correspondence to DILI features is only available when explicitly recorded.'));
-  result.results.forEach(r=>{const d=r.discovery_result, details=node('details',null,'discovery-record');details.dataset.compoundId=r.compound_id;details.append(node('summary',r.compound_id+' · '+(d.rank===null?'Unranked':'Rank '+d.rank)+(d.shortlisted?' · Discovery shortlist':'')),node('p','Binder likelihood: '+number(d.mean_binding_probability)+' · Structural confidence: '+values(d.structural_confidence)));
+  ordered.forEach(r=>{const d=r.discovery_result, details=node('details',null,'discovery-record');details.dataset.compoundId=r.compound_id;details.append(node('summary',r.compound_id+' · '+(d.rank===null?'Unranked':'Rank '+d.rank)+(d.shortlisted?' · Discovery shortlist':'')),node('p','Binder likelihood: '+number(d.mean_binding_probability)+' · Structural confidence: '+values(d.structural_confidence)));
     const artifacts=d.structures || [];
     if(!artifacts.length) details.append(node('p','No structure artifact is recorded.','field-note'));
     artifacts.forEach((a,index)=>{details.append(node('p',(a.format || 'Structure')+' · '+a.origin+' · Atom mapping: '+a.atom_mapping_status),node('p','SHA-256: '+a.sha256,'artifact-checksum'));if(reportRun && (reportRun.mode!=='recorded'||resultsSource.kind==='static')){const jobId=reportRun.job_id,button=node('button','Download verified structure ↓','secondary');button.onclick=()=>action(button,async()=>{const file=await resultsSource.structure({job_id:jobId,compound_id:r.compound_id,index});saveFile(file.content,file.filename,file.mime);});details.append(button);}else details.append(node('p','Owned runs and the verified public recording can load saved coordinates. Imported reports require a matching local structure file.','field-note'));});
