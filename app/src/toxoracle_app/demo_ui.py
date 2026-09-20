@@ -135,7 +135,7 @@ def generation_home() -> None:
         '<h1>Start with a target.<br><span>See what changes.</span></h1>'
         '<p>Generate a candidate panel, examine its binding predictions, then see how '
         'human liver-toxicity evidence changes the next experiment.</p>'
-        '<div class="generation-tag">No candidate dataset required</div></div>'
+        '</div>'
         '<aside class="target-card"><div class="eyebrow">Human target</div>'
         '<div class="target-name">ABL1</div><p>' + text(demo.target["protein_name"]) + '</p>'
         '<div class="target-reference">' + text(demo.target["pdb_id"]) + ' · Chain '

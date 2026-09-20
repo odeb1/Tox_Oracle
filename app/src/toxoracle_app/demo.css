@@ -118,7 +118,6 @@ button, input { transition: background-color 160ms ease, border-color 160ms ease
 .generation-hero { display: grid; grid-template-columns: 1.65fr 1fr; align-items: center; gap: 48px; padding-bottom: 12px; }
 .generation-hero h1, .generation-hero h1 span { font-size: clamp(38px, 4.1vw, 58px); }
 .generation-hero p { max-width: 535px; font-size: 14px; }
-.generation-tag { display: inline-block; margin-top: 22px; padding: 7px 12px; border: 1px solid #c6d3e2; border-radius: 6px; color: #405e7f; font-size: 11px; }
 .target-card { background: var(--oracle-blue); color: #f5f3eb; border-radius: 16px; padding: 27px 30px; }
 .target-card .eyebrow { color: #b7c9df; margin-bottom: 12px; }
 .target-name { font: 400 58px/1.1 Georgia, serif; letter-spacing: -2px; }
