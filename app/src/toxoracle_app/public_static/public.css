@@ -1,5 +1,40 @@
 progress{width:100%;height:8px;accent-color:var(--oxford);margin:10px 0 22px}
 .brand-logo{display:block;width:205px;max-width:100%;height:auto}
+.saved-review-disclosure{border-top:1px solid var(--line);margin-top:26px;padding-top:20px}
+.saved-review-disclosure>summary{font-size:14px}
+.saved-review{display:grid;gap:20px;margin-top:24px;min-width:0}
+.saved-review-heading{display:flex;align-items:flex-start;justify-content:space-between;gap:20px;flex-wrap:wrap}
+.saved-review-heading .eyebrow{margin-bottom:6px}
+.saved-review-heading h3{font-size:22px;margin-bottom:0}
+.saved-review-stamp{display:grid;gap:3px;border-left:3px solid var(--blue);padding-left:12px;font-size:12px}
+.saved-review-stamp time{color:var(--muted)}
+.saved-review-metrics{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.saved-review-metric{padding:20px;border:1px solid var(--line);border-radius:12px;background:var(--light-blue);display:flex;flex-direction:column;align-items:flex-start}
+.saved-review-metric strong{font:36px/1.2 Georgia,serif;color:var(--oxford);margin-bottom:8px}
+.saved-review-metric span{font-size:13px;font-weight:650}
+.saved-review-metric p{font-size:12px;color:var(--muted);margin:6px 0 0}
+.saved-review-grid{display:grid;grid-template-columns:1.2fr 1fr;gap:20px;min-width:0}
+.saved-review-card{padding:22px;border:1px solid var(--line);border-radius:12px;background:white;min-width:0}
+.saved-review-card h4{font-size:16px;margin-bottom:14px}
+.saved-review-question{font-size:14px;overflow-wrap:anywhere}
+.saved-review-facts{margin:0;font-size:12px}
+.saved-review-facts>div{display:grid;grid-template-columns:minmax(100px,1fr) minmax(0,2fr);gap:14px;padding:10px 0;border-bottom:1px solid var(--line)}
+.saved-review-facts>div:last-child{border-bottom:0}
+.saved-review-facts dt{color:var(--muted)}
+.saved-review-facts dd{margin:0;overflow-wrap:anywhere;white-space:pre-wrap}
+.saved-review-table{min-width:0;table-layout:fixed}
+.saved-review-table caption{text-align:left;font-size:12px;color:var(--muted);padding-bottom:12px}
+.saved-review-table th,.saved-review-table td{overflow-wrap:anywhere;padding:12px 10px}
+.saved-review-table tbody th{text-transform:none;letter-spacing:0;font-size:12px;color:var(--ink);font-weight:500;background:transparent}
+.saved-review-table code{white-space:normal;overflow-wrap:anywhere}
+.saved-review-compounds th:first-child{width:24%}
+.saved-review-compounds details{margin-top:12px}
+.saved-review-empty{padding:16px;border-radius:8px;background:var(--paper);font-size:14px}
+.saved-review-card>.field-note{margin:12px 0 0}
+.saved-review-compounds{margin-top:18px}
+.saved-review-provenance{padding:16px 20px;background:var(--paper);border-radius:10px}
+@media(max-width:900px){.saved-review-grid{grid-template-columns:1fr}}
+@media(max-width:600px){.saved-review-metrics{grid-template-columns:1fr}.saved-review-metric{padding:16px}.saved-review-metric strong{font-size:30px}.saved-review-card{padding:16px}.saved-review-facts>div{grid-template-columns:1fr;gap:3px}.saved-review-table th,.saved-review-table td{padding:10px 6px}.saved-review-compounds th:first-child{width:30%}.saved-review-provenance{padding:16px}.saved-review-heading h3{font-size:20px}}
 #review-section>.primary{margin-top:24px}.replay-controls{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:16px}
 #planning-note:empty{display:none}#planning-note{white-space:pre-line;margin-bottom:24px}
 #frozen-card{margin-bottom:24px}.event-log li{overflow-wrap:anywhere}.molecule-card strong{overflow-wrap:anywhere}

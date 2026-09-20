@@ -43,7 +43,7 @@ function renderWorkspace(){
   $('position').textContent='Step '+(selected+1)+' of 5 · '+names[selected];$('previous').disabled=selected===0;$('next').disabled=selected>=replay.reached;
   $('input-section').hidden=selected!==0;$('review-section').hidden=selected!==1;$('progress-section').hidden=![2,3].includes(selected);
   $('study-context').hidden=true;
-  if(selected===1){clear('review-readable').append(node('h3',study.review.research_prompt),node('p',resultsSource.slug==='generated'?'Target-only request · 20 proposals · prepared human ABL1 domain':'Supplied dataset · 4 compounds · prepared human ABL1 domain'));$('review-audit').textContent=JSON.stringify(study.review,null,2);}
+  if(selected===1){clear('review-readable').append(node('h3',study.review.research_prompt),node('p',resultsSource.slug==='generated'?'Target-only request · 20 proposals · prepared human ABL1 domain':'Supplied dataset · 4 compounds · prepared human ABL1 domain'));renderSavedReview($('review-audit'),study);}
   if([2,3].includes(selected))renderPlayback();
   if(selected===4)page('results');persist();
 }
