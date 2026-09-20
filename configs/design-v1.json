@@ -1,0 +1,13 @@
+{
+  "protocol": "abl1_fragment_generation_v1",
+  "requested_count_default": 20,
+  "max_generation_requests": 5,
+  "batch_size": 20,
+  "max_proposals": 100,
+  "max_candidates": 20,
+  "shortlist_size": 2,
+  "diversity_selection": "greedy_maxmin_morgan2_2048_chiral_tanimoto_structure_id_ties_v1",
+  "reference_role": "service_gate_not_generated_candidate",
+  "dili_driven_optimization": false,
+  "automatic_replacement": false
+}

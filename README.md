@@ -15,6 +15,13 @@ Start with the [Rosalind screening runbook](docs/runbooks/rosalind-screening.md)
 `./scripts/toxoracle-screen preflight`. The policy is provisional and the demonstration
 is retrospective; candidate training membership is displayed.
 
+**Advanced branch:** `feat/target-only-generation` adds explicit supplied-candidate
+and target-only ABL1 modes through `./scripts/toxoracle-design`. GenMol proposes
+fragment-derived molecules, Boltz-2 supplies discovery evidence, and the unchanged
+DILI baseline adds liver concern. See the
+[advanced runbook](docs/runbooks/target-only-generation.md) for commands and acceptance
+status. This does not change the frozen MVP demonstration above.
+
 See the [Team B runbook](docs/runbooks/team-b-local-mvp.md) for reproducible training,
 privacy setup and real cached DILI outputs. The user has passed the browser smoke test.
 

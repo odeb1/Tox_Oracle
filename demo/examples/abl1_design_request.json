@@ -1,0 +1,8 @@
+{
+  "schema_version": "1.0",
+  "request_id": "abl1_design_v1",
+  "mode": "generate_screen",
+  "target": "ABL1",
+  "input_provenance": "public",
+  "count": 20
+}

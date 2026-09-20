@@ -61,6 +61,7 @@ Tox_Oracle/
 | Synthetic malformed request | `contracts/examples/` |
 | BioNeMo response adapter | `discovery/src/` |
 | Workbench task instructions | `discovery/prompts/` |
+| Advanced generation plan | `docs/decisions/target-only-generation-plan.md` |
 | Target identity and preparation metadata | `discovery/configs/targets/` |
 | DILI standardisation/feature/model code | `toxicity/src/` |
 | Downloaded FDA data | `data/raw/` (local, ignored; ingestion creates it) |

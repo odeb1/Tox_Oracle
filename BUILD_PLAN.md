@@ -4,6 +4,11 @@ Updated: 19 September 2026. This plan supersedes the earlier requirement for Tea
 to supply a second toxicity predictor. The agreed implementation is on
 `feat/rosalind-boltz2-screening`; the trained Team B model stays unchanged.
 
+Advanced development is isolated on `feat/target-only-generation` in
+[the target-only generation plan](docs/decisions/target-only-generation-plan.md).
+The new command is documented in the [advanced runbook](docs/runbooks/target-only-generation.md).
+This document remains the frozen MVP/demo scope; advanced acceptance is recorded separately.
+
 ## 1. Objective and demonstration
 
 A researcher prompts Rosalind to assess a fixed candidate panel against one target.
