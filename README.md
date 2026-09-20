@@ -15,8 +15,8 @@ Start with the [Rosalind screening runbook](docs/runbooks/rosalind-screening.md)
 `./scripts/toxoracle-screen preflight`. The policy is provisional and the demonstration
 is retrospective; candidate training membership is displayed.
 
-**Advanced branch:** `feat/target-only-generation` adds explicit supplied-candidate
-and target-only ABL1 modes through `./scripts/toxoracle-design`. GenMol proposes
+**Target-only generation:** supplied-candidate and target-only ABL1 modes are
+available through `./scripts/toxoracle-design`. GenMol proposes
 fragment-derived molecules, Boltz-2 supplies discovery evidence, and the unchanged
 DILI baseline adds liver concern. See the
 [advanced runbook](docs/runbooks/target-only-generation.md) for commands and acceptance
@@ -32,10 +32,19 @@ python3 -m pip install -r requirements.txt
 python3 -m streamlit run streamlit_app.py --server.address 127.0.0.1
 ```
 
-Open **http://127.0.0.1:8501**. The Streamlit dashboard includes candidate comparison,
+Open **http://127.0.0.1:8501**. The dashboard opens on **Target-only discovery**:
+the recorded ABL1 generation study, from 40 GenMol proposals to 29 acceptable unique
+molecules and 20 screened candidates. Switch between discovery-only and human DILI
+views to see why both frozen shortlisted candidates were held for liver validation.
+Download example requests and the recorded evidence. This page presents aggregate
+results; individual generated molecules and their scores are not bundled.
+
+The other pages include candidate comparison,
 interactive molecular feature highlights, a rotatable saved NVIDIA docking pose,
 model evaluation, study imports and HTML/CSV/JSON exports. The bundled public results
-work offline without API credentials or model weights.
+work offline without API credentials or model weights. The demo makes no live
+generation or screening calls, and the public DILI examples remain separate from
+the generated ABL1 study.
 
 Complete discovery/toxicity case folders are picked up from `demo/examples/` and
 `artifacts/runs/`, or can be opened as ZIP bundles in **Load a study**. Use

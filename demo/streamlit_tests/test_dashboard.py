@@ -6,6 +6,7 @@ from streamlit.testing.v1 import AppTest
 
 from app.tests.test_demo_data import case_documents, case_zip
 from toxoracle_app.demo_data import ROOT, load_baseline, load_case_zip, read_json
+from toxoracle_app.demo_generation import load_generation_demo
 from toxoracle_app.demo_visuals import molecule_svg, pose_chart, unique_features
 
 
@@ -19,13 +20,40 @@ class DashboardTests(unittest.TestCase):
 
     def test_all_pages_and_presenter_notes_render(self):
         self.assert_clean()
-        self.assertEqual(self.app.metric[0].value, "3")
+        self.assertEqual(self.app.radio(key="page").value, "Target-only discovery")
+        self.assertEqual(self.app.metric[0].value, "40")
         self.app.toggle(key="presenter_notes").set_value(True).run()
-        for page in ["Candidate explorer", "Discovery lab", "Model & provenance", "Load a study", "Overview"]:
+        for page in ["Target-only discovery", "Candidate explorer", "Discovery lab", "Model & provenance", "Load a study", "Overview"]:
             with self.subTest(page=page):
                 self.app.radio(key="page").set_value(page).run()
                 self.assert_clean()
         self.assertEqual(len(self.app.get("download_button")), 3)
+
+    def test_generation_landing_preserves_counts_when_revealing_dili(self):
+        demo = load_generation_demo()
+        expected = ['40', '29', str(demo.selected), f"{demo.report['held_shortlist_count']} / {demo.shortlisted}"]
+        self.assertEqual([m.value for m in self.app.metric], expected)
+        self.assertTrue(self.app.selectbox(key='study_picker').disabled)
+        self.assertTrue(any('Hold for liver validation' in m.value for m in self.app.markdown))
+        self.app.radio(key='generation_evidence_view').set_value('Discovery only').run()
+        self.assert_clean()
+        self.assertEqual([m.value for m in self.app.metric], expected)
+        self.assertTrue(any('Prioritized for follow-up' in m.value for m in self.app.markdown))
+        self.assertFalse(any('### Hold for liver validation' in m.value for m in self.app.markdown))
+        self.app.radio(key='generation_evidence_view').set_value('With human DILI').run()
+        self.assert_clean()
+        self.assertTrue(any('20 of 20 screened candidates' in m.value for m in self.app.markdown))
+        self.assertTrue(any('not the generated ABL1 panel' in m.value for m in self.app.caption))
+
+    def test_generation_page_links_to_separate_public_dili_examples(self):
+        self.app.button(key='generation_explore_dili').click().run()
+        self.assert_clean()
+        self.assertEqual(self.app.radio(key='page').value, 'Candidate explorer')
+        self.assertFalse(self.app.selectbox(key='study_picker').disabled)
+        self.assertEqual(self.app.selectbox(key='study_picker').value, 'Public DILI study')
+        self.app.radio(key='page').set_value('Target-only discovery').run()
+        self.assert_clean()
+        self.assertEqual(self.app.metric[0].value, '40')
 
     def test_candidate_switching_and_atom_highlight_preserve_scores(self):
         self.app.radio(key="page").set_value("Candidate explorer").run()
