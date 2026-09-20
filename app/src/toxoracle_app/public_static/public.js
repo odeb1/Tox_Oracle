@@ -3,8 +3,8 @@ const $=id=>document.getElementById(id);
 let report=null,reportRun=null,pollTimer=null,moleculeImages={},showDili=true;
 let resultsSource=null,study=null,replay=null,timer=null,loadRevision=0,renderedStudy=null;
 const studyNavigation={selected:true}; // Shared renderer host: public navigation is owned here.
-const names=['Set up','Review privately','Run discovery','Assess liver concern','Results'];
-const stageNames={planning:'Nemotron · interpreting the approved question',preparing:'Preparing molecular identities locally',reference:'Boltz-2 · checking the imatinib reference',reference_finished:'Reference check finished',generating:'GenMol · proposing molecules',selecting:'Selecting valid, diverse proposals',candidates_ready:'Generated candidates ready',screening:'Boltz-2 · screening binding',candidate_finished:'Candidate discovery finished',shortlist_frozen:'Discovery shortlist frozen',toxicity:'Local DILI · assessing human liver concern',reporting:'Assembling the scientific report',explaining:'Nemotron · interpreting the results'};
+const names=['Set up','Review privately','Run discovery','Assess toxicity concern','Results'];
+const stageNames={planning:'Nemotron · interpreting the approved question',preparing:'Preparing molecular identities locally',reference:'Boltz-2 · checking the imatinib reference',reference_finished:'Reference check finished',generating:'GenMol · proposing molecules',selecting:'Selecting valid, diverse proposals',candidates_ready:'Generated candidates ready',screening:'Boltz-2 · screening binding',candidate_finished:'Candidate discovery finished',shortlist_frozen:'Discovery shortlist selected',toxicity:'Local DILI · assessing human liver concern',reporting:'Assembling the scientific report',explaining:'Nemotron · interpreting the results'};
 function node(tag,text,cls){const e=document.createElement(tag);if(text!==undefined&&text!==null)e.textContent=String(text);if(cls)e.className=cls;return e;}
 function clear(id){$(id).replaceChildren();return $(id);}
 function timeLabel(value){return new Date(value).toLocaleTimeString([], {hour:'2-digit',minute:'2-digit',second:'2-digit'});}
@@ -52,14 +52,15 @@ function renderPlayback(){
   const boundary=study.run.events.findIndex(e=>e.stage==='toxicity');
   const count=replay.selected===2&&boundary>=0?Math.min(replay.count,boundary):replay.count;
   const events=study.run.events.slice(0,count),last=events.at(-1);
-  $('progress-heading').textContent=replay.selected===3?'Human context changes the follow-up.':'From a question to a frozen shortlist.';
+  $('toxicity-endpoint').hidden=replay.selected!==3;
+  $('progress-heading').textContent=replay.selected===3?'Human context changes the follow-up.':'From a question to a discovery shortlist.';
   $('progress-message').textContent=(last?stageNames[last.stage]||last.stage:'Ready to replay the saved workflow')+' · '+count+' / '+study.run.events.length+' recorded events';
   $('replay-progress').max=study.run.events.length;$('replay-progress').value=count;$('pause').textContent=replay.playing?'Pause':'Resume';$('pause').disabled=replay.count===study.run.events.length;
   const duration=(new Date(study.run.finished_at)-new Date(study.run.created_at))/60000;
   $('original-time').textContent='Original live run: '+new Date(study.run.created_at).toLocaleString()+' · '+duration.toFixed(1)+' minutes. Playback timing is compressed; event times below are original.';
   const planning=clear('planning-note');if(count>1&&study.run.assistant?.plan)planning.append(node('p','NVIDIA NEMOTRON · RECORDED PLAN','eyebrow'),node('p',study.run.assistant.plan.text),node('span',study.run.assistant.plan.returned_model,'small'));
   const frozen=clear('frozen-card');frozen.append(node('p','DISCOVERY SHORTLIST','eyebrow'));
-  if(events.some(e=>e.stage==='shortlist_frozen')){frozen.append(node('h3','Frozen before DILI'),node('p',study.report.discovery_shortlist.join(' · ')));if(replay.selected===3)frozen.append(node('p','The separate DILI model adds human liver concern. Held candidates stay on the shortlist; no replacements are generated.'));}
+  if(events.some(e=>e.stage==='shortlist_frozen')){frozen.append(node('h3','Selected before toxicity assessment'),node('p',study.report.discovery_shortlist.join(' · ')));if(replay.selected===3)frozen.append(node('p','The separate DILI model adds human liver concern. Held candidates stay on the shortlist; no replacements are generated.'));}
   else frozen.append(node('h3','Waiting for discovery evidence'),node('p','Candidates are ranked using binding predictions alone.'));
   const log=clear('event-log');events.forEach(e=>log.append(node('li',timeLabel(e.at)+' · '+(stageNames[e.stage]||e.stage)+(e.compound_id?' · '+e.compound_id:'')+(e.status?' · '+e.status:'')+(e.batch?' · batch '+e.batch:''))));
   const grid=clear('live-candidates');
