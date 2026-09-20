@@ -101,25 +101,55 @@ function discoveryRecordTable(record) {
   });
 }
 function evaluationSourceTable(evaluation) {
-  return sourceRecordTable(evaluation, {
-    caption:'Recorded held-out evaluation · Model metrics and source checksums',
+  const section=node('div'),comparison=node('div',null,'evaluation-comparison');
+  comparison.tabIndex=0;comparison.setAttribute('role','region');comparison.setAttribute('aria-label','Held-out model comparison');
+  const table=node('table',null,'source-record-table'),head=node('thead'),header=node('tr'),body=node('tbody');
+  table.append(node('caption','Recorded held-out evaluation · Logistic regression is the reference model'));
+  ['Metric','Random forest','Logistic regression'].forEach(title=>{const th=node('th',title);th.scope='col';header.append(th);});
+  head.append(header);table.append(head,body);
+  const metrics=[
+    ['Test compounds',['n']], ['Reference-positive compounds',['positives']],
+    ['AUROC',['auroc']], ['Average precision',['average_precision']], ['Brier score',['brier']],
+    ['Sensitivity',['sensitivity']], ['Specificity',['specificity']], ['Decision threshold',['threshold']],
+    // Reference-label rows and predicted-call columns are ordered negative, positive.
+    ['Confusion matrix · True negatives',['confusion_matrix',0,0]],
+    ['Confusion matrix · False positives',['confusion_matrix',0,1]],
+    ['Confusion matrix · False negatives',['confusion_matrix',1,0]],
+    ['Confusion matrix · True positives',['confusion_matrix',1,1]]
+  ];
+  const models=['random_forest','logistic_reference'];
+  metrics.forEach(([label,path])=>{
+    const tr=node('tr'),th=node('th',label);th.scope='row';tr.append(th);
+    models.forEach(key=>{
+      const value=path.reduce((record,field)=>record?.[field],evaluation[key]);
+      tr.append(node('td',value===null || value===undefined?'Unavailable':String(value)));
+    });
+    body.append(tr);
+  });
+  comparison.append(table);section.append(comparison);
+  const source={...evaluation},compared=new Set(metrics.map(([,path])=>path[0]));
+  models.forEach(key=>{
+    delete source[key];
+    const extra=Object.fromEntries(Object.entries(evaluation[key] || {}).filter(([field])=>!compared.has(field)));
+    if(Object.keys(extra).length)source[key]=extra;
+  });
+  section.append(sourceRecordTable(source, {
+    caption:'Evaluation source · Checksums, baseline and limitations',
     labels:{
       model_sha256:'Model SHA-256 checksum', data_sha256:'Data SHA-256 checksum',
-      n:'Test compounds', positives:'Reference-positive compounds', auroc:'AUROC',
-      average_precision:'Average precision', brier:'Brier score', sensitivity:'Sensitivity',
-      specificity:'Specificity', threshold:'Decision threshold', confusion_matrix:'Confusion matrix',
       raw_random_forest_brier:'Raw random forest Brier score'
     },
     groups:[
       ['Model & data checksums', ['model_sha256','data_sha256']],
-      ['Random forest', ['random_forest']],
-      ['Logistic regression reference', ['logistic_reference']],
       ['Uncalibrated baseline', ['raw_random_forest_brier']],
-      ['Evaluation limitations', ['limitations']]
+      ['Evaluation limitations', ['limitations']],
+      ['Additional random forest fields', ['random_forest']],
+      ['Additional logistic regression fields', ['logistic_reference']]
     ],
     unwrap:['random_forest','logistic_reference'],
     monospace:['model_sha256','data_sha256']
-  });
+  }));
+  return section;
 }
 function sourceRecordTable(record, {caption, labels, groups, unwrap=[], monospace=[]}) {
   const known = new Set(groups.flatMap(([,keys])=>keys));
