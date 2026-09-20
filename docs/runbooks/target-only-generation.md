@@ -122,10 +122,15 @@ unassessed. DILI flags drug-level liver concern, not dose-specific safe exposure
 
 ```bash
 PATH="$PWD/toxicity/.venv/bin:$PATH" ./scripts/check.sh
+PATH="$PWD/toxicity/.venv/bin:$PATH" bash scripts/check-generation.sh
 ```
 
 New ordinary tests use synthetic vendor responses; RDKit-dependent tests are
-skipped in the lightweight CI environment and run in the scientific environment.
+skipped in the lightweight CI environment. The dedicated `generation-science` CI
+job installs `toxicity/requirements-model.lock` with Python 3.12 and runs
+`scripts/check-generation.sh`. This check requires the scientific dependencies
+and fails if any generation test is skipped; it uses no credentials, model weights
+or live inference calls.
 Live validation is separate and must record all attempts, including rejected
 outputs. Cached replay must reproduce the selected structures and scientific
 results, while labelling replay as cached. Visually inspect the HTML report.
