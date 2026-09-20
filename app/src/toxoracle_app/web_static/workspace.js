@@ -89,6 +89,11 @@ function step(name) {
 }
 function renderStep(){
   const nav=studyNavigation, name=nav.viewing, order=nav.order;
+  const routingPanel=$('workflow-routing-panel');
+  $('progress-section').insertBefore(routingPanel,$('toxicity-endpoint'));
+  routingPanel.hidden=name!=='run';
+  const routingRun=activeRun || (nav.latest==='results'?reportRun:null);
+  renderWorkflowRouting(routingRun?(routingRun.workflow==='generate_screen'?'generated':'supplied'):($('candidate-content').value.trim()?'supplied':'generated'),routingRun?.mode==='recorded',routingRun?'Study pathway':'Route preview');
   document.body.dataset.studyStage=nav.latest;
   document.querySelectorAll('[data-step]').forEach(li=>{li.classList.toggle('current',li.dataset.step===name);li.classList.toggle('done',order.indexOf(li.dataset.step)<nav.reached);});
   document.querySelectorAll('[data-step-link]').forEach(button=>{button.disabled=order.indexOf(button.dataset.stepLink)>nav.reached;button.setAttribute('aria-pressed',String(button.dataset.stepLink===name));});
@@ -100,7 +105,7 @@ function renderStep(){
   $('step-next').disabled=order.indexOf(name)>=nav.reached;
   $('step-live').hidden=!nav.selected;
   $('step-view-label').textContent='Step '+(order.indexOf(name)+1)+' of 5'+(nav.selected?' · Viewing saved evidence':' · Current stage');
-  if(showHistory)renderStepHistory(name);
+  if(showHistory){renderStepHistory(name);if(name==='run')$('step-history-section').insertBefore(routingPanel,$('step-history-section').children[3] || null);}
 }
 function selectStep(name){if(!studyNavigation.select(name))return;if(name==='results'){page('results');return;}page('workspace');renderStep();}
 document.querySelectorAll('[data-step-link]').forEach(b=>b.onclick=()=>selectStep(b.dataset.stepLink));
@@ -277,6 +282,7 @@ $('inspect-report').onclick=()=>action($('inspect-report'),async()=>{const resul
 $('refresh-setup').onclick=()=>action($('refresh-setup'),refreshWorkspace);
 $('verify-assistant').onclick=()=>action($('verify-assistant'),async()=>{const info=await api('/api/assistant/verify');workspace.assistant=info;applyAssistantStatus(info);});
 async function boot() {
+  updateRoute();
   try { sid=sessionStorage.getItem('toxoracle-session'); } catch {}
   if(sid){try{await refreshWorkspace();}catch(error){if(error.message==='session_expired')sid=null;else throw error;}}
   if(!sid){const result=await api('/api/session');sid=result.session_id;try{sessionStorage.setItem('toxoracle-session',sid);}catch{}await refreshWorkspace();}
@@ -308,7 +314,7 @@ $('continue-fixed').onclick=()=>action($('continue-fixed'),async()=>{const run=a
 $('download-html').onclick=()=>action($('download-html'),()=>download('html'));
 const replayNames=['Set up','Review privately','Run discovery','Assess toxicity concern','Results'];
 $('replay-button').onclick=()=>action($('replay-button'),async()=>{replayEvidence=await api('/api/recorded');replayStage=0;page('replay');renderReplay();});
-$('close-replay').onclick=()=>{page('workspace');};
+$('close-replay').onclick=()=>{page('workspace');renderStep();};
 $('replay-back').onclick=()=>{replayStage--;renderReplay();};
 $('replay-next').onclick=()=>{if(replayStage<4){replayStage++;renderReplay();}else{moleculeImages=Object.fromEntries(replayEvidence.candidates.filter(c=>c.image).map(c=>[c.compound_id,c.image]));activeRun=null;approvedStudy=null;studyNavigation.reset();page('workspace');renderResults(replayEvidence.report,{job_id:'recorded-abl1',mode:'recorded',status:'complete',assistant:{status:'off'}});}};
 function renderReplay(){
@@ -316,7 +322,11 @@ function renderReplay(){
   $('replay-heading').textContent=['A question becomes a study.','Review happens before sharing.','Discovery finds its shortlist.','Human context changes the next step.','One study. Traceable evidence.'][replayStage];
   $('replay-provenance').textContent=evidence.manifest.title+' · '+evidence.manifest.recorded_at+' · '+evidence.manifest.execution_note;
   const steps=clear('replay-steps');replayNames.forEach((name,i)=>{const li=node('li',null,i===replayStage?'current':i<replayStage?'done':'');li.append(node('span',String(i+1).padStart(2,'0')),document.createTextNode(name));steps.append(li);});
+  const routingPanel=$('workflow-routing-panel');
+  $('progress-section').insertBefore(routingPanel,$('toxicity-endpoint'));
+  routingPanel.hidden=replayStage!==2;
   const content=clear('replay-content');
+  if(replayStage===2){renderWorkflowRouting('supplied',true);content.append(routingPanel);}
   if(replayStage===0){content.append(node('p','RESEARCH QUESTION','eyebrow'),node('h2','Which ABL1 candidates merit follow-up, and what changes after human DILI?'),node('p','Public reference panel · imatinib, dasatinib, nilotinib and bosutinib.'));renderMolecules(content,evidence.candidates);}
   if(replayStage===1){content.append(node('p','LOCAL PRIVACY BOUNDARY','eyebrow'),node('h2','The researcher controls what leaves the laptop.'),node('p',evidence.manifest.privacy_note),node('p','In a new study, review the filtered question and molecular data, acknowledge each retained scientific field, then approve the exact destinations. This recorded view does not create an approval.'),node('p','Boltz-2: approved structures and ABL1 sequence. Nemotron, when enabled: approved question, IDs and computed evidence.'));}
   if(replayStage===2){content.append(node('p','RECORDED BOLTZ-2 EVIDENCE','eyebrow'),node('h2','The top two are selected before toxicity assessment.'));const grid=node('div',null,'molecule-grid');for(const r of [...report.results].sort((a,b)=>(a.discovery_result.rank??99)-(b.discovery_result.rank??99))){const d=r.discovery_result,card=node('article',null,'molecule-card'+(d.shortlisted?' selected-molecule':'')),img=node('img');img.src=evidence.candidates.find(c=>c.compound_id===r.compound_id).image;img.alt='Structure of '+r.compound_id;card.append(img,node('strong',r.compound_id),node('p','Rank '+d.rank+' · '+number(d.mean_binding_probability),'candidate-score'),node('span',d.shortlisted?'Discovery shortlist':'Outside shortlist','small'));grid.append(card);}content.append(grid);content.append(node('p','These are saved results, not live progress. Ranking uses mean binder likelihood, independently of toxicity.','small'));}
@@ -330,7 +340,8 @@ $('revise-study').onclick=()=>action($('revise-study'),async()=>{if(activeRun?.s
 
 function updateRoute(){
   const supplied=!!$('candidate-content').value.trim(),box=clear('route-preview');
-  box.append(node('p',supplied?'YOUR CANDIDATES → EVIDENCE':'TARGET → CANDIDATES → EVIDENCE','eyebrow'),node('strong',supplied?'Screen your supplied candidates':'Let the agent propose candidates'),node('p',supplied?'Boltz-2 discovery and local human DILI assessment.':'GenMol generation, Boltz-2 discovery and local human DILI assessment.'));
+  renderWorkflowRouting(supplied?'supplied':'generated');
+  box.append(node('p',supplied?'YOUR CANDIDATES → EVIDENCE':'TARGET → CANDIDATES → EVIDENCE','eyebrow'),node('strong',supplied?'Agent pathway: evaluate supplied candidates':'Agent pathway: generate and evaluate'),node('p',supplied?'After privacy approval: Nemotron plan → Boltz-2 → local DILI assessment.':'After privacy approval: Nemotron plan → GenMol → Boltz-2 → local DILI assessment.'));
 }
 $('target-example').onclick=()=>{$('research-prompt').value='Propose drug candidates for human ABL1 and identify which need liver-safety follow-up.';edited();$('research-prompt').focus();};
 $('clear-candidates').onclick=()=>{$('candidate-content').value='';$('dataset').value='';$('file-label').textContent='Choose a candidate dataset';edited();$('candidate-inputs').open=false;};

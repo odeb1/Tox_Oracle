@@ -17,15 +17,15 @@ for(const entry of index.studies){
 }
 const out=path.join(root,'dist'),shared=path.join(root,'app/src/toxoracle_app/web_static'),pub=path.join(root,'app/src/toxoracle_app/public_static');
 await mkdir(path.join(out,'static'),{recursive:true});
-for(const name of ['workspace.css','results-view.js','pose-viewer.js','vendor'])await cp(path.join(shared,name),path.join(out,'static',name),{recursive:true});
-for(const name of ['public.css','public.js','public-model.js','toxoracle-logo.png'])await cp(path.join(pub,name),path.join(out,'static',name));
+for(const name of ['workspace.css','results-view.js','workflow-routing.js','pose-viewer.js','vendor'])await cp(path.join(shared,name),path.join(out,'static',name),{recursive:true});
+for(const name of ['public.css','public.js','public-model.js','public-review.js','toxoracle-logo.png'])await cp(path.join(pub,name),path.join(out,'static',name));
 await cp(studies,path.join(out,'studies'),{recursive:true});
 const local=await readFile(path.join(shared,'index.html'),'utf8');
 const results=local.slice(local.indexOf('    <section id="results-page"'),local.indexOf('    <section id="replay-page"'));
 const template=await readFile(path.join(pub,'index.html'),'utf8');
 await writeFile(path.join(out,'index.html'),template.replace('<!-- SHARED_RESULTS -->',results));
 // Fail closed if a previous build or accidental copy left additional files.
-const expected=new Set(['index.html','vercel.json',...['workspace.css','results-view.js','pose-viewer.js','public.css','public.js','public-model.js','toxoracle-logo.png'].map(n=>'static/'+n),'studies/index.json']);
+const expected=new Set(['index.html','vercel.json',...['workspace.css','results-view.js','workflow-routing.js','pose-viewer.js','public.css','public.js','public-model.js','public-review.js','toxoracle-logo.png'].map(n=>'static/'+n),'studies/index.json']);
 for(const entry of index.studies){const m=JSON.parse(await readFile(path.join(studies,entry.slug,'manifest.json')));for(const n of ['manifest.json',...Object.keys(m.assets)])expected.add('studies/'+entry.slug+'/'+n);}
 for(const name of await readdir(path.join(shared,'vendor')))expected.add('static/vendor/'+name);
 async function scan(dir){for(const item of await readdir(dir,{withFileTypes:true})){const p=path.join(dir,item.name);if(item.isDirectory())await scan(p);else{const rel=path.relative(out,p);if(!expected.has(rel))throw Error('Unexpected deployment file: '+rel);const bytes=await readFile(p);if(/\/Users\/|\/home\/|nvapi-[A-Za-z0-9_-]+|"(?:session_id|owner_id|api_key)"/.test(bytes.toString()))throw Error('Private content: '+rel);}}}

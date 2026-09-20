@@ -2,6 +2,7 @@ const assert=require('node:assert/strict');
 const fs=require('node:fs/promises');
 const path=require('node:path');
 const {StaticStudySource,ReplayState,panelMatches,parsePanel}=require('../src/toxoracle_app/public_static/public-model.js');
+const {checkSavedReview}=require('./public_review_checks.cjs');
 async function main(){
  const root=path.resolve(__dirname,'../../demo/public');let requests=[];
  const publicRoot=path.resolve(__dirname,'../src/toxoracle_app/public_static');
@@ -13,6 +14,7 @@ async function main(){
  for(const slug of ['generated','supplied']){
   const source=new StaticStudySource(slug,transport);const study=await source.load();
   assert.equal(study.run.mode,'live');assert.equal(study.run.assistant.status,'complete');
+  checkSavedReview(study);
   let poses=0;
   for(const row of study.report.results){
    const data=await source.evidence({compound_id:row.compound_id});assert.ok(data.image.startsWith('data:image/svg+xml'));
@@ -44,6 +46,6 @@ async function main(){
  const missing=new StaticStudySource('generated',async()=>({ok:false}));await assert.rejects(missing.load(),/unavailable/);
  const hash=new StaticStudySource('generated',transport);await assert.rejects(hash.verify(new Uint8Array([1]),'0'.repeat(64)),/integrity/);
  assert.ok(requests.every(url=>!url.includes('/api/')));
- console.log('Public demo: both data sources, all molecule variants and 22 poses verified; input, replay, restore and tamper checks passed.');
+ console.log('Public demo: both data sources, visual privacy reviews, all molecule variants and 22 poses verified; input, replay, restore and tamper checks passed.');
 }
 main().catch(e=>{console.error(e);process.exitCode=1;});

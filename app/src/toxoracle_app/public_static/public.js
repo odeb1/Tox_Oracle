@@ -29,9 +29,11 @@ async function choose(slug,saved={}) {
   resultsSource=source;study=loaded;replay=new ReplayState(study.run.events,saved);report=null;reportRun=null;moleculeImages={};renderedStudy=null;
   $('research-prompt').value=study.run.research_prompt;$('candidate-content').value='';$('dataset').value='';$('dataset-note').textContent='';
   if(slug==='supplied'){$('candidate-content').value=await source.text('example.csv');$('optional-data').open=true;}
+  renderWorkflowRouting(slug,true);
+  $('review-pathway').textContent='Reviewed public inputs went to NVIDIA Nemotron for planning. '+(slug==='generated'?'GenMol proposed molecules, then Boltz-2 screened them against the prepared ABL1 domain.':'Boltz-2 screened the supplied candidates against the prepared ABL1 domain; no molecule generation was needed.')+' Human DILI inference ran locally. Nemotron interpreted the final evidence.';
   $('route-label').textContent=slug==='generated'?'TARGET → CANDIDATES → EVIDENCE':'YOUR CANDIDATES → DISCOVERY → EVIDENCE';
-  $('route-title').textContent=slug==='generated'?'Let the agent propose candidates':'Screen a supplied candidate panel';
-  $('route-copy').textContent=slug==='generated'?'20 GenMol proposals, screened with Boltz-2, then assessed for human liver concern.':'Four public ABL1 drugs, with independent binding and human DILI evidence.';
+  $('route-title').textContent=slug==='generated'?'Agent pathway: generate and evaluate':'Agent pathway: evaluate supplied candidates';
+  $('route-copy').textContent=slug==='generated'?'Recorded Nemotron plan → GenMol → Boltz-2 → local DILI assessment.':'Recorded Nemotron plan → Boltz-2 → local DILI assessment. Uses the four supplied ABL1 candidates.';
   $('example-summary').textContent=slug==='generated'?'20 generated candidates. 18 successful discovery results. Two shortlisted candidates held for liver validation.':'Four familiar ABL1 drugs. See how liver concern changes the next experiment.';
   $('start').disabled=false;$('explore').disabled=false;$('loading-study').hidden=true;$('reset').disabled=false;
   page('workspace');renderWorkspace();persist();
@@ -43,7 +45,8 @@ function renderWorkspace(){
   $('position').textContent='Step '+(selected+1)+' of 5 · '+names[selected];$('previous').disabled=selected===0;$('next').disabled=selected>=replay.reached;
   $('input-section').hidden=selected!==0;$('review-section').hidden=selected!==1;$('progress-section').hidden=![2,3].includes(selected);
   $('study-context').hidden=true;
-  if(selected===1){clear('review-readable').append(node('h3',study.review.research_prompt),node('p',resultsSource.slug==='generated'?'Target-only request · 20 proposals · prepared human ABL1 domain':'Supplied dataset · 4 compounds · prepared human ABL1 domain'));$('review-audit').textContent=JSON.stringify(study.review,null,2);}
+  $('workflow-routing-panel').hidden=selected!==2;
+  if(selected===1){clear('review-readable').append(node('h3',study.review.research_prompt),node('p',resultsSource.slug==='generated'?'Target-only request · 20 proposals · prepared human ABL1 domain':'Supplied dataset · 4 compounds · prepared human ABL1 domain'));renderSavedReview($('review-audit'),study);}
   if([2,3].includes(selected))renderPlayback();
   if(selected===4)page('results');persist();
 }
