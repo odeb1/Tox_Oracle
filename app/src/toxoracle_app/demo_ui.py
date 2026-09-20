@@ -19,8 +19,9 @@ from .demo_data import (
 from .demo_visuals import (
     confusion_chart, feature_chart, molecule_svg, pose_chart, score_chart, unique_features,
 )
+from .demo_generation import EVIDENCE_PATH, load_generation_demo
 
-PAGES = ["Overview", "Candidate explorer", "Discovery lab", "Model & provenance", "Load a study"]
+PAGES = ["Target-only discovery", "Overview", "Candidate explorer", "Discovery lab", "Model & provenance", "Load a study"]
 CALL_LABELS = {"positive": "Elevated predicted concern", "negative": "Lower predicted concern", "unavailable": "Unavailable"}
 
 
@@ -44,6 +45,12 @@ def number(value: object, digits: int = 3) -> str:
 
 def navigate(page: str) -> None:
     st.session_state["page"] = page
+
+
+def navigate_public_study(page: str) -> None:
+    st.session_state["study_picker"] = "Public DILI study"
+    st.session_state.pop("candidate", None)
+    navigate(page)
 
 
 def hero(kicker: str, title: str, description: str, *, accent: str = "") -> None:
@@ -110,6 +117,153 @@ def downloads(study: Study) -> None:
     right.download_button("Source evidence", json.dumps(payload, indent=2, allow_nan=False),
                           f"{stem}.json", "application/json", width="stretch",
                           icon=":material/data_object:", key="evidence_download")
+
+
+def generation_home() -> None:
+    try:
+        demo = load_generation_demo()
+    except (ValueError, OSError) as error:
+        st.error(f"The recorded generation study could not be loaded: {error}")
+        return
+    report, generation = demo.report, demo.report["generation"]
+    held = report["held_shortlist_count"]
+    st.html(
+        '<div class="topline"><div class="breadcrumb"><span>Discovery</span><span>/</span>'
+        '<strong>Target-only ABL1 study</strong></div><span class="pill">Recorded run · '
+        + text(demo.recorded_date) + '</span></div>'
+        '<div class="hero generation-hero"><div><div class="eyebrow">Target-only discovery</div>'
+        '<h1>Start with a target.<br><span>See what changes.</span></h1>'
+        '<p>Generate a candidate panel, examine its binding predictions, then see how '
+        'human liver-toxicity evidence changes the next experiment.</p>'
+        '<div class="generation-tag">No candidate dataset required</div></div>'
+        '<aside class="target-card"><div class="eyebrow">Prepared human target</div>'
+        '<div class="target-name">ABL1</div><p>' + text(demo.target["protein_name"]) + '</p>'
+        '<div class="target-reference">' + text(demo.target["pdb_id"]) + ' · Chain '
+        + text(demo.target["chain"]) + ' · ' + text(demo.target["uniprot_id"]) + '</div>'
+        '<div class="target-seed"><small>Generation starting point</small>'
+        '<strong>Imatinib-derived fragment</strong></div></aside></div>'
+    )
+    st.caption("Recorded experiment, presented from saved evidence. This demo does not make live generation or screening calls.")
+    with st.container(key="generation_metrics"):
+        columns = st.columns(4)
+        for col, label, value in zip(columns,
+                ["GENMOL PROPOSALS", "ACCEPTABLE UNIQUE", "SCREENED CANDIDATES", "SHORTLIST HELD"],
+                [generation["returned_count"], generation["accepted_unique_count"], demo.selected,
+                 f"{held} / {demo.shortlisted}"]):
+            col.metric(label, value)
+    steps = [
+        ("Generate", "GenMol · fragment-derived proposals"),
+        ("Screen", "Boltz-2 · binding and structure"),
+        ("Freeze", f"Top {demo.shortlisted} · discovery shortlist"),
+        ("Assess", "Local DILI · human liver concern"),
+    ]
+    st.html('<div class="generation-flow">' + ''.join(
+        f'<div><span>{i:02d}</span><strong>{text(title)}</strong><small>{text(detail)}</small></div>'
+        for i, (title, detail) in enumerate(steps, 1)) + '</div>')
+
+    section("The same shortlist. A different next step.", "Explore what human DILI adds")
+    view = st.radio("Evidence shown", ["Discovery only", "With human DILI"], index=1,
+                    horizontal=True, key="generation_evidence_view")
+    with_dili = view == "With human DILI"
+    left, right = st.columns([1, 1.45], gap="large")
+    with left, st.container(key="generation_shortlist"):
+        st.html(f'<div class="eyebrow">Frozen discovery shortlist</div><div class="decision-number">{demo.shortlisted}</div>')
+        st.markdown("**Candidates prioritized by binding**")
+        st.write("Ranked by mean Boltz-2 binder likelihood. The shortlist is saved before local DILI inference.")
+        st.caption("Binding predictions and structural confidence remain distinct from liver-toxicity predictions.")
+    with right, st.container(key="generation_followup"):
+        st.html('<div class="eyebrow">' + ("With human DILI evidence" if with_dili else "Discovery evidence alone") + '</div>')
+        if with_dili:
+            st.markdown("### Hold for liver validation")
+            st.write(f"{held} of {demo.shortlisted} shortlisted candidates were held for targeted liver validation. "
+                     f"The local model returned positive DILI calls for {report['dili_calls'].get('positive', 0)} "
+                     f"of {demo.selected} screened candidates.")
+            st.caption(f"Recorded automatic replacements: {report['automatic_replacements']}. "
+                       "The discovery ranking is preserved; follow-up changes after adding liver concern.")
+        else:
+            st.markdown("### Prioritized for follow-up")
+            st.write(f"The top {demo.shortlisted} candidates are the discovery shortlist. "
+                     "Binding evidence alone does not describe their predicted human liver concern.")
+            st.caption("Switch to “With human DILI” to reveal the recorded follow-up decision for this same shortlist.")
+    note("These are aggregate recorded results. Individual generated structures and binding/DILI scores are not bundled here. "
+         "Positive DILI predictions indicate concern for follow-up; they do not establish toxicity in humans.")
+
+    tabs = st.tabs(["Candidate journey", "Workflow & inputs", "Evidence & limitations"])
+    with tabs[0]:
+        section("From proposals to a diverse panel", f"{report['generation_batches']} live GenMol batches")
+        outcomes = report["generation_rejection_counts"]
+        segments = [("selected", "Selected for screening"), ("not_selected", "Acceptable, not selected"),
+                    ("duplicate", "Duplicates"), ("rejected", "Rejected by chemical checks")]
+        st.html('<div class="generation-yield" role="img" aria-label="Recorded proposal outcomes: '
+                + text('; '.join(f'{label}: {outcomes[key]}' for key, label in segments)) + '">'
+                + ''.join(f'<div class="yield-{key}" style="flex:{outcomes[key]}">{outcomes[key]}</div>'
+                          for key, _ in segments if outcomes[key]) + '</div>'
+                + '<div class="yield-legend">'
+                + ''.join(f'<span><i class="yield-{key}"></i>{text(label)} <strong>{outcomes[key]}</strong></span>'
+                          for key, label in segments) + '</div>')
+        st.write("The workflow checks molecular validity and fragment attachment, removes duplicates, then selects a "
+                 "chemically diverse panel. Generation QED scores do not rank the discovery shortlist.")
+        live = report["boltz_execution"]["live_run"]
+        st.dataframe([
+            {"Stage": "GenMol generation", "Recorded execution": f"{report['generation_batches']} live batches", "Output": f"{generation['returned_count']} proposals"},
+            {"Stage": "Boltz-2 discovery", "Recorded execution": f"{live['live']} live · {live['cached']} cached", "Output": f"{demo.selected} candidates + separate reference"},
+            {"Stage": "Human DILI", "Recorded execution": "Local inference", "Output": f"{sum(report['dili_calls'].values())} recorded calls"},
+        ], hide_index=True, width="stretch")
+        elapsed = round(report["live_elapsed_seconds"])
+        st.caption(f"Recorded workflow time: {elapsed // 60} min {elapsed % 60:02d} sec. "
+                   f"Mean pairwise fingerprint distance: {generation['diversity_mean_pairwise_distance']:.3f}. "
+                   "Chemical diversity is not evidence of efficacy or safety.")
+    with tabs[1]:
+        left, right = st.columns(2, gap="large")
+        with left, st.container(border=True):
+            section("Start with a target")
+            st.write("Select human ABL1 and request a panel. The default protocol supplies an imatinib-derived fragment; "
+                     "generation is conditioned on that ligand fragment, not directly on the protein.")
+            st.json(demo.request, expanded=True)
+            st.download_button("Target-only request", json.dumps(demo.request, indent=2),
+                               "abl1-design-request.json", "application/json", key="generation_request_download")
+        with right, st.container(border=True):
+            section("Already have candidates?")
+            st.write("Use supplied-candidate screening to assess an existing panel. To generate analogues instead, "
+                     "supply one to five seed molecules in generation mode.")
+            pair("Prepared target", "Human ABL1 only")
+            pair("Candidate limit", demo.protocol["max_candidates"])
+            pair("Generation budget", f"Up to {demo.protocol['max_generation_requests']} batches / {demo.protocol['max_proposals']} proposals")
+            st.download_button("Supplied-panel request", json.dumps(demo.supplied_request, indent=2),
+                               "abl1-supplied-design-request.json", "application/json", key="supplied_request_download")
+        st.caption("Sensitive inputs require local privacy filtering, review and approval before external submission. "
+                   "These downloads are example requests; the demo does not submit them.")
+        st.link_button("Open the generation workflow guide", "https://github.com/odeb1/Tox_Oracle/blob/main/docs/runbooks/target-only-generation.md")
+    with tabs[2]:
+        left, right = st.columns(2, gap="large")
+        with left:
+            section("Recorded evidence")
+            pair("Study date", demo.recorded_date)
+            pair("Generation protocol", report["protocol"])
+            pair("Excluded from DILI model fitting", f"{report['fitting_membership']['excluded']} / {demo.selected}")
+            pair("Artifact integrity", pretty(report["artifact_integrity"]))
+            st.write("Cache replay: " + report["cache_scientific_equivalence"])
+            st.caption("Exclusion from model fitting does not make generated molecules a labelled evaluation set.")
+        with right:
+            section("How to interpret this study")
+            for limitation in report["limitations"]:
+                st.write("• " + limitation)
+            st.write("Rosalind desktop acceptance is still unverified. This page presents the recorded command-line workflow.")
+        with st.expander("Complete recorded summary"):
+            st.caption(EVIDENCE_PATH)
+            st.json(report)
+        st.download_button("Download generation evidence", json.dumps(report, indent=2, allow_nan=False),
+                           "generation-workflow-v1.json", "application/json", key="generation_evidence_download")
+    section("Explore the model behind the liver assessment", "Separate public DILI examples")
+    st.caption("These links open the public DILI study, not the generated ABL1 panel. You can select other studies in the sidebar.")
+    left, right = st.columns(2)
+    left.button("Explore DILI examples", on_click=navigate_public_study, args=("Candidate explorer",),
+                type="primary", width="stretch", key="generation_explore_dili")
+    right.button("View model evaluation", on_click=navigate_public_study, args=("Model & provenance",),
+                 width="stretch", key="generation_model_evaluation")
+    presenter("Start with ABL1 and no candidate upload. Follow the recorded 40 → 29 → 20 selection, then switch "
+              "between discovery-only and DILI views: the same two shortlisted candidates are held for liver validation. "
+              "Keep the generated panel separate from the public DILI examples and disclose the model limitations.")
 
 
 def overview(study: Study) -> None:
@@ -446,6 +600,8 @@ def main() -> None:
         st.session_state["study_picker"] = "Uploaded study"
         st.session_state["page"] = "Overview"
         st.session_state.pop("candidate", None)
+    if st.session_state.get("page") not in PAGES:
+        st.session_state["page"] = PAGES[0]
     options: dict[str, Path | None] = {"Public DILI study": None}
     for parent in (ROOT / "demo/examples", ROOT / "artifacts/runs"):
         for manifest in sorted(parent.glob("*/manifest.json")):
@@ -458,28 +614,36 @@ def main() -> None:
         symbol = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 40" fill="none"><ellipse cx="20" cy="20" rx="17" ry="8" transform="rotate(-45 20 20)" stroke="#b9d6f2" stroke-width="1.2"/><ellipse cx="20" cy="20" rx="17" ry="8" transform="rotate(45 20 20)" stroke="#87a8ce" stroke-width="1.2"/><circle cx="20" cy="20" r="3" fill="#dce8f5"/><circle cx="8" cy="8" r="2.2" fill="#dce8f5"/></svg>'
         st.html('<div class="brand">' + svg_image(symbol, "", class_name="brand-symbol") + '<span class="brand-name">ToxOracle</span></div><div class="brand-sub">EVIDENCE TO DECISION</div>')
         st.divider()
-        st.html('<div class="rail-heading">Your workspace</div>')
+        st.html('<div class="rail-heading">Explore the evidence</div>')
+        st.radio("Navigate", PAGES, key="page", label_visibility="collapsed", width="stretch")
+        st.html('<div class="rail-heading">Candidate-level studies</div>')
         default = "Configured study" if "Configured study" in options else next((k for k in options if k.startswith("Case ·")), "Public DILI study")
         if st.session_state.get("study_picker") not in options:
             st.session_state["study_picker"] = default
-        selected = st.selectbox("Active study", list(options), key="study_picker")
-        st.html('<div class="rail-heading">Explore the evidence</div>')
-        st.radio("Navigate", PAGES, key="page", label_visibility="collapsed", width="stretch")
+        selected = st.selectbox("Active study", list(options), key="study_picker",
+                                disabled=st.session_state["page"] == "Target-only discovery")
+        if st.session_state["page"] == "Target-only discovery":
+            st.caption("The opening page shows the separate recorded ABL1 generation study.")
         st.divider()
         st.toggle("Presenter notes", key="presenter_notes")
         st.html('<div class="sidebar-note"><div class="eyebrow">Science, within reach.</div><p>A connected view of your candidates and the evidence behind them.</p></div><div class="rail-footer">London AI × Bio Hackathon<br>Research workspace · 2026</div>')
-    try:
-        if selected == "Uploaded study":
-            study = st.session_state["uploaded_study"]
-        elif options[selected] is not None:
-            study = load_case_directory(options[selected])
-        else:
-            study = load_baseline()
-    except (ValueError, OSError, KeyError, TypeError) as error:
-        st.error(f"This study could not be loaded: {error}")
-        st.info("Select the public DILI study to open the bundled demo.")
-        st.stop()
-    st.html(f'<div class="topline"><div class="breadcrumb"><span>Research workspace</span><span>/</span><strong>{text(study.title)}</strong></div><span class="pill"><i class="status-dot"></i>Cached scientific results</span></div>')
-    routes = dict(zip(PAGES, [overview, candidate_explorer, discovery_lab, provenance, load_study_page]))
-    routes[st.session_state["page"]](study)
+    if st.session_state["page"] == "Target-only discovery":
+        generation_home()
+    else:
+        try:
+            if selected == "Uploaded study":
+                study = st.session_state["uploaded_study"]
+            elif options[selected] is not None:
+                study = load_case_directory(options[selected])
+            else:
+                study = load_baseline()
+        except (ValueError, OSError, KeyError, TypeError) as error:
+            st.error(f"This study could not be loaded: {error}")
+            st.info("Select the public DILI study to open the bundled demo.")
+            st.stop()
+        st.html(f'<div class="topline"><div class="breadcrumb"><span>Research workspace</span><span>/</span><strong>{text(study.title)}</strong></div><span class="pill"><i class="status-dot"></i>Cached scientific results</span></div>')
+        routes = {"Overview": overview, "Candidate explorer": candidate_explorer,
+                  "Discovery lab": discovery_lab, "Model & provenance": provenance,
+                  "Load a study": load_study_page}
+        routes[st.session_state["page"]](study)
     st.html('<div class="footer"><span class="footer-brand">ToxOracle <span style="font-family:sans-serif;font-size:10px; margin-left:9px">/ Traceable science</span></span><span>Research prioritisation · Drug-level concern does not establish clinical safety.</span></div>')
