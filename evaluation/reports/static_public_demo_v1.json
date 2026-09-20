@@ -1,0 +1,37 @@
+{
+  "url": "https://toxoracle-demo.vercel.app/",
+  "anonymous_http": 200,
+  "verified_assets": 567,
+  "verified_bytes": 23532180,
+  "all_match_local_build": true,
+  "date": "2026-09-20",
+  "branch": "feat/static-public-demo",
+  "deployment": "dpl_FvigLc2LXeqYchbZssFpSU12y8H5",
+  "sources": {
+    "generated": "bf3e06a08c46441facc6e51def76b04d",
+    "supplied": "d8ee241e77134215a8bfe0b3b6bcdc7a"
+  },
+  "checks": {
+    "repository_check_script": "passed",
+    "web_and_privacy_tests": 87,
+    "public_source_replay_integrity_tests": "passed",
+    "study_navigation_tests": "passed",
+    "generated_webgl_poses": 18,
+    "supplied_webgl_poses": 4,
+    "molecule_features_atom_labels": "passed",
+    "pause_refresh_backtracking": "passed",
+    "mismatched_prompt_and_panel_rejection": "passed",
+    "both_browser_routes": "passed",
+    "mobile_width_no_page_overflow": "375px verified",
+    "html_and_json_downloads": "match exported bytes",
+    "local_app_recorded_results_and_pose": "passed",
+    "hosted_automatic_playback": "passed",
+    "hosted_shortlisted_pose": "passed",
+    "browser_console_errors": 0
+  },
+  "limitations": [
+    "File chooser automation was not exercised; equivalent public CSV/pasted input parsing and exact-panel validation are tested.",
+    "Static recordings only: no fresh inference was attempted or claimed.",
+    "No service-worker offline installation; unvisited assets require connectivity."
+  ]
+}

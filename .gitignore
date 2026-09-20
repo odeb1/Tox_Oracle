@@ -60,3 +60,6 @@ coverage/
 # Local experiment tracking
 mlruns/
 wandb/
+
+# Vercel account/project linkage (never public evidence)
+.vercel/

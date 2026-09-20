@@ -12,6 +12,7 @@ Add dependency manifests and lockfiles alongside each independently runnable com
 
 - Commit source, configuration without secrets, small fixtures, provenance and reviewed reports.
 - Keep datasets in ignored local data directories, except the explicitly shared DILIrank 2.0 CSV snapshot documented in `data/README.md`. Keep generated weights/outputs under `artifacts/` and sensitive subject-level data outside the repository entirely.
+- The reviewed static demo recordings in `demo/public/studies/` are an explicitly approved public export, including verified poses and pre-rendered molecule evidence. Only the selected studies may be exported; see `docs/runbooks/public-demo.md`.
 - A `.gitignore` is an accident-prevention aid, not access control; it does not protect files already tracked by Git.
 - Preserve source licences and attribution for third-party datasets, papers and models. The root licence does not override their terms.
 

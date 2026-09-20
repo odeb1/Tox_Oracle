@@ -2,6 +2,10 @@
 
 20 September 2026. Implemented on `feat/researcher-demo-workflow`.
 
+Hosting direction updated: the user chose a static Vercel demo backed by exported
+saved runs, retaining the live local app. The hosted-worker/Brev options below are
+deferred. The current implementation plan is [Static public demo](static-public-demo-plan.md).
+
 ## Confirmed direction
 
 The user chose **current run with teammate's views**. Results is a top-level

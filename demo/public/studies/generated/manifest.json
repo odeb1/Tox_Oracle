@@ -1,0 +1,1855 @@
+{
+  "assets": {
+    "molecules/GEN_116c1ddbcd0f3a73d53f4b12/Morgan_bit_1160-labels.svg": {
+      "bytes": 52336,
+      "sha256": "5e7c2edd852d4174a4f54aaad7f76ee9e85718f1e457ec96f52f965dae975cb6"
+    },
+    "molecules/GEN_116c1ddbcd0f3a73d53f4b12/Morgan_bit_1160.svg": {
+      "bytes": 23282,
+      "sha256": "c7aa0e84898c02bd2a770e2ab5d655cf4cf7884c387ddea5bdd9919b45087ec3"
+    },
+    "molecules/GEN_116c1ddbcd0f3a73d53f4b12/Morgan_bit_1174-labels.svg": {
+      "bytes": 51611,
+      "sha256": "5a07e42cd1b5d2987799f2172150204c21fdca283942a23223bf8deffaaee641"
+    },
+    "molecules/GEN_116c1ddbcd0f3a73d53f4b12/Morgan_bit_1174.svg": {
+      "bytes": 22556,
+      "sha256": "c615a9db72bcd21ff4e0cd05979b6926a9474e7b5fe29e50f16eeec39572ab55"
+    },
+    "molecules/GEN_116c1ddbcd0f3a73d53f4b12/Morgan_bit_1476-labels.svg": {
+      "bytes": 50609,
+      "sha256": "59381149d5a5bfa420a8af4dd0062a6ed49f1589c0c10a859197a2e0fd8ec9a6"
+    },
+    "molecules/GEN_116c1ddbcd0f3a73d53f4b12/Morgan_bit_1476.svg": {
+      "bytes": 21555,
+      "sha256": "a896cb944d5e16c9a8e11b94a48f080b343510467ff79517ac8f2336e6ec6894"
+    },
+    "molecules/GEN_116c1ddbcd0f3a73d53f4b12/Morgan_bit_1535-labels.svg": {
+      "bytes": 51220,
+      "sha256": "34f42ee4eb10dc4c64f28a8f4600525a02e45f2baafb4708e17665ccbed5e0bb"
+    },
+    "molecules/GEN_116c1ddbcd0f3a73d53f4b12/Morgan_bit_1535.svg": {
+      "bytes": 22166,
+      "sha256": "22ba47e5a2fa2881e017f91adce0384bf1d39818ccf5f7e6bff44db57aa36082"
+    },
+    "molecules/GEN_116c1ddbcd0f3a73d53f4b12/Morgan_bit_1582-labels.svg": {
+      "bytes": 50724,
+      "sha256": "6d97640e7cd5f0af9f2669035b74bb1330dfa03288e8bed03d79df879fe65e44"
+    },
+    "molecules/GEN_116c1ddbcd0f3a73d53f4b12/Morgan_bit_1582.svg": {
+      "bytes": 21670,
+      "sha256": "cc048acac4fe7c755c4cde456b288a472bff87b3a26dea92ae95a023623870cf"
+    },
+    "molecules/GEN_116c1ddbcd0f3a73d53f4b12/Morgan_bit_1855-labels.svg": {
+      "bytes": 51218,
+      "sha256": "0ea8fedbd874a887ff28334d7de588d0699a9bdf58c95bbc96c6fcef8df4ce9e"
+    },
+    "molecules/GEN_116c1ddbcd0f3a73d53f4b12/Morgan_bit_1855.svg": {
+      "bytes": 22164,
+      "sha256": "a4d7cdc69c72c0281057ea13c631b1cf0dc5a8398d7adf34ed3bb555bbf0f857"
+    },
+    "molecules/GEN_116c1ddbcd0f3a73d53f4b12/Morgan_bit_350-labels.svg": {
+      "bytes": 50474,
+      "sha256": "63d179ef2b8b6cbbf29572d9afbe1e04314fcc23db18fc716b797460919c7c78"
+    },
+    "molecules/GEN_116c1ddbcd0f3a73d53f4b12/Morgan_bit_350.svg": {
+      "bytes": 21420,
+      "sha256": "65323267ab990500119df42d74673dcb1cf0173ba3ec82fab359b4b6f154a9bb"
+    },
+    "molecules/GEN_116c1ddbcd0f3a73d53f4b12/Morgan_bit_378-labels.svg": {
+      "bytes": 49464,
+      "sha256": "3546870de6a45af5aa32301548d603c2555ce9b6cb8d73afd0fb3d0d6dea24d9"
+    },
+    "molecules/GEN_116c1ddbcd0f3a73d53f4b12/Morgan_bit_378.svg": {
+      "bytes": 20410,
+      "sha256": "5fbf6be41d921b7c49ce65fff1172bd7fb50aa1f61882bb625e63106b05089b5"
+    },
+    "molecules/GEN_116c1ddbcd0f3a73d53f4b12/Morgan_bit_787-labels.svg": {
+      "bytes": 52164,
+      "sha256": "da585b1864b11d7e27511b911e1c1647fc94c0149804b8b152ed5bc31916f372"
+    },
+    "molecules/GEN_116c1ddbcd0f3a73d53f4b12/Morgan_bit_787.svg": {
+      "bytes": 23110,
+      "sha256": "5657d0f720287925a3d7ccb674ad716d73cfb4ea71bf78b8a5b70adca33cf589"
+    },
+    "molecules/GEN_116c1ddbcd0f3a73d53f4b12/Morgan_bit_981-labels.svg": {
+      "bytes": 51622,
+      "sha256": "52708d27d1e0dc09bfd25baf68283af48de8daf007a10090894fe6a6a6fbc39a"
+    },
+    "molecules/GEN_116c1ddbcd0f3a73d53f4b12/Morgan_bit_981.svg": {
+      "bytes": 22566,
+      "sha256": "77abdafd17a20b4fe5bcfbbde17a6ff0ea3a45afe43e242fb7566eaf8fc99a0f"
+    },
+    "molecules/GEN_116c1ddbcd0f3a73d53f4b12/molecule-labels.svg": {
+      "bytes": 50677,
+      "sha256": "89ff89b90e42f21bb6fb1027660cd3aaabf5ac02fcf2bc306effc87a9828c473"
+    },
+    "molecules/GEN_116c1ddbcd0f3a73d53f4b12/molecule.svg": {
+      "bytes": 21623,
+      "sha256": "36a12b953fbf3e979a23aae864d69d174642c46ca5d9104c9f79a859615a548b"
+    },
+    "molecules/GEN_1a9ba19f039ddd57279bde42/Morgan_bit_1-labels.svg": {
+      "bytes": 39749,
+      "sha256": "d9b4a016ad47efbdd2c3ec658091b6a286ce8a372e781b86915e6c789390d649"
+    },
+    "molecules/GEN_1a9ba19f039ddd57279bde42/Morgan_bit_1.svg": {
+      "bytes": 19490,
+      "sha256": "8816f63472a46ce4bc95e3f4803efc21b1bb8cabe88e9bf460f4107f1e10e0ec"
+    },
+    "molecules/GEN_1a9ba19f039ddd57279bde42/Morgan_bit_1160-labels.svg": {
+      "bytes": 41211,
+      "sha256": "eacc4fb4a401a1ef2771e96c4069405d36d24f89ec47b334e5b14868a259e5f3"
+    },
+    "molecules/GEN_1a9ba19f039ddd57279bde42/Morgan_bit_1160.svg": {
+      "bytes": 20958,
+      "sha256": "9676d2922fa2e4c0be6d30fbd95ce4ab2a8e376f28cc793cc0e5b9d6ca19c521"
+    },
+    "molecules/GEN_1a9ba19f039ddd57279bde42/Morgan_bit_1476-labels.svg": {
+      "bytes": 39696,
+      "sha256": "88a1a8cfd5bf1ae1b80df005183da7ebd9c88027b0ca06ca1c19a9a6005367af"
+    },
+    "molecules/GEN_1a9ba19f039ddd57279bde42/Morgan_bit_1476.svg": {
+      "bytes": 19441,
+      "sha256": "9873f3bedf1ef1343b0931435b7bb9eb3568dd6568ee19c8e6695492900b13b5"
+    },
+    "molecules/GEN_1a9ba19f039ddd57279bde42/Morgan_bit_1535-labels.svg": {
+      "bytes": 40090,
+      "sha256": "336f166ea4dfca63d0eeeb8be5175db97351d07869ceb0a712d5fbe33c37ba70"
+    },
+    "molecules/GEN_1a9ba19f039ddd57279bde42/Morgan_bit_1535.svg": {
+      "bytes": 19835,
+      "sha256": "6c43624b8a96c311450ed9f1cec1bc8b092368e9c5f1583852b26f8736266d44"
+    },
+    "molecules/GEN_1a9ba19f039ddd57279bde42/Morgan_bit_1582-labels.svg": {
+      "bytes": 39596,
+      "sha256": "07044e9613db40a76ed90986cc5b060a897faade93582f8203ba75b44f571b57"
+    },
+    "molecules/GEN_1a9ba19f039ddd57279bde42/Morgan_bit_1582.svg": {
+      "bytes": 19342,
+      "sha256": "2d281886a40876e62b235e7a406f8cfdcac60dd2c793662eacca27a49db74c89"
+    },
+    "molecules/GEN_1a9ba19f039ddd57279bde42/Morgan_bit_1722-labels.svg": {
+      "bytes": 40215,
+      "sha256": "59dd0d919f4e96161dcdb3c95b50b0a51c011a97e946f0dbe68b6372487dfcff"
+    },
+    "molecules/GEN_1a9ba19f039ddd57279bde42/Morgan_bit_1722.svg": {
+      "bytes": 19950,
+      "sha256": "f83d3ff027f52381be32a70165823934061801ffcc8e437589ace25e44a1c833"
+    },
+    "molecules/GEN_1a9ba19f039ddd57279bde42/Morgan_bit_1855-labels.svg": {
+      "bytes": 40090,
+      "sha256": "6971fdd017a42cf38d896cbd4d334f388f7a32d7ad323664fc3e4a4bfd725b62"
+    },
+    "molecules/GEN_1a9ba19f039ddd57279bde42/Morgan_bit_1855.svg": {
+      "bytes": 19835,
+      "sha256": "0ff84f1395893f124bb5d917ab6da78993867f901256831ecb016cc8a46370d8"
+    },
+    "molecules/GEN_1a9ba19f039ddd57279bde42/Morgan_bit_227-labels.svg": {
+      "bytes": 40020,
+      "sha256": "fbfb7f6cdeb6f3b39841c85f0eca8ff84bedb5edf4b9a2e6f475a1303c94e9f3"
+    },
+    "molecules/GEN_1a9ba19f039ddd57279bde42/Morgan_bit_227.svg": {
+      "bytes": 19765,
+      "sha256": "fff9840404a64af6128dc384b9b50bbad7639f06c5752de065142270890682f7"
+    },
+    "molecules/GEN_1a9ba19f039ddd57279bde42/Morgan_bit_350-labels.svg": {
+      "bytes": 39551,
+      "sha256": "b660c29bf67707578afb5b27e03f1410fbf4ac9c6c363dfd74c5cd21436b2aa1"
+    },
+    "molecules/GEN_1a9ba19f039ddd57279bde42/Morgan_bit_350.svg": {
+      "bytes": 19291,
+      "sha256": "f664ec3ad0bb40256142ff484fe57c89ca59cb1cac3ceb568a4e07e15cb19075"
+    },
+    "molecules/GEN_1a9ba19f039ddd57279bde42/Morgan_bit_787-labels.svg": {
+      "bytes": 41036,
+      "sha256": "9086c22ba6456dd24e5717ad9560ec1491f72b1c7683d3bd6d25285b745e310d"
+    },
+    "molecules/GEN_1a9ba19f039ddd57279bde42/Morgan_bit_787.svg": {
+      "bytes": 20785,
+      "sha256": "c9ad54ccc8acb65676101a73315a6827c5edabd3d4e02b5099272509067efb9e"
+    },
+    "molecules/GEN_1a9ba19f039ddd57279bde42/molecule-labels.svg": {
+      "bytes": 39549,
+      "sha256": "07f58ea283ab9c927d837523ae9afa182e3d20f6642c92f5db0cd6f4f79d0f92"
+    },
+    "molecules/GEN_1a9ba19f039ddd57279bde42/molecule.svg": {
+      "bytes": 19288,
+      "sha256": "e7d48e865aeae4ce75f202185bab2b16dcce18ddb74babaf17e248a0f44a0043"
+    },
+    "molecules/GEN_1be062b8a72206ea06c140aa/Morgan_bit_1160-labels.svg": {
+      "bytes": 42225,
+      "sha256": "5499b393ca0b22bf5b947335b7389a3b1fbfcf720fe2b84f5c0b67812a887721"
+    },
+    "molecules/GEN_1be062b8a72206ea06c140aa/Morgan_bit_1160.svg": {
+      "bytes": 19347,
+      "sha256": "16f479dbb6b2b6d0804efb08fcf1d9869778948a05be8b58743471466747b987"
+    },
+    "molecules/GEN_1be062b8a72206ea06c140aa/Morgan_bit_1535-labels.svg": {
+      "bytes": 41102,
+      "sha256": "54b822091ad09367a7030f374124d4dd9f141027a6b9a6f1d0aa8043e7a74ac6"
+    },
+    "molecules/GEN_1be062b8a72206ea06c140aa/Morgan_bit_1535.svg": {
+      "bytes": 18224,
+      "sha256": "6a215b191e72a3e7ac7ae79b3431a4d3913035693f96fe9fb409e892c413be17"
+    },
+    "molecules/GEN_1be062b8a72206ea06c140aa/Morgan_bit_1582-labels.svg": {
+      "bytes": 40609,
+      "sha256": "e0d1d7d91cf26f18a9d296146d4607006dab292ff9542f8f03173a0a7bb98582"
+    },
+    "molecules/GEN_1be062b8a72206ea06c140aa/Morgan_bit_1582.svg": {
+      "bytes": 17731,
+      "sha256": "17535da1f5ffec2be083a7eac1e5cb779762bd5a9d8d287d48a905639de7b8a3"
+    },
+    "molecules/GEN_1be062b8a72206ea06c140aa/Morgan_bit_1722-labels.svg": {
+      "bytes": 41228,
+      "sha256": "533bf5485a26aaa6232ace4909fe0917ebcf9a178d5427368a0495b40c281c5a"
+    },
+    "molecules/GEN_1be062b8a72206ea06c140aa/Morgan_bit_1722.svg": {
+      "bytes": 18347,
+      "sha256": "92f3fd7bc0ff829db26a094172faab468b6709e6f90a92ee32d07f2ebf5101c9"
+    },
+    "molecules/GEN_1be062b8a72206ea06c140aa/Morgan_bit_1795-labels.svg": {
+      "bytes": 42866,
+      "sha256": "9c2d621688d588c82a42efdd3f138176d6b815358dacef4ea8e05bb9fa8ab04b"
+    },
+    "molecules/GEN_1be062b8a72206ea06c140aa/Morgan_bit_1795.svg": {
+      "bytes": 19987,
+      "sha256": "a3b727d5c4e8407818a669599a6e7a5af2a2f5b1c144accc21ac8d9d31c9b2bf"
+    },
+    "molecules/GEN_1be062b8a72206ea06c140aa/Morgan_bit_1855-labels.svg": {
+      "bytes": 41102,
+      "sha256": "9656126bd8b3893756de26bce0ee2d28c620ddc60bbb46cb5ea4ab560532e586"
+    },
+    "molecules/GEN_1be062b8a72206ea06c140aa/Morgan_bit_1855.svg": {
+      "bytes": 18224,
+      "sha256": "930ad734cd71eca444320bc2984f1dbbb3a4bb05ce7d78628597694f9565714e"
+    },
+    "molecules/GEN_1be062b8a72206ea06c140aa/Morgan_bit_1873-labels.svg": {
+      "bytes": 45551,
+      "sha256": "c64f8d8b2f7bdc663442cd43b737187c4298458eeb623fde33fbfcb22d75c59c"
+    },
+    "molecules/GEN_1be062b8a72206ea06c140aa/Morgan_bit_1873.svg": {
+      "bytes": 22686,
+      "sha256": "476cf11542847b932cb9f3cab2ef0927210895b66bd257d518f18205b9438564"
+    },
+    "molecules/GEN_1be062b8a72206ea06c140aa/Morgan_bit_378-labels.svg": {
+      "bytes": 39346,
+      "sha256": "d2632d4f630a72675c27a9d588a52954f1346f0ebc45c7db3a10b0c9c6c8c81f"
+    },
+    "molecules/GEN_1be062b8a72206ea06c140aa/Morgan_bit_378.svg": {
+      "bytes": 16468,
+      "sha256": "4c423cdfef9b3c409ab273274a82cd8b73b8008049165064a9c21f00c48b1647"
+    },
+    "molecules/GEN_1be062b8a72206ea06c140aa/Morgan_bit_491-labels.svg": {
+      "bytes": 41304,
+      "sha256": "de919ed1870bf2106f4a60edbdafb60fd3ea6da00aa8c2c43f1c41ba20b70281"
+    },
+    "molecules/GEN_1be062b8a72206ea06c140aa/Morgan_bit_491.svg": {
+      "bytes": 18426,
+      "sha256": "6d2ef85dff6aea03e802af80ab7aadbd42610ee18c62dde4deb4eeb270b4efa8"
+    },
+    "molecules/GEN_1be062b8a72206ea06c140aa/Morgan_bit_787-labels.svg": {
+      "bytes": 42052,
+      "sha256": "45d24731f65c16bb5af4d0d4dc706e2186314e961ea610b447223f956cb75149"
+    },
+    "molecules/GEN_1be062b8a72206ea06c140aa/Morgan_bit_787.svg": {
+      "bytes": 19174,
+      "sha256": "8a2f29446cc1f0393a3ab11dae2708bca4ea8deeb2dbe202b13bfa4d7eefe326"
+    },
+    "molecules/GEN_1be062b8a72206ea06c140aa/molecule-labels.svg": {
+      "bytes": 40555,
+      "sha256": "ee4273d721016a4fbe2a15367a53d5cd8b225d2a91095cf80a290d822bfb2483"
+    },
+    "molecules/GEN_1be062b8a72206ea06c140aa/molecule.svg": {
+      "bytes": 17677,
+      "sha256": "3e2f61eed6e54c52ac43452c8aa6048495b9161fd2fb17d0fa1b3b3b4b25d813"
+    },
+    "molecules/GEN_27d68466cde64f574a4d0c6c/Morgan_bit_1160-labels.svg": {
+      "bytes": 55196,
+      "sha256": "7b2bfa0efae75bab9d20cfb2e3e046f4e85340610ea307e9f260abd9260cc4d6"
+    },
+    "molecules/GEN_27d68466cde64f574a4d0c6c/Morgan_bit_1160.svg": {
+      "bytes": 23305,
+      "sha256": "1a917b25a75cbabf3da6d55bcd44cec74460046a5a5de8c1dfc1a5480824f6e4"
+    },
+    "molecules/GEN_27d68466cde64f574a4d0c6c/Morgan_bit_1535-labels.svg": {
+      "bytes": 54078,
+      "sha256": "2f3e3fad26d1346c072bf116ff6e66710d219d1e67db1d82380cf9381faa9af8"
+    },
+    "molecules/GEN_27d68466cde64f574a4d0c6c/Morgan_bit_1535.svg": {
+      "bytes": 22187,
+      "sha256": "af1b6478dcd4415744f2227b6a7e7d5ff0c4f6f61ac0b69e7d2fbf3b27759898"
+    },
+    "molecules/GEN_27d68466cde64f574a4d0c6c/Morgan_bit_1582-labels.svg": {
+      "bytes": 53584,
+      "sha256": "b2138967d1e462670e3152210c1982c64c1d08dd1bff0686a49c4bd01e3b6c0a"
+    },
+    "molecules/GEN_27d68466cde64f574a4d0c6c/Morgan_bit_1582.svg": {
+      "bytes": 21693,
+      "sha256": "07c97d6acf677a851535420b2edd98dfa6ae547068b80e3550f7c6a5e25d0b29"
+    },
+    "molecules/GEN_27d68466cde64f574a4d0c6c/Morgan_bit_1855-labels.svg": {
+      "bytes": 54078,
+      "sha256": "299cc14611a0dc1daac4a837a98050477a53e65175747a4eb233727b8a20d013"
+    },
+    "molecules/GEN_27d68466cde64f574a4d0c6c/Morgan_bit_1855.svg": {
+      "bytes": 22187,
+      "sha256": "bc62750e10e6011830619d9f71fc6bb35948336e3e3e3f0d67f1fd6ec8efe350"
+    },
+    "molecules/GEN_27d68466cde64f574a4d0c6c/Morgan_bit_1897-labels.svg": {
+      "bytes": 55675,
+      "sha256": "9c82ad1fb7af2720c1b5fc9147e6647acfd4662b4cdcda3ae78b461849457305"
+    },
+    "molecules/GEN_27d68466cde64f574a4d0c6c/Morgan_bit_1897.svg": {
+      "bytes": 23784,
+      "sha256": "fdefccae94f35902756bf8fafb98f4c40616645fda626b53e18c9d456288abe4"
+    },
+    "molecules/GEN_27d68466cde64f574a4d0c6c/Morgan_bit_378-labels.svg": {
+      "bytes": 52322,
+      "sha256": "34b189334ae9760729c85a472147049c49faf93de772ee9fcdceb7575b13020a"
+    },
+    "molecules/GEN_27d68466cde64f574a4d0c6c/Morgan_bit_378.svg": {
+      "bytes": 20431,
+      "sha256": "71d1ff156e5991c98e2c07ab3a22d44aeae46c60d12ae6227271f1f85636c458"
+    },
+    "molecules/GEN_27d68466cde64f574a4d0c6c/Morgan_bit_491-labels.svg": {
+      "bytes": 54281,
+      "sha256": "b083e3e1fd389b4be667c58488c8508b6954fa72efd501857de5422b96d343be"
+    },
+    "molecules/GEN_27d68466cde64f574a4d0c6c/Morgan_bit_491.svg": {
+      "bytes": 22390,
+      "sha256": "3a80e1b0172fca6325fa55e386dc6dc7a1bef89837703f3e1db1c814e521081f"
+    },
+    "molecules/GEN_27d68466cde64f574a4d0c6c/Morgan_bit_772-labels.svg": {
+      "bytes": 56867,
+      "sha256": "ca45699588414f11116c43b61d817a4ecd051bd6f734d81c6af588f1576b6259"
+    },
+    "molecules/GEN_27d68466cde64f574a4d0c6c/Morgan_bit_772.svg": {
+      "bytes": 24982,
+      "sha256": "2436c70aad5147b3a691bd054137ba86f81f6ef8d77acb06e995fdac58d6855e"
+    },
+    "molecules/GEN_27d68466cde64f574a4d0c6c/Morgan_bit_787-labels.svg": {
+      "bytes": 55024,
+      "sha256": "875c15d3bb16a940d40318125c70d50bd557ca91c79331c19fb02fcac64fa44c"
+    },
+    "molecules/GEN_27d68466cde64f574a4d0c6c/Morgan_bit_787.svg": {
+      "bytes": 23131,
+      "sha256": "f73f0b7c3ca9a0a853c908f69d89fa209e056adbdd96a6370d1c902d875e1f7e"
+    },
+    "molecules/GEN_27d68466cde64f574a4d0c6c/Morgan_bit_940-labels.svg": {
+      "bytes": 54682,
+      "sha256": "dc5c88203fef717a197ba626abd43d24086be833d37f616b17708846947f3885"
+    },
+    "molecules/GEN_27d68466cde64f574a4d0c6c/Morgan_bit_940.svg": {
+      "bytes": 22791,
+      "sha256": "016e825d31a648945c7464862c5402fa2360275bdf0adc6c6d8901d4c9a86076"
+    },
+    "molecules/GEN_27d68466cde64f574a4d0c6c/molecule-labels.svg": {
+      "bytes": 53537,
+      "sha256": "2b660d8950b9489db30ceb33e9f1afccf88d8b199f7b0f18bf34ad5d49dbf158"
+    },
+    "molecules/GEN_27d68466cde64f574a4d0c6c/molecule.svg": {
+      "bytes": 21646,
+      "sha256": "b91de2493ebe2f2c5cd0e0c7f642376d4992ae3215a55398e571e559a71eddc0"
+    },
+    "molecules/GEN_31e89f887106d50bdc580a12/Morgan_bit_1160-labels.svg": {
+      "bytes": 41473,
+      "sha256": "37b111d2181d7d2e394e176a180e57722e9943c9bc867af7f695c31a73d395ae"
+    },
+    "molecules/GEN_31e89f887106d50bdc580a12/Morgan_bit_1160.svg": {
+      "bytes": 18501,
+      "sha256": "3e0250398c9c96efc7766da0dce115731b8f1a3bb1c5c3897f6a79353dc56a7b"
+    },
+    "molecules/GEN_31e89f887106d50bdc580a12/Morgan_bit_1535-labels.svg": {
+      "bytes": 40352,
+      "sha256": "08becefc23f5787fd95065cd2f22e48407809246fffe5dab7f34f3edb2b02b12"
+    },
+    "molecules/GEN_31e89f887106d50bdc580a12/Morgan_bit_1535.svg": {
+      "bytes": 17380,
+      "sha256": "300a22a2b0581fa38e70a6439bd05c0a8610d8686270a7ae8bfc32536faa5499"
+    },
+    "molecules/GEN_31e89f887106d50bdc580a12/Morgan_bit_1539-labels.svg": {
+      "bytes": 42504,
+      "sha256": "4759d5d484abe8e6b065dc56830f95259bc55d1918d3b9cf1e2c0da7aa972711"
+    },
+    "molecules/GEN_31e89f887106d50bdc580a12/Morgan_bit_1539.svg": {
+      "bytes": 19529,
+      "sha256": "25897d61e95615a65f7a1f3b3095c9df8b39623bad27056102b82cdd0fbf9b51"
+    },
+    "molecules/GEN_31e89f887106d50bdc580a12/Morgan_bit_1582-labels.svg": {
+      "bytes": 39858,
+      "sha256": "340679290036751d801d3096c345b139b72500de58df460a21e00aefa964b604"
+    },
+    "molecules/GEN_31e89f887106d50bdc580a12/Morgan_bit_1582.svg": {
+      "bytes": 16886,
+      "sha256": "9b3405335314acbcffefc410a542342a313251b607736e63146da90a97141c96"
+    },
+    "molecules/GEN_31e89f887106d50bdc580a12/Morgan_bit_1722-labels.svg": {
+      "bytes": 40480,
+      "sha256": "0ea561f3b6f39a4acd67a4889322f349abf0ea4a61dacf7f10338276baf3b06a"
+    },
+    "molecules/GEN_31e89f887106d50bdc580a12/Morgan_bit_1722.svg": {
+      "bytes": 17508,
+      "sha256": "683a6e9fbba0dfd005da85f5529940caa973a870df008749e160349561fd0563"
+    },
+    "molecules/GEN_31e89f887106d50bdc580a12/Morgan_bit_1855-labels.svg": {
+      "bytes": 40352,
+      "sha256": "af4fe011db2fd1b1557dc8c0dd6e652b2361298a5be3b49ad8bc9d06095b0476"
+    },
+    "molecules/GEN_31e89f887106d50bdc580a12/Morgan_bit_1855.svg": {
+      "bytes": 17380,
+      "sha256": "a5b1b6e925ceb87c84ec36a9bba75a1233933cd35cb494541a595085a386a4f2"
+    },
+    "molecules/GEN_31e89f887106d50bdc580a12/Morgan_bit_1873-labels.svg": {
+      "bytes": 43573,
+      "sha256": "3597377dc22acec6adc012d8f8069a4a7411e3dcf31b1f3f7fe938a07d9e00db"
+    },
+    "molecules/GEN_31e89f887106d50bdc580a12/Morgan_bit_1873.svg": {
+      "bytes": 20601,
+      "sha256": "0ccb648e83014e036f3e54055e10afb03370a827beadb9ca1fc6ed2fef81ce7f"
+    },
+    "molecules/GEN_31e89f887106d50bdc580a12/Morgan_bit_378-labels.svg": {
+      "bytes": 38596,
+      "sha256": "5a3ceb0b6c43d7b3168862015cf9707ed4bb9f81d153e899884d532f23d9d033"
+    },
+    "molecules/GEN_31e89f887106d50bdc580a12/Morgan_bit_378.svg": {
+      "bytes": 15624,
+      "sha256": "b2c8ce5d4ded93d508340118c887849e3ffce0536867a318bf3d5dfe8c18cc21"
+    },
+    "molecules/GEN_31e89f887106d50bdc580a12/Morgan_bit_491-labels.svg": {
+      "bytes": 41296,
+      "sha256": "384774f050d963a00f6bec385f8b6be55229cd05b8561017cdc954c8806030c2"
+    },
+    "molecules/GEN_31e89f887106d50bdc580a12/Morgan_bit_491.svg": {
+      "bytes": 18324,
+      "sha256": "eb0664b8f1a3cb0e20ff57792faddd4a285f54167d2fe12e4e56dc013ff40a35"
+    },
+    "molecules/GEN_31e89f887106d50bdc580a12/Morgan_bit_787-labels.svg": {
+      "bytes": 41298,
+      "sha256": "54162b2d7a8004bdc7f45587d627ea2897dc1354ebc97532361e8d770846d391"
+    },
+    "molecules/GEN_31e89f887106d50bdc580a12/Morgan_bit_787.svg": {
+      "bytes": 18326,
+      "sha256": "c80ddfddbc0442b620bba52f1888106712f249b733da33ab1b97f3ccb51b0542"
+    },
+    "molecules/GEN_31e89f887106d50bdc580a12/molecule-labels.svg": {
+      "bytes": 39811,
+      "sha256": "fbabcd7b3d899acd33bdd89bf86812c12c037cde889f63d50bb58d8482b60931"
+    },
+    "molecules/GEN_31e89f887106d50bdc580a12/molecule.svg": {
+      "bytes": 16839,
+      "sha256": "149cb225964d21c61d01b95ef73f41e239589cef6dfa20f70a228555a2ed0695"
+    },
+    "molecules/GEN_480f498701f6f3e73ce655cb/Morgan_bit_1160-labels.svg": {
+      "bytes": 46083,
+      "sha256": "d2aa58765873099f502a6d73e7c9b7eea8d61b1826615731ff7bcd2a4f524403"
+    },
+    "molecules/GEN_480f498701f6f3e73ce655cb/Morgan_bit_1160.svg": {
+      "bytes": 20853,
+      "sha256": "6230a50c3bb610618ca35a28c0d9fdf99b6a08eaba7332693afa2ca7a84a19ef"
+    },
+    "molecules/GEN_480f498701f6f3e73ce655cb/Morgan_bit_1440-labels.svg": {
+      "bytes": 45158,
+      "sha256": "b7c29d4c9e68018288649ea44b4ddd54bd493b1bd453e0b3f49afd2c233aaf08"
+    },
+    "molecules/GEN_480f498701f6f3e73ce655cb/Morgan_bit_1440.svg": {
+      "bytes": 19928,
+      "sha256": "8d7d665d9be1b67491b069577f840031cdfacf478c4b8c1291d9cd2dad57250b"
+    },
+    "molecules/GEN_480f498701f6f3e73ce655cb/Morgan_bit_1535-labels.svg": {
+      "bytes": 44960,
+      "sha256": "3ed04630a09e5c657ff64043784fec6c23077054c032ea30c30708e1f8eb5cbb"
+    },
+    "molecules/GEN_480f498701f6f3e73ce655cb/Morgan_bit_1535.svg": {
+      "bytes": 19730,
+      "sha256": "75445778cc62e4cc7c709515e4cd9f1d74f73f3671b8b30d2dfa9f940fa8b327"
+    },
+    "molecules/GEN_480f498701f6f3e73ce655cb/Morgan_bit_1582-labels.svg": {
+      "bytes": 44467,
+      "sha256": "517e24470ce11c6d656d0ee48d5a6d6d9f1474becfdb2ed74c693d1cdd98a68f"
+    },
+    "molecules/GEN_480f498701f6f3e73ce655cb/Morgan_bit_1582.svg": {
+      "bytes": 19237,
+      "sha256": "431af37f5b7bdb38872844a44ce27d875aa5c0dc55ac4128c53e1919defe699c"
+    },
+    "molecules/GEN_480f498701f6f3e73ce655cb/Morgan_bit_1722-labels.svg": {
+      "bytes": 45086,
+      "sha256": "a1312ac6d487456db1c4d480c6e4baaec40d1528dcf1242dbe2844309a57f1f6"
+    },
+    "molecules/GEN_480f498701f6f3e73ce655cb/Morgan_bit_1722.svg": {
+      "bytes": 19854,
+      "sha256": "16dde81ae91c862ab152fbff42a5d59c8ea62cd415b2730eb1ad97fbdd42c87c"
+    },
+    "molecules/GEN_480f498701f6f3e73ce655cb/Morgan_bit_1855-labels.svg": {
+      "bytes": 44960,
+      "sha256": "04c3bc55218da944f9f32909e1e0880fbc238c4bede88a545bb297e591a9fd87"
+    },
+    "molecules/GEN_480f498701f6f3e73ce655cb/Morgan_bit_1855.svg": {
+      "bytes": 19730,
+      "sha256": "2f5c4b8dbf3abf3c4ea3b04e35ede1055c4b7a1b03f393c896182c40557f7f48"
+    },
+    "molecules/GEN_480f498701f6f3e73ce655cb/Morgan_bit_335-labels.svg": {
+      "bytes": 45566,
+      "sha256": "1df846db903700f1b5a6a94e7893240c6d8971530cc4be5535e2581212d8e45d"
+    },
+    "molecules/GEN_480f498701f6f3e73ce655cb/Morgan_bit_335.svg": {
+      "bytes": 20336,
+      "sha256": "b3eda5e07f7ab4b33de523606e5964156f605dfbdb82d64762b166c708d9c6cd"
+    },
+    "molecules/GEN_480f498701f6f3e73ce655cb/Morgan_bit_378-labels.svg": {
+      "bytes": 43204,
+      "sha256": "a2a1ad2aad203a3f96bf7d7f81b01051d062d4e4c7e4f8a29b6fd8abdf3cdb8e"
+    },
+    "molecules/GEN_480f498701f6f3e73ce655cb/Morgan_bit_378.svg": {
+      "bytes": 17974,
+      "sha256": "e46a1d632789e863f1bc3d5e10646b2babc8bac069b479da604eee517caa01d2"
+    },
+    "molecules/GEN_480f498701f6f3e73ce655cb/Morgan_bit_491-labels.svg": {
+      "bytes": 45162,
+      "sha256": "214058bbc0ee15833568ec4ae3a169b948d41fa1b9c4737cde020bc768d4201e"
+    },
+    "molecules/GEN_480f498701f6f3e73ce655cb/Morgan_bit_491.svg": {
+      "bytes": 19932,
+      "sha256": "6892da84353dbb7fb200016b569d1501b51f2211958a5eaf54702391c89c87f9"
+    },
+    "molecules/GEN_480f498701f6f3e73ce655cb/Morgan_bit_787-labels.svg": {
+      "bytes": 45910,
+      "sha256": "952795c43b52fd751351fd445cbd812d5a65361d1ec8daf62fe23fe9e62a545a"
+    },
+    "molecules/GEN_480f498701f6f3e73ce655cb/Morgan_bit_787.svg": {
+      "bytes": 20677,
+      "sha256": "a03c3731d390cf1e3826ee232c6cf7d1d0b77d02052731e5a0713b0e58e169b1"
+    },
+    "molecules/GEN_480f498701f6f3e73ce655cb/molecule-labels.svg": {
+      "bytes": 44413,
+      "sha256": "412cf7bddc5c333209f4dbee30f6c108a16035a3ece7915627e663e4976fab40"
+    },
+    "molecules/GEN_480f498701f6f3e73ce655cb/molecule.svg": {
+      "bytes": 19183,
+      "sha256": "955d97dea0bd74812f11d0b8f2fb3aaf1db3bdab76a60a2af6673010b57c5c60"
+    },
+    "molecules/GEN_4cd49e9cf971fda2d9fbadb1/Morgan_bit_1160-labels.svg": {
+      "bytes": 48423,
+      "sha256": "58fe33e375c8cae8d32eebb22dccf7d0f4d560703453f38fd8df5ee8f98c5bd4"
+    },
+    "molecules/GEN_4cd49e9cf971fda2d9fbadb1/Morgan_bit_1160.svg": {
+      "bytes": 23244,
+      "sha256": "b0063c68dce6c86ac815af27d3339f549a6c8b90a62a5d2f991bab7f21cc150d"
+    },
+    "molecules/GEN_4cd49e9cf971fda2d9fbadb1/Morgan_bit_1416-labels.svg": {
+      "bytes": 47494,
+      "sha256": "6687139fbad9ccff3eef6409a00e0de1ddce7baba87f1f23407d5f4b5a6c9d44"
+    },
+    "molecules/GEN_4cd49e9cf971fda2d9fbadb1/Morgan_bit_1416.svg": {
+      "bytes": 22314,
+      "sha256": "54210b498c5c79feb63d43e45ca56a1af60c98d5051a37d786010edcad4935ab"
+    },
+    "molecules/GEN_4cd49e9cf971fda2d9fbadb1/Morgan_bit_1476-labels.svg": {
+      "bytes": 46896,
+      "sha256": "7049e4436b846531c85dd6d6e07f964356a2f0005f2b7aa7ad115fd8e2f20cf3"
+    },
+    "molecules/GEN_4cd49e9cf971fda2d9fbadb1/Morgan_bit_1476.svg": {
+      "bytes": 21717,
+      "sha256": "6db3190f4f096ada1650bf0e31b518c67d199bf3165681e85573b52c870a108c"
+    },
+    "molecules/GEN_4cd49e9cf971fda2d9fbadb1/Morgan_bit_1535-labels.svg": {
+      "bytes": 47300,
+      "sha256": "fb1693055bb815224e2e1b7ac8818abcc0765e656eb85d996ea0edc451870653"
+    },
+    "molecules/GEN_4cd49e9cf971fda2d9fbadb1/Morgan_bit_1535.svg": {
+      "bytes": 22121,
+      "sha256": "e0cb5020d4043abdb6b9eda321a5a41443c1c9792a67d8d3193aca919bd1ac3b"
+    },
+    "molecules/GEN_4cd49e9cf971fda2d9fbadb1/Morgan_bit_1582-labels.svg": {
+      "bytes": 46807,
+      "sha256": "c764e99e09498c8d4f80848a50a86410fac00a68703bd35dcbcddeabe6ca480f"
+    },
+    "molecules/GEN_4cd49e9cf971fda2d9fbadb1/Morgan_bit_1582.svg": {
+      "bytes": 21628,
+      "sha256": "d2d5c6130d81441a59c4ea9536c2a3ffa7237e9e63b5aa86851ac538b432bf8c"
+    },
+    "molecules/GEN_4cd49e9cf971fda2d9fbadb1/Morgan_bit_1604-labels.svg": {
+      "bytes": 47501,
+      "sha256": "25d95f5ac32cda1a84dd5f060fde686bb7bc22eab2537530eb551f97cacbc738"
+    },
+    "molecules/GEN_4cd49e9cf971fda2d9fbadb1/Morgan_bit_1604.svg": {
+      "bytes": 22322,
+      "sha256": "8665c872f962694cf37a3a415cb899c38b47cde1dd1bc8cf8742381289be34c5"
+    },
+    "molecules/GEN_4cd49e9cf971fda2d9fbadb1/Morgan_bit_1855-labels.svg": {
+      "bytes": 47300,
+      "sha256": "ceb72fbb98a52027250081cd614f35f55b87741c7afdb96a5242109c786e80fb"
+    },
+    "molecules/GEN_4cd49e9cf971fda2d9fbadb1/Morgan_bit_1855.svg": {
+      "bytes": 22121,
+      "sha256": "765e1f16b7016d2fd30fadacb35c816e3cc33ee840a530d2917e7bb0739f9063"
+    },
+    "molecules/GEN_4cd49e9cf971fda2d9fbadb1/Morgan_bit_350-labels.svg": {
+      "bytes": 46754,
+      "sha256": "37c81567152135bf56c1422976985a8ddb6b09769985679f8c9e79cc32601902"
+    },
+    "molecules/GEN_4cd49e9cf971fda2d9fbadb1/Morgan_bit_350.svg": {
+      "bytes": 21575,
+      "sha256": "3efdc504b23a2eadcad3f8a2b40a612b8b3221bc75441eda8d6ffe4ccd528051"
+    },
+    "molecules/GEN_4cd49e9cf971fda2d9fbadb1/Morgan_bit_378-labels.svg": {
+      "bytes": 45544,
+      "sha256": "2ed7c4451f146ca20bf8b44dce91d3f7b41e7b61efd667e42dd23f669d228c70"
+    },
+    "molecules/GEN_4cd49e9cf971fda2d9fbadb1/Morgan_bit_378.svg": {
+      "bytes": 20365,
+      "sha256": "d9f4703d394fdc1024c187c59c94819b989faa1813af53666119e1a059e3ab82"
+    },
+    "molecules/GEN_4cd49e9cf971fda2d9fbadb1/Morgan_bit_787-labels.svg": {
+      "bytes": 48250,
+      "sha256": "5b4e689b15c7295eb2f3e1d5d922aecac8f098ccff9078be3d151eb5c19615d8"
+    },
+    "molecules/GEN_4cd49e9cf971fda2d9fbadb1/Morgan_bit_787.svg": {
+      "bytes": 23067,
+      "sha256": "86f59fdb1869c2c70bab85002f645987df1c40181f9d66537df70f591fa5c73a"
+    },
+    "molecules/GEN_4cd49e9cf971fda2d9fbadb1/molecule-labels.svg": {
+      "bytes": 46753,
+      "sha256": "a21f3686f96948339fae7991315e35e14c3f5a2a2800ff893090036dec510b23"
+    },
+    "molecules/GEN_4cd49e9cf971fda2d9fbadb1/molecule.svg": {
+      "bytes": 21574,
+      "sha256": "5554c0629f79b388d9dc479ca3ed96396e8d38ad7f57da97d2902963a02f3e08"
+    },
+    "molecules/GEN_5ed5d81af9b0d30b4d08d4a8/Morgan_bit_1160-labels.svg": {
+      "bytes": 49514,
+      "sha256": "f72a5a099be91d33d07771fca52377ec105f1472245d7feb2874ce85e464bd54"
+    },
+    "molecules/GEN_5ed5d81af9b0d30b4d08d4a8/Morgan_bit_1160.svg": {
+      "bytes": 22988,
+      "sha256": "b6a3a7e9d0bad9de242b8f258581d40bc7dc8dcdf8a1e4650f399d41d8c55476"
+    },
+    "molecules/GEN_5ed5d81af9b0d30b4d08d4a8/Morgan_bit_1476-labels.svg": {
+      "bytes": 47995,
+      "sha256": "59e1c68693029ab0e38c9bcd6adea2c18de07024ba902f01fa882b1f2ef3c8c9"
+    },
+    "molecules/GEN_5ed5d81af9b0d30b4d08d4a8/Morgan_bit_1476.svg": {
+      "bytes": 21469,
+      "sha256": "9a69649cd2496f08818dc4667d2fe2518613f29e91dbfa0d61fe189ef9630e5c"
+    },
+    "molecules/GEN_5ed5d81af9b0d30b4d08d4a8/Morgan_bit_1535-labels.svg": {
+      "bytes": 48393,
+      "sha256": "5ea793c532510004e310bc26015f03e00bbb08d577a7442529089b8b4e450796"
+    },
+    "molecules/GEN_5ed5d81af9b0d30b4d08d4a8/Morgan_bit_1535.svg": {
+      "bytes": 21867,
+      "sha256": "44e0369f6d616448fe9dea2422ab7c89ca925e9ef6f2c999fcc9d02fb817ae3d"
+    },
+    "molecules/GEN_5ed5d81af9b0d30b4d08d4a8/Morgan_bit_1554-labels.svg": {
+      "bytes": 50555,
+      "sha256": "f8d38bfe3c75614d8b0534cf0666c7766bcf3d906187b10dd1958b7aa604e056"
+    },
+    "molecules/GEN_5ed5d81af9b0d30b4d08d4a8/Morgan_bit_1554.svg": {
+      "bytes": 24023,
+      "sha256": "cd1d7e5235bf3b23bb06e4ba44cb511aecb8276754925a5657bb21f68cc3d8d6"
+    },
+    "molecules/GEN_5ed5d81af9b0d30b4d08d4a8/Morgan_bit_1582-labels.svg": {
+      "bytes": 47899,
+      "sha256": "5ea91ca55e5f82a4ec645684e0b9b410d3cc3d8d598b4ae6b48c3ceadfa6a8bc"
+    },
+    "molecules/GEN_5ed5d81af9b0d30b4d08d4a8/Morgan_bit_1582.svg": {
+      "bytes": 21373,
+      "sha256": "ca0f38d985e97c81e3e7d36941063a067f6fa3f9fac6b1d6b633bb9675216532"
+    },
+    "molecules/GEN_5ed5d81af9b0d30b4d08d4a8/Morgan_bit_1722-labels.svg": {
+      "bytes": 48521,
+      "sha256": "d5e7924fb93a75000ae906220ef23d68a4b896e1280529bfc3d32245555efa77"
+    },
+    "molecules/GEN_5ed5d81af9b0d30b4d08d4a8/Morgan_bit_1722.svg": {
+      "bytes": 21994,
+      "sha256": "f6d3b837d8b4a4c6eb42a8b37d6c2237ad442814172b830b72dcd29e8eb4670d"
+    },
+    "molecules/GEN_5ed5d81af9b0d30b4d08d4a8/Morgan_bit_1855-labels.svg": {
+      "bytes": 48393,
+      "sha256": "b238fd169cd51057b7d9a24a8e90a6c036706e954b9243564e4313312256b252"
+    },
+    "molecules/GEN_5ed5d81af9b0d30b4d08d4a8/Morgan_bit_1855.svg": {
+      "bytes": 21867,
+      "sha256": "72402e63f50b92d741c9b2a12a39a2ec7529f55b3195c765e832d22edbbff7e9"
+    },
+    "molecules/GEN_5ed5d81af9b0d30b4d08d4a8/Morgan_bit_350-labels.svg": {
+      "bytes": 47853,
+      "sha256": "1b5581bb94990eb04677a9a0656697f9711ab729e8466923972dad82e07275df"
+    },
+    "molecules/GEN_5ed5d81af9b0d30b4d08d4a8/Morgan_bit_350.svg": {
+      "bytes": 21327,
+      "sha256": "59868b321a876df8b903006bd1dc9539eafd03a2e473e1d6eba6fd5bb3d8258e"
+    },
+    "molecules/GEN_5ed5d81af9b0d30b4d08d4a8/Morgan_bit_491-labels.svg": {
+      "bytes": 48596,
+      "sha256": "f5ebeb081ff1d62e29b8c87fe6e8a22c542b9dec8ad78f5eaaa2451f72ac44b3"
+    },
+    "molecules/GEN_5ed5d81af9b0d30b4d08d4a8/Morgan_bit_491.svg": {
+      "bytes": 22070,
+      "sha256": "c9af4417540293120c2e9ffbb6f6e03607aab7bd1a5ccc64b27a389924bb19ed"
+    },
+    "molecules/GEN_5ed5d81af9b0d30b4d08d4a8/Morgan_bit_787-labels.svg": {
+      "bytes": 49339,
+      "sha256": "c3be4670d345f7779ba62ec1f191d456878eabf811eed7d9b1318d6d7bece6c1"
+    },
+    "molecules/GEN_5ed5d81af9b0d30b4d08d4a8/Morgan_bit_787.svg": {
+      "bytes": 22813,
+      "sha256": "adddbdadc99d5474b7507326e94d05a2a046acfa3fc8963050e2e51dff25a74b"
+    },
+    "molecules/GEN_5ed5d81af9b0d30b4d08d4a8/molecule-labels.svg": {
+      "bytes": 47852,
+      "sha256": "f9158328ca1c569282244c7967dce367c161dde8c4a0263a6a15b14d556422c6"
+    },
+    "molecules/GEN_5ed5d81af9b0d30b4d08d4a8/molecule.svg": {
+      "bytes": 21326,
+      "sha256": "3bf2e251b5c1fb71c245410c354ff215a895928003638753a64fcf358e9913f8"
+    },
+    "molecules/GEN_8c7b56c8549a96714c962466/Morgan_bit_1160-labels.svg": {
+      "bytes": 41553,
+      "sha256": "c14aef02bb1762b07fba8486dad3123d996d5d32b7f01781f6c6f0bfb0ca2407"
+    },
+    "molecules/GEN_8c7b56c8549a96714c962466/Morgan_bit_1160.svg": {
+      "bytes": 18513,
+      "sha256": "62c0215e948d2c3a0d617929c10757ab2ae3ee261cb632ecf9efa9252d25f623"
+    },
+    "molecules/GEN_8c7b56c8549a96714c962466/Morgan_bit_1487-labels.svg": {
+      "bytes": 42273,
+      "sha256": "134bb79bd45f53ddc915d2b8363aeb472376b910607aa9c70b6005bb85506e71"
+    },
+    "molecules/GEN_8c7b56c8549a96714c962466/Morgan_bit_1487.svg": {
+      "bytes": 19231,
+      "sha256": "b4d1ec8a89e63f7cbb4c551528c5daf5779c13cf0ec6178320587b45681ab94a"
+    },
+    "molecules/GEN_8c7b56c8549a96714c962466/Morgan_bit_1535-labels.svg": {
+      "bytes": 40432,
+      "sha256": "8097028e125f752c46d0a9bfb6191134665e2bccb2cb4d55df9fd19525df4b5e"
+    },
+    "molecules/GEN_8c7b56c8549a96714c962466/Morgan_bit_1535.svg": {
+      "bytes": 17392,
+      "sha256": "31a8a13449bb6010b3ea875cfc951224176e80a94c97c55ae1fb5abfbe9c0df4"
+    },
+    "molecules/GEN_8c7b56c8549a96714c962466/Morgan_bit_1582-labels.svg": {
+      "bytes": 39938,
+      "sha256": "03d3c4712b2993e358fabf9fbe7a35f9edba9e365e19a43765676f8c4cc5b60b"
+    },
+    "molecules/GEN_8c7b56c8549a96714c962466/Morgan_bit_1582.svg": {
+      "bytes": 16898,
+      "sha256": "7e31caa6da1673f48916209d0906853ead82492736b181435c165bfe6a459586"
+    },
+    "molecules/GEN_8c7b56c8549a96714c962466/Morgan_bit_1722-labels.svg": {
+      "bytes": 40560,
+      "sha256": "c1ccc9910af7f5c602ced9e55f2cb27b18280ce5bb7792e76a3e841a0a1efc88"
+    },
+    "molecules/GEN_8c7b56c8549a96714c962466/Morgan_bit_1722.svg": {
+      "bytes": 17520,
+      "sha256": "85478f7a344edeacd9b92282873729c0f1191a9a82eb9dcbc6c2eccb92ca1ee1"
+    },
+    "molecules/GEN_8c7b56c8549a96714c962466/Morgan_bit_1855-labels.svg": {
+      "bytes": 40432,
+      "sha256": "43151afe8e6a23a1cc741c844197b439c6e3d32b5da03f4888ee8660c0cdaaf6"
+    },
+    "molecules/GEN_8c7b56c8549a96714c962466/Morgan_bit_1855.svg": {
+      "bytes": 17392,
+      "sha256": "cad03d9226f15de521509773b02c6f204092540e4245d687afc8f2a8500f19e5"
+    },
+    "molecules/GEN_8c7b56c8549a96714c962466/Morgan_bit_191-labels.svg": {
+      "bytes": 41146,
+      "sha256": "64eab8dbb88327b379f5050c02da6a25971e27e56d5d04684ac01b1e824d36da"
+    },
+    "molecules/GEN_8c7b56c8549a96714c962466/Morgan_bit_191.svg": {
+      "bytes": 18106,
+      "sha256": "e60c85092d81472ba1bbc1a68094a9289cc5555316b528c30fb77cf6c4b79048"
+    },
+    "molecules/GEN_8c7b56c8549a96714c962466/Morgan_bit_1915-labels.svg": {
+      "bytes": 42397,
+      "sha256": "839a6aa6b26678c1f7baf6ca94b784cb2cf78e0ce1f114e196b16b129d63d2bf"
+    },
+    "molecules/GEN_8c7b56c8549a96714c962466/Morgan_bit_1915.svg": {
+      "bytes": 19355,
+      "sha256": "225ddfaaa0f54418c06c02d766de18bf0e47659dbae98caf9f0e86102acf5767"
+    },
+    "molecules/GEN_8c7b56c8549a96714c962466/Morgan_bit_491-labels.svg": {
+      "bytes": 41376,
+      "sha256": "6246754b6d3118242d23b439ecd3a05f434d0c00792b008c164ffb4380b6fa3b"
+    },
+    "molecules/GEN_8c7b56c8549a96714c962466/Morgan_bit_491.svg": {
+      "bytes": 18336,
+      "sha256": "373e0f131eadbe003329a56cd92ed08d6b406813a0ac4d896e0233d7d7931fd1"
+    },
+    "molecules/GEN_8c7b56c8549a96714c962466/Morgan_bit_787-labels.svg": {
+      "bytes": 41378,
+      "sha256": "4f279106ff827b48aefdb471ce3be95fe1b9dec951438441d41d5e62524b05a6"
+    },
+    "molecules/GEN_8c7b56c8549a96714c962466/Morgan_bit_787.svg": {
+      "bytes": 18338,
+      "sha256": "c0b3e590eadb1ae5e67f5b6a8533af491a0de2057f1faaa1374ee133760027fd"
+    },
+    "molecules/GEN_8c7b56c8549a96714c962466/molecule-labels.svg": {
+      "bytes": 39891,
+      "sha256": "30e3767bd20f4d93e644963dcc5e467f4f15395f6d8c57ab226d46bd3eab66d2"
+    },
+    "molecules/GEN_8c7b56c8549a96714c962466/molecule.svg": {
+      "bytes": 16851,
+      "sha256": "8a7eeb036dd6601f2cb3a336962678b73300a476664792eaaf5795de5c2319ec"
+    },
+    "molecules/GEN_93edc12d34673762ce79b14b/Morgan_bit_1160-labels.svg": {
+      "bytes": 45889,
+      "sha256": "96cf01e88f0e80e42f7fcb53a9333c5c4d54452d259258f02919625518a4834c"
+    },
+    "molecules/GEN_93edc12d34673762ce79b14b/Morgan_bit_1160.svg": {
+      "bytes": 20527,
+      "sha256": "5ad975945f0c31cd25b4688c314794a5748777e58fd29be8177fd69a74f37608"
+    },
+    "molecules/GEN_93edc12d34673762ce79b14b/Morgan_bit_1294-labels.svg": {
+      "bytes": 45483,
+      "sha256": "d0984f3862a7ab47cdda13fce009a632516a9a872abae36fc76e81efd5c128a9"
+    },
+    "molecules/GEN_93edc12d34673762ce79b14b/Morgan_bit_1294.svg": {
+      "bytes": 20121,
+      "sha256": "6b4279f00889d50586d1626a6e93b8ea1508ff6ad37532dd9e88fd314f5a1959"
+    },
+    "molecules/GEN_93edc12d34673762ce79b14b/Morgan_bit_1535-labels.svg": {
+      "bytes": 44768,
+      "sha256": "bfbcdd99c7fa79dcaab76888b1379515688b188cc6bf7b3d8960c2e2eea0a36b"
+    },
+    "molecules/GEN_93edc12d34673762ce79b14b/Morgan_bit_1535.svg": {
+      "bytes": 19406,
+      "sha256": "652031b83943dfff67e01001a8a0676bb545b3e56aa602c83b1e6894d511c708"
+    },
+    "molecules/GEN_93edc12d34673762ce79b14b/Morgan_bit_1582-labels.svg": {
+      "bytes": 44274,
+      "sha256": "1983dfc4b77fe59518b0a4821883d2b40bc0a141aeba5ed1035cfb84655d8060"
+    },
+    "molecules/GEN_93edc12d34673762ce79b14b/Morgan_bit_1582.svg": {
+      "bytes": 18912,
+      "sha256": "afb4176053e3505e45b94d6f11ee9ca352b665d2875831e040099befdc63b2cf"
+    },
+    "molecules/GEN_93edc12d34673762ce79b14b/Morgan_bit_1599-labels.svg": {
+      "bytes": 47004,
+      "sha256": "72158d5f5d8132132f02d3f2c4dfba79476ebbe186e1fae1484c3ee497723a17"
+    },
+    "molecules/GEN_93edc12d34673762ce79b14b/Morgan_bit_1599.svg": {
+      "bytes": 21642,
+      "sha256": "faf7e0c61f50c050f66657643d0beca9f16b395403f2fdb49c7c2ea55e102fb4"
+    },
+    "molecules/GEN_93edc12d34673762ce79b14b/Morgan_bit_1696-labels.svg": {
+      "bytes": 46420,
+      "sha256": "9cb3f3edddf3982642584b3896dd536c9ae66130910546f715e9ac1a6b6c16fd"
+    },
+    "molecules/GEN_93edc12d34673762ce79b14b/Morgan_bit_1696.svg": {
+      "bytes": 21058,
+      "sha256": "d34e20c7025a2f2236f892ae6b82242fdf8e01ba75a2c6c862141e5f466ab00e"
+    },
+    "molecules/GEN_93edc12d34673762ce79b14b/Morgan_bit_1722-labels.svg": {
+      "bytes": 44890,
+      "sha256": "caf2a246433ed83f2fb259c876d88677366e50091b4360d659033e54cbd58dd8"
+    },
+    "molecules/GEN_93edc12d34673762ce79b14b/Morgan_bit_1722.svg": {
+      "bytes": 19528,
+      "sha256": "d63e434c36ff9e9ddcb73b11ba177d0fd0e79b4970058df68d74cecc2745c48b"
+    },
+    "molecules/GEN_93edc12d34673762ce79b14b/Morgan_bit_1855-labels.svg": {
+      "bytes": 44768,
+      "sha256": "729a7ce0c67cc46ee3a47445519ff848009d18c387179c60e4ff960c3c6fffa9"
+    },
+    "molecules/GEN_93edc12d34673762ce79b14b/Morgan_bit_1855.svg": {
+      "bytes": 19406,
+      "sha256": "8c7df114cf6e0ca0bdb355dcf25112d92bd3ead176b2504044602dca5ef9816e"
+    },
+    "molecules/GEN_93edc12d34673762ce79b14b/Morgan_bit_1860-labels.svg": {
+      "bytes": 46257,
+      "sha256": "e2a9ee5d63dfa0f5b6bdbd6e76e787d79c387aed8d21e4c39a5c8a28d471c662"
+    },
+    "molecules/GEN_93edc12d34673762ce79b14b/Morgan_bit_1860.svg": {
+      "bytes": 20895,
+      "sha256": "7ccf7455736c13a3e0086efbc47224d6d2cbdb2492720590f41566fd213c1534"
+    },
+    "molecules/GEN_93edc12d34673762ce79b14b/Morgan_bit_787-labels.svg": {
+      "bytes": 45714,
+      "sha256": "93e3a3cce58253ce70a99d6a61a30cfb96004f69facdc32b1343a1724c464c00"
+    },
+    "molecules/GEN_93edc12d34673762ce79b14b/Morgan_bit_787.svg": {
+      "bytes": 20352,
+      "sha256": "354006f1d4feca8f24de8a50c61179f40d70a54e585a76c12e841e2a60674bd1"
+    },
+    "molecules/GEN_93edc12d34673762ce79b14b/molecule-labels.svg": {
+      "bytes": 44227,
+      "sha256": "d6be10d8b8b39b59d69ea9d9089a5b4966657f6c8887b4d2016208ae229a160d"
+    },
+    "molecules/GEN_93edc12d34673762ce79b14b/molecule.svg": {
+      "bytes": 18865,
+      "sha256": "ae70fcf48cff0ff96c6ce36cccc5d4fc070e9cd0d6d9f907905404018f5eed5a"
+    },
+    "molecules/GEN_a94a009b33b40ed21882bc34/Morgan_bit_1160-labels.svg": {
+      "bytes": 40588,
+      "sha256": "f5e8ff9bbd7778202cecc2da6fc61cec4b3703dbaa1de6ce7981b10fca7219fe"
+    },
+    "molecules/GEN_a94a009b33b40ed21882bc34/Morgan_bit_1160.svg": {
+      "bytes": 17694,
+      "sha256": "a7e6e8cc5e1f2d7a8d0211e4e35a207f33611056cd2ea883385de820e44a50ad"
+    },
+    "molecules/GEN_a94a009b33b40ed21882bc34/Morgan_bit_1535-labels.svg": {
+      "bytes": 39467,
+      "sha256": "85cfa353d1c8cabf29db81d9b65e1a8b6c8e585e0cdd4fd8ae158d9376fa843e"
+    },
+    "molecules/GEN_a94a009b33b40ed21882bc34/Morgan_bit_1535.svg": {
+      "bytes": 16577,
+      "sha256": "04bedc22f54ef4cde937a4ba6f09b5e595aa6fb4684da2ce03945b28c6303da5"
+    },
+    "molecules/GEN_a94a009b33b40ed21882bc34/Morgan_bit_1582-labels.svg": {
+      "bytes": 38974,
+      "sha256": "0783ef15c1866f81c69db1e7deba7c75ab449df5911ef5c7d08fae90a957539c"
+    },
+    "molecules/GEN_a94a009b33b40ed21882bc34/Morgan_bit_1582.svg": {
+      "bytes": 16082,
+      "sha256": "4a069fdfe553a7c7c326c2f1baaf3acd4e9755cbc5482a2290261881ce8fa211"
+    },
+    "molecules/GEN_a94a009b33b40ed21882bc34/Morgan_bit_1722-labels.svg": {
+      "bytes": 40922,
+      "sha256": "37fe069607c8f3cb65b70b6753da36645135c7542294e5454f0dbddff59ca73e"
+    },
+    "molecules/GEN_a94a009b33b40ed21882bc34/Morgan_bit_1722.svg": {
+      "bytes": 18042,
+      "sha256": "3d72edf0b4bdb8f5acc14a17c884fc4b53eb3125c8ea9ed50a7fca973b801ed7"
+    },
+    "molecules/GEN_a94a009b33b40ed21882bc34/Morgan_bit_1855-labels.svg": {
+      "bytes": 39468,
+      "sha256": "c4b8c4cb0e7358654ff5ad870f548b8d212aa71f0bcf67412c12f3058e8a1572"
+    },
+    "molecules/GEN_a94a009b33b40ed21882bc34/Morgan_bit_1855.svg": {
+      "bytes": 16576,
+      "sha256": "480af7701cce32c6184442ac052eeded82de9691cda80bab2be194a67f315a21"
+    },
+    "molecules/GEN_a94a009b33b40ed21882bc34/Morgan_bit_1873-labels.svg": {
+      "bytes": 42413,
+      "sha256": "3e77e7e3ded49aad3ae4faaab19639d47bf771a17082f1ce4fa24ab3866cadb8"
+    },
+    "molecules/GEN_a94a009b33b40ed21882bc34/Morgan_bit_1873.svg": {
+      "bytes": 19527,
+      "sha256": "10cced317224ea47207737e4d04f5e66924239c822e0ee07237d64269ec7bc1d"
+    },
+    "molecules/GEN_a94a009b33b40ed21882bc34/Morgan_bit_1953-labels.svg": {
+      "bytes": 42765,
+      "sha256": "c169d0403e9ab0a766a64bf25b0b60f6972462e3cac32571ca0d765638371112"
+    },
+    "molecules/GEN_a94a009b33b40ed21882bc34/Morgan_bit_1953.svg": {
+      "bytes": 19873,
+      "sha256": "da50fb0c5535b5612d022fc06fd0f162a09fe12aafe5ff2878e2a7ceba625076"
+    },
+    "molecules/GEN_a94a009b33b40ed21882bc34/Morgan_bit_378-labels.svg": {
+      "bytes": 37713,
+      "sha256": "a9b75f5568fdffdeeac6773cd98368cecf7a8dc49b6e6d99092944bbe6a5c6a1"
+    },
+    "molecules/GEN_a94a009b33b40ed21882bc34/Morgan_bit_378.svg": {
+      "bytes": 14823,
+      "sha256": "042014bf6742a1d65edb05641b0bdf1fb92fae3862f60c656265cef42eebea35"
+    },
+    "molecules/GEN_a94a009b33b40ed21882bc34/Morgan_bit_491-labels.svg": {
+      "bytes": 40412,
+      "sha256": "fa0ab6590bb736dbfa56f61ad542dbb379018b047e28159b91b3daceeed29727"
+    },
+    "molecules/GEN_a94a009b33b40ed21882bc34/Morgan_bit_491.svg": {
+      "bytes": 17520,
+      "sha256": "5ec1cfb29fbf5847c21ffe7f721756cadfab3ceefbb46f81a8fa69f4737385c1"
+    },
+    "molecules/GEN_a94a009b33b40ed21882bc34/Morgan_bit_787-labels.svg": {
+      "bytes": 40414,
+      "sha256": "b769ba21bf3506cd24da1ba69b6324e747cb760e4a41901ba013a634232ef57a"
+    },
+    "molecules/GEN_a94a009b33b40ed21882bc34/Morgan_bit_787.svg": {
+      "bytes": 17522,
+      "sha256": "a7b4e9f016522e609ce5d857ccb0822f5c52123abf2fe59c2ff28b7433087024"
+    },
+    "molecules/GEN_a94a009b33b40ed21882bc34/molecule-labels.svg": {
+      "bytes": 38927,
+      "sha256": "1aabe5a23bc1b94855cc5b2178b1f8e30ed19286c2c752983fcd3621c2bf5bd7"
+    },
+    "molecules/GEN_a94a009b33b40ed21882bc34/molecule.svg": {
+      "bytes": 16035,
+      "sha256": "8ec66632998c402b9fda333dfe42c7b07ef07933e77af447b4864a60e9f001ee"
+    },
+    "molecules/GEN_b74f5e6431b2d792566bd458/Morgan_bit_1066-labels.svg": {
+      "bytes": 53487,
+      "sha256": "e9a6f024edf19e0a6cfe94c70f71849a09c173622f2b033ee9471cc9e8ece35a"
+    },
+    "molecules/GEN_b74f5e6431b2d792566bd458/Morgan_bit_1066.svg": {
+      "bytes": 24266,
+      "sha256": "3a447cb8e6cb96a3026d06121feddd4824283a904e0be0aed22834342245865e"
+    },
+    "molecules/GEN_b74f5e6431b2d792566bd458/Morgan_bit_1160-labels.svg": {
+      "bytes": 52541,
+      "sha256": "303cab23c90bfe3fc9dc9e22f7628e3fc672059714fe90428a53524b2b0678ac"
+    },
+    "molecules/GEN_b74f5e6431b2d792566bd458/Morgan_bit_1160.svg": {
+      "bytes": 23316,
+      "sha256": "9ba70499e9bf17a2c39f4658c19978ef91116d9205cd60392b7feb89502e2c49"
+    },
+    "molecules/GEN_b74f5e6431b2d792566bd458/Morgan_bit_1210-labels.svg": {
+      "bytes": 51914,
+      "sha256": "7f60de019e9d93f314f160cefa8bcc5efb14ded48f3326a6aad8b985ef1f8952"
+    },
+    "molecules/GEN_b74f5e6431b2d792566bd458/Morgan_bit_1210.svg": {
+      "bytes": 22693,
+      "sha256": "4812766a070c49624b7ba9ab0949f7b33eefb17e2fa4a3b1023846a0d7361762"
+    },
+    "molecules/GEN_b74f5e6431b2d792566bd458/Morgan_bit_1535-labels.svg": {
+      "bytes": 51420,
+      "sha256": "42358730324b6a050e399bdf2371dd95e4c579e3b3c2a4f279793778b925b3ab"
+    },
+    "molecules/GEN_b74f5e6431b2d792566bd458/Morgan_bit_1535.svg": {
+      "bytes": 22193,
+      "sha256": "76382d32ad521cb2a8b1698870eca885822d9d157550a67ec348dab975423f92"
+    },
+    "molecules/GEN_b74f5e6431b2d792566bd458/Morgan_bit_1582-labels.svg": {
+      "bytes": 50926,
+      "sha256": "fa21ff537278d5babd9d5c58f26f49c0d89459aeed185705e4f26f157513159b"
+    },
+    "molecules/GEN_b74f5e6431b2d792566bd458/Morgan_bit_1582.svg": {
+      "bytes": 21700,
+      "sha256": "f45a0385ba66435efa45441eb2157751db975e24f6b3a60700226443a693209a"
+    },
+    "molecules/GEN_b74f5e6431b2d792566bd458/Morgan_bit_1722-labels.svg": {
+      "bytes": 51548,
+      "sha256": "1a39b986cbe0e0935376ee25fc6c571729aada87d53c8808e399c4e8f6e9eab3"
+    },
+    "molecules/GEN_b74f5e6431b2d792566bd458/Morgan_bit_1722.svg": {
+      "bytes": 22319,
+      "sha256": "b39b7bca66c6d26f59cf731fd7da70c0b41234a328fbd6408748fe58ac90510f"
+    },
+    "molecules/GEN_b74f5e6431b2d792566bd458/Morgan_bit_1855-labels.svg": {
+      "bytes": 51420,
+      "sha256": "7582b357995b0c9f309b85333900600d9b579591fff31824a59776d78fd7183c"
+    },
+    "molecules/GEN_b74f5e6431b2d792566bd458/Morgan_bit_1855.svg": {
+      "bytes": 22193,
+      "sha256": "511ead379553cb537a3eeecfcc009ec1fbad35f22ebe5f6fe5d91673d827b61b"
+    },
+    "molecules/GEN_b74f5e6431b2d792566bd458/Morgan_bit_378-labels.svg": {
+      "bytes": 49664,
+      "sha256": "ea0ba3994b7d3ac7f564c1047d53c878dfd2e467ab24a5a3d367cad91f1c58f4"
+    },
+    "molecules/GEN_b74f5e6431b2d792566bd458/Morgan_bit_378.svg": {
+      "bytes": 20437,
+      "sha256": "afb68f7155eae75f3a9cf3244709e1a3ec99a702b33d3d51a910445f1779e767"
+    },
+    "molecules/GEN_b74f5e6431b2d792566bd458/Morgan_bit_491-labels.svg": {
+      "bytes": 51623,
+      "sha256": "f257523c0f19b0333589e758bec7b59db83aa2772c79039dd185862358c0bf13"
+    },
+    "molecules/GEN_b74f5e6431b2d792566bd458/Morgan_bit_491.svg": {
+      "bytes": 22395,
+      "sha256": "704166ec701ddb9295867d4115a7eaf75bf52239539d31aa4182ecc30b5a6221"
+    },
+    "molecules/GEN_b74f5e6431b2d792566bd458/Morgan_bit_787-labels.svg": {
+      "bytes": 52366,
+      "sha256": "88e64201247137f665ce5984adea815ea23f230590f5095412bea4ec5eba9af5"
+    },
+    "molecules/GEN_b74f5e6431b2d792566bd458/Morgan_bit_787.svg": {
+      "bytes": 23133,
+      "sha256": "5d765d003cd7eaa242943aaaaf113424a5312deb77fa2866caf64c3ee0fe12bd"
+    },
+    "molecules/GEN_b74f5e6431b2d792566bd458/molecule-labels.svg": {
+      "bytes": 50879,
+      "sha256": "d967d4556febce9581e33c36b1ab2c8f36de8077a859dbd8eb47917b099f4e96"
+    },
+    "molecules/GEN_b74f5e6431b2d792566bd458/molecule.svg": {
+      "bytes": 21646,
+      "sha256": "a446bbe087cb2e8440251d68eb8d0d8c2778bc44518b4a4d0ce94559eb5565f7"
+    },
+    "molecules/GEN_bb0106d6bdededf13ee8c983/Morgan_bit_1136-labels.svg": {
+      "bytes": 43392,
+      "sha256": "d7a5bee9b44b7dc61160cdcc0e31977e45b1a9960621cd03dfcb088ae6a00acd"
+    },
+    "molecules/GEN_bb0106d6bdededf13ee8c983/Morgan_bit_1136.svg": {
+      "bytes": 19007,
+      "sha256": "0e7ba2d12a3fa1884a57489b4da05f1d80f3ad0169b973a445058edb08828e36"
+    },
+    "molecules/GEN_bb0106d6bdededf13ee8c983/Morgan_bit_1160-labels.svg": {
+      "bytes": 44518,
+      "sha256": "2ca1a148fd6e0eb0e6c342f50435c303ad8af31c8e32c18316876b913faeeb93"
+    },
+    "molecules/GEN_bb0106d6bdededf13ee8c983/Morgan_bit_1160.svg": {
+      "bytes": 20133,
+      "sha256": "34c46e3c5f81b05f77e0654d7e054af918d946831092fd0740f993bdcea00097"
+    },
+    "molecules/GEN_bb0106d6bdededf13ee8c983/Morgan_bit_1535-labels.svg": {
+      "bytes": 43397,
+      "sha256": "64152e612dc887dca81f5cd42a6d9a15b464631f1d1bfb1576c717349242972b"
+    },
+    "molecules/GEN_bb0106d6bdededf13ee8c983/Morgan_bit_1535.svg": {
+      "bytes": 19012,
+      "sha256": "359c5cde6590f59f8919e3bbac29c74001139f2c79c7f38c102467234d6259b3"
+    },
+    "molecules/GEN_bb0106d6bdededf13ee8c983/Morgan_bit_1582-labels.svg": {
+      "bytes": 42903,
+      "sha256": "a94bcdbfc808df91e3a937626134ea603b36bcbbcd545deb1e01adeda0e80360"
+    },
+    "molecules/GEN_bb0106d6bdededf13ee8c983/Morgan_bit_1582.svg": {
+      "bytes": 18518,
+      "sha256": "4b30eb848bacea52113c5995fb05649971c17d5a3b6a75593284577323b51368"
+    },
+    "molecules/GEN_bb0106d6bdededf13ee8c983/Morgan_bit_1722-labels.svg": {
+      "bytes": 44199,
+      "sha256": "2b4950b6464475ffec00a9f97fe479eaca8fa630f79e58e7e2c84bd028602fc7"
+    },
+    "molecules/GEN_bb0106d6bdededf13ee8c983/Morgan_bit_1722.svg": {
+      "bytes": 19814,
+      "sha256": "31eab2fc3cee0b3ef04d31e9369fcf53b92583ed65a51d648d48b7d72e9e44fc"
+    },
+    "molecules/GEN_bb0106d6bdededf13ee8c983/Morgan_bit_1855-labels.svg": {
+      "bytes": 43937,
+      "sha256": "32e37d6b2720b7c78246a3d2e81c355e00e3e26910512b52eea9cc11f46855c9"
+    },
+    "molecules/GEN_bb0106d6bdededf13ee8c983/Morgan_bit_1855.svg": {
+      "bytes": 19552,
+      "sha256": "167b13622fa6470f28a81566e2a69fccfb8bb242c1dbd904104fd705960e1b7f"
+    },
+    "molecules/GEN_bb0106d6bdededf13ee8c983/Morgan_bit_1879-labels.svg": {
+      "bytes": 44965,
+      "sha256": "c60696ae9196011f0ddab79feaf634bf573fcee9ea15bf7645bc5335a9af11e2"
+    },
+    "molecules/GEN_bb0106d6bdededf13ee8c983/Morgan_bit_1879.svg": {
+      "bytes": 20580,
+      "sha256": "3f99cddf28023365a6adcf005f3f117fcf84ed79350991edf402d5218c06a258"
+    },
+    "molecules/GEN_bb0106d6bdededf13ee8c983/Morgan_bit_378-labels.svg": {
+      "bytes": 41237,
+      "sha256": "038229e2f32250788d99b4b984eea09c7deedebc117e041b5e0c9bb6d56ab0aa"
+    },
+    "molecules/GEN_bb0106d6bdededf13ee8c983/Morgan_bit_378.svg": {
+      "bytes": 16852,
+      "sha256": "1dcbf653e52f7b1931075a3d1044f56a4213d03b06f546ad5e778e31c2e9dedd"
+    },
+    "molecules/GEN_bb0106d6bdededf13ee8c983/Morgan_bit_491-labels.svg": {
+      "bytes": 44341,
+      "sha256": "0e27e004429775059d4b1ab5b208fb6e4d83ba193f62f1616ca9c3a8a18ab783"
+    },
+    "molecules/GEN_bb0106d6bdededf13ee8c983/Morgan_bit_491.svg": {
+      "bytes": 19956,
+      "sha256": "5e39600f49483ec803687c73f0fa822f972ddd044342b697a455c09968e850f7"
+    },
+    "molecules/GEN_bb0106d6bdededf13ee8c983/Morgan_bit_787-labels.svg": {
+      "bytes": 44343,
+      "sha256": "58e2632959172814a38c12b1afe67c63e62d30ba83b6b9a5fb19bf0782be85b1"
+    },
+    "molecules/GEN_bb0106d6bdededf13ee8c983/Morgan_bit_787.svg": {
+      "bytes": 19958,
+      "sha256": "659a9b392861547c920a631c0de9061ed21b441456af60407f40dadede290153"
+    },
+    "molecules/GEN_bb0106d6bdededf13ee8c983/molecule-labels.svg": {
+      "bytes": 42856,
+      "sha256": "335090d6f384c5ebb02f221d512a1f6235c8f81e27751c2ca959b4e8232d09d7"
+    },
+    "molecules/GEN_bb0106d6bdededf13ee8c983/molecule.svg": {
+      "bytes": 18471,
+      "sha256": "c5e192f4942897a58f4b521d47af801f11391d694bf2a8ffd900b90c64bf392b"
+    },
+    "molecules/GEN_c2170af6b097b382b0bbbbcd/Morgan_bit_1160-labels.svg": {
+      "bytes": 50659,
+      "sha256": "1dca9053da99f93f3ed2ad4c36bef6fe1a5640ae3120bf8b6d75adb8c83a1e21"
+    },
+    "molecules/GEN_c2170af6b097b382b0bbbbcd/Morgan_bit_1160.svg": {
+      "bytes": 22556,
+      "sha256": "132a32fd94bf0ada729d3882d92e506b7a0a546e9d49ff4cc662af84dc2a57bf"
+    },
+    "molecules/GEN_c2170af6b097b382b0bbbbcd/Morgan_bit_1210-labels.svg": {
+      "bytes": 50033,
+      "sha256": "6ac70e195253584117f3c0d25b7f3aeee1a9115317d80d2c62af47eaae19525b"
+    },
+    "molecules/GEN_c2170af6b097b382b0bbbbcd/Morgan_bit_1210.svg": {
+      "bytes": 21931,
+      "sha256": "7b7e01dfd596a37c147d0b253b9d16104c36f6cb3dedf64d65afbf6f16cd42e0"
+    },
+    "molecules/GEN_c2170af6b097b382b0bbbbcd/Morgan_bit_1487-labels.svg": {
+      "bytes": 51404,
+      "sha256": "7cc82c45a50254009536318c0afea1826923cfb68a8dfc4a8015190dee3d6950"
+    },
+    "molecules/GEN_c2170af6b097b382b0bbbbcd/Morgan_bit_1487.svg": {
+      "bytes": 23303,
+      "sha256": "44f32581c6846dea9ccfed39f511a1a3dee25d748b298ce5dc0fb4e8da612a46"
+    },
+    "molecules/GEN_c2170af6b097b382b0bbbbcd/Morgan_bit_1535-labels.svg": {
+      "bytes": 49536,
+      "sha256": "3dcd273792913fe08361382e4ff438ac1c123feffcbdc4a46ed1ee5fc109999f"
+    },
+    "molecules/GEN_c2170af6b097b382b0bbbbcd/Morgan_bit_1535.svg": {
+      "bytes": 21435,
+      "sha256": "63c361c6e77e19bf2ab326dfd8ca4c2f230830022f4abf5aab4a5a01a73d23a6"
+    },
+    "molecules/GEN_c2170af6b097b382b0bbbbcd/Morgan_bit_1582-labels.svg": {
+      "bytes": 49043,
+      "sha256": "a6018426022599cd0e0553f97e9f97f1b765c0d956310b82b0d5ceaa1fdae163"
+    },
+    "molecules/GEN_c2170af6b097b382b0bbbbcd/Morgan_bit_1582.svg": {
+      "bytes": 20942,
+      "sha256": "a54cc9cfd95345cb96839e792b753b1274590cd6aa24149955797dcc87c49518"
+    },
+    "molecules/GEN_c2170af6b097b382b0bbbbcd/Morgan_bit_1722-labels.svg": {
+      "bytes": 49660,
+      "sha256": "78e5815719f138bd5082b356cd1c1ed818c5b88b0d084996128ca975387dd32f"
+    },
+    "molecules/GEN_c2170af6b097b382b0bbbbcd/Morgan_bit_1722.svg": {
+      "bytes": 21557,
+      "sha256": "9ce6c448022e51507a6f426e8285a7bc729bd04718ccdb8c137a2f9ff9c88eae"
+    },
+    "molecules/GEN_c2170af6b097b382b0bbbbcd/Morgan_bit_1855-labels.svg": {
+      "bytes": 49536,
+      "sha256": "5e5081c5cc7c09c48cf03891867d530612b008951a488d5ca7b9b9711aaeebd7"
+    },
+    "molecules/GEN_c2170af6b097b382b0bbbbcd/Morgan_bit_1855.svg": {
+      "bytes": 21435,
+      "sha256": "cfb4081c32d43b2b4e0294766b2cc75d89ad75cc09d42df924010bbc0a739286"
+    },
+    "molecules/GEN_c2170af6b097b382b0bbbbcd/Morgan_bit_378-labels.svg": {
+      "bytes": 47780,
+      "sha256": "e6889bcbce6548d8db45bf11a38cb74fa532b767745b5c7cbdcc5d64044cd807"
+    },
+    "molecules/GEN_c2170af6b097b382b0bbbbcd/Morgan_bit_378.svg": {
+      "bytes": 19679,
+      "sha256": "45b4cce4e9792e886df7b8dd8dc56596db087b1b2293daf2787547b5f7b5092f"
+    },
+    "molecules/GEN_c2170af6b097b382b0bbbbcd/Morgan_bit_491-labels.svg": {
+      "bytes": 49738,
+      "sha256": "357f4fa2afbe765f87be802aee4330e27813efb3c61c162d4634861a632efdbd"
+    },
+    "molecules/GEN_c2170af6b097b382b0bbbbcd/Morgan_bit_491.svg": {
+      "bytes": 21637,
+      "sha256": "76ec7f878466db5db97b6b5807fe5f387a707e4e6257050c2d5517ff75efcbfc"
+    },
+    "molecules/GEN_c2170af6b097b382b0bbbbcd/Morgan_bit_787-labels.svg": {
+      "bytes": 50486,
+      "sha256": "5a7fbf74c0c52b4af6adec36f72b4d6da0a16cb21c4331713f52c3583814a93f"
+    },
+    "molecules/GEN_c2170af6b097b382b0bbbbcd/Morgan_bit_787.svg": {
+      "bytes": 22383,
+      "sha256": "b79865e433866b2e67c9e3276136c090605c3e6afec264843ff6e8547677d437"
+    },
+    "molecules/GEN_c2170af6b097b382b0bbbbcd/molecule-labels.svg": {
+      "bytes": 48989,
+      "sha256": "3185e7e4ba2f369c52914da09c0b9b22ae2803da71fcaf6da10ad5dfc9377129"
+    },
+    "molecules/GEN_c2170af6b097b382b0bbbbcd/molecule.svg": {
+      "bytes": 20888,
+      "sha256": "09bd8a386da4f4f2285ae70205ebf7c48cb82c989fa001aceeb72c2b3387fd23"
+    },
+    "molecules/GEN_c6c2adc172ab701f12ec9ac6/Morgan_bit_1160-labels.svg": {
+      "bytes": 41859,
+      "sha256": "65212ec6dde721cd3c8ccd10c646a7502308e71d70215b33698aef19ccead532"
+    },
+    "molecules/GEN_c6c2adc172ab701f12ec9ac6/Morgan_bit_1160.svg": {
+      "bytes": 18843,
+      "sha256": "2035ec7d6bead078240bc943e623fd78bce3e5d8bddc927837cce05f8a941298"
+    },
+    "molecules/GEN_c6c2adc172ab701f12ec9ac6/Morgan_bit_1535-labels.svg": {
+      "bytes": 40738,
+      "sha256": "9957e7c258bd5ced8eee396222a52d49c2bbf3e0104dcbb0187da084aeb0ad84"
+    },
+    "molecules/GEN_c6c2adc172ab701f12ec9ac6/Morgan_bit_1535.svg": {
+      "bytes": 17722,
+      "sha256": "dd1f2a5a42934da86b9000ac97cbfe7f07da4d0f4c1f2bcde6f1beaeb5f42339"
+    },
+    "molecules/GEN_c6c2adc172ab701f12ec9ac6/Morgan_bit_1582-labels.svg": {
+      "bytes": 40244,
+      "sha256": "7bf619961bc78223fc3a2e913290960810830068ed23e046de2efdcfee461732"
+    },
+    "molecules/GEN_c6c2adc172ab701f12ec9ac6/Morgan_bit_1582.svg": {
+      "bytes": 17228,
+      "sha256": "53099af0d3a8e8256d06791fd1843dd93c60ff361a8350d26b8585ae3c43c491"
+    },
+    "molecules/GEN_c6c2adc172ab701f12ec9ac6/Morgan_bit_1683-labels.svg": {
+      "bytes": 40197,
+      "sha256": "11ff8ca275a920c550b31d41649eedb2f5ec2c5f05bf8ce0a731c12a5ca967ad"
+    },
+    "molecules/GEN_c6c2adc172ab701f12ec9ac6/Morgan_bit_1683.svg": {
+      "bytes": 17181,
+      "sha256": "25690bb1d53379b20e7725154647d43201da815bd6f35470ddf7f7272cd4ed88"
+    },
+    "molecules/GEN_c6c2adc172ab701f12ec9ac6/Morgan_bit_1722-labels.svg": {
+      "bytes": 40866,
+      "sha256": "b74f34b59b02c3c446c9ebfd178cdb6b5b47559286aa3cf98a6388f50e03ee3e"
+    },
+    "molecules/GEN_c6c2adc172ab701f12ec9ac6/Morgan_bit_1722.svg": {
+      "bytes": 17850,
+      "sha256": "049a15ed15bed64829a1a043b0c6f51d12cdebcb8df8c166cea88a53eac4e40f"
+    },
+    "molecules/GEN_c6c2adc172ab701f12ec9ac6/Morgan_bit_1855-labels.svg": {
+      "bytes": 40738,
+      "sha256": "fc087881d6e1d6a92178a8b7cfb7e1cc0ed55348bb90cc1402092dda8b28e079"
+    },
+    "molecules/GEN_c6c2adc172ab701f12ec9ac6/Morgan_bit_1855.svg": {
+      "bytes": 17722,
+      "sha256": "fb198c808f9c26adffbd4a22b3249d1bc816cf26acc5e65ea3e7dc97c7402f8e"
+    },
+    "molecules/GEN_c6c2adc172ab701f12ec9ac6/Morgan_bit_1873-labels.svg": {
+      "bytes": 43690,
+      "sha256": "1b71f3cec3bef3f3e7c31f5a26777faca57c3389a4d64e190fabd5f42a765e61"
+    },
+    "molecules/GEN_c6c2adc172ab701f12ec9ac6/Morgan_bit_1873.svg": {
+      "bytes": 20674,
+      "sha256": "ccef391c3bf5b03fe18ee9e21713190f81dbde394a6ffb308f7f83293f6c13ea"
+    },
+    "molecules/GEN_c6c2adc172ab701f12ec9ac6/Morgan_bit_378-labels.svg": {
+      "bytes": 38982,
+      "sha256": "7966834587e5bf93f67798d330eebf99ab188f60b41f615fa43d19cc8d8cf75f"
+    },
+    "molecules/GEN_c6c2adc172ab701f12ec9ac6/Morgan_bit_378.svg": {
+      "bytes": 15966,
+      "sha256": "c6b778b5d9717ee4bc0b42e528abc5f943cf8c1e50e944083b35e82334e5fbb1"
+    },
+    "molecules/GEN_c6c2adc172ab701f12ec9ac6/Morgan_bit_491-labels.svg": {
+      "bytes": 41682,
+      "sha256": "1f69204fdc2a74e4ddfa810c708f2baccb55270526b48ffdda700b2d95f9a1a9"
+    },
+    "molecules/GEN_c6c2adc172ab701f12ec9ac6/Morgan_bit_491.svg": {
+      "bytes": 18666,
+      "sha256": "eefe581535ba0f7bef8c96eb93829d7f44cfbfea2573ff3d45c862ea795707a7"
+    },
+    "molecules/GEN_c6c2adc172ab701f12ec9ac6/Morgan_bit_787-labels.svg": {
+      "bytes": 41684,
+      "sha256": "77696d0eedbd4093be58ec4ee8a2be581fea2c72b7e9106395b2ba0b4de52692"
+    },
+    "molecules/GEN_c6c2adc172ab701f12ec9ac6/Morgan_bit_787.svg": {
+      "bytes": 18668,
+      "sha256": "ca658437f7ba5fdd0532646df7268816c103588d43bb408c1c903e63767fe7f5"
+    },
+    "molecules/GEN_c6c2adc172ab701f12ec9ac6/molecule-labels.svg": {
+      "bytes": 40197,
+      "sha256": "d2802f3fbc4000cc4a23ee7672d779e765d0ae2f5920dbdb59cd3ab51d15afbf"
+    },
+    "molecules/GEN_c6c2adc172ab701f12ec9ac6/molecule.svg": {
+      "bytes": 17181,
+      "sha256": "f4618e5f97fcb21250b093c718a78ab9d542380cd968e8db1e36d12cfc61b307"
+    },
+    "molecules/GEN_c7d2f9edc6118972e0572eed/Morgan_bit_1104-labels.svg": {
+      "bytes": 46776,
+      "sha256": "141321822b16ccc424fff7d7f718ff4c3a409ec3dc1865046561153bfaaff2dd"
+    },
+    "molecules/GEN_c7d2f9edc6118972e0572eed/Morgan_bit_1104.svg": {
+      "bytes": 21412,
+      "sha256": "9b0fa25954761ec6b477d298794a040c6bca851f5b0d730b724d753a3eb28dc1"
+    },
+    "molecules/GEN_c7d2f9edc6118972e0572eed/Morgan_bit_1160-labels.svg": {
+      "bytes": 44851,
+      "sha256": "ff9e2293cf3aa19cc3fc9bcee497e22e28a84fa63c58305d85815bbc9498f96b"
+    },
+    "molecules/GEN_c7d2f9edc6118972e0572eed/Morgan_bit_1160.svg": {
+      "bytes": 19490,
+      "sha256": "3a0983d1fe558773fc230246c1aacb4b507bbe17f4db9d9e5b7b98aeadac4a93"
+    },
+    "molecules/GEN_c7d2f9edc6118972e0572eed/Morgan_bit_1535-labels.svg": {
+      "bytes": 43730,
+      "sha256": "26c40a42d9053ee5bab1ed26d817df90d52c4a9a62dc80b78d1b1d432fb0c255"
+    },
+    "molecules/GEN_c7d2f9edc6118972e0572eed/Morgan_bit_1535.svg": {
+      "bytes": 18369,
+      "sha256": "f640555a226ee791754318e07b512a5c6018fd3d4fef5eb256e881ecefb6e8db"
+    },
+    "molecules/GEN_c7d2f9edc6118972e0572eed/Morgan_bit_1582-labels.svg": {
+      "bytes": 43236,
+      "sha256": "c7e8d98cf4f57e24eecdd15c3696ee714c8f7dbe6b00d7b3c8ca6163b14aac74"
+    },
+    "molecules/GEN_c7d2f9edc6118972e0572eed/Morgan_bit_1582.svg": {
+      "bytes": 17875,
+      "sha256": "2d9b8d63a492025a5ea186f30ad24ef7fb9ff9b10ad0a0333c81e89f05d32aec"
+    },
+    "molecules/GEN_c7d2f9edc6118972e0572eed/Morgan_bit_1696-labels.svg": {
+      "bytes": 45382,
+      "sha256": "90bb6e13507dbc5c63d4e460bff77e8134c78f062aa2936c1e4a63b88dea7dce"
+    },
+    "molecules/GEN_c7d2f9edc6118972e0572eed/Morgan_bit_1696.svg": {
+      "bytes": 20021,
+      "sha256": "d3d8f0db7421b61ebf4f04b515fb82f35b8ec3a4d3aebbd5787039abaee83a02"
+    },
+    "molecules/GEN_c7d2f9edc6118972e0572eed/Morgan_bit_1722-labels.svg": {
+      "bytes": 43854,
+      "sha256": "3c5031b9c26933016051ba500d0e94f75d20f522b26ab32eac473ac6e83f94f8"
+    },
+    "molecules/GEN_c7d2f9edc6118972e0572eed/Morgan_bit_1722.svg": {
+      "bytes": 18492,
+      "sha256": "2ab4f7e33465def206d4a0584d7a35be38794567f91c56de4ed829c2620f09a3"
+    },
+    "molecules/GEN_c7d2f9edc6118972e0572eed/Morgan_bit_1855-labels.svg": {
+      "bytes": 45389,
+      "sha256": "31c87d15faae6cbb23176678bb08a82fdb7014d63a41adcf8cd17ecd6c49a2b8"
+    },
+    "molecules/GEN_c7d2f9edc6118972e0572eed/Morgan_bit_1855.svg": {
+      "bytes": 20025,
+      "sha256": "9ad1f22cea26b6a9c8eb88133ff07c43a7fdc2b5fee77dddee3bc9d83a3ec26c"
+    },
+    "molecules/GEN_c7d2f9edc6118972e0572eed/Morgan_bit_378-labels.svg": {
+      "bytes": 41974,
+      "sha256": "30c65c31ca073c3eca0117879e0b6d83e8aa75de0fef5ce14cf4e6a8d2f74795"
+    },
+    "molecules/GEN_c7d2f9edc6118972e0572eed/Morgan_bit_378.svg": {
+      "bytes": 16613,
+      "sha256": "60f37c3891887f9d462cae5269de52a757c0776db70a3f7dfedcb65fb716c09b"
+    },
+    "molecules/GEN_c7d2f9edc6118972e0572eed/Morgan_bit_491-labels.svg": {
+      "bytes": 44674,
+      "sha256": "e58e6d62f5b3fbda3ded01944ddecb5360133cb26e1e874ee7e1771af55592f8"
+    },
+    "molecules/GEN_c7d2f9edc6118972e0572eed/Morgan_bit_491.svg": {
+      "bytes": 19313,
+      "sha256": "0f5d0b40626f85fc3dbe55473f3226c29eda15a4997c66024c76c5bfd08758d8"
+    },
+    "molecules/GEN_c7d2f9edc6118972e0572eed/Morgan_bit_787-labels.svg": {
+      "bytes": 44676,
+      "sha256": "b7dbe9005aab595169217dcf6257098ba6a5b125884cc07ed470592d3b95562c"
+    },
+    "molecules/GEN_c7d2f9edc6118972e0572eed/Morgan_bit_787.svg": {
+      "bytes": 19315,
+      "sha256": "5d0713342140af23ce036e7d5c31bcdff389843b8f4c453bcc549f52cd4da391"
+    },
+    "molecules/GEN_c7d2f9edc6118972e0572eed/molecule-labels.svg": {
+      "bytes": 43189,
+      "sha256": "1648a06681428a6d44f652b712cc045fbf65d0e225f03d4f363baeff20f0ed6e"
+    },
+    "molecules/GEN_c7d2f9edc6118972e0572eed/molecule.svg": {
+      "bytes": 17828,
+      "sha256": "76ba035ae8e5f5f330ad4f733997bb800c3ec9e6d8a8679a63e318eb2460fbfa"
+    },
+    "molecules/GEN_c9114969dd50bbe884a06230/Morgan_bit_1023-labels.svg": {
+      "bytes": 54801,
+      "sha256": "fd6e05d0fdaa400c22e4ae22b809cea285c9087d3ba51e15da26b7a6d68cb1da"
+    },
+    "molecules/GEN_c9114969dd50bbe884a06230/Morgan_bit_1023.svg": {
+      "bytes": 25909,
+      "sha256": "87dd43f2cdd7dc64d9a8ca1395360a477a9652d32b5bd6e5bf86b9ca914beced"
+    },
+    "molecules/GEN_c9114969dd50bbe884a06230/Morgan_bit_1160-labels.svg": {
+      "bytes": 53598,
+      "sha256": "f4d500eaf9c1e4d8dbe22d2f2495801ebee6440f15391d36243f72131356124a"
+    },
+    "molecules/GEN_c9114969dd50bbe884a06230/Morgan_bit_1160.svg": {
+      "bytes": 24706,
+      "sha256": "7aeb07fd0ec048453444669345b8b92fce5a272002689a860ee49758d7de5d5f"
+    },
+    "molecules/GEN_c9114969dd50bbe884a06230/Morgan_bit_1535-labels.svg": {
+      "bytes": 52477,
+      "sha256": "9f8ecd5d371c72ba071839716a9834f0cb31ef1e6abe9af91d85e1491aa80be7"
+    },
+    "molecules/GEN_c9114969dd50bbe884a06230/Morgan_bit_1535.svg": {
+      "bytes": 23585,
+      "sha256": "8206eeb7e20dd722c01545d7631cef9085d45b9c9f51c37422e189e780068e61"
+    },
+    "molecules/GEN_c9114969dd50bbe884a06230/Morgan_bit_1582-labels.svg": {
+      "bytes": 51983,
+      "sha256": "da7890bed1756d5496409c8aa1c0eb02b75f18b7d91f6190c44da8e6ba3ce3b6"
+    },
+    "molecules/GEN_c9114969dd50bbe884a06230/Morgan_bit_1582.svg": {
+      "bytes": 23091,
+      "sha256": "f0ae9c23b8eb6380100c02f14b7d07a9b01f486f402093330030e6e4769f63a2"
+    },
+    "molecules/GEN_c9114969dd50bbe884a06230/Morgan_bit_1589-labels.svg": {
+      "bytes": 52876,
+      "sha256": "4821d55c0ee8c0f402eac338060caa4f8d45e2e846784ee48703c9d361b0d052"
+    },
+    "molecules/GEN_c9114969dd50bbe884a06230/Morgan_bit_1589.svg": {
+      "bytes": 23984,
+      "sha256": "8470dec7a23e1a700435a84c29fc0c80679ba3264ab71c74eac4446f4b7e4502"
+    },
+    "molecules/GEN_c9114969dd50bbe884a06230/Morgan_bit_1722-labels.svg": {
+      "bytes": 52605,
+      "sha256": "b2ddca8e73f3cfb20cdee4cd9d6bf16798ea2459e30aba24170fb0c3159282da"
+    },
+    "molecules/GEN_c9114969dd50bbe884a06230/Morgan_bit_1722.svg": {
+      "bytes": 23511,
+      "sha256": "212756085c3d42476cb1c70825f8311ba074d0e175c8b0ef6e742fb3eb295b82"
+    },
+    "molecules/GEN_c9114969dd50bbe884a06230/Morgan_bit_1855-labels.svg": {
+      "bytes": 52477,
+      "sha256": "f7f095a2e6fc9ef05c2d0386a47422181142d0c6b61396dc386ee9faa2cf6533"
+    },
+    "molecules/GEN_c9114969dd50bbe884a06230/Morgan_bit_1855.svg": {
+      "bytes": 23585,
+      "sha256": "4fe940c95a0ca17fd5eb368a3c4f1342c99c9c31df866a84f86b86c6e0205f55"
+    },
+    "molecules/GEN_c9114969dd50bbe884a06230/Morgan_bit_491-labels.svg": {
+      "bytes": 52680,
+      "sha256": "9750648d1c73ba78e30dd211984f53b70924f394b1a7678a5f682e31692ad2d0"
+    },
+    "molecules/GEN_c9114969dd50bbe884a06230/Morgan_bit_491.svg": {
+      "bytes": 23788,
+      "sha256": "db37303cb63a9c91b5d3b3c77c22d4024a5f0443a1303285fc44468f87183bd5"
+    },
+    "molecules/GEN_c9114969dd50bbe884a06230/Morgan_bit_5-labels.svg": {
+      "bytes": 52592,
+      "sha256": "cc6297b50ec10a1592f4386d8feea9e594228f8c459ef7387a18b01d11efe814"
+    },
+    "molecules/GEN_c9114969dd50bbe884a06230/Morgan_bit_5.svg": {
+      "bytes": 23700,
+      "sha256": "e6e7038133c89c61dea82c3d47ce17c99c992bddd8d8a26278765fec3a5447fc"
+    },
+    "molecules/GEN_c9114969dd50bbe884a06230/Morgan_bit_787-labels.svg": {
+      "bytes": 53423,
+      "sha256": "4ee8248a80b05323c1b0eef30ea86481a68c3fb2f836b696942dd3874e105672"
+    },
+    "molecules/GEN_c9114969dd50bbe884a06230/Morgan_bit_787.svg": {
+      "bytes": 24531,
+      "sha256": "97d6654f1ce4b3a4535592d6cace7acaf88627b513b1e92987333972daab9f5a"
+    },
+    "molecules/GEN_c9114969dd50bbe884a06230/molecule-labels.svg": {
+      "bytes": 51936,
+      "sha256": "c514fb188bf1ebc5e66679c3c4099243bda20d59e5506365c676c5a2e2a3ead5"
+    },
+    "molecules/GEN_c9114969dd50bbe884a06230/molecule.svg": {
+      "bytes": 23044,
+      "sha256": "760b2ea7a54303f2558f7c099fed62a79b921aebf97e4f766aeb26369f6345d2"
+    },
+    "molecules/GEN_e391ee141e35ca355275c63f/Morgan_bit_1160-labels.svg": {
+      "bytes": 41644,
+      "sha256": "31531c7915b55202d3fd66ab91d01248f4ec0921713b2595f4ed41a3bd21ecde"
+    },
+    "molecules/GEN_e391ee141e35ca355275c63f/Morgan_bit_1160.svg": {
+      "bytes": 18702,
+      "sha256": "a63b792e0e128490c0f8a2c7ae2f6ce7e2b9221948ba31d5fa76b32b7c6be05e"
+    },
+    "molecules/GEN_e391ee141e35ca355275c63f/Morgan_bit_1326-labels.svg": {
+      "bytes": 41372,
+      "sha256": "4c1b305e6ad6f2dfa4d0ce797367af96e1d1d25f05d575384e57983e86289a91"
+    },
+    "molecules/GEN_e391ee141e35ca355275c63f/Morgan_bit_1326.svg": {
+      "bytes": 18432,
+      "sha256": "ff6f26ea3e981a9d5493ea5cc37243ec1981ba0ebf37985d69424d0c9c5a858f"
+    },
+    "molecules/GEN_e391ee141e35ca355275c63f/Morgan_bit_147-labels.svg": {
+      "bytes": 40719,
+      "sha256": "62f01e9caf450ef3a879fa1b05ec70c4f83a955ff864f54785733f50c978ccfa"
+    },
+    "molecules/GEN_e391ee141e35ca355275c63f/Morgan_bit_147.svg": {
+      "bytes": 17777,
+      "sha256": "3becea2be4482ef808ba9f67efe3fe6ea072d54180e420da7ed97372129d69f4"
+    },
+    "molecules/GEN_e391ee141e35ca355275c63f/Morgan_bit_1535-labels.svg": {
+      "bytes": 40523,
+      "sha256": "69d6d67b56e53c77a974da3359f59f307140f1d2c1a322b1c85798564479e8d4"
+    },
+    "molecules/GEN_e391ee141e35ca355275c63f/Morgan_bit_1535.svg": {
+      "bytes": 17581,
+      "sha256": "378bacb374a48c6171cb0bb7c6b2efacb6a42857bb5138b46b81c8c0960e0666"
+    },
+    "molecules/GEN_e391ee141e35ca355275c63f/Morgan_bit_1582-labels.svg": {
+      "bytes": 40029,
+      "sha256": "46fa45e11eda56f407a790a9b6af07352bc22f3e8374fe2ec2110a7eebba28dc"
+    },
+    "molecules/GEN_e391ee141e35ca355275c63f/Morgan_bit_1582.svg": {
+      "bytes": 17087,
+      "sha256": "4443ad8dda4e93f49fe304c759a69ca612c2e54591cbde5a2eb759d88e5ec48f"
+    },
+    "molecules/GEN_e391ee141e35ca355275c63f/Morgan_bit_1855-labels.svg": {
+      "bytes": 40523,
+      "sha256": "69333ca1b4602c058f90e83651f4eac1e6eb737588c55d0049f1ad36ead090f6"
+    },
+    "molecules/GEN_e391ee141e35ca355275c63f/Morgan_bit_1855.svg": {
+      "bytes": 17581,
+      "sha256": "6c133c5b24af7f2aaedc6686e528dbd7a1d7d130ec70bca295e6be8bfd4dea8e"
+    },
+    "molecules/GEN_e391ee141e35ca355275c63f/Morgan_bit_1940-labels.svg": {
+      "bytes": 41369,
+      "sha256": "1470db7b3b96118a22eff7ab723afef2bbd5088ebc2689027a602b0bc23f333c"
+    },
+    "molecules/GEN_e391ee141e35ca355275c63f/Morgan_bit_1940.svg": {
+      "bytes": 18429,
+      "sha256": "4430fc0d34eee25ecee18cfeb6072fc2ae23a14d6b047ac490a4e9d12ab0baeb"
+    },
+    "molecules/GEN_e391ee141e35ca355275c63f/Morgan_bit_378-labels.svg": {
+      "bytes": 38767,
+      "sha256": "8f76fd144e84c578dc782987eb9712de7a203d60f74498943a9e2f010665ddd8"
+    },
+    "molecules/GEN_e391ee141e35ca355275c63f/Morgan_bit_378.svg": {
+      "bytes": 15825,
+      "sha256": "3a31a16165d2b77e1493db34d3c637e491464b572472a3f58cc3318b885445f3"
+    },
+    "molecules/GEN_e391ee141e35ca355275c63f/Morgan_bit_491-labels.svg": {
+      "bytes": 40726,
+      "sha256": "0f733368668d5c428adb7354ed02c77784cb43da08bd171ce425c368f7a69b16"
+    },
+    "molecules/GEN_e391ee141e35ca355275c63f/Morgan_bit_491.svg": {
+      "bytes": 17784,
+      "sha256": "6d213a2d28950ec74d7f4360fbbb0fdba488ddb72effe00f4373eb6b213d050b"
+    },
+    "molecules/GEN_e391ee141e35ca355275c63f/Morgan_bit_787-labels.svg": {
+      "bytes": 41469,
+      "sha256": "36e9c210c77e96ddaa67ebf868f6f2c23edfe01dbe2934fd4158d4d33da5a8b7"
+    },
+    "molecules/GEN_e391ee141e35ca355275c63f/Morgan_bit_787.svg": {
+      "bytes": 18527,
+      "sha256": "8cbe4076301874eb957f4fedb26e985de100728a8cb06a4c87321c23d013af20"
+    },
+    "molecules/GEN_e391ee141e35ca355275c63f/molecule-labels.svg": {
+      "bytes": 39982,
+      "sha256": "fbc818df23f525cb337bf7b34d2e240a57b05b35107d0ba8f8d2cacef3878944"
+    },
+    "molecules/GEN_e391ee141e35ca355275c63f/molecule.svg": {
+      "bytes": 17040,
+      "sha256": "1dd46b274cd22d9a83f6fd644c7d77917c0003950062dc2f4a8bd492d5e749ce"
+    },
+    "molecules/GEN_f164ad8a8e289df304bf9af5/Morgan_bit_1-labels.svg": {
+      "bytes": 41954,
+      "sha256": "413d09ede3988ab56e1aeedcd46af360bcf015d94b78421748568a08c34ac2c1"
+    },
+    "molecules/GEN_f164ad8a8e289df304bf9af5/Morgan_bit_1.svg": {
+      "bytes": 17943,
+      "sha256": "7060bceb4713c10cf7a6e4865db27ecfe2800d7fbf9c7b6182f26d78d4dd0ee0"
+    },
+    "molecules/GEN_f164ad8a8e289df304bf9af5/Morgan_bit_1160-labels.svg": {
+      "bytes": 43416,
+      "sha256": "bd42e0279a47d5019cc5c8315de85a6e783f294e4b9a56a4d06c4187fb9e6ab6"
+    },
+    "molecules/GEN_f164ad8a8e289df304bf9af5/Morgan_bit_1160.svg": {
+      "bytes": 19427,
+      "sha256": "ad5aabad127de54b3738be95bf090538fd35a6ee7a61ecbd360ac7968f907149"
+    },
+    "molecules/GEN_f164ad8a8e289df304bf9af5/Morgan_bit_1365-labels.svg": {
+      "bytes": 43412,
+      "sha256": "40b430287b750b1b61c43a8e884eb8dd382e549df95eca83de2f75e049184ce4"
+    },
+    "molecules/GEN_f164ad8a8e289df304bf9af5/Morgan_bit_1365.svg": {
+      "bytes": 19401,
+      "sha256": "102db648118e1587bc77bf5341342d1f58022019724ef408fd2c73f72c4cbeda"
+    },
+    "molecules/GEN_f164ad8a8e289df304bf9af5/Morgan_bit_1535-labels.svg": {
+      "bytes": 42298,
+      "sha256": "647d2b59c2d1feba550e98af33a31d18bc0dd161df2c96f61f37b289bc4f8533"
+    },
+    "molecules/GEN_f164ad8a8e289df304bf9af5/Morgan_bit_1535.svg": {
+      "bytes": 18285,
+      "sha256": "b55651c2cd518eb8af316b7702d03f9600cc4c7ea64353aa6b4cb4a84ee24cf7"
+    },
+    "molecules/GEN_f164ad8a8e289df304bf9af5/Morgan_bit_1582-labels.svg": {
+      "bytes": 41807,
+      "sha256": "a2a171db1a392fbdce5258cd5821eb2d9a5f054617dd7f9c80f0355ea2f7faf1"
+    },
+    "molecules/GEN_f164ad8a8e289df304bf9af5/Morgan_bit_1582.svg": {
+      "bytes": 17794,
+      "sha256": "29e6d5722bbdb1561dd187d56195703779e74e2cb9a3b28c086dc0e191317cba"
+    },
+    "molecules/GEN_f164ad8a8e289df304bf9af5/Morgan_bit_1722-labels.svg": {
+      "bytes": 42425,
+      "sha256": "e70a68784bc2c82af00d4060438e779f9818c3827dbc0698f6825a3704316283"
+    },
+    "molecules/GEN_f164ad8a8e289df304bf9af5/Morgan_bit_1722.svg": {
+      "bytes": 18414,
+      "sha256": "707419b5f0a72b8e804edb3c4e791e8c4b71b4447138769111b5411f29abe016"
+    },
+    "molecules/GEN_f164ad8a8e289df304bf9af5/Morgan_bit_1853-labels.svg": {
+      "bytes": 45107,
+      "sha256": "63a615bf36f7b082bdf76ad5e8cc3a5233dc238590ad90d675af429c43bb4e9e"
+    },
+    "molecules/GEN_f164ad8a8e289df304bf9af5/Morgan_bit_1853.svg": {
+      "bytes": 21096,
+      "sha256": "0e70206b77e39c10f4fbec2a113735d132b99a0fd44b846ed62aa2cbb7ab9400"
+    },
+    "molecules/GEN_f164ad8a8e289df304bf9af5/Morgan_bit_1855-labels.svg": {
+      "bytes": 42298,
+      "sha256": "499d70d04f419b576357fab12dd1654dd1d7cc96936651d6eb0ad28a14c60344"
+    },
+    "molecules/GEN_f164ad8a8e289df304bf9af5/Morgan_bit_1855.svg": {
+      "bytes": 18285,
+      "sha256": "f49122ba1ce88ff6150313d18515c41ec1591e6ac806e913ae1ea115e2033fa2"
+    },
+    "molecules/GEN_f164ad8a8e289df304bf9af5/Morgan_bit_227-labels.svg": {
+      "bytes": 42226,
+      "sha256": "8bf8f7b973ecd17ebc980b81ec231366c3522fc4f3310c543bd0355e97ef5774"
+    },
+    "molecules/GEN_f164ad8a8e289df304bf9af5/Morgan_bit_227.svg": {
+      "bytes": 18215,
+      "sha256": "84689237a586a8d2266ada1c1291d9f171fa6b3c440423ba25875f446ba6ff8c"
+    },
+    "molecules/GEN_f164ad8a8e289df304bf9af5/Morgan_bit_787-labels.svg": {
+      "bytes": 43240,
+      "sha256": "be0652e9f61a3f2caa7cf2e7abc8b945aa35ab8e9817f2d9ef9a732e4b9d7fdd"
+    },
+    "molecules/GEN_f164ad8a8e289df304bf9af5/Morgan_bit_787.svg": {
+      "bytes": 19251,
+      "sha256": "c31a3b1d83da70b1782d9e29203d8c51f71481dbcc82e322eb43cb31afbb0e14"
+    },
+    "molecules/GEN_f164ad8a8e289df304bf9af5/molecule-labels.svg": {
+      "bytes": 41752,
+      "sha256": "c6d0a114a8257dc3c6a90106c8fdbcdf0454e911c96623454472a7ac87a44b38"
+    },
+    "molecules/GEN_f164ad8a8e289df304bf9af5/molecule.svg": {
+      "bytes": 17741,
+      "sha256": "3f30f5660e569e8522da7e3b4ba3d66b8bf3de88dc57136aa680edd7bd53be2f"
+    },
+    "molecules/GEN_ff075f9a657ab5e2cf6ba7b4/Morgan_bit_1066-labels.svg": {
+      "bytes": 46588,
+      "sha256": "b7685c7936b1a1c013fd9fe9baaadf2b26b50bf562ad7d7c49afac3cca613b06"
+    },
+    "molecules/GEN_ff075f9a657ab5e2cf6ba7b4/Morgan_bit_1066.svg": {
+      "bytes": 20169,
+      "sha256": "8687801db514dd3d84c64e6a3b10ca7fafbd6180b99eba90d6fca1906714f758"
+    },
+    "molecules/GEN_ff075f9a657ab5e2cf6ba7b4/Morgan_bit_1160-labels.svg": {
+      "bytes": 45665,
+      "sha256": "7f9513978d222e3ca4e6933117603a92b4c9e9e9d4bf049e8048704b96cc77eb"
+    },
+    "molecules/GEN_ff075f9a657ab5e2cf6ba7b4/Morgan_bit_1160.svg": {
+      "bytes": 19248,
+      "sha256": "c58217440dafc34e879b94fb099a0e2f7321dda1d905aa1c16eee4efa7cf91ef"
+    },
+    "molecules/GEN_ff075f9a657ab5e2cf6ba7b4/Morgan_bit_1243-labels.svg": {
+      "bytes": 45141,
+      "sha256": "3af126c9becc192addae57f49ce930e46fb60959eb2a157d0b19b279beab5ea5"
+    },
+    "molecules/GEN_ff075f9a657ab5e2cf6ba7b4/Morgan_bit_1243.svg": {
+      "bytes": 18724,
+      "sha256": "f2d5708cd6f43bd1f2dc9bb4bde06569faa8a4c7fc19898881f240acd12c6f62"
+    },
+    "molecules/GEN_ff075f9a657ab5e2cf6ba7b4/Morgan_bit_1535-labels.svg": {
+      "bytes": 44543,
+      "sha256": "896dfb5d500240d28da2c04b4b49159dc2a3cdbb92646c2a73965a92293bab3c"
+    },
+    "molecules/GEN_ff075f9a657ab5e2cf6ba7b4/Morgan_bit_1535.svg": {
+      "bytes": 18130,
+      "sha256": "2d905131d2fc38c07228db251f7f135cd89a0eaf4d46eaf4bed5982fb043f520"
+    },
+    "molecules/GEN_ff075f9a657ab5e2cf6ba7b4/Morgan_bit_1582-labels.svg": {
+      "bytes": 44050,
+      "sha256": "8ec5ee8eabb162324925bfe75f8a9743f2505789b53d228bb8878fb8dbd75b81"
+    },
+    "molecules/GEN_ff075f9a657ab5e2cf6ba7b4/Morgan_bit_1582.svg": {
+      "bytes": 17633,
+      "sha256": "0cd652a20feb3c1f172c62622a28279746a27764f918aa4d78cc78251c27a236"
+    },
+    "molecules/GEN_ff075f9a657ab5e2cf6ba7b4/Morgan_bit_1722-labels.svg": {
+      "bytes": 44671,
+      "sha256": "9a80196b5079a6b56cdbeba71926ff755ac8974b84a4a21844335af05c630a39"
+    },
+    "molecules/GEN_ff075f9a657ab5e2cf6ba7b4/Morgan_bit_1722.svg": {
+      "bytes": 18259,
+      "sha256": "6f13c4ab4261cf25c331353d6b0e127ce189da40272ea4bd8ae4f445ccd30758"
+    },
+    "molecules/GEN_ff075f9a657ab5e2cf6ba7b4/Morgan_bit_1855-labels.svg": {
+      "bytes": 44544,
+      "sha256": "83f63c3d8a3b4c113c8297cd5cf71454dc4c8044f9b6acc056c2f68b65662e0f"
+    },
+    "molecules/GEN_ff075f9a657ab5e2cf6ba7b4/Morgan_bit_1855.svg": {
+      "bytes": 18127,
+      "sha256": "8061cb098eb112459fa801775cd0daf2a1886d904cd637222e156432c46ab543"
+    },
+    "molecules/GEN_ff075f9a657ab5e2cf6ba7b4/Morgan_bit_378-labels.svg": {
+      "bytes": 42789,
+      "sha256": "de61b814392230dfd82795c3b7237bb71cd2430d06444fc26767d206a045529a"
+    },
+    "molecules/GEN_ff075f9a657ab5e2cf6ba7b4/Morgan_bit_378.svg": {
+      "bytes": 16376,
+      "sha256": "8ffa9a3e678d737d113074752eb72aaf49712d7a43e229a9572478352b60f0eb"
+    },
+    "molecules/GEN_ff075f9a657ab5e2cf6ba7b4/Morgan_bit_491-labels.svg": {
+      "bytes": 45490,
+      "sha256": "1fced88253a8b427c977a34892aace218d0835f128ed2e78074af6bde9ef6696"
+    },
+    "molecules/GEN_ff075f9a657ab5e2cf6ba7b4/Morgan_bit_491.svg": {
+      "bytes": 19073,
+      "sha256": "d342e3cac0a4bc7133d18e338c98b21d527738bd0430f7ed945dc7a0633ecb50"
+    },
+    "molecules/GEN_ff075f9a657ab5e2cf6ba7b4/Morgan_bit_787-labels.svg": {
+      "bytes": 45490,
+      "sha256": "a996d20220264f9c189a8e0c3dcdfbc1f9d09c683c5dc9d5359500d55b1d0c03"
+    },
+    "molecules/GEN_ff075f9a657ab5e2cf6ba7b4/Morgan_bit_787.svg": {
+      "bytes": 19073,
+      "sha256": "c2970f68ae901a0df6d981f965cd80296713be2ad0f5c52256fb4bb4b157b34c"
+    },
+    "molecules/GEN_ff075f9a657ab5e2cf6ba7b4/molecule-labels.svg": {
+      "bytes": 44003,
+      "sha256": "741a70608725c78c0a213be4bb534c708baabb14f2200e5234c6a99752ff2db6"
+    },
+    "molecules/GEN_ff075f9a657ab5e2cf6ba7b4/molecule.svg": {
+      "bytes": 17586,
+      "sha256": "d1ba1220bd7c0d3dc3a34ad3bd0523914f2b447069fbf7a70c72a1e7d52d3beb"
+    },
+    "poses/GEN_116c1ddbcd0f3a73d53f4b12-0.cif": {
+      "bytes": 199087,
+      "sha256": "970d65c2053be1108b95c5aa802c8519bbc8bbb0fdba6d0de3d65628addee1fd"
+    },
+    "poses/GEN_1a9ba19f039ddd57279bde42-0.cif": {
+      "bytes": 198754,
+      "sha256": "7327890e2119e94dba51dad944a71af099dae06d2c2f00c9cd0bc4163de33756"
+    },
+    "poses/GEN_1be062b8a72206ea06c140aa-0.cif": {
+      "bytes": 198333,
+      "sha256": "862e64b21f13807c5b39ca41caf2fcfc3bb38536d6bc9a8e1fd09ba3ade4ac6d"
+    },
+    "poses/GEN_27d68466cde64f574a4d0c6c-0.cif": {
+      "bytes": 199293,
+      "sha256": "74aadcdf7a4751eac968dd7a6ee73ceb9beab91fd97089ad11a33025cb113ed8"
+    },
+    "poses/GEN_31e89f887106d50bdc580a12-0.cif": {
+      "bytes": 198677,
+      "sha256": "d11e79491490baf5292c7d1ec3368298d119b4c80ce417d3d3042c371d8c3593"
+    },
+    "poses/GEN_480f498701f6f3e73ce655cb-0.cif": {
+      "bytes": 198754,
+      "sha256": "b8e449034e49f91e99bf39844294667b751f56491decdc026b98f2680f9b95b9"
+    },
+    "poses/GEN_8c7b56c8549a96714c962466-0.cif": {
+      "bytes": 198659,
+      "sha256": "ef9186cced2a8b981bc089785a7ef67265d78811b665853c92974865c6e409bd"
+    },
+    "poses/GEN_93edc12d34673762ce79b14b-0.cif": {
+      "bytes": 198880,
+      "sha256": "8b21ed7ad2b3d33d6964c5f36398ece7ee6072aa5f14347d4ac5fcf92af442c6"
+    },
+    "poses/GEN_a94a009b33b40ed21882bc34-0.cif": {
+      "bytes": 198817,
+      "sha256": "5689b29ea5452edcfa2ee64c0c203b61a1edbf9b2b697bac4bde89ab0e4a145d"
+    },
+    "poses/GEN_b74f5e6431b2d792566bd458-0.cif": {
+      "bytes": 198764,
+      "sha256": "0d55935d004ac82ad44a649a5c37f7dd49e3dd1d8630d0ec76b36645450c597a"
+    },
+    "poses/GEN_bb0106d6bdededf13ee8c983-0.cif": {
+      "bytes": 198940,
+      "sha256": "89cce1717fe169fe1a80eb19767267381e7fdaf9fcdb6a946da183d0ca5aaf75"
+    },
+    "poses/GEN_c2170af6b097b382b0bbbbcd-0.cif": {
+      "bytes": 199038,
+      "sha256": "8c5d870f982d93fd6c3ec84e726a3c384d6676db1d94c94c941e4f7bb7200f08"
+    },
+    "poses/GEN_c6c2adc172ab701f12ec9ac6-0.cif": {
+      "bytes": 198674,
+      "sha256": "14483f5d1d31e8d656ba00b71be1a5b19c7138258a5d543fa8d2af290c4aa672"
+    },
+    "poses/GEN_c7d2f9edc6118972e0572eed-0.cif": {
+      "bytes": 198871,
+      "sha256": "4d00c91753c38a9e1e5daa1c11aadcbaa37859492df1abcc3c3f6a0bb7998ff3"
+    },
+    "poses/GEN_c9114969dd50bbe884a06230-0.cif": {
+      "bytes": 199002,
+      "sha256": "97d447ab7bd1af87856d3b7c81ca110a32e533de1b7eac0c05f88170dc5f66dc"
+    },
+    "poses/GEN_e391ee141e35ca355275c63f-0.cif": {
+      "bytes": 198832,
+      "sha256": "64f98cb02644fa8f25662c10dd4a09d632586d6bdd467f499ccfb180d2708e1c"
+    },
+    "poses/GEN_f164ad8a8e289df304bf9af5-0.cif": {
+      "bytes": 198411,
+      "sha256": "66823acc53b22962ae64a9ee76a4cffcbab092799e6d05e2a146a3cc44bc845c"
+    },
+    "poses/GEN_ff075f9a657ab5e2cf6ba7b4-0.cif": {
+      "bytes": 199066,
+      "sha256": "576548b3c242df5370e1b16c56580769466631ec29bf7da07f70621ba1eb5793"
+    },
+    "report.html": {
+      "bytes": 285458,
+      "sha256": "c35e2887066698becd1bb441219efcbe8ed63a5f5c1c5a238037abd4eb640982"
+    },
+    "report.json": {
+      "bytes": 239813,
+      "sha256": "5c7ec6c2daeee590c03bddbc90ab1c78c410d50f2c85cff6ae196fc48ae0f888"
+    },
+    "study.json": {
+      "bytes": 430219,
+      "sha256": "aef571d4785fdd33d23081e6d4a7856e52e014e2ae2f799b40435e0c10d4604b"
+    }
+  },
+  "execution_mode": "live",
+  "raw_responses": "Not published; URNs identify original content hashes.",
+  "slug": "generated",
+  "source_report_sha256": "9ed73e4ece779f0f714253a457d27d75120796acf00edf6b968319d250686cc5",
+  "source_run": "bf3e06a08c46441facc6e51def76b04d",
+  "status": "partial",
+  "version": 1
+}

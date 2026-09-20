@@ -1,0 +1,20 @@
+# CLI source deployments: explicit public build inputs only.
+*
+!vercel.json
+!scripts/
+scripts/*
+!scripts/build-public-demo.mjs
+!app/
+app/*
+!app/src/
+app/src/*
+!app/src/toxoracle_app/
+app/src/toxoracle_app/*
+!app/src/toxoracle_app/public_static/
+!app/src/toxoracle_app/public_static/**
+!app/src/toxoracle_app/web_static/
+!app/src/toxoracle_app/web_static/**
+!demo/
+demo/*
+!demo/public/
+!demo/public/**

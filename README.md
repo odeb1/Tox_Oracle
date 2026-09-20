@@ -25,6 +25,19 @@ status. Target-only generation is the primary web demonstration; the frozen supp
 See the [Team B runbook](docs/runbooks/team-b-local-mvp.md) for reproducible training,
 privacy setup and real cached DILI outputs. The user has passed the browser smoke test.
 
+## Public interactive demo
+
+**[Open ToxOracle](https://toxoracle-demo.vercel.app)** · [Judging QR code](docs/assets/public-demo-qr.png)
+
+Explore the complete prompt-to-results experience using real saved ABL1 evidence.
+The main study contains 20 generated candidates, 18 successful discovery results,
+and two shortlisted candidates held for liver validation. The four-drug supplied
+panel is also available. Playback, Results, molecular features and all 22 available
+3D poses work without an API key or a running laptop. This is an explicitly labelled
+recorded demo; new questions and candidates require the local app below.
+
+[Build, deploy and update the public demo](docs/runbooks/public-demo.md).
+
 ## Researcher web app
 
 The standalone Oxford Blue workspace owns study input, local privacy review and
