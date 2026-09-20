@@ -5,7 +5,7 @@
 <h1 align="center">ToxOracle</h1>
 
 <p align="center">
-  <strong>Generate. Screen. Question what survives.</strong><br />
+  <strong>Design for promise. Screen for risk.</strong><br />
   An agentic drug-discovery workflow that adds human liver-toxicity evidence before a promising molecule becomes an expensive mistake.
 </p>
 
