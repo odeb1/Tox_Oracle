@@ -75,6 +75,72 @@ function scoreGraphic(score, threshold) {
   if(Number.isFinite(threshold)){const x=8+384*threshold;svg.append(svgNode('line',{x1:x,x2:x,y1:4,y2:26,stroke:'#002147','stroke-width':2}));}
   return svg;
 }
+function discoveryRecordTable(record) {
+  const labels = {
+    compound_id:'Compound ID', status:'Discovery status', rank:'Discovery rank', shortlisted:'Frozen shortlist',
+    mean_binding_probability:'Mean binder likelihood', binding_probability:'Individual binding predictions',
+    affinity_pic50:'Predicted affinity (pIC50)', affinity_pred_value:'Affinity model value',
+    structural_confidence:'Structural confidence', canonical_smiles:'Canonical SMILES',
+    atom_mapped_smiles:'Atom-mapped SMILES', structure_id:'Structure ID', standardization_version:'Standardization version',
+    method_id:'Method ID', endpoint:'Service endpoint', execution_mode:'Original execution mode',
+    served_model_version:'Served model version', version_status:'Model version reporting',
+    cache_key:'Cache key', response_digest:'Response digest', raw_response:'Source response',
+    sha256:'SHA-256 checksum', uri:'Location', atom_mapping_status:'Atom mapping', structures:'Structure files'
+  };
+  const groups = [
+    ['Screening result', ['compound_id','status','rank','shortlisted']],
+    ['Binding & structural predictions', ['mean_binding_probability','binding_probability','affinity_pic50','affinity_pred_value','structural_confidence']],
+    ['Molecular identity', ['canonical_smiles','atom_mapped_smiles','structure_id','standardization_version']],
+    ['Model & execution', ['provenance']], ['Structure files', ['structures']],
+    ['Source response', ['raw_response']], ['Warnings & errors', ['warnings','error']]
+  ];
+  const known = new Set(groups.flatMap(([,keys])=>keys));
+  groups.push(['Additional recorded fields', Object.keys(record).filter(key=>!known.has(key))]);
+  const label = key=>labels[key] || key.replaceAll('_',' ').replace(/^./,c=>c.toUpperCase());
+  const enums = {ok:'Completed',not_run:'Not run',not_reported:'Not reported',mmcif:'mmCIF'};
+  function valueText(value, key) {
+    if(value===null || value===undefined) return key==='error'?'None recorded':key==='rank'?'Unranked':'Unavailable';
+    if(typeof value==='boolean') return value?'Yes':'No';
+    if(['status','execution_mode','version_status','atom_mapping_status','origin','format'].includes(key))
+      return enums[value] || String(value).replaceAll('_',' ').replace(/^./,c=>c.toUpperCase());
+    return String(value);
+  }
+  const table=node('table',null,'source-record-table'),head=node('thead'),header=node('tr');
+  table.append(node('caption','Recorded discovery values · '+record.compound_id));
+  ['Field','Recorded value'].forEach(title=>{const th=node('th',title);th.scope='col';header.append(th);});
+  head.append(header);table.append(head);
+  function row(body, path, value, key) {
+    const tr=node('tr'),th=node('th',path.join(' · ')),td=node('td');th.scope='row';
+    if(Array.isArray(value) && value.length>1){
+      const list=node('ol',null,'source-record-values');value.forEach(v=>list.append(node('li',valueText(v,key))));td.append(list);
+    } else {
+      const text=Array.isArray(value)?(value.length?valueText(value[0],key):'None recorded'):valueText(value,key);
+      const technical=['canonical_smiles','atom_mapped_smiles','compound_id','structure_id','sha256','cache_key','response_digest','uri','endpoint','method_id','standardization_version'].includes(key);
+      td.append(node(technical?'code':'span',text));
+    }
+    tr.append(th,td);body.append(tr);
+  }
+  function entries(body, value, path, key) {
+    if(Array.isArray(value) && value.some(v=>v!==null && typeof v==='object')) {
+      value.forEach((v,i)=>entries(body,v,[...path,String(i+1)],key));
+    } else if(value!==null && typeof value==='object' && !Array.isArray(value)) {
+      const fields=Object.entries(value);
+      if(!fields.length)row(body,path,'None recorded',key);
+      fields.forEach(([k,v])=>entries(body,v,[...path,label(k)],k));
+    } else row(body,path,value,key);
+  }
+  groups.forEach(([title,keys])=>{
+    const present=keys.filter(key=>Object.hasOwn(record,key));if(!present.length)return;
+    const body=node('tbody'),section=node('tr',null,'source-record-section'),th=node('th',title);
+    th.colSpan=2;th.scope='rowgroup';section.append(th);body.append(section);
+    present.forEach(key=>{
+      const path=['provenance','raw_response'].includes(key) && record[key]!==null?[]:[label(key)];
+      entries(body,record[key],path,key);
+    });
+    table.append(body);
+  });
+  return table;
+}
 function renderDashboard(result) {
   disposePoseViewers();
   const scores=clear('score-overview');scores.append(node('p','HUMAN DILI · ALL CANDIDATES','eyebrow'),node('h3','Concern, in context.'),node('p','Each dot is the candidate’s recorded DILI score. The vertical mark is its own decision threshold. Scores are not patient incidence. Select a candidate to explore its evidence.','field-note'));
@@ -85,7 +151,7 @@ function renderDashboard(result) {
     if(!artifacts.length) details.append(node('p','No structure artifact is recorded.','field-note'));
     artifacts.forEach((a,index)=>{details.append(node('p',(a.format || 'Structure')+' · '+a.origin+' · Atom mapping: '+a.atom_mapping_status),node('p','SHA-256: '+a.sha256,'artifact-checksum'));if(reportRun && (reportRun.mode!=='recorded'||resultsSource.kind==='static')){const jobId=reportRun.job_id,button=node('button','Download verified structure ↓','secondary');button.onclick=()=>action(button,async()=>{const file=await resultsSource.structure({job_id:jobId,compound_id:r.compound_id,index});saveFile(file.content,file.filename,file.mime);});details.append(button);}else details.append(node('p','Owned runs and the verified public recording can load saved coordinates. Imported reports require a matching local structure file.','field-note'));});
     if(artifacts.length)attachPoseViewer(details,r,reportRun);
-    const raw=node('details');raw.append(node('summary','Discovery source record'),node('pre',JSON.stringify(d,null,2),'data-preview'));details.append(raw);lab.append(details);
+    const source=node('details');source.append(node('summary','Discovery source record'),discoveryRecordTable(d));details.append(source);lab.append(details);
   });
   const box=clear('model-evaluation');box.append(node('p','MODEL & PROVENANCE','eyebrow'),node('h3','A reference, not a validation of this study.'),node('p','Loading repository evaluation…'));
   resultsSource.evidence({report:result,view:'model'}).then(data=>{
