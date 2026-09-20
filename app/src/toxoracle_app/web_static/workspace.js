@@ -2,8 +2,14 @@
 const $ = id => document.getElementById(id);
 const token = document.querySelector('meta[name="launch-token"]').content;
 let sid = null, scan = null, generation = 0, invalidations = Promise.resolve();
+let moleculeImages = {}, showDili = true, replayEvidence = null, replayStage = 0;
 let workspace = null, activeRun = null, report = null, reportRun = null, pollTimer = null;
 const errors = {
+  recorded_evidence_unavailable: 'The recorded study failed verification. Restore its original bundle; no live fallback was attempted.',
+  assistant_invalid_plan: 'The assistant returned an invalid plan. No screening has started.',
+  assistant_timeout: 'NVIDIA did not respond within 120 seconds. No screening has started.',
+  assistant_rate_limited: 'NVIDIA is rate limiting the assistant. No screening has started.',
+  continuation_not_available: 'This study is not awaiting a fixed-protocol continuation.',
   local_detector_failed: 'The local privacy scanner is unavailable. Install the pinned privacy runtime and checkpoint; review cannot be bypassed.',
   checkpoint_integrity_failed: 'The local privacy checkpoint failed its integrity check.',
   tokenizer_cache_missing: 'The privacy tokenizer cache is missing. Complete the local privacy setup.',
@@ -19,9 +25,9 @@ const errors = {
   scientific_environment_unavailable: 'The DILI environment cannot import its scientific dependencies. See Methods & setup.',
   complete_cache_required: 'This dataset needs a complete, verified Boltz-2 cache. Cached mode never falls back to a live call.',
   nvidia_credentials_missing: 'NVIDIA credentials are missing from the server environment.',
-  cached_mode_is_offline: 'Rosalind is disabled in fully offline mode.',
-  rosalind_interface_not_verified: 'Verify a callable Rosalind API and its model identity in Methods & setup before enabling study notes.',
-  rosalind_not_configured: 'Configure an OpenAI API key and a supported Rosalind model on the local server.',
+  cached_mode_is_offline: 'Nemotron is disabled in fully offline mode.',
+  assistant_interface_not_verified: 'Verify a callable Nemotron API and its model identity in Methods & setup before enabling study notes.',
+  assistant_not_configured: 'Configure NVIDIA_API_KEY in the local server environment.',
   invalid_format: 'The dataset could not be parsed. Check the selected format and file contents.',
   invalid_csv_header: 'CSV column names must be present and unique.',
   invalid_csv_row: 'Each CSV row must contain the same number of fields as the header.',
@@ -59,21 +65,24 @@ async function api(path, data = {}) {
 }
 async function action(button, operation) {
   dismissError(); button.disabled = true;
+  const operations={'scan-button':'Privacy filter running locally. No provider calls are made during review.','run-button':'Checking approved inputs and local scientific environment…','verify-assistant':'Checking the NVIDIA connection with a fixed greeting…','preview-button':'Rendering molecular structures locally…'};
+  if(operations[button.id]){$('local-operation').textContent=operations[button.id];$('local-operation').hidden=false;}
   try { await operation(); } catch (error) { showError(error); }
-  finally { button.disabled = button.id==='cancel-button' && !!activeRun?.cancel_requested; updateApproval(); }
+  finally { if(operations[button.id])$('local-operation').hidden=true; button.disabled = button.id==='cancel-button' && !!activeRun?.cancel_requested; updateApproval(); }
 }
 function page(name) {
-  ['workspace','runs','methods'].forEach(p => { $(p+'-page').hidden = p !== name; });
+  ['workspace','runs','methods','replay'].forEach(p => { $(p+'-page').hidden = p !== name; });
   document.querySelectorAll('[data-page]').forEach(b => { b.classList.toggle('active', b.dataset.page === name); if (b.dataset.page === name) b.setAttribute('aria-current','page'); else b.removeAttribute('aria-current'); });
   window.scrollTo({top:0, behavior:'instant'});
 }
 function step(name) {
-  const order = ['input','review','run','results'];
+  const order = ['input','review','run','assess','results'];
+  document.body.dataset.studyStage = name;
   document.querySelectorAll('[data-step]').forEach(li => { li.classList.toggle('current',li.dataset.step === name); li.classList.toggle('done',order.indexOf(li.dataset.step) < order.indexOf(name)); });
-  ['input','review','progress','results'].forEach(s => { $(s+'-section').hidden = s !== (name === 'run' ? 'progress' : name); });
+  ['input','review','progress','results'].forEach(s => { $(s+'-section').hidden = s !== (['run','assess'].includes(name) ? 'progress' : name); });
 }
-function edited() {
-  generation++; scan = null; $('approve-checkbox').checked = false; updateApproval();
+function edited(event) {
+  generation++; scan = null; if(!event || ['candidate-content','dataset-format'].includes(event.target?.id)){clear('candidate-preview');moleculeImages={};} $('approve-checkbox').checked = false; updateApproval();
   invalidations = invalidations.then(() => api('/api/invalidate'));
   invalidations.catch(showError);
 }
@@ -83,12 +92,12 @@ function updateApproval() {
 }
 function applyAssistantStatus(info) {
   const allowed = info.verification === 'verified' && $('execution-mode').value === 'live';
-  $('use-rosalind').disabled = !allowed;
-  if (!allowed) $('use-rosalind').checked = false;
-  $('assistant-input-status').textContent = allowed ? 'Optional: share the reviewed question, candidate IDs and result summary with OpenAI after approval.' : 'Available after API and model identity verification; live mode only.';
-  const descriptions = {unchecked:'API not yet verified. No study data has been sent.', verified:'Callable interface and Rosalind response identity verified.', identity_unconfirmed:'The API accepted a Rosalind alias but returned a different model identity. Study notes remain disabled.', rosalind_request_failed:'The API check did not succeed. Study notes remain disabled.', rosalind_not_configured:'No supported Rosalind API configuration is available.'};
-  $('rosalind-status').textContent = (descriptions[info.verification] || 'The API has not passed verification.') + ' Requested: ' + (info.requested_model || 'unconfigured') + (info.returned_model ? '. Returned: '+info.returned_model : '');
-  $('verify-rosalind').disabled = !info.configured;
+  $('use-assistant').disabled = !allowed;
+  if (!allowed) $('use-assistant').checked = false;
+  $('assistant-input-status').textContent = allowed ? 'Interpret the approved question, request the ABL1 protocol and explain its evidence.' : 'Available after API and model identity verification; live mode only.';
+  const descriptions = {assistant_timeout:'NVIDIA did not respond within 120 seconds. Retry the connection check when the service is available.',unchecked:'API not yet verified. No study data has been sent.', verified:'NVIDIA Nemotron connection and model identity verified.', identity_unconfirmed:'The endpoint returned an unexpected model identity. Planning remains disabled.', assistant_request_failed:'The API check did not succeed. Study notes remain disabled.', assistant_not_configured:'No NVIDIA key is configured in this server process.'};
+  $('assistant-status').textContent = (descriptions[info.verification] || 'The API has not passed verification.') + ' Requested: ' + (info.requested_model || 'unconfigured') + (info.returned_model ? '. Returned: '+info.returned_model : '');
+  $('verify-assistant').disabled = !info.configured;
 }
 function renderSetup() {
   const labels = {dili_model:'Trained DILI model',model_python:'DILI Python environment',privacy_checkpoint:'Privacy checkpoint',privacy_runtime:'Privacy runtime',nvidia_credentials:'NVIDIA credentials',cache_directory:'Boltz-2 cache directory'};
@@ -97,7 +106,7 @@ function renderSetup() {
   const missing = ['dili_model','model_python','privacy_checkpoint','privacy_runtime'].filter(k => !workspace.checks[k]);
   const mini = clear('readiness-mini'); mini.append(node('span',missing.length ? missing.length+' local setup items need attention before a run.' : 'Local assets are present. Execution preflight will verify them.'));
   const link = node('button','View methods & setup →','text-button'); link.onclick=()=>page('methods'); mini.append(link);
-  applyAssistantStatus(workspace.rosalind);
+  applyAssistantStatus(workspace.assistant);
 }
 async function refreshWorkspace() {
   workspace = await api('/api/workspace');
@@ -118,46 +127,55 @@ async function loadDataset(file) {
   const extension = file.name.split('.').pop().toLowerCase();
   if (!['csv','json'].includes(extension)) throw new Error('candidate_format_required');
   $('candidate-content').value=content; $('dataset-format').value=extension;
-  $('file-label').textContent=file.name; edited();
+  $('file-label').textContent=file.name; edited(); await previewCandidates();
 }
 function renderReview(result) {
   scan=result; $('approve-checkbox').checked=false;
   $('sanitized-preview').textContent=result.sanitized;
-  $('outbound-preview').textContent=result.study ? JSON.stringify(result.study,null,2) : 'Resolve blocked fields and scan again.';
+  $('outbound-preview').textContent=result.study ? JSON.stringify(result.outbound || result.study,null,2) : 'Resolve blocked fields and scan again.';
   const count=Object.values(result.audit.category_counts).reduce((a,b)=>a+b,0);
-  $('review-summary').textContent = count+' privacy findings reviewed locally. '+result.review_fields.length+' scientific fields need explicit retention confirmation.';
+  $('review-summary').textContent = count+' privacy '+(count===1?'finding':'findings')+' reviewed locally. '+result.review_fields.length+' scientific '+(result.review_fields.length===1?'field needs':'fields need')+' explicit retention confirmation.';
   $('review-blocked').hidden=!result.blocked.length;
   $('review-blocked').textContent='This study cannot be released: '+result.blocked.join(', ')+'. Edit the inputs and scan again.';
   const fields=clear('retention-fields');
   result.review_fields.forEach(f=>{ const label=node('label',null,'check-line retention-field'), check=node('input'); check.type='checkbox'; check.value=f.field_id; check.onchange=updateApproval; const text=node('span'); text.append(node('strong','Retain scientific field: '+f.field),node('code',f.value),node('small',f.reason)); label.append(check,text); fields.append(label); });
   const study=result.study;
-  $('destination-note').textContent = !study ? 'Sharing is blocked until this review passes.' : study.mode==='cached' ? 'Fully offline: verified Boltz-2 cache and local DILI inference. No NVIDIA or OpenAI calls.' : 'NVIDIA receives the approved molecular structures and the public ABL1 target sequence. The research prompt stays local.'+(study.use_rosalind?' You also approve sharing the sanitized question, candidate IDs and computed evidence summary with OpenAI for Rosalind notes.':' Rosalind is off; no study content is sent to OpenAI.');
+  const readable=clear('review-readable');
+  if(study){readable.append(node('p','APPROVED RESEARCH QUESTION','eyebrow'),node('h3',study.research_prompt),node('p',study.request.compounds.length+' candidates · Human ABL1 · '+(study.mode==='cached'?'Cached screening and local DILI':'NVIDIA Boltz-2 and local DILI'))); renderMolecules(readable, study.request.compounds.map(c=>({...c,image:moleculeImages[c.compound_id],status:'valid'})));}
+  $('destination-note').textContent = !study ? 'Sharing is blocked until this review passes.' : study.mode==='cached' ? 'Fully offline: verified Boltz-2 cache and local DILI inference. No provider calls.' : 'Boltz-2 receives the approved molecular structures and public ABL1 sequence.'+(study.use_assistant?' Nemotron receives the sanitized question and candidate IDs for planning, then computed evidence for explanation.':' The assistant is off; the research prompt stays local.');
   $('approval-digest').textContent = 'Study fingerprint: '+(result.audit.study_sha256 || result.audit.sanitized_sha256).slice(0,20)+'…';
+  const findings=node('ul',null,'privacy-findings');result.findings.filter(f=>f.action!=='review_required').forEach(f=>findings.append(node('li',f.path+' · '+f.action+' · '+f.label)));readable.append(findings);
   updateApproval(); step('review'); $('review-heading').scrollIntoView({block:'start'});
 }
-const stageNames = {queued:'Waiting to start',planning:'Preparing Rosalind study notes',preparing:'Preparing molecular identities locally',reference:'Checking the imatinib reference',screening:'Screening candidates with Boltz-2',candidate_finished:'Candidate screening finished',shortlist_frozen:'Discovery shortlist frozen',toxicity:'Predicting human DILI locally',reporting:'Validating and assembling results',explaining:'Preparing Rosalind interpretation',finished:'Study finished',failed:'Workflow stopped',cancelled:'Workflow stopped at your request'};
-function stageIndex(stage) { if(['queued','planning','preparing'].includes(stage)) return 0; if(stage==='reference')return 1; if(['screening','candidate_finished'].includes(stage))return 2; if(stage==='shortlist_frozen')return 3; if(stage==='toxicity')return 4; return 5; }
+const stageNames = {queued:'Waiting to start',planning:'Interpreting the approved question with Nemotron',planning_paused:'Planning paused · no scientific calls have started',preparing:'Preparing molecular identities locally',reference:'Checking the imatinib reference',screening:'Screening candidates with Boltz-2',candidate_finished:'Candidate screening finished',shortlist_frozen:'Discovery shortlist frozen',toxicity:'Predicting human DILI locally',reporting:'Validating and assembling results',explaining:'Preparing Nemotron interpretation',finished:'Study finished',failed:'Workflow stopped',cancelled:'Workflow stopped at your request'};
 function timeLabel(value) { return new Date(value).toLocaleTimeString([], {hour:'2-digit',minute:'2-digit',second:'2-digit'}); }
 function renderProgress(run) {
   activeRun=run;
   $('progress-heading').textContent=run.status==='running' || run.status==='queued' ? 'Your study is running' : run.status==='cancelled' ? 'Study stopped' : run.status==='failed' ? 'Study needs attention' : 'Study finished';
-  $('run-meta').textContent='Run '+run.job_id.slice(0,8)+' · '+run.candidate_count+' candidates · '+(run.mode==='live'?'Live NVIDIA':'Verified offline cache');
+  step(['shortlist_frozen','toxicity','reporting','explaining'].includes(run.stage)?'assess':'run');
+  $('study-context').hidden=false; $('study-context').textContent='Human ABL1 · '+run.candidate_count+' candidates · '+run.research_prompt;
+  $('run-meta').textContent='Run '+run.job_id.slice(0,8)+' · '+run.candidate_count+' candidates · '+(run.mode==='recorded'?'Recorded walkthrough · no inference':run.mode==='live'?'Live NVIDIA':'Verified offline cache');
   const latest=run.events.at(-1); let detail=stageNames[run.stage] || 'Working';
   if(latest?.compound_id) detail+=' · '+latest.compound_id;
   if(latest?.total && latest.completed !== undefined) detail+=' · '+latest.completed+' / '+latest.total+' processed';
-  if(run.cancel_requested && ['running','queued'].includes(run.status)) detail='Stop requested. The current operation may take several minutes to finish; no remote cancellation is claimed.';
+  if(run.cancel_requested && ['running','queued','awaiting_plan'].includes(run.status)) detail='Stop requested. The current operation may take several minutes to finish; no remote cancellation is claimed.';
   if(run.error) detail=errors[run.error] || 'The scientific workflow stopped.';
   $('progress-message').textContent=detail;
-  const stages=clear('execution-stages'), index=stageIndex(run.stage);
-  ['Prepare identities','Validate reference','Screen candidates','Freeze discovery shortlist','Predict human DILI','Assemble results'].forEach((label,i)=>stages.append(node('li',label,i<index?'done':i===index?'current':'')));
+  renderLiveCandidates(run);
+  $('active-model').textContent=['planning','planning_paused','explaining'].includes(run.stage)?'NVIDIA Nemotron 3.5 Lightning':run.stage==='toxicity'?'Local ToxOracle DILI':['reference','screening','candidate_finished'].includes(run.stage)?'NVIDIA Boltz-2':'ToxOracle workflow';
+  $('elapsed-time').textContent='Elapsed '+Math.max(0,Math.floor((new Date(run.finished_at || Date.now())-new Date(run.created_at))/1000))+' seconds · '+run.events.length+' recorded events';
+  $('revise-study').hidden=!['awaiting_plan','failed','cancelled'].includes(run.status);
+  $('continue-fixed').hidden=!(run.status==='awaiting_plan' && run.can_continue);
   $('frozen-title').textContent=run.shortlist===null?'Waiting for discovery':'Discovery frozen';
   $('frozen-description').textContent=run.shortlist===null?'The shortlist is saved before the DILI model runs.':run.shortlist.length?'DILI can change the follow-up, but it cannot change these selected candidates.':'No candidates had enough discovery evidence to shortlist.';
   const ids=clear('frozen-ids'); (run.shortlist || []).forEach(id=>ids.append(node('span',id,'pill')));
   $('frozen-download').hidden=!run.discovery_sha256;
-  $('cancel-button').hidden=!['running','queued'].includes(run.status); $('cancel-button').disabled=!!run.cancel_requested;
+  $('cancel-button').hidden=!['running','queued','awaiting_plan'].includes(run.status); $('cancel-button').disabled=!!run.cancel_requested;
   const log=clear('event-log'); run.events.forEach(e=>log.append(node('li',timeLabel(e.at)+' · '+(stageNames[e.stage]||e.stage)+(e.compound_id?' · '+e.compound_id:'')+(e.status?' · '+e.status:''))));
-  const plan=run.rosalind.plan; $('planning-note').hidden=!plan;
-  if(plan) $('planning-note').textContent='Rosalind planning note · Interpretation only\n\n'+plan.text;
+  const plan=run.assistant.plan; $('planning-note').hidden=!plan;
+  if(plan) $('planning-note').textContent=(plan.supported?'Validated Nemotron plan':'Request outside the supported protocol')+'\n\n'+plan.text;
+  if(run.status==='awaiting_plan' && !plan){$('planning-note').hidden=false;$('planning-note').textContent=(errors[run.assistant.error] || 'Assistant planning failed. No science has started.')+' You may continue explicitly with the approved fixed protocol.';}
+  if(run.status==='awaiting_plan' && plan && !plan.supported) $('planning-note').append(node('p','Stop this study and revise the question to use the supported ABL1 screening protocol.'));
 }
 function upsertRun(run) { if(!workspace)return; const i=workspace.runs.findIndex(r=>r.job_id===run.job_id); if(i>=0) workspace.runs[i]=run; else workspace.runs.push(run); renderRuns(); }
 async function poll() {
@@ -167,7 +185,7 @@ async function poll() {
     const run=await api('/api/run/status',{job_id:id}); if(activeRun?.job_id!==id)return;
     renderProgress(run); upsertRun(run);
     if(run.report_available) { const result=await api('/api/run/report',{job_id:id}); if(activeRun?.job_id===id) renderResults(result.report,result.run); return; }
-    if(['running','queued'].includes(run.status)) pollTimer=setTimeout(poll,1800);
+    if(['running','queued','awaiting_plan'].includes(run.status)) pollTimer=setTimeout(poll,1800);
   } catch(error) { showError(error); if(error.message!=='session_expired') pollTimer=setTimeout(poll,5000); }
 }
 async function openRun(run) { clearTimeout(pollTimer); page('workspace'); step('run'); renderProgress(run); await poll(); }
@@ -177,9 +195,11 @@ const decisions = {hold_for_liver_validation:'Liver validation first',continue_t
 function concern(t) { return t.status!=='ok'?'Unavailable':t.assessment.call==='positive'?'Elevated predicted concern':t.assessment.call==='negative'?'Lower predicted concern':'Unavailable'; }
 function sortedRows() { return [...report.results].sort((a,b)=>(a.discovery_result.rank??Infinity)-(b.discovery_result.rank??Infinity)); }
 function renderResults(result, run) {
-  report=result; reportRun=run;
+  report=result; reportRun=run; showDili=true;window.scrollTo({top:0,behavior:'instant'});
+  $('study-context').hidden=false;$('study-context').textContent=run?.mode==='recorded'?'Recorded public ABL1 study · No inference or new approval':run?.research_prompt || 'Imported study · locally validated'; updateEvidenceSwitch();
+  $('download-html').hidden=!run || run.mode==='recorded';
   clearTimeout(pollTimer); step('results');
-  $('results-meta').textContent=result.target.target_id+' · '+(run?'Run '+run.job_id.slice(0,8)+' · '+(run.mode==='live'?'Live NVIDIA':'Verified offline cache'):'Imported report · source authenticity not verified');
+  $('results-meta').textContent=result.target.target_id+' · '+(run?'Run '+run.job_id.slice(0,8)+' · '+(run.mode==='recorded'?'Recorded walkthrough · no inference':run.mode==='live'?'Live NVIDIA':'Verified offline cache'):'Imported report · source authenticity not verified');
   $('result-notice').hidden=!!run && run.status==='complete';
   $('result-notice').textContent=run ? 'Partial results: one or more operations did not complete. Missing evidence remains unavailable.' : 'Imported result: scores and follow-up passed contract checks. This workspace did not execute or authenticate this report.';
   const changed=result.results.filter(r=>r.discovery_result.shortlisted&&r.follow_up.decision==='hold_for_liver_validation').length;
@@ -191,33 +211,38 @@ function renderResults(result, run) {
   if(!result.discovery_shortlist.length)cards.append(node('p','No discovery shortlist is available. Resolve the incomplete binding evidence before drawing follow-up conclusions.','empty'));
   $('candidate-search').value='';$('candidate-filter').value='all';$('candidate-detail').hidden=true;
   renderRows();
+  ensureMolecules(result.results).then(()=>{if(report===result)renderRows();}).catch(showError);
+  const history=clear('result-history');history.hidden=!run?.events; if(run?.events){history.append(node('summary','Execution history · '+run.events.length+' actual events'));const list=node('ol',null,'event-log');run.events.forEach(e=>list.append(node('li',timeLabel(e.at)+' · '+(stageNames[e.stage]||e.stage)+(e.compound_id?' · '+e.compound_id:''))));history.append(list);}
   const limitations=clear('result-limitations');result.limitations.forEach(l=>limitations.append(node('li',l)));
   $('provenance-preview').textContent=JSON.stringify({request_id:result.request_id,target:result.target,policy:result.policy_version,policy_status:result.policy_status,discovery_sha256:run?.discovery_sha256 || 'Not supplied by import',execution:run?.mode || 'Imported'},null,2);
-  const explain=run?.rosalind?.explain, box=clear('explanation-note'); box.hidden=!run?.rosalind || run.rosalind.status==='off';
-  if(explain){box.append(node('p','GPT-ROSALIND INTERPRETATION','eyebrow'),node('h3','Reading the evidence'),node('p',explain.text),node('span','Generated interpretation · Requested '+explain.requested_model+' · Returned '+explain.returned_model+' · Scores and policy above remain authoritative.','small'));}
-  else if(run?.rosalind?.status!=='off')box.append(node('h3','Rosalind notes unavailable'),node('p','The optional explanation did not complete. The dashboard still shows the validated scientific results and the deterministic follow-up policy.'));
+  const explain=run?.assistant?.explain, box=clear('explanation-note'); box.hidden=!run?.assistant || run.assistant.status==='off';
+  if(explain){box.append(node('p','NVIDIA NEMOTRON INTERPRETATION','eyebrow'),node('h3','Reading the evidence'),node('p',explain.text),node('span','Generated interpretation · Requested '+explain.requested_model+' · Returned '+explain.returned_model+' · Scores and policy above remain authoritative.','small'));}
+  else if(run?.assistant?.status!=='off')box.append(node('h3','Nemotron notes unavailable'),node('p','The optional explanation did not complete. The dashboard still shows the validated scientific results and the deterministic follow-up policy.'));
 }
 function renderRows() {
   if(!report)return; const tbody=clear('candidate-rows'),search=$('candidate-search').value.toLowerCase().trim(),filter=$('candidate-filter').value;
   const rows=sortedRows().filter(r=>r.compound_id.toLowerCase().includes(search)&&(filter==='all'||filter==='shortlisted'&&r.discovery_result.shortlisted||filter==='hold'&&r.follow_up.decision==='hold_for_liver_validation'||filter==='incomplete'&&['safety_assessment_incomplete','discovery_incomplete'].includes(r.follow_up.decision)));
   rows.forEach(r=>{
     const d=r.discovery_result,t=r.toxicity_result,tr=node('tr'),id=node('td'),button=node('button',r.compound_id,'text-button');button.onclick=()=>renderCandidate(r);id.append(button,node('small',d.shortlisted?'Discovery shortlist':d.rank===null?'Unranked':'Outside shortlist'));
+    if(moleculeImages[r.compound_id]){const img=node('img',null,'table-molecule');img.src=moleculeImages[r.compound_id];img.alt='Structure of '+r.compound_id;id.prepend(img);}
     const binding=node('td',number(d.mean_binding_probability)); if(d.mean_binding_probability!==null){const meter=node('meter');meter.min=0;meter.max=1;meter.value=d.mean_binding_probability;meter.setAttribute('aria-label','Binder likelihood for '+r.compound_id);binding.append(meter);}
     const confidence=node('td',values(d.structural_confidence));confidence.append(node('small','Boltz-2 returned scores'));
     const dili=node('td',t.status==='ok'?number(t.assessment.risk_score):'Unavailable');dili.append(node('small',concern(t)));if(t.status==='ok'&&t.assessment.risk_score!==null){const meter=node('meter',null,'dili');meter.min=0;meter.max=1;meter.value=t.assessment.risk_score;meter.setAttribute('aria-label','DILI score for '+r.compound_id);dili.append(meter);}
     const follow=node('td');follow.append(node('span',decisions[r.follow_up.decision], 'status-tag'+(r.follow_up.decision==='hold_for_liver_validation'?' hold':'')));
-    tr.append(id,node('td',d.rank===null?'—':String(d.rank).padStart(2,'0')),binding,confidence,dili,follow);tbody.append(tr);
+    if(!showDili){dili.replaceChildren(node('small','Hidden in discovery-only view'));follow.replaceChildren(node('span',d.shortlisted?'Follow up target binding':'Retain discovery rank','status-tag'));}
+    tr.append(id,node('td',d.rank===null?'—':String(d.rank).padStart(2,'0')),binding,node('td',d.affinity_pic50?.length?values(d.affinity_pic50)+' pIC50':d.affinity_pred_value?.length?values(d.affinity_pred_value)+' model value':'Unavailable'),confidence,dili,follow);tbody.append(tr);
   });$('empty-table').hidden=!!rows.length;
 }
 function renderCandidate(r) {
   const box=clear('candidate-detail');box.hidden=false;
   const d=r.discovery_result,t=r.toxicity_result,a=t.assessment,heading=node('div',null,'section-heading');heading.append(node('h2',r.compound_id+' · Evidence'),node('span',decisions[r.follow_up.decision],'pill'));box.append(heading);
+  if(moleculeImages[r.compound_id]){const img=node('img',null,'detail-molecule');img.src=moleculeImages[r.compound_id];img.alt='Molecular structure of '+r.compound_id;box.append(img);}
   const grid=node('div',null,'detail-grid'),binding=node('div'),dili=node('div'),follow=node('div');
   binding.append(node('p','DISCOVERY EVIDENCE','eyebrow'),node('p',number(d.mean_binding_probability),'big-number'),node('p','Mean predicted binder likelihood'),node('p','All binding predictions: '+values(d.binding_probability)),node('p','Affinity pIC50: '+values(d.affinity_pic50)),node('p','Affinity predicted value: '+values(d.affinity_pred_value)),node('p','Structural confidence: '+values(d.structural_confidence)),node('p','Execution: '+(d.provenance.execution_mode || 'Unavailable')));
   dili.append(node('p','HUMAN DILI EVIDENCE','eyebrow'),node('p',t.status==='ok'?number(a.risk_score):'Unavailable','big-number'),node('p',concern(t)),node('p','Decision threshold: '+number(a.threshold)),node('p','Score kind: '+a.score_kind),node('p','Calibration: '+a.calibration.status),node('p','Training membership: '+t.provenance.training_membership),node('p','Nearest-training similarity: '+number(a.applicability.value)+' (not confidence)'),node('p','Uncertainty: '+a.uncertainty.method));
   follow.append(node('p','RECOMMENDED FOLLOW-UP','eyebrow'),node('h3',decisions[r.follow_up.decision]),node('p',r.follow_up.recommendation));
   if(r.follow_up.experiment){const experiment=r.follow_up.experiment;follow.append(node('p',experiment.question),node('h4',experiment.assay),node('p','Readouts: '+experiment.readouts.join(', ')),node('p',experiment.conditions));}
-  grid.append(binding,dili,follow);box.append(grid);
+  grid.append(binding); if(showDili)grid.append(dili,follow);box.append(grid);
   const notes=node('ul',null,'evidence-list');[...d.warnings,...t.warnings].forEach(w=>notes.append(node('li',w)));box.append(notes);
   const detail=node('details');detail.append(node('summary','Molecular identity and source evidence'),node('pre',JSON.stringify(r,null,2),'data-preview'));box.append(detail);box.focus({preventScroll:true});box.scrollIntoView({block:'start'});
 }
@@ -230,31 +255,85 @@ function saveFile(content,filename,mime) { const blob=new Blob([content],{type:m
 async function download(kind) { const result=await api('/api/run/download',{job_id:activeRun.job_id,kind});saveFile(result.content,result.filename,result.mime); }
 
 document.querySelectorAll('[data-page]').forEach(b=>b.onclick=()=>page(b.dataset.page));
-['research-prompt','target','execution-mode','dataset-format','candidate-content','use-rosalind'].forEach(id=>$(id).addEventListener('input',edited));
-$('execution-mode').addEventListener('change',()=>{if(workspace)applyAssistantStatus(workspace.rosalind);});
+['research-prompt','target','execution-mode','dataset-format','candidate-content','use-assistant'].forEach(id=>$(id).addEventListener('input',edited));
+$('execution-mode').addEventListener('change',()=>{if(workspace)applyAssistantStatus(workspace.assistant);});
 $('dataset').onchange=()=>action($('scan-button'),()=>loadDataset($('dataset').files[0]));
 $('drop-zone').ondragover=e=>{e.preventDefault();$('drop-zone').classList.add('dragging');};
 $('drop-zone').ondragleave=()=> $('drop-zone').classList.remove('dragging');
 $('drop-zone').ondrop=e=>{e.preventDefault();$('drop-zone').classList.remove('dragging');action($('scan-button'),()=>loadDataset(e.dataTransfer.files[0]));};
-$('example-button').onclick=()=>action($('example-button'),async()=>{const data=await api('/api/example');$('research-prompt').value=data.prompt;$('candidate-content').value=data.content;$('dataset-format').value=data.format;$('file-label').textContent='Public ABL1 panel · 4 candidates';edited();});
-$('study-form').onsubmit=e=>{e.preventDefault();action($('scan-button'),async()=>{const version=generation;await invalidations;if(version!==generation)return;const result=await api('/api/study/scan',{research_prompt:$('research-prompt').value,content:$('candidate-content').value,format:$('dataset-format').value,target_id:$('target').value,mode:$('execution-mode').value,use_rosalind:$('use-rosalind').checked});if(version===generation)renderReview(result);});};
+$('example-button').onclick=()=>action($('example-button'),async()=>{const data=await api('/api/example');$('research-prompt').value=data.prompt;$('candidate-content').value=data.content;$('dataset-format').value=data.format;$('file-label').textContent='Public ABL1 panel · 4 candidates';edited();await previewCandidates();});
+$('study-form').onsubmit=e=>{e.preventDefault();action($('scan-button'),async()=>{const version=generation;await invalidations;if(version!==generation)return;const result=await api('/api/study/scan',{research_prompt:$('research-prompt').value,content:$('candidate-content').value,format:$('dataset-format').value,target_id:$('target').value,mode:$('execution-mode').value,use_assistant:$('use-assistant').checked});if(version===generation)renderReview(result);});};
 $('edit-study').onclick=()=>{edited();step('input');};
 $('approve-checkbox').onchange=updateApproval;
 $('run-button').onclick=()=>action($('run-button'),async()=>{const version=generation,current=scan;if(!current||!$('approve-checkbox').checked)return;await invalidations;await api('/api/approve',{scan_id:current.scan_id,approve:true,retain_fields:[...document.querySelectorAll('#retention-fields input:checked')].map(c=>c.value)});if(version!==generation)return;const run=await api('/api/study/submit',{scan_id:current.scan_id});scan=null;$('research-prompt').value='';$('candidate-content').value='';$('dataset').value='';$('sanitized-preview').textContent='';$('outbound-preview').textContent='';clear('retention-fields');upsertRun(run);await openRun(run);});
 $('cancel-button').onclick=()=>action($('cancel-button'),async()=>{const run=await api('/api/run/cancel',{job_id:activeRun.job_id});renderProgress(run);});
 $('frozen-download').onclick=()=>action($('frozen-download'),()=>download('discovery'));
-$('download-report').onclick=()=>action($('download-report'),async()=>{if(reportRun){activeRun=reportRun;await download('report');}else saveFile(JSON.stringify(report,null,2),'toxoracle-imported-report.json','application/json');});
-$('new-study').onclick=()=>{clearTimeout(pollTimer);activeRun=null;scan=null;$('file-label').textContent='Choose a candidate dataset';edited();step('input');window.scrollTo({top:0,behavior:'instant'});};
+$('download-report').onclick=()=>action($('download-report'),async()=>{if(reportRun && reportRun.mode!=='recorded'){activeRun=reportRun;await download('report');}else saveFile(JSON.stringify(report,null,2),'toxoracle-imported-report.json','application/json');});
+$('new-study').onclick=()=>{$('study-context').hidden=true;clearTimeout(pollTimer);activeRun=null;scan=null;$('file-label').textContent='Choose a candidate dataset';edited();step('input');window.scrollTo({top:0,behavior:'instant'});};
 $('candidate-search').oninput=renderRows;$('candidate-filter').onchange=renderRows;
 $('report-file').onchange=()=>action($('report-file'),async()=>{const content=await readFile($('report-file').files[0]);const result=await api('/api/report/inspect',{content});clearTimeout(pollTimer);activeRun=null;page('workspace');renderResults(result.report,null);$('report-file').value='';});
 $('inspect-report').onclick=()=>action($('inspect-report'),async()=>{const result=await api('/api/report/inspect',{content:$('report-content').value});clearTimeout(pollTimer);activeRun=null;$('report-content').value='';page('workspace');renderResults(result.report,null);});
 $('refresh-setup').onclick=()=>action($('refresh-setup'),refreshWorkspace);
-$('verify-rosalind').onclick=()=>action($('verify-rosalind'),async()=>{const info=await api('/api/rosalind/verify');workspace.rosalind=info;applyAssistantStatus(info);});
+$('verify-assistant').onclick=()=>action($('verify-assistant'),async()=>{const info=await api('/api/assistant/verify');workspace.assistant=info;applyAssistantStatus(info);});
 async function boot() {
   try { sid=sessionStorage.getItem('toxoracle-session'); } catch {}
   if(sid){try{await refreshWorkspace();}catch(error){if(error.message==='session_expired')sid=null;else throw error;}}
   if(!sid){const result=await api('/api/session');sid=result.session_id;try{sessionStorage.setItem('toxoracle-session',sid);}catch{}await refreshWorkspace();}
   $('scan-button').disabled=false;
-  const running=workspace.runs.find(r=>['running','queued'].includes(r.status));if(running)await openRun(running);
+  const running=workspace.runs.find(r=>['running','queued','awaiting_plan'].includes(r.status));if(running)await openRun(running);
 }
 boot().catch(showError);
+
+function renderMolecules(container, rows) {
+  const grid=node('div',null,'molecule-grid');
+  rows.forEach(c=>{const card=node('article',null,'molecule-card');if(c.image){const img=node('img');img.src=c.image;img.alt='Molecular structure of '+c.compound_id;card.append(img);}card.append(node('strong',c.compound_id),node('span',c.status==='invalid'?c.error:'Structure parsed locally','small'));grid.append(card);});container.append(grid);
+}
+async function ensureMolecules(candidates) {
+  if(candidates.every(c=>moleculeImages[c.compound_id]))return;
+  const result=await api('/api/candidates/preview',{content:JSON.stringify({compounds:candidates}),format:'json'});
+  result.candidates.forEach(c=>{if(c.image)moleculeImages[c.compound_id]=c.image;});
+}
+async function previewCandidates() {
+  const version=generation;
+  const result=await api('/api/candidates/preview',{content:$('candidate-content').value,format:$('dataset-format').value});
+  if(version!==generation)return;
+  result.candidates.forEach(c=>{if(c.image)moleculeImages[c.compound_id]=c.image;});
+  const box=clear('candidate-preview');renderMolecules(box,result.candidates);
+}
+function renderLiveCandidates(run) {
+  const box=clear('live-candidates');
+  (run.candidates||[]).forEach(c=>{const card=node('article',null,'molecule-card');if(moleculeImages[c.compound_id]){const img=node('img');img.src=moleculeImages[c.compound_id];img.alt='Structure of '+c.compound_id;card.append(img);}const done=run.events.findLast(e=>e.stage==='candidate_finished'&&e.compound_id===c.compound_id);const current=run.events.at(-1);let status=done?(done.status==='ok'?'Discovery evidence received':'Discovery incomplete'):current?.compound_id===c.compound_id?'Screening in progress':'Waiting for screening';if(run.shortlist?.includes(c.compound_id))status='Discovery shortlist · saved';card.append(node('strong',c.compound_id),node('span',status,'small'));if(done?.binding_probability?.length)card.append(node('p','Binder likelihood '+number(done.binding_probability.reduce((a,b)=>a+b,0)/done.binding_probability.length),'candidate-score'),node('span','Structural confidence '+values(done.structural_confidence),'small'));box.append(card);});
+  if(run.candidates?.some(c=>!moleculeImages[c.compound_id]))ensureMolecules(run.candidates).then(()=>{if(activeRun?.job_id===run.job_id)renderLiveCandidates(activeRun);}).catch(()=>{});
+}
+function updateEvidenceSwitch() {
+  $('discovery-view').setAttribute('aria-pressed',String(!showDili));$('dili-view').setAttribute('aria-pressed',String(showDili));
+  $('discovery-view').className=showDili?'secondary':'primary';$('dili-view').className=showDili?'primary':'secondary';
+  document.body.classList.toggle('discovery-only',!showDili);
+  for(const option of $('candidate-filter').options)if(['hold','incomplete'].includes(option.value))option.disabled=!showDili;
+}
+$('discovery-view').onclick=()=>{showDili=false;updateEvidenceSwitch();$('candidate-detail').hidden=true;$('candidate-filter').value='all';renderRows();};
+$('dili-view').onclick=()=>{showDili=true;updateEvidenceSwitch();$('candidate-detail').hidden=true;$('candidate-filter').value='all';renderRows();};
+$('preview-button').onclick=()=>action($('preview-button'),previewCandidates);
+$('continue-fixed').onclick=()=>action($('continue-fixed'),async()=>{const run=await api('/api/run/continue',{job_id:activeRun.job_id});await openRun(run);});
+$('download-html').onclick=()=>action($('download-html'),()=>download('html'));
+const replayNames=['Set up','Review privately','Run discovery','Assess liver concern','Results'];
+$('replay-button').onclick=()=>action($('replay-button'),async()=>{replayEvidence=await api('/api/recorded');replayStage=0;page('replay');renderReplay();});
+$('close-replay').onclick=()=>{page('workspace');};
+$('replay-back').onclick=()=>{replayStage--;renderReplay();};
+$('replay-next').onclick=()=>{if(replayStage<4){replayStage++;renderReplay();}else{moleculeImages=Object.fromEntries(replayEvidence.candidates.filter(c=>c.image).map(c=>[c.compound_id,c.image]));page('workspace');renderResults(replayEvidence.report,{job_id:'recorded-abl1',mode:'recorded',status:'complete',assistant:{status:'off'}});}};
+function renderReplay(){
+  const evidence=replayEvidence,report=evidence.report;
+  $('replay-heading').textContent=['A question becomes a study.','Review happens before sharing.','Discovery finds its shortlist.','Human context changes the next step.','One study. Traceable evidence.'][replayStage];
+  $('replay-provenance').textContent=evidence.manifest.title+' · '+evidence.manifest.recorded_at+' · '+evidence.manifest.execution_note;
+  const steps=clear('replay-steps');replayNames.forEach((name,i)=>{const li=node('li',null,i===replayStage?'current':i<replayStage?'done':'');li.append(node('span',String(i+1).padStart(2,'0')),document.createTextNode(name));steps.append(li);});
+  const content=clear('replay-content');
+  if(replayStage===0){content.append(node('p','RESEARCH QUESTION','eyebrow'),node('h2','Which ABL1 candidates merit follow-up, and what changes after human DILI?'),node('p','Public reference panel · imatinib, dasatinib, nilotinib and bosutinib.'));renderMolecules(content,evidence.candidates);}
+  if(replayStage===1){content.append(node('p','LOCAL PRIVACY BOUNDARY','eyebrow'),node('h2','The researcher controls what leaves the laptop.'),node('p',evidence.manifest.privacy_note),node('p','In a new study, review the filtered question and molecular data, acknowledge each retained scientific field, then approve the exact destinations. This recorded view does not create an approval.'),node('p','Boltz-2: approved structures and ABL1 sequence. Nemotron, when enabled: approved question, IDs and computed evidence.'));}
+  if(replayStage===2){content.append(node('p','RECORDED BOLTZ-2 EVIDENCE','eyebrow'),node('h2','The top two are frozen before DILI.'));const grid=node('div',null,'molecule-grid');for(const r of [...report.results].sort((a,b)=>(a.discovery_result.rank??99)-(b.discovery_result.rank??99))){const d=r.discovery_result,card=node('article',null,'molecule-card'+(d.shortlisted?' selected-molecule':'')),img=node('img');img.src=evidence.candidates.find(c=>c.compound_id===r.compound_id).image;img.alt='Structure of '+r.compound_id;card.append(img,node('strong',r.compound_id),node('p','Rank '+d.rank+' · '+number(d.mean_binding_probability),'candidate-score'),node('span',d.shortlisted?'Frozen discovery shortlist':'Outside shortlist','small'));grid.append(card);}content.append(grid);content.append(node('p','These are saved results, not live progress. Ranking uses mean binder likelihood, independently of toxicity.','small'));}
+  if(replayStage===3){content.append(node('p','SAME SHORTLIST · ADDITIONAL EVIDENCE','eyebrow'),node('h2','A different next experiment.'));for(const id of report.discovery_shortlist){const r=report.results.find(c=>c.compound_id===id);const card=node('article',null,'replay-decision');card.append(node('p',id+' · Discovery rank '+r.discovery_result.rank,'eyebrow'),node('h3','Target-binding follow-up → '+decisions[r.follow_up.decision]),node('p',concern(r.toxicity_result)+' · '+number(r.toxicity_result.assessment.risk_score)),node('p',r.follow_up.recommendation));content.append(card);}content.append(node('p','The discovery rank stays fixed. Held candidates are not automatically replaced.'));}
+  if(replayStage===4){content.append(node('p','READY TO INSPECT','eyebrow'),node('h2','Inspect the evidence behind each decision.'),node('p','Open the candidate table, switch discovery and DILI views, inspect molecular structures, and export the source report.'),node('p','All four public demo compounds overlap fitting or selection. This retrospective example is not an unseen evaluation cohort.','small'));}
+  $('replay-back').disabled=replayStage===0;$('replay-next').textContent=replayStage===4?'Explore recorded results →':'Next stage →';$('replay-position').textContent='Recorded stage '+(replayStage+1)+' of 5';
+  $('replay-heading').tabIndex=-1;$('replay-heading').focus({preventScroll:true});window.scrollTo({top:0,behavior:'instant'});
+}
+
+$('revise-study').onclick=()=>action($('revise-study'),async()=>{if(activeRun?.status==='awaiting_plan')await api('/api/run/cancel',{job_id:activeRun.job_id});clearTimeout(pollTimer);activeRun=null;edited();$('study-context').hidden=true;step('input');});

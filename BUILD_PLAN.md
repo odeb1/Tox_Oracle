@@ -39,8 +39,8 @@ flowchart TD
     A --> D[Discovery evidence and frozen shortlist]
     D --> B[Existing local human DILI predictor]
     B --> J[Results dashboard and v3 report]
-    S -. optional approved context .-> R[Verified Rosalind API]
-    R -. planning notes and interpretation .-> J
+    S -. optional approved context .-> R[NVIDIA Nemotron assistant]
+    R -. validated plan and interpretation .-> J
 ```
 
 The first standalone release runs on loopback beside the privacy filter and DILI
@@ -51,13 +51,13 @@ Uploaded datasets support 2–32 candidates and must include the validated imati
 reference. ABL1 is the only currently supported target; broader target policies
 need separate validation. The prompt supplies context, not arbitrary executable instructions.
 
-The Workbench launcher remains a desktop integration, not a backend API. An optional
-Responses API adapter verifies both a completed response and Rosalind model identity.
-September 20 checks found account-visible Rosalind aliases; two accepted calls
-returned `gpt-5.5-2026-04-23`, and the research alias check did not succeed. Identity
-is therefore unconfirmed. The app keeps Rosalind disabled until verification passes;
-it never silently substitutes another model. Verified notes are optional interpretation
-and cannot alter approvals, scientific results, thresholds or shortlist membership.
+The current demo uses NVIDIA Nemotron 3.5 Lightning for bounded structured planning and
+interpretation after local approval. The backend validates the target and candidates
+and controls every scientific operation. Unsupported plans pause for clarification;
+technical planning failure requires explicit fixed-protocol continuation. An assistant
+cannot alter approval, scientific settings, thresholds or shortlist membership.
+The Workbench launcher is not a backend API; no Rosalind invocation is claimed.
+See [the approved researcher-demo plan](docs/decisions/researcher-demo-workflow-plan.md).
 
 The team has access to Rosalind, NVIDIA/BioNeMo and Brev. Ask for required credentials;
 do not infer lack of entitlement from missing environment variables. The default
@@ -70,7 +70,7 @@ acknowledgement and audit counts. Exposure-aware training remains deferred.
 One study executes at a time. Jobs persist only approved inputs and generated
 artifacts, provide stage events and support cooperative cancellation between
 operations. Cached mode requires all exact-input cache entries and prohibits live
-fallbacks and Rosalind calls. Restart recovery is report inspection, not automatic
+fallbacks and assistant calls. Restart recovery is report inspection, not automatic
 replay of potentially paid vendor requests. Hosted execution with a local privacy
 companion is a later deployment design; the Streamlit presentation remains available.
 
@@ -128,7 +128,7 @@ proof; the raw forest attribution is not an explanation of the calibrated score.
   wrapper `./scripts/toxoracle-screen` uses the existing scientific environment.
 - Validate coverage and compound/structure/atom identities strictly. Persist the
   discovery snapshot before invoking the model's existing CLI in a subprocess.
-- Return JSON, standalone HTML and a text summary. Rosalind explains these outputs;
+- Return JSON, standalone HTML and a text summary. The configured assistant explains these outputs;
   it does not invent scores, select thresholds or change scientific records.
 - `python -m toxoracle_app.web` serves the standalone workspace. Its job backend
   calls the same executor with progress/cancellation hooks; no duplicate ranking or

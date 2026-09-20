@@ -52,13 +52,13 @@ an equivalent scientific environment. `--model-python` preserves venv symlinks.
    `compound_id,smiles`; JSON accepts a list or an envelope with `compounds`.
    Files must be UTF-8, at most 1 MB, with 2–32 candidates. Include `LT00107` with
    the validated imatinib structure; **Use public ABL1 panel** supplies it.
-2. Choose **Live NVIDIA screening** or **Verified cache · fully offline**. Live
+2. Choose **Live run** or **Cached screening · local DILI**. Live
    mode makes fresh vendor calls and can incur charges. Offline mode verifies
    every cache entry first and has a client that refuses all network fallbacks.
 3. **Review privately** runs the existing local privacy scanner. Review the
    sanitized data and the prepared molecular request. Confirm each flagged but
    chemically valid scientific field separately. The target, execution mode and
-   Rosalind choice are bound to this snapshot; any edit revokes approval.
+   assistant choice are bound to this snapshot; any edit revokes approval.
 4. **Approve & run** freezes the approved study. NVIDIA receives only the molecular
    structures and public protein sequence. The raw upload is not persisted.
    Request IDs, target, model digest and exact discovery artifacts remain local.
@@ -78,34 +78,52 @@ commands or select unvalidated protocols. Only ABL1 currently has a validated ta
 manifest, reference and follow-up policy; adding a dropdown item alone is insufficient
 to support another target.
 
-## Rosalind interface and verification
+## NVIDIA assistant and structured planning
 
-The adapter uses the documented [Responses API](https://developers.openai.com/api/docs/guides/text)
-at `https://api.openai.com/v1/responses`, with `store: false`, bounded output and no
-tools, shell execution, automatic retries or alternate-model fallback. The Workbench
-launcher is never invoked. Server-side `OPENAI_API_KEY` supplies the credential;
-`TOXORACLE_ROSALIND_MODEL` can choose an allowlisted account-visible Rosalind ID.
+Start in the existing privacy/scientific environment with `./scripts/toxoracle-web`.
+Keep `NVIDIA_API_KEY` in that terminal's environment, never in files, browser storage
+or chat. The server must be restarted to inherit a newly configured key. If you already keep a
+key in a local file, `./scripts/toxoracle-web --nvidia-key-file /path/to/existing-key`
+reads it into process memory only. The app never creates or copies that key file.
 
-**Verification on 20 September 2026:** `/v1/models` exposed
-`gpt-rosalind-5.5-260602`, `gpt-5.5-rosalind-260602`, `gpt-5.5-rosalind`, and
-`gpt-rosalind-research`. Short greeting calls to `gpt-5.5-rosalind` and
-`gpt-rosalind-5.5-260602` completed but reported `gpt-5.5-2026-04-23`. A greeting
-check to `gpt-rosalind-research` did not succeed. These observations establish that
-some aliases are callable, **not** that their reported identity confirms Rosalind.
-No research data was sent during these checks.
+In **Methods & setup**, verify the connection with a fixed greeting, then enable
+**Use NVIDIA Nemotron planning** before review. The configured model is
+`nvidia/nemotron-3.5-lightning-30b-a3b` on NVIDIA's chat-completions endpoint. Requested and
+returned IDs are checked and retained. No Rosalind identity or invocation is claimed.
+The old Rosalind adapter remains dormant for historical compatibility.
 
-The UI's **Verify API connection** sends a fixed greeting. Notes remain disabled
-unless a completed response reports a Rosalind identity. Resolve the alias/identity
-contract with the provider or the organization's API administrator before enabling
-the feature; do not relabel general GPT output as Rosalind. Both requested and returned
-model IDs are retained for successful notes. Verification is per server process.
+Approval covers the sanitized question, candidate IDs and computed evidence shared
+with NVIDIA's assistant, as well as structures and the public sequence sent to Boltz-2.
+The assistant requests one bounded `prepare_abl1_screening` operation, returning the
+approved target, unchanged candidate IDs, support status and a brief explanation.
+The backend validates the response and runs the fixed scientific protocol. Unsupported
+questions pause for a revised study; malformed output or technical failure pauses
+before screening and offers **Continue with approved fixed protocol**. This explicit
+choice is recorded and cannot submit science twice. Explanation failure leaves validated
+results available. No arbitrary commands or model-generated thresholds are executed.
+Cached screening disables the assistant and never falls back to the network.
 
-If verification succeeds, the researcher can opt in **before** privacy review.
-Approval then covers the sanitized prompt, candidate IDs and computed evidence
-summary shared with OpenAI. Rosalind supplies an advisory plan note and result
-explanation. The backend controls execution and the frozen policy; generated prose
-cannot modify either. Optional assistant failure does not discard scientific results.
-Fully offline mode disables Rosalind, regardless of API configuration.
+## Recorded walkthrough and presentation
+
+The landing page's **Open recorded walkthrough** loads the bundled public ABL1 study
+from `demo/examples/abl1_recorded_workspace`. File hashes and v3 consistency are checked
+before display. Stage navigation is manual: no new privacy approval, inference or timed
+progress is fabricated. The original study reused verified Boltz-2 responses and ran
+local DILI. Repository-relative artifact pointers are provenance only; the large raw
+vendor files are not bundled or served. All four drugs overlap model fitting/selection.
+
+For a new study, use the public panel (or upload CSV/JSON), preview molecules and correct
+row errors. Review privately, acknowledge each retained scientific field, then approve
+and run. The activity panel shows actual operations and the currently invoked model;
+elapsed time is wall-clock time, never an estimated completion percentage. A browser
+refresh reconnects to active or paused jobs in the same session. Completed runs are
+available under **Study runs**. Open a candidate, switch **Discovery only / With human
+DILI**, then export the HTML report or source JSON. Recorded results export source JSON.
+
+The five stages are **Set up → Review privately → Run discovery → Assess liver concern
+→ Results**. Navy/ivory styling and molecule rendering are entirely local. Review at
+1440×900, 1280×720 and 390px width; all controls remain keyboard accessible and motion
+respects reduced-motion preferences. The public Streamlit app is unchanged.
 
 ## Execution and recovery
 
@@ -129,7 +147,7 @@ Fully offline mode disables Rosalind, regardless of API configuration.
   No cloud-hosted browser entry point is provided for raw inputs. A hosted product
   needs an authenticated local companion and a reviewed handoff architecture.
 
-## Validation and remaining live acceptance
+## Validation and acceptance
 
 ```sh
 PATH="$PWD/app/.venv/bin:$PATH" bash scripts/check-web.sh
@@ -143,9 +161,8 @@ races, immutable settings, reference identity, idempotency, session ownership,
 cache-only execution, cancellation, errors, imports and assistant identity checks.
 The independent privacy tests also run unchanged.
 
-This checkout did not contain the trained DILI artifact, local privacy checkpoint,
-privacy runtime or Boltz-2 cache when implementation began. The app's UI, API and
-offline tests can be verified; a real end-to-end web study remains an acceptance
-step once these existing assets are restored. Previous terminal/desktop scientific
-runs are documented in the [screening runbook](rosalind-screening.md), and are not
-represented as a newly completed web run.
+Current acceptance results are recorded in
+`evaluation/reports/researcher_demo_acceptance_v1.json`. Offline synthetic tests are
+not scientific validation. The real cached web acceptance uses the actual privacy
+filter, exact-input Boltz-2 cache and trained DILI model. Hosted Nemotron and fresh
+Boltz-2 acceptance are separate gates; both passed on 20 September 2026 using the public panel. A key in the server environment is required to repeat them.

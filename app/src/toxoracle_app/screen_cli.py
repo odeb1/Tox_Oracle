@@ -163,10 +163,14 @@ def execute(args, client=None, *, progress=None, cancelled=None, quiet=False):
             if args.command == "reference-check" and cid != reference:
                 continue
             if cid in problems:
+                checkpoint("candidate_finished", compound_id=cid, status=records[cid]["status"],
+                           completed=len(records), total=len(request["compounds"]))
                 continue
             compound = valid[cid]
             if cid != reference and not reference_ok:
                 records[cid] = failed_candidate(compound, "reference_check_failed", "Panel execution stopped: reference lacked usable structure and affinity")
+                checkpoint("candidate_finished", compound_id=cid, status=records[cid]["status"],
+                           completed=len(records), total=len(request["compounds"]))
                 continue
             try:
                 records[cid] = predict_candidate(compound, target, output / "boltz2" / digest(cid), client,
@@ -179,6 +183,8 @@ def execute(args, client=None, *, progress=None, cancelled=None, quiet=False):
                 r = records[cid]
                 reference_ok = r["status"] == "ok" and r["binding_probability"] is not None and (r["affinity_pic50"] is not None or r["affinity_pred_value"] is not None)
             checkpoint("candidate_finished", compound_id=cid, status=records[cid]["status"],
+                       binding_probability=records[cid]["binding_probability"],
+                       structural_confidence=records[cid]["structural_confidence"],
                        completed=len(records), total=len(request["compounds"]))
         if args.command == "reference-check":
             save(output / "reference.json", records[reference])

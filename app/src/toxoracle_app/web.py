@@ -30,8 +30,8 @@ MAX_CANDIDATES = 32
 
 def create_app(config=None, *, detector=None, token=None, manager=None, preflight=check_execution, origin=ORIGIN):
     config = config or WorkspaceConfig()
-    from .rosalind import RosalindClient
-    assistant = RosalindClient()
+    from .assistant import NvidiaAssistant
+    assistant = NvidiaAssistant()
     manager = manager or JobManager(config, assistant=assistant)
     app = privacy_app(detector=detector, token=token, origin=origin, static_dir=STATIC)
     app.state.jobs = manager
@@ -70,17 +70,38 @@ def create_app(config=None, *, detector=None, token=None, manager=None, prefligh
                 privacy_runtime=importlib.util.find_spec("opf") is not None,
                 cache_directory=config.cache.is_dir(),
                 nvidia_credentials=bool(os.environ.get("NVIDIA_API_KEY") or os.environ.get("NVIDIA_BIONEMO_API_KEY") or os.environ.get("NGC_API_KEY"))),
-            rosalind=assistant.configuration(), runs=manager.for_owner(data["session_id"]),
+            assistant=assistant.configuration(), runs=manager.for_owner(data["session_id"]),
             max_candidates=MAX_CANDIDATES)
+
+    @app.post("/api/candidates/preview")
+    async def candidate_preview(request: Request):
+        from .workspace_evidence import preview
+        data = await payload(request)
+        session(data)
+        try:
+            rows = await run_in_threadpool(preview, parse(data.get("content"), data.get("format")))
+        except (ValueError, TypeError):
+            raise WorkspaceError("candidate_identity_invalid") from None
+        return dict(candidates=rows)
+
+    @app.post("/api/recorded")
+    async def replay(request: Request):
+        from .workspace_evidence import recorded_study
+        session(await payload(request))
+        try:
+            return await run_in_threadpool(recorded_study)
+        except (ValueError, OSError, KeyError, TypeError):
+            raise WorkspaceError("recorded_evidence_unavailable") from None
 
     @app.post("/api/example")
     async def public_example(request: Request):
         session(await payload(request))
-        return dict(content=json.dumps(example, indent=2), format="json",
+        return dict(content="compound_id,smiles\n" + "\n".join(
+            c["compound_id"] + "," + c["canonical_smiles"] for c in example["compounds"]), format="csv",
             prompt="Which ABL1 discovery candidates merit follow-up, and how does predicted human DILI concern change that decision?")
 
-    @app.post("/api/rosalind/verify")
-    async def verify_rosalind(request: Request):
+    @app.post("/api/assistant/verify")
+    async def verify_assistant(request: Request):
         session(await payload(request))
         # Explicit connection check sends only a fixed, non-scientific greeting.
         return await run_in_threadpool(assistant.verify)
@@ -93,12 +114,12 @@ def create_app(config=None, *, detector=None, token=None, manager=None, prefligh
         state.update(version=state["version"] + 1, snapshot=None, approved=None)
         if data.get("target_id") != target["target_id"]:
             raise WorkspaceError("unsupported_target")
-        if data.get("mode") not in {"live", "cached"} or type(data.get("use_rosalind")) is not bool:
+        if data.get("mode") not in {"live", "cached"} or type(data.get("use_assistant")) is not bool:
             raise WorkspaceError("invalid_execution_mode")
-        if data["mode"] == "cached" and data["use_rosalind"]:
+        if data["mode"] == "cached" and data["use_assistant"]:
             raise WorkspaceError("cached_mode_is_offline")
-        if data["use_rosalind"] and assistant.configuration()["verification"] != "verified":
-            raise WorkspaceError("rosalind_interface_not_verified")
+        if data["use_assistant"] and assistant.configuration()["verification"] != "verified":
+            raise WorkspaceError("assistant_interface_not_verified")
         prompt = data.get("research_prompt")
         if not isinstance(prompt, str) or not prompt.strip() or len(prompt) > MAX_FIELD:
             raise WorkspaceError("research_prompt_required")
@@ -131,7 +152,17 @@ def create_app(config=None, *, detector=None, token=None, manager=None, prefligh
             raise WorkspaceError("research_prompt_required")
         result["study"] = dict(research_prompt=safe_prompt, request=prepared,
             target_id=target["target_id"], target_sequence_sha256=target["sequence_sha256"],
-            mode=data["mode"], use_rosalind=data["use_rosalind"])
+            mode=data["mode"], use_assistant=data["use_assistant"],
+            assistant_model=assistant.configuration()["requested_model"] if data["use_assistant"] else None)
+        from toxoracle_discovery.boltz2 import request_payload, ENDPOINT
+        result["outbound"] = dict(
+            boltz2=[] if data["mode"] == "cached" else [dict(compound_id=c["compound_id"],
+                endpoint=ENDPOINT, payload=request_payload(c, target)) for c in prepared["compounds"]],
+            assistant=None if not data["use_assistant"] else dict(provider="NVIDIA",
+                model=assistant.configuration()["requested_model"], research_prompt=safe_prompt,
+                candidate_ids=[c["compound_id"] for c in prepared["compounds"]],
+                result_explanation_fields=["candidate_id", "rank", "binding", "affinity", "structural_confidence",
+                    "DILI assessment", "training membership", "follow-up", "limitations"]))
         result["audit"]["study_sha256"] = hashlib.sha256(json.dumps(result["study"], sort_keys=True).encode()).hexdigest()
         return result
 
@@ -162,13 +193,20 @@ def create_app(config=None, *, detector=None, token=None, manager=None, prefligh
         job, _ = await owned_job(request)
         return job.snapshot()
 
+    @app.post("/api/run/continue")
+    async def continue_run(request: Request):
+        job, data = await owned_job(request)
+        return manager.continue_without_assistant(data["session_id"], job.job_id).snapshot()
+
     @app.post("/api/run/cancel")
     async def cancel_run(request: Request):
         job, _ = await owned_job(request)
         with job.lock:
-            if job.state["status"] in {"queued", "running"}:
+            if job.state["status"] in {"queued", "running", "awaiting_plan"}:
                 job.stop.set()
                 job.update(cancel_requested=True)
+                if job.state["status"] == "awaiting_plan":
+                    job.update(status="cancelled", stage="cancelled", can_continue=False)
         return job.snapshot()
 
     @app.post("/api/run/report")
@@ -216,11 +254,20 @@ def create_app(config=None, *, detector=None, token=None, manager=None, prefligh
 def main(argv=None):
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--port", type=int, default=8766)
+    parser.add_argument("--nvidia-key-file", type=Path, help="Read an existing local key into process memory only")
     parser.add_argument("--model", type=Path, default=WorkspaceConfig.model)
     parser.add_argument("--model-python", type=Path, default=WorkspaceConfig.model_python)
     parser.add_argument("--cache-dir", type=Path, default=WorkspaceConfig.cache)
     parser.add_argument("--runs-dir", type=Path, default=WorkspaceConfig.runs)
     args = parser.parse_args(argv)
+    if args.nvidia_key_file is not None:
+        try:
+            key = args.nvidia_key_file.expanduser().read_text().strip()
+        except OSError:
+            parser.error("Could not read the configured NVIDIA key file")
+        if not key or "\n" in key:
+            parser.error("NVIDIA key file must contain one key")
+        os.environ["NVIDIA_API_KEY"] = key
     if not 1024 <= args.port <= 65535:
         parser.error("Choose a loopback port between 1024 and 65535")
     config = WorkspaceConfig(args.runs_dir.resolve(), args.model.resolve(), args.model_python.absolute(), args.cache_dir.resolve())

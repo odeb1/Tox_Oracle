@@ -70,7 +70,7 @@ def env(tmp_path):
 
 
 def scan(client, sid, **overrides):
-    data = dict(session_id=sid, target_id=TARGET["target_id"], mode="live", use_rosalind=False,
+    data = dict(session_id=sid, target_id=TARGET["target_id"], mode="live", use_assistant=False,
                 format="json", content=json.dumps(EXAMPLE), research_prompt="Review ABL1; contact researcher@example.com")
     data.update(overrides)
     return client.post("/api/study/scan", json=data)
@@ -120,11 +120,11 @@ def test_settings_cannot_be_overridden_at_submission_and_retries_are_idempotent(
     client, sid, manager, _ = env
     result = scan(client, sid).json()
     approve(client, sid, result)
-    one = submit(client, sid, result, mode="cached", use_rosalind=True, target_id="forged").json()
+    one = submit(client, sid, result, mode="cached", use_assistant=True, target_id="forged").json()
     two = submit(client, sid, result).json()
     assert one["job_id"] == two["job_id"]
     assert one["mode"] == "live" and one["target_id"] == TARGET["target_id"]
-    assert one["rosalind"]["status"] == "off"
+    assert one["assistant"]["status"] == "off"
     finished(manager)
     assert len(manager.jobs) == 1
 
@@ -166,7 +166,7 @@ def test_factory_rejects_non_loopback_or_ambiguous_origin(origin):
 def test_target_reference_structure_and_offline_options_are_enforced(env):
     client, sid, *_ = env
     assert scan(client,sid,target_id="user_supplied").json()["error"] == "unsupported_target"
-    assert scan(client,sid,mode="cached",use_rosalind=True).json()["error"] == "cached_mode_is_offline"
+    assert scan(client,sid,mode="cached",use_assistant=True).json()["error"] == "cached_mode_is_offline"
     request=deepcopy(EXAMPLE); request["compounds"] = request["compounds"][1:]
     assert scan(client,sid,content=json.dumps(request)).json()["error"] == "reference_required"
     request["compounds"][0]["compound_id"] = "LT00107"
@@ -323,3 +323,53 @@ def test_production_detector_is_fail_closed(env):
             s=c.post('/api/session').json()['session_id']
             assert scan(c,s).json()['error']=='local_detector_failed'
             assert not app.state.jobs.jobs
+
+
+def test_failed_planning_requires_explicit_idempotent_continuation(env):
+    from toxoracle_app.assistant import AssistantError
+    client,sid,manager,_=env
+    class Broken:
+        def plan(self,approved):raise AssistantError('assistant_rate_limited')
+    manager.assistant=Broken()
+    result=scan(client,sid).json();approve(client,sid,result)
+    # The test injects assistant choice into the trusted, approved snapshot before submission.
+    result['study']['use_assistant']=True
+    job=manager.submit(sid,result,TARGET);finished(manager)
+    assert job.snapshot()['status']=='awaiting_plan'
+    assert not (job.directory/'science').exists()
+    continued=client.post('/api/run/continue',json=dict(session_id=sid,job_id=job.job_id))
+    assert continued.status_code==200
+    assert client.post('/api/run/continue',json=dict(session_id=sid,job_id=job.job_id)).json()['job_id']==job.job_id
+    finished(manager)
+    assert job.snapshot()['status']=='complete'
+    assert job.snapshot()['assistant_override']=='researcher_selected_fixed_protocol'
+
+
+def test_unsupported_plan_cannot_be_bypassed_or_start_science(env):
+    client,sid,manager,_=env
+    class Unsupported:
+        def plan(self,approved):return dict(supported=False,text='Only ABL1 is supported.')
+    manager.assistant=Unsupported()
+    result=scan(client,sid).json();approve(client,sid,result);result['study']['use_assistant']=True
+    job=manager.submit(sid,result,TARGET);finished(manager)
+    assert job.snapshot()['status']=='awaiting_plan' and not job.snapshot()['can_continue']
+    assert client.post('/api/run/continue',json=dict(session_id=sid,job_id=job.job_id)).status_code==400
+    assert not (job.directory/'science').exists()
+    assert client.post('/api/run/cancel',json=dict(session_id=sid,job_id=job.job_id)).json()['status']=='cancelled'
+
+
+def test_recorded_endpoint_does_not_submit_a_job(env):
+    client,sid,manager,_=env
+    response=client.post('/api/recorded',json=dict(session_id=sid))
+    assert response.status_code==200 and response.json()['mode']=='recorded'
+    assert not manager.jobs
+
+
+def test_public_example_uses_minimal_csv_and_preserves_prepared_identities(env):
+    client,sid,*_=env
+    example=client.post('/api/example',json=dict(session_id=sid)).json()
+    assert example['format']=='csv' and 'structure_id' not in example['content']
+    result=scan(client,sid,content=example['content'],format=example['format']).json()
+    assert result['study']['request']['compounds']==EXAMPLE['compounds']
+    assert len(result['outbound']['boltz2'])==4 and result['outbound']['assistant'] is None
+    assert result['outbound']['boltz2'][0]['payload']['polymers'][0]['sequence']==TARGET['sequence']

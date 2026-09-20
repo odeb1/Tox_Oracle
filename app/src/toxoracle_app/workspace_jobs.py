@@ -14,6 +14,7 @@ import subprocess
 import threading
 import uuid
 
+from .assistant import AssistantError
 from .screen_cli import ROOT, ScreeningCancelled, execute, load
 from .screening import validate_discovery, validate_screening_report
 
@@ -135,7 +136,7 @@ class JobManager:
             old = next((j for j in self.jobs.values() if j.owner == owner and j.scan_id == snapshot["scan_id"]), None)
             if old:
                 return old
-            if any(j.state["status"] in {"queued", "running"} for j in self.jobs.values()):
+            if any(j.state["status"] in {"queued", "running", "awaiting_plan"} for j in self.jobs.values()):
                 raise WorkspaceError("workspace_busy")
             if len(self.jobs) >= 32:
                 raise WorkspaceError("run_limit_reached")
@@ -150,10 +151,11 @@ class JobManager:
             write_json(directory / "target.json", target)
             job = Job(job_id, owner, snapshot["scan_id"], directory, dict(
                 job_id=job_id, status="queued", stage="queued", created_at=now(), events=[],
+                candidates=[dict(compound_id=c["compound_id"], canonical_smiles=c["canonical_smiles"]) for c in approved["request"]["compounds"]],
                 candidate_count=len(approved["request"]["compounds"]), target_id=target["target_id"],
                 mode=approved["mode"], research_prompt=approved["research_prompt"],
                 shortlist=None, discovery_sha256=None, report_available=False, error=None,
-                rosalind={"status": "pending" if approved["use_rosalind"] else "off"}))
+                assistant={"status": "pending" if approved["use_assistant"] else "off"}))
             self.jobs[job_id] = job
             job.update()
             self.pool.submit(self._run, job, approved)
@@ -165,22 +167,43 @@ class JobManager:
         try:
             result = getattr(self.assistant, action)(approved, report) if action == "explain" else self.assistant.plan(approved)
             with job.lock:
-                state = dict(job.state["rosalind"], status="complete", **{action: result})
-            job.update(rosalind=state)
-        except Exception:
+                state = dict(job.state["assistant"], status="complete", **{action: result})
+            job.update(assistant=state)
+            return result
+        except Exception as error:
             # Interpretation is optional; scientific evidence remains available on failure.
             with job.lock:
-                state = dict(job.state["rosalind"], status="unavailable", error="rosalind_request_failed")
-            job.update(rosalind=state)
+                state = dict(job.state["assistant"], status="unavailable", error=str(error) if isinstance(error, AssistantError) else "assistant_request_failed")
+            job.update(assistant=state)
 
-    def _run(self, job, approved):
+    def continue_without_assistant(self, owner, job_id):
+        job = self.owned(owner, job_id)
+        with job.lock:
+            if job.state.get("assistant_override") == "researcher_selected_fixed_protocol":
+                return job
+            if job.state["status"] != "awaiting_plan" or not job.state.get("can_continue"):
+                raise WorkspaceError("continuation_not_available")
+            if job.stop.is_set():
+                raise WorkspaceError("continuation_not_available")
+            approved = load(job.directory / "approved.json")
+            job.update(status="queued", stage="queued", can_continue=False,
+                       assistant_override="researcher_selected_fixed_protocol")
+            self.pool.submit(self._run, job, approved, skip_assistant=True)
+        return job
+
+    def _run(self, job, approved, skip_assistant=False):
         try:
             job.update(status="running")
             if job.stop.is_set():
                 raise ScreeningCancelled()
-            if approved["use_rosalind"]:
+            if approved["use_assistant"] and not skip_assistant:
                 job.progress({"stage": "planning"})
-                self._assistant_call(job, "plan", approved)
+                plan = self._assistant_call(job, "plan", approved)
+                if job.stop.is_set():
+                    raise ScreeningCancelled()
+                if plan is None or not plan["supported"]:
+                    job.update(status="awaiting_plan", stage="planning_paused", can_continue=plan is None)
+                    return
             args = argparse.Namespace(command="run", request=job.directory / "request.json",
                 target=job.directory / "target.json", output_dir=job.directory / "science",
                 model=self.config.model, model_python=self.config.model_python,
@@ -198,7 +221,7 @@ class JobManager:
             if (report["target"] != discovery["target"] or
                     [r["discovery_result"] for r in report["results"]] != discovery["results"]):
                 raise WorkspaceError("report_discovery_mismatch")
-            if approved["use_rosalind"] and not job.stop.is_set():
+            if approved["use_assistant"] and not skip_assistant and not job.stop.is_set():
                 job.progress({"stage": "explaining"})
                 self._assistant_call(job, "explain", approved, report)
             job.update(status="complete" if status == 0 else "partial", stage="finished",

@@ -1200,3 +1200,65 @@ footer {
     }
   }
 }
+
+/* Researcher journey: locally rendered evidence, restrained editorial hierarchy. */
+.stepper { grid-template-columns:repeat(5,minmax(0,1fr)); }
+.stepper li { min-width:0; }
+.study-context { border-bottom:1px solid var(--line); padding:14px 0 20px; margin-bottom:24px; color:var(--muted); overflow-wrap:anywhere; }
+body[data-study-stage="run"] .intro,body[data-study-stage="assess"] .intro,body[data-study-stage="results"] .intro,body[data-study-stage="review"] .intro { display:none; }
+.replay-invitation { background:var(--light-blue); }
+.replay-invitation h2 { font-size:27px; }
+.molecule-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:12px; margin:18px 0; min-width:0; }
+#candidate-preview { display:block; }
+.molecule-card { padding:16px; background:var(--white); border:1px solid var(--line); border-radius:12px; min-width:0; }
+.molecule-card img { display:block; width:100%; height:130px; object-fit:contain; margin-bottom:12px; }
+.molecule-card strong,.molecule-card span { display:block; overflow-wrap:anywhere; }
+.live-layout { display:grid; grid-template-columns:minmax(0,1.6fr) minmax(250px,1fr); gap:32px; }
+.live-layout .execution-grid { display:block; }
+.live-layout .execution-stages { display:none; }
+.activity-panel { border-left:1px solid var(--line); padding-left:24px; }
+.activity-panel .event-log { max-height:420px; overflow-y:auto; padding-right:12px; }
+.activity-panel h3 { color:var(--oxford); }
+.event-log li { font-size:13px; line-height:1.65; border-bottom:1px solid var(--line); padding:10px 0; }
+.review-readable { margin:24px 0; }
+.review-readable .molecule-grid { grid-template-columns:repeat(4,minmax(0,1fr)); }
+.detail-molecule { width:min(100%,420px); height:210px; object-fit:contain; }
+.table-molecule { width:120px; height:70px; object-fit:contain; display:block; }
+.evidence-switch { display:flex; gap:8px; margin:22px 0; }
+.discovery-only .decision-panel,.discovery-only #explanation-note,.discovery-only #result-metrics { display:none; }
+.replay-controls { display:flex; justify-content:space-between; align-items:center; gap:16px; margin:24px 0; }
+#replay-content { min-height:340px; }
+#replay-content .molecule-grid { grid-template-columns:repeat(4,minmax(0,1fr)); }
+#continue-fixed { margin-top:18px; }
+#study-form .field-note { margin-bottom:14px; }
+@media(max-width:1000px){
+ .stepper li { font-size:12px; padding:14px 10px; }
+ .live-layout { grid-template-columns:1fr; }
+ .activity-panel { border-left:0; border-top:1px solid var(--line); padding:24px 0 0; }
+ .review-readable .molecule-grid,#replay-content .molecule-grid { grid-template-columns:repeat(2,minmax(0,1fr)); }
+}
+@media(max-width:760px){
+ .stepper { grid-template-columns:1fr; }
+ .stepper li,.stepper li:nth-child(2),.stepper li:nth-child(-n+2) { border-right:0; border-bottom:1px solid var(--line); padding:10px 14px; }
+ .stepper li:last-child { border-bottom:0; }
+ .molecule-grid { gap:8px; }
+ .molecule-card { padding:10px; }
+ .molecule-card img { height:105px; }
+ .replay-controls { flex-wrap:wrap; }
+ .evidence-switch { flex-wrap:wrap; }
+ .intro h1 { font-size:36px; }
+ #replay-content { min-height:0; }
+}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after { animation:none!important; transition:none!important; scroll-behavior:auto!important; }}
+.operation-note { padding:16px 20px; border-left:3px solid var(--blue); background:var(--light-blue); color:var(--oxford); }
+#replay-content { min-height:260px; }
+#result-history .event-log { max-height:360px; overflow-y:auto; }
+@media(max-width:760px){#replay-content { min-height:0; }}
+.privacy-findings { padding:16px 20px 16px 36px; border-radius:8px; background:var(--light-blue); color:var(--oxford); font-size:13px; overflow-wrap:anywhere; }
+.privacy-findings:empty { display:none; }
+#revise-study { margin:18px 0 0 8px; }
+.candidate-score { font-variant-numeric:tabular-nums; color:var(--oxford); margin:12px 0 4px; font-size:14px; }
+.selected-molecule { border-color:var(--blue); background:#f7f9fc; }
+.replay-decision { padding:22px; border-left:3px solid var(--gold); background:#faf7ef; margin:20px 0; border-radius:0 10px 10px 0; }
+.replay-decision h3 { color:var(--oxford); }
+.activity-panel .assistant-note { font-size:13px; padding:16px; margin:16px 0; line-height:1.7; overflow-wrap:anywhere; }

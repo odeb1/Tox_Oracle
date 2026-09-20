@@ -1,0 +1,82 @@
+{
+  "schema_version": "1.0",
+  "date": "2026-09-20",
+  "branch": "feat/researcher-demo-workflow",
+  "offline": {
+    "workspace_privacy": {
+      "passed": 67
+    },
+    "repository": {
+      "passed": 125
+    },
+    "generation_required_science": {
+      "passed": 23,
+      "skipped": 0
+    },
+    "public_dashboard": {
+      "status": "blocked",
+      "reason": "Existing lockfile requests altair==6.3.0, unavailable from configured package index; dependency pins unchanged."
+    }
+  },
+  "real_cached_web": {
+    "status": "passed",
+    "run_id": "344d53b508934f0c89e7369627fa9117",
+    "privacy": "real local OPF scan; scientific fields individually acknowledged",
+    "mode": "cached",
+    "candidate_count": 4,
+    "shortlist": [
+      "LT01248",
+      "LT00607"
+    ],
+    "held": 2,
+    "events": 16,
+    "numeric_equivalence_to_saved_study": "binding arrays equal; DILI tolerance 1e-12"
+  },
+  "nvidia_assistant": {
+    "model": "nvidia/nemotron-3.5-lightning-30b-a3b",
+    "direct_greeting": "passed; exact returned identity",
+    "background_thread_greeting": "passed; exact returned identity",
+    "retired_planned_id": "nvidia/nemotron-3-nano-30b-a3b returned 410",
+    "catalog_alternative": "nvidia/nemotron-nano-3-30b-a3b returned 404",
+    "full_web_run": "passed; exact requested and returned identity for plan and explanation",
+    "explanation_review": "Initial prose incorrectly described an override of binding rank. Instructions tightened; a separate live explanation of the same saved evidence correctly retained ranks and rejected similarity cutoffs. Saved locally as explanation-review.json."
+  },
+  "visual": {
+    "status": "inspected",
+    "viewports_checked": [
+      "1440x900",
+      "1280x720",
+      "390x844"
+    ],
+    "observations": [
+      "Input and results inspected in Chrome",
+      "Real privacy review and cached web execution completed",
+      "Recorded walkthrough and molecular previews inspected",
+      "Narrow results page has no horizontal document overflow; evidence table scrolls locally",
+      "Keyboard navigation verified",
+      "Live results and candidate inspector reviewed in Chrome",
+      "HTML and JSON export controls exercised, but browser download-event capture timed out; endpoint content is covered by offline tests"
+    ]
+  },
+  "limitations": [
+    "Software acceptance is not scientific validation.",
+    "All four public candidates overlap fitting or selection.",
+    "Fresh hosted model outputs may differ from saved evidence.",
+    "No live generation UI or hosted raw-input workflow is included."
+  ],
+  "live_web": {
+    "status": "passed",
+    "run_id": "d8ee241e77134215a8bfe0b3b6bcdc7a",
+    "candidate_count": 4,
+    "fresh_boltz2_calls": 4,
+    "events": 18,
+    "shortlist": [
+      "LT01248",
+      "LT00607"
+    ],
+    "held": 2,
+    "privacy": "Real local OPF scan and explicit scientific-field acknowledgement",
+    "refresh": "Reconnected during screening without duplicate execution",
+    "discovery_freeze": "Verified saved hash after local DILI"
+  }
+}
