@@ -47,6 +47,12 @@ def navigate(page: str) -> None:
     st.session_state["page"] = page
 
 
+def navigate_public_study(page: str) -> None:
+    st.session_state["study_picker"] = "Public DILI study"
+    st.session_state.pop("candidate", None)
+    navigate(page)
+
+
 def hero(kicker: str, title: str, description: str, *, accent: str = "") -> None:
     ending = f'<br><span>{text(accent)}</span>' if accent else ""
     st.html(f'<div class="hero"><div class="eyebrow">{text(kicker)}</div><h1>{text(title)}{ending}</h1><p>{text(description)}</p></div>')
@@ -249,11 +255,11 @@ def generation_home() -> None:
         st.download_button("Download generation evidence", json.dumps(report, indent=2, allow_nan=False),
                            "generation-workflow-v1.json", "application/json", key="generation_evidence_download")
     section("Explore the model behind the liver assessment", "Separate public DILI examples")
-    st.caption("The candidate explorer contains the public DILI study or your loaded study, not the generated ABL1 panel.")
+    st.caption("These links open the public DILI study, not the generated ABL1 panel. You can select other studies in the sidebar.")
     left, right = st.columns(2)
-    left.button("Explore DILI examples", on_click=navigate, args=("Candidate explorer",),
+    left.button("Explore DILI examples", on_click=navigate_public_study, args=("Candidate explorer",),
                 type="primary", width="stretch", key="generation_explore_dili")
-    right.button("View model evaluation", on_click=navigate, args=("Model & provenance",),
+    right.button("View model evaluation", on_click=navigate_public_study, args=("Model & provenance",),
                  width="stretch", key="generation_model_evaluation")
     presenter("Start with ABL1 and no candidate upload. Follow the recorded 40 → 29 → 20 selection, then switch "
               "between discovery-only and DILI views: the same two shortlisted candidates are held for liver validation. "

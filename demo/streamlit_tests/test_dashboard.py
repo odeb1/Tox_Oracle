@@ -46,14 +46,21 @@ class DashboardTests(unittest.TestCase):
         self.assertTrue(any('not the generated ABL1 panel' in m.value for m in self.app.caption))
 
     def test_generation_page_links_to_separate_public_dili_examples(self):
-        self.app.button(key='generation_explore_dili').click().run()
-        self.assert_clean()
-        self.assertEqual(self.app.radio(key='page').value, 'Candidate explorer')
-        self.assertFalse(self.app.selectbox(key='study_picker').disabled)
-        self.assertEqual(self.app.selectbox(key='study_picker').value, 'Public DILI study')
-        self.app.radio(key='page').set_value('Target-only discovery').run()
-        self.assert_clean()
-        self.assertEqual(self.app.metric[0].value, '40')
+        for key, page in [('generation_explore_dili', 'Candidate explorer'),
+                          ('generation_model_evaluation', 'Model & provenance')]:
+            with self.subTest(page=page):
+                self.app.session_state['pending_study'] = load_case_zip(case_zip(case_documents()))
+                self.app.run()
+                self.assertEqual(self.app.selectbox(key='study_picker').value, 'Uploaded study')
+                self.app.radio(key='page').set_value('Target-only discovery').run()
+                self.app.button(key=key).click().run()
+                self.assert_clean()
+                self.assertEqual(self.app.radio(key='page').value, page)
+                self.assertFalse(self.app.selectbox(key='study_picker').disabled)
+                self.assertEqual(self.app.selectbox(key='study_picker').value, 'Public DILI study')
+                self.app.radio(key='page').set_value('Target-only discovery').run()
+                self.assert_clean()
+                self.assertEqual(self.app.metric[0].value, '40')
 
     def test_candidate_switching_and_atom_highlight_preserve_scores(self):
         self.app.radio(key="page").set_value("Candidate explorer").run()
