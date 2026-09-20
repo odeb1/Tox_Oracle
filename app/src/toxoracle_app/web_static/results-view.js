@@ -17,7 +17,11 @@ function followUpPresentation(row, includeToxicity=true) {
   return includeToxicity?{label:decisions[row.follow_up.decision],description:row.follow_up.recommendation}:{label:'Follow up target binding',description:'Selected using binding predictions before toxicity assessment.'};
 }
 function concern(t) { return t.status!=='ok'?'Unavailable':t.assessment.call==='positive'?'Elevated predicted concern':t.assessment.call==='negative'?'Lower predicted concern':'Unavailable'; }
-function sortedRows() { return [...report.results].sort((a,b)=>(a.discovery_result.rank??Infinity)-(b.discovery_result.rank??Infinity)); }
+function sortedRows(rows=report.results) { return [...rows].sort((a,b)=>(a.discovery_result.rank??Infinity)-(b.discovery_result.rank??Infinity)); }
+function sortedDiliRows(rows) {
+  const score=r=>r.toxicity_result.status==='ok'&&Number.isFinite(r.toxicity_result.assessment.risk_score)?r.toxicity_result.assessment.risk_score:-Infinity;
+  return [...rows].sort((a,b)=>{const left=score(a),right=score(b);return left===right?0:right-left;});
+}
 function renderResults(result, run) {
   report=result; reportRun=run; showDili=true;window.scrollTo({top:0,behavior:'instant'});
   $('study-context').hidden=false;$('study-context').textContent=run?.mode==='recorded'?'Recorded public ABL1 study · No inference or new approval':run?.research_prompt || 'Imported study · locally validated'; updateEvidenceSwitch();
@@ -175,9 +179,9 @@ function modelSetupSummary(selection) {
 function renderDashboard(result) {
   disposePoseViewers();
   const scores=clear('score-overview');scores.append(node('p','HUMAN DILI · ALL CANDIDATES','eyebrow'),node('h3','Concern, in context.'),node('p','Each dot is the candidate’s recorded DILI score. The vertical mark is its own decision threshold. Scores are not patient incidence. Select a candidate to explore its evidence.','field-note'));
-  result.results.forEach(r=>{const a=r.toxicity_result.assessment, row=node('button',null,'score-row');row.type='button';row.append(node('span',r.compound_id),scoreGraphic(a.risk_score,a.threshold),node('strong',number(a.risk_score)),node('small',concern(r.toxicity_result)));row.onclick=()=>{resultView('explorer');renderCandidate(r);};scores.append(row);});
+  sortedDiliRows(result.results).forEach(r=>{const a=r.toxicity_result.assessment, row=node('button',null,'score-row');row.type='button';row.append(node('span',r.compound_id),scoreGraphic(a.risk_score,a.threshold),node('strong',number(a.risk_score)),node('small',concern(r.toxicity_result)));row.onclick=()=>{resultView('explorer');renderCandidate(r);};scores.append(row);});
   const lab=clear('discovery-lab');lab.append(node('p','DISCOVERY LAB · CURRENT STUDY','eyebrow'),node('h3','Binding evidence before liver concern.'),node('p','Expand a candidate below and choose View 3D pose to inspect the predicted ligand inside its protein target.','field-note'),node('p','Boltz-2 outputs below belong to this study. Predicted structures and confidence do not establish measured binding. Atom correspondence to DILI features is only available when explicitly recorded.'));
-  result.results.forEach(r=>{const d=r.discovery_result, details=node('details',null,'discovery-record');details.append(node('summary',r.compound_id+' · '+(d.rank===null?'Unranked':'Rank '+d.rank)+(d.shortlisted?' · Discovery shortlist':'')),node('p','Binder likelihood: '+number(d.mean_binding_probability)+' · Structural confidence: '+values(d.structural_confidence)));
+  sortedRows(result.results).forEach(r=>{const d=r.discovery_result, details=node('details',null,'discovery-record');details.append(node('summary',r.compound_id+' · '+(d.rank===null?'Unranked':'Rank '+d.rank)+(d.shortlisted?' · Discovery shortlist':'')),node('p','Binder likelihood: '+number(d.mean_binding_probability)+' · Structural confidence: '+values(d.structural_confidence)));
     const artifacts=d.structures || [];
     if(!artifacts.length) details.append(node('p','No structure artifact is recorded.','field-note'));
     artifacts.forEach((a,index)=>{details.append(node('p',(a.format || 'Structure')+' · '+a.origin+' · Atom mapping: '+a.atom_mapping_status),node('p','SHA-256: '+a.sha256,'artifact-checksum'));if(reportRun && (reportRun.mode!=='recorded'||resultsSource.kind==='static')){const jobId=reportRun.job_id,button=node('button','Download verified structure ↓','secondary');button.onclick=()=>action(button,async()=>{const file=await resultsSource.structure({job_id:jobId,compound_id:r.compound_id,index});saveFile(file.content,file.filename,file.mime);});details.append(button);}else details.append(node('p','Owned runs and the verified public recording can load saved coordinates. Imported reports require a matching local structure file.','field-note'));});
