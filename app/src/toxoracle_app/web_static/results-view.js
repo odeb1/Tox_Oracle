@@ -94,8 +94,36 @@ function discoveryRecordTable(record) {
     ['Model & execution', ['provenance']], ['Structure files', ['structures']],
     ['Source response', ['raw_response']], ['Warnings & errors', ['warnings','error']]
   ];
+  return sourceRecordTable(record, {
+    caption:'Recorded discovery values · '+record.compound_id, labels, groups,
+    unwrap:['provenance','raw_response'],
+    monospace:['canonical_smiles','atom_mapped_smiles','compound_id','structure_id','sha256','cache_key','response_digest','uri','endpoint','method_id','standardization_version']
+  });
+}
+function evaluationSourceTable(evaluation) {
+  return sourceRecordTable(evaluation, {
+    caption:'Recorded held-out evaluation · Model metrics and source checksums',
+    labels:{
+      model_sha256:'Model SHA-256 checksum', data_sha256:'Data SHA-256 checksum',
+      n:'Test compounds', positives:'Reference-positive compounds', auroc:'AUROC',
+      average_precision:'Average precision', brier:'Brier score', sensitivity:'Sensitivity',
+      specificity:'Specificity', threshold:'Decision threshold', confusion_matrix:'Confusion matrix',
+      raw_random_forest_brier:'Raw random forest Brier score'
+    },
+    groups:[
+      ['Model & data checksums', ['model_sha256','data_sha256']],
+      ['Random forest', ['random_forest']],
+      ['Logistic regression reference', ['logistic_reference']],
+      ['Uncalibrated baseline', ['raw_random_forest_brier']],
+      ['Evaluation limitations', ['limitations']]
+    ],
+    unwrap:['random_forest','logistic_reference'],
+    monospace:['model_sha256','data_sha256']
+  });
+}
+function sourceRecordTable(record, {caption, labels, groups, unwrap=[], monospace=[]}) {
   const known = new Set(groups.flatMap(([,keys])=>keys));
-  groups.push(['Additional recorded fields', Object.keys(record).filter(key=>!known.has(key))]);
+  const sections=[...groups,['Additional recorded fields',Object.keys(record).filter(key=>!known.has(key))]];
   const label = key=>labels[key] || key.replaceAll('_',' ').replace(/^./,c=>c.toUpperCase());
   const enums = {ok:'Completed',not_run:'Not run',not_reported:'Not reported',mmcif:'mmCIF'};
   function valueText(value, key) {
@@ -106,7 +134,7 @@ function discoveryRecordTable(record) {
     return String(value);
   }
   const table=node('table',null,'source-record-table'),head=node('thead'),header=node('tr');
-  table.append(node('caption','Recorded discovery values · '+record.compound_id));
+  table.append(node('caption',caption));
   ['Field','Recorded value'].forEach(title=>{const th=node('th',title);th.scope='col';header.append(th);});
   head.append(header);table.append(head);
   function row(body, path, value, key) {
@@ -115,13 +143,17 @@ function discoveryRecordTable(record) {
       const list=node('ol',null,'source-record-values');value.forEach(v=>list.append(node('li',valueText(v,key))));td.append(list);
     } else {
       const text=Array.isArray(value)?(value.length?valueText(value[0],key):'None recorded'):valueText(value,key);
-      const technical=['canonical_smiles','atom_mapped_smiles','compound_id','structure_id','sha256','cache_key','response_digest','uri','endpoint','method_id','standardization_version'].includes(key);
-      td.append(node(technical?'code':'span',text));
+      td.append(node(monospace.includes(key)?'code':'span',text));
     }
     tr.append(th,td);body.append(tr);
   }
   function entries(body, value, path, key) {
-    if(Array.isArray(value) && value.some(v=>v!==null && typeof v==='object')) {
+    if(key==='confusion_matrix' && Array.isArray(value) && value.length===2 && value.every(r=>Array.isArray(r) && r.length===2)) {
+      // Source matrices use reference-label rows and predicted-call columns: negative, positive.
+      [['True negatives',value[0][0]],['False positives',value[0][1]],
+       ['False negatives',value[1][0]],['True positives',value[1][1]]]
+        .forEach(([name,count])=>row(body,[...path,name],count,key));
+    } else if(Array.isArray(value) && value.some(v=>v!==null && typeof v==='object')) {
       value.forEach((v,i)=>entries(body,v,[...path,String(i+1)],key));
     } else if(value!==null && typeof value==='object' && !Array.isArray(value)) {
       const fields=Object.entries(value);
@@ -129,12 +161,12 @@ function discoveryRecordTable(record) {
       fields.forEach(([k,v])=>entries(body,v,[...path,label(k)],k));
     } else row(body,path,value,key);
   }
-  groups.forEach(([title,keys])=>{
+  sections.forEach(([title,keys])=>{
     const present=keys.filter(key=>Object.hasOwn(record,key));if(!present.length)return;
     const body=node('tbody'),section=node('tr',null,'source-record-section'),th=node('th',title);
     th.colSpan=2;th.scope='rowgroup';section.append(th);body.append(section);
     present.forEach(key=>{
-      const path=['provenance','raw_response'].includes(key) && record[key]!==null?[]:[label(key)];
+      const path=unwrap.includes(key) && record[key]!==null?[]:[label(key)];
       entries(body,record[key],path,key);
     });
     table.append(body);
@@ -158,7 +190,7 @@ function renderDashboard(result) {
     if(report!==result)return;box.replaceChildren(node('p','HELD-OUT DILI BASELINE EVALUATION','eyebrow'),node('h3','Know what the model was tested on.'),node('p',data.matching_method_and_data?'This study reports the baseline method and data version. These retrospective held-out metrics do not measure performance on this study’s candidates.':'This study reports a different method or data version. These reference metrics must not be attributed to its predictions.','notice soft'));
     const m=data.evaluation.random_forest,metrics=node('div',null,'metric-grid');[[m.n,'Test compounds'],[number(m.auroc),'AUROC'],[number(m.average_precision),'Average precision'],[number(m.brier),'Brier score']].forEach(([v,label])=>{const c=node('div',null,'metric');c.append(node('span',label),node('span',v,'value'));metrics.append(c);});box.append(metrics);
     const table=node('table',null,'confusion-table'),caption=node('caption','Reference labels × model calls · held-out test set'),head=node('tr');['Reference label','Lower predicted concern','Elevated predicted concern'].forEach(t=>head.append(node('th',t)));table.append(caption,head);['No DILI concern','Most / Less DILI concern'].forEach((label,i)=>{const tr=node('tr');tr.append(node('th',label),...m.confusion_matrix[i].map(v=>node('td',v)));table.append(tr);});box.append(table,node('p','Fingerprint: '+data.selection.fingerprint+' · Split: '+data.selection.split_kind+' · Training / validation / test: '+['train','validation','test'].map(k=>data.selection.counts[k].n).join(' / ')));
-    data.evaluation.limitations.forEach(l=>box.append(node('p',l,'field-note')));const source=node('details');source.append(node('summary','Evaluation source and checksums'),node('pre',JSON.stringify(data.evaluation,null,2),'data-preview'));box.append(source);
+    data.evaluation.limitations.forEach(l=>box.append(node('p',l,'field-note')));const source=node('details');source.append(node('summary','Evaluation source and checksums'),evaluationSourceTable(data.evaluation));box.append(source);
   }).catch(()=>{if(report===result)box.replaceChildren(node('h3','Reference evaluation unavailable'),node('p','The current study’s source records and limitations remain available below.'));});
 }
 function renderFeatureExplorer(r,parent) {
