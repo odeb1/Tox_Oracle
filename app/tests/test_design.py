@@ -1,6 +1,6 @@
 """Advanced routing, journal and pipeline tests. All service outputs are synthetic."""
 from copy import deepcopy
-from contextlib import redirect_stdout
+from contextlib import redirect_stderr, redirect_stdout
 import argparse
 import importlib.util
 import io
@@ -40,6 +40,21 @@ class DesignContractTests(unittest.TestCase):
         r=request('screen');r['compounds']*=2
         with self.assertRaises(ValueError):design.validate_design(r)
 
+    def test_missing_package_metadata_is_handled_by_cli(self):
+        with tempfile.TemporaryDirectory() as temp:
+            folder = Path(temp)
+            save(folder / 'request.json', request())
+            errors = io.StringIO()
+            with patch.object(design.importlib.metadata, 'version',
+                              side_effect=design.importlib.metadata.PackageNotFoundError('rdkit')):
+                with redirect_stderr(errors):
+                    status = design.main(['preflight', '--request', str(folder / 'request.json'),
+                                          '--output-dir', str(folder / 'output')])
+            self.assertEqual(status, 1)
+            self.assertIn('Design stopped:', errors.getvalue())
+            self.assertNotIn('Traceback', errors.getvalue())
+            self.assertFalse((folder / 'output').exists())
+
     def test_resume_checks_identity_artifacts_and_pending_calls(self):
         with tempfile.TemporaryDirectory() as temp:
             p=Path(temp);resolved={'synthetic':True}
@@ -64,6 +79,13 @@ class DesignContractTests(unittest.TestCase):
                 with self.assertRaises(FileExistsError):
                     with design.run_lock(Path(temp)):pass
             self.assertFalse((Path(temp)/'.run.lock').exists())
+
+    def test_missing_lock_does_not_hide_workflow_failure(self):
+        with tempfile.TemporaryDirectory() as temp:
+            with self.assertRaisesRegex(RuntimeError, 'original workflow failure'):
+                with design.run_lock(Path(temp)):
+                    (Path(temp) / '.run.lock').unlink()
+                    raise RuntimeError('original workflow failure')
 
 
 @unittest.skipUnless(importlib.util.find_spec('rdkit'),'Scientific environment required')

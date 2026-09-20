@@ -69,8 +69,13 @@ def generate_batch(template, index, directory, client=None, cache=None):
     path = Path(cache) / (key + '.json') if cache else None
     mode = 'live'
     if path and path.exists():
-        entry = json.loads(path.read_text())
-        if not isinstance(entry, dict) or entry.get('key') != key or digest(entry.get('response')) != entry.get('response_sha256'):
+        try:
+            entry = json.loads(path.read_text())
+            valid = (isinstance(entry, dict) and entry.get('key') == key
+                     and digest(entry.get('response')) == entry.get('response_sha256'))
+        except (ValueError, TypeError):
+            valid = False
+        if not valid:
             raise GenerationError('Generation cache integrity failure')
         raw = entry['response']
         mode = 'cached'

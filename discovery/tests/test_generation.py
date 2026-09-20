@@ -37,6 +37,26 @@ class GenerationTransportTests(unittest.TestCase):
             with self.assertRaises(GenerationError):validate_response(raw,1)
         self.assertEqual(validate_response({'status':'success','molecules':[]},20),[])
 
+    def test_malformed_or_nonfinite_cache_never_calls_provider(self):
+        template = {'template_id': 'synthetic', 'safe_input': '[*{20-30}]'}
+        client = Mock()
+        client.generate.return_value = {'status': 'success', 'molecules': []}
+        with tempfile.TemporaryDirectory() as temp:
+            folder = Path(temp)
+            _, metadata = generate_batch(template, 0, folder / 'initial', client,
+                                         cache=folder / 'cache')
+            cache = folder / 'cache' / (metadata['cache_key'] + '.json')
+            corrupt = json.loads(cache.read_text())
+            corrupt['response']['score'] = float('nan')
+            client.reset_mock()
+            for content in ('{invalid JSON', json.dumps(corrupt)):
+                with self.subTest(content=content):
+                    cache.write_text(content)
+                    with self.assertRaisesRegex(GenerationError, 'cache integrity'):
+                        generate_batch(template, 0, folder / 'replay', client,
+                                       cache=folder / 'cache')
+                    client.generate.assert_not_called()
+
     def test_credentials_missing_and_transport_errors_do_not_leak(self):
         from urllib.error import HTTPError
         with patch.dict('os.environ',{},clear=True):

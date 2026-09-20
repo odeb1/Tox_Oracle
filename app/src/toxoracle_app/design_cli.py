@@ -138,7 +138,7 @@ def run_lock(output):
         os.close(descriptor)
         yield
     finally:
-        lock.unlink()
+        lock.unlink(missing_ok=True)
 
 
 def prepare(args, row, directory, request_id):
