@@ -1,0 +1,232 @@
+# Standalone researcher workspace
+
+ToxOracle owns prompt entry, target resolution, optional candidate upload, local privacy
+review/approval, workflow progress and the results dashboard. The initial target
+is human ABL1 (2HYY chain A). This is a local application, binding only to
+`http://127.0.0.1:8766`; the public Streamlit demo remains separate.
+
+## Install and open
+
+Run from the repository root. The interface and offline tests were verified with
+Python 3.11 on macOS arm64; the production privacy environment uses Python 3.12
+as documented in the [Team B setup](team-b-local-mvp.md).
+
+```sh
+python3 -m venv app/.venv
+app/.venv/bin/python -m pip install -r app/requirements-web.lock -e app -e discovery
+PYTHONPATH=app/src:discovery/src:. app/.venv/bin/python -m toxoracle_app.web
+```
+
+This opens the UI and report inspector without downloading weights. Before running
+studies, restore the existing trusted model and privacy assets. Do not upload model
+weights through the browser. No automatic training occurs.
+
+| Dependency | Default location / configuration |
+|---|---|
+| Trained DILI artifact | `artifacts/models/dili_baseline.joblib` or `--model` |
+| Original scientific interpreter | `toxicity/.venv/bin/python` or `--model-python` |
+| Privacy checkpoint and integrity manifest | `artifacts/privacy/checkpoint/` |
+| Privacy tokenizer cache | `artifacts/privacy/cache/tiktoken/` |
+| Privacy runtime in the **web server's** environment | Pinned `opf` and dependencies from `privacy/requirements.lock` |
+| NVIDIA credential for live mode | `NVIDIA_API_KEY`, `NVIDIA_BIONEMO_API_KEY` or `NGC_API_KEY` |
+| Exact-input Boltz-2 cache for offline mode | `artifacts/cache/boltz2/` or `--cache-dir` |
+| Approved inputs and generated results | `artifacts/web/runs/` or `--runs-dir` |
+
+If the existing Python 3.12 privacy/science environment is already configured, run
+the workspace in that environment so the scanner can import its pinned runtime:
+
+```sh
+PYTHONPATH=app/src:discovery/src:. toxicity/.venv/bin/python -m toxoracle_app.web
+```
+
+The existing privacy environment already includes FastAPI and Uvicorn. To create it
+from scratch, follow Team B's setup (`privacy/requirements.lock` and the explicit
+`privacy.setup_model` download) before accepting research inputs. This downloads
+roughly 3 GB; startup never initiates that download. Keep the model's original
+scientific environment for inference rather than assuming the UI environment is
+an equivalent scientific environment. `--model-python` preserves venv symlinks.
+
+## Researcher flow
+
+1. Enter a question naming ABL1. Leave the dataset empty to generate candidates.
+   Optionally expand the dataset section to upload/paste CSV or JSON. CSV requires
+   `compound_id,smiles`; JSON accepts a list or an envelope with `compounds`.
+   Files must be UTF-8, at most 1 MB, with 2–32 candidates. Include `LT00107` with
+   the validated imatinib structure; **Use public ABL1 panel** supplies it.
+2. **Live run** is the default. **Run settings** also offers **Cached workflow ·
+   local DILI**. Live mode makes fresh vendor calls and can incur charges. Cached
+   mode validates exact cache entries and refuses all network fallbacks; dynamic
+   generation cache misses can produce a partial result.
+3. **Review privately** runs the existing local privacy scanner. Review the
+   sanitized data and the prepared molecular request. Confirm each flagged but
+   chemically valid scientific field separately. The target, execution mode and
+   assistant choice are bound to this snapshot; any edit revokes approval.
+4. **Approve & run** freezes the approved study. NVIDIA receives the disclosed
+   structures, public sequence, generation fragment and approved assistant context.
+   The raw upload is not persisted.
+   Request IDs, target, model digest and exact discovery artifacts remain local.
+5. Follow real stage events. Imatinib must pass the existing reference gate before
+   remaining candidates are screened. `discovery.json` is saved and hashed before
+   local DILI inference. The dashboard uses the unchanged v3 decision policy.
+6. Inspect shortlist transitions, candidate binding arrays, affinity, structural
+   confidence, DILI score/call/threshold, training membership, applicability,
+   uncertainty and recommended experiments. Scores are never fused or subtracted.
+7. Export the v3 JSON or download frozen discovery during a run. Study runs can be
+   reopened within the same tab session; saved `science/combined.json` reports can
+   be imported after a restart. Imported reports are validated locally and never
+   sent to providers. Consistency validation does not authenticate their origin.
+
+The question adds research context to the fixed workflow. It cannot execute arbitrary
+commands or select unvalidated protocols. Only ABL1 currently has a validated target
+manifest, reference and follow-up policy. Another target requires preparation.
+
+## NVIDIA assistant and structured planning
+
+Start in the existing privacy/scientific environment with `./scripts/toxoracle-web`.
+Keep `NVIDIA_API_KEY` in that terminal's environment, never in files, browser storage
+or chat. The server must be restarted to inherit a newly configured key. If you already keep a
+key in a local file, `./scripts/toxoracle-web --nvidia-key-file /path/to/existing-key`
+reads it into process memory only. The app never creates or copies that key file.
+
+Nemotron planning defaults on in live mode with a configured key. **Methods & setup**
+offers an optional connection check with a fixed greeting. The configured model is
+`nvidia/nemotron-3.5-lightning-30b-a3b` on NVIDIA's chat-completions endpoint. Requested and
+returned IDs are checked and retained. No Rosalind identity or invocation is claimed.
+The old Rosalind adapter remains dormant for historical compatibility.
+
+Approval covers the sanitized question, candidate IDs and computed evidence shared
+with NVIDIA's assistant, as well as structures and the public sequence sent to Boltz-2.
+The assistant requests one bounded `prepare_abl1_generation` or `prepare_abl1_screening`
+operation, returning the
+approved target, unchanged candidate IDs, support status and a brief explanation.
+The backend validates the response and runs the fixed scientific protocol. Unsupported
+questions pause for a revised study; malformed output or technical failure pauses
+before screening and offers **Continue with approved fixed protocol**. This explicit
+choice is recorded and cannot submit science twice. Explanation failure leaves validated
+results available. No arbitrary commands or model-generated thresholds are executed.
+Cached screening disables the assistant and never falls back to the network.
+
+## Recorded walkthrough and presentation
+
+The landing page's **Open recorded walkthrough** loads the bundled public ABL1 study
+from `demo/examples/abl1_recorded_workspace`. File hashes and v3 consistency are checked
+before display. Stage navigation is manual: no new privacy approval, inference or timed
+progress is fabricated. The original study reused verified Boltz-2 responses and ran
+local DILI. Repository-relative artifact pointers are provenance only; the large raw
+vendor files are not bundled or served. All four drugs overlap model fitting/selection.
+
+For a new study, enter an ABL1 question without data to generate proposals. For supplied
+candidates, use the public panel or upload CSV/JSON, preview molecules and correct row errors. Review privately, acknowledge each retained scientific field, then approve
+and run. The activity panel shows actual operations and the currently invoked model;
+elapsed time is wall-clock time, never an estimated completion percentage. A browser
+refresh reconnects to active or paused jobs in the same session. Completed runs are
+available under **Study runs**. Open a candidate, switch **Discovery only / With human
+DILI**, then export the HTML report or source JSON. Recorded results export source JSON.
+
+The five stages are **Set up → Review privately → Run discovery → Assess liver concern
+→ Results**. Navy/ivory styling and molecule rendering are entirely local. Review at
+1440×900, 1280×720 and 390px width; all controls remain keyboard accessible and motion
+respects reduced-motion preferences. The public Streamlit app is unchanged.
+
+## Execution and recovery
+
+- Only one run executes at a time; at most 32 jobs are retained per server process.
+  Repeating submission of the same approved scan returns its existing job, including
+  after a lost HTTP response. A new paid run needs a newly scanned and approved study.
+- Cancellation stops **between** operations. It cannot recall an already submitted
+  NVIDIA request. A remote call may take up to 600 seconds and a local model subprocess
+  up to 300 seconds. Completed artifacts remain available; no partial result is called
+  complete. Failed DILI inference preserves the discovery shortlist and marks DILI
+  unavailable.
+- The browser stores only the session identifier in tab storage. Inputs, review
+  snapshots and tokens are not saved in browser storage. After successful submission,
+  raw editor contents are cleared. Sessions expire after 30 minutes of inactivity.
+- Approved jobs continue if a tab closes. A server restart does not automatically
+  resume or repeat inference. Inspect saved artifacts and start a new reviewed run
+  if needed. A hard crash can leave an on-disk job marked running; that is an
+  interrupted historical run, not a live worker. Report import is the recovery path.
+- The shared gateway enforces loopback Host/Origin, a launch token, session ownership,
+  body limits, approval versions, no-store responses and a same-origin content policy.
+  No cloud-hosted browser entry point is provided for raw inputs. A hosted product
+  needs an authenticated local companion and a reviewed handoff architecture.
+
+## Validation and acceptance
+
+```sh
+PATH="$PWD/app/.venv/bin:$PATH" bash scripts/check-web.sh
+PATH="$PWD/app/.venv/bin:$PATH" bash scripts/check.sh
+PATH="$PWD/.venv/bin:$PATH" bash scripts/check-demo.sh
+```
+
+Web tests use explicitly injected synthetic detectors, vendor responses and model
+outputs; there is no production test-mode switch. They cover approval, invalidation
+races, immutable settings, reference identity, idempotency, session ownership,
+cache-only execution, cancellation, errors, imports and assistant identity checks.
+The independent privacy tests also run unchanged.
+
+Current acceptance results are recorded in
+`evaluation/reports/researcher_demo_acceptance_v1.json`. Offline synthetic tests are
+not scientific validation. The real cached web acceptance uses the actual privacy
+filter, exact-input Boltz-2 cache and trained DILI model. Hosted Nemotron and fresh
+Boltz-2 acceptance are separate gates; both passed on 20 September 2026 using the public panel. A key in the server environment is required to repeat them.
+
+## Prompt-first generation demo
+
+Start at `http://127.0.0.1:8766` and choose **Try it: propose candidates for ABL1**,
+or enter a question naming human ABL1. Leave the optional candidate dataset empty.
+Review privately, inspect the resolved target and generation route, then approve.
+Nemotron planning is on by default when a server key is present; its exact model identity
+is checked on every response. The separate greeting check is optional. No scientific
+prompt is sent before local filtering and approval.
+
+The run gates the imatinib reference, asks GenMol for proposals using the documented
+imatinib fragment, validates/diversifies them, screens up to 20 with Boltz-2, freezes the
+top two, then runs local DILI. Counts and molecular structures appear as real operations
+complete. The results include generation provenance and the HTML export includes the
+proposal ledger. This is ligand-fragment-conditioned generation; target conditioning is
+provided by target-specific seed preparation and downstream screening.
+
+To screen supplied candidates, expand **Already have candidates? Add a dataset**.
+The original 2–32 candidate route still requires the prepared imatinib reference;
+**Use public ABL1 panel** supplies it. **Clear dataset · generate instead** returns to
+target-only mode. No target dropdown is needed for either route.
+
+**Run settings** exposes cached mode and the optional assistant. Cached generation uses
+`genmol/` beside the configured `boltz2/` cache directory and never falls back to live
+calls on a miss. A miss can leave a partial generation report. It cannot manufacture a
+complete result. Restarting the server does not resume vendor requests.
+
+Prompt-first web acceptance is recorded in
+`evaluation/reports/prompt_first_web_acceptance_v1.json`, including hosted timeouts
+and partial scientific results separately from passing software checks.
+
+### Unified Results
+
+The Results navigation item displays the current run. Overview shows the frozen
+shortlist and DILI follow-up; Candidate explorer includes the teammate dashboard's
+shared molecule/feature renderer; Discovery lab shows current-run Boltz-2 evidence;
+Model & provenance shows the separate held-out baseline evaluation. Completed,
+partial, recorded and imported v3 reports use the same presentation. Results
+remain available while navigating back to the workspace.
+
+Verified structure downloads require a run owned by the current session. An
+imported report is view-only: paths in it are never opened by the server. To view
+its 3D pose, select the matching local coordinate file; the browser checks its
+SHA-256 against the report before rendering. The Discovery lab does
+not substitute the teammate dashboard's unrelated DiffDock example for missing
+ABL1 evidence. See `docs/decisions/unified-results-and-sharing.md` for the hosting
+recommendation and the separate privacy boundary of a public demo.
+
+### Revisit steps and inspect poses
+
+Click any reached Workspace step to inspect its evidence while execution continues.
+Previous/Next moves among reached steps; Return to current step resumes following
+progress. Completed studies keep input/approval records read-only and expose the
+frozen discovery and DILI evidence separately. Navigation never grants approval,
+resubmits a job or reruns a model. Use New study to edit inputs after submission.
+
+In Results → Discovery lab, expand a candidate and choose View 3D pose. Drag to
+rotate, scroll/pinch to zoom, Focus ligand for the binding pose, and toggle Show
+protein. This requires WebGL and the saved coordinate file; missing artifacts
+are reported without fetching or generating a substitute. The recorded public
+study can use original files under its manifest's source run if still present.

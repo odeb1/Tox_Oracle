@@ -1,0 +1,18 @@
+{
+  "title": "Public ABL1 screening study",
+  "source_run": "abl1-rosalind-20260919T183712Z",
+  "recorded_at": "2026-09-19",
+  "result_class": "real",
+  "execution_note": "Original run reused verified Boltz-2 responses and ran the local DILI predictor. This walkthrough does not execute inference.",
+  "privacy_note": "Public four-compound panel. No new privacy scan or approval is claimed by replay.",
+  "sha256": {
+    "request.json": "833a760f7fd799d0d524c17825785b2ef7b1d73a8cda3bb91c412cc728b58fc6",
+    "discovery.json": "5b10792e305093330fbd84c64eb291f8a7d80ceee390ab18b9afb7631b4f3a90",
+    "report.json": "85be299eb7dc507732b9951a5fcd23e658acd0760e80c662652281004c54646d"
+  },
+  "original_source_sha256": {
+    "report.json": "dbf29bf4183291406d4f8a53722e6c04c2ae3b77f45c819319e440d70aaada82",
+    "discovery.json": "a60e916a4e731050ba166cfa908fcae361438b0e06be3e76a55c734c1d76674e"
+  },
+  "artifact_note": "Artifact URIs are repository-relative provenance references to the original local run; raw vendor artifacts are not bundled or served. Numeric evidence is unchanged."
+}

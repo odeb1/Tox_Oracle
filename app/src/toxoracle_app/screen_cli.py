@@ -1,4 +1,4 @@
-"""One-command screening, called by Rosalind through its local shell."""
+"""Shared screening executor for the CLI and local researcher workspace."""
 from __future__ import annotations
 
 import argparse
@@ -89,7 +89,11 @@ def failed_toxicity(request):
     return dict(schema_version="2.0", request_id=request["request_id"], stream="toxicity", results=results)
 
 
-def execute(args, client=None):
+class ScreeningCancelled(Exception):
+    """Cooperative stop between scientific operations; never cancels a remote call."""
+
+
+def execute(args, client=None, *, progress=None, cancelled=None, quiet=False):
     from toxoracle_discovery.boltz2 import (BoltzClient, BoltzError, digest, save,
         validate_target, predict_candidate, failed_candidate, rank_candidates)
     target = load(args.target)
@@ -117,13 +121,21 @@ def execute(args, client=None):
     except (OSError, subprocess.TimeoutExpired):
         manifest["working_tree_dirty"] = None
     save(output / "run.json", manifest)
+    def checkpoint(stage, **details):
+        if cancelled and cancelled():
+            raise ScreeningCancelled()
+        if progress:
+            progress(dict(stage=stage, **details))
+
     try:
         save(output / "request.json", request)
         save(output / "target.json", target)
         # Prepare/validate each shared structure locally before any external call.
         # Existing v2 fields must match exactly: do not silently rewrite a handoff.
         valid, problems = {}, {}
+        checkpoint("preparing", total=len(request["compounds"]))
         for index, compound in enumerate(request["compounds"]):
+            checkpoint("preparing", completed=index, total=len(request["compounds"]))
             one = dict(schema_version="2.0", request_id=request["request_id"], compounds=[compound])
             input_path, prepared_path = output / f"prepare_{index}.input.json", output / f"prepare_{index}.json"
             save(input_path, one)
@@ -146,13 +158,19 @@ def execute(args, client=None):
         order = [reference] + [r["compound_id"] for r in request["compounds"] if r["compound_id"] != reference]
         reference_ok = False
         for cid in order:
+            checkpoint("reference" if cid == reference else "screening",
+                       compound_id=cid, completed=len(records), total=len(request["compounds"]))
             if args.command == "reference-check" and cid != reference:
                 continue
             if cid in problems:
+                checkpoint("candidate_finished", compound_id=cid, status=records[cid]["status"],
+                           completed=len(records), total=len(request["compounds"]))
                 continue
             compound = valid[cid]
             if cid != reference and not reference_ok:
                 records[cid] = failed_candidate(compound, "reference_check_failed", "Panel execution stopped: reference lacked usable structure and affinity")
+                checkpoint("candidate_finished", compound_id=cid, status=records[cid]["status"],
+                           completed=len(records), total=len(request["compounds"]))
                 continue
             try:
                 records[cid] = predict_candidate(compound, target, output / "boltz2" / digest(cid), client,
@@ -164,10 +182,15 @@ def execute(args, client=None):
             if cid == reference:
                 r = records[cid]
                 reference_ok = r["status"] == "ok" and r["binding_probability"] is not None and (r["affinity_pic50"] is not None or r["affinity_pred_value"] is not None)
+            checkpoint("candidate_finished", compound_id=cid, status=records[cid]["status"],
+                       binding_probability=records[cid]["binding_probability"],
+                       structural_confidence=records[cid]["structural_confidence"],
+                       completed=len(records), total=len(request["compounds"]))
         if args.command == "reference-check":
             save(output / "reference.json", records[reference])
             manifest["status"] = "complete" if reference_ok else "failed"
-            print(json.dumps({"reference_passed": reference_ok, "output_dir": str(output)}))
+            if not quiet:
+                print(json.dumps({"reference_passed": reference_ok, "output_dir": str(output)}))
             return 0 if reference_ok else 2
         discovery = dict(schema_version="3.0", stream="discovery", request_id=request["request_id"],
             target={"target_id": target["target_id"], "sequence_sha256": target["sequence_sha256"],
@@ -177,21 +200,30 @@ def execute(args, client=None):
         validate_discovery(request, discovery)
         # This immutable discovery snapshot is written BEFORE DILI is invoked.
         save(output / "discovery.json", discovery)
+        checkpoint("shortlist_frozen", shortlist=[r["compound_id"] for r in sorted(
+            discovery["results"], key=lambda r: r["rank"] or float("inf")) if r["shortlisted"]],
+            discovery_sha256=hashlib.sha256((output / "discovery.json").read_bytes()).hexdigest())
+        checkpoint("toxicity")
         try:
             run_model(args, "predict", output / "request.json", output / "toxicity.json")
             toxicity = load(output / "toxicity.json")
         except (ValueError, OSError, subprocess.TimeoutExpired):
             toxicity = failed_toxicity(request)
             save(output / "toxicity.json", toxicity)
+        checkpoint("reporting")
         report = combine_screening(request, discovery, toxicity)
         save(output / "combined.json", report)
         (output / "combined.html").write_text(render(report))
         (output / "summary.txt").write_text(summary(report))
         complete = reference_ok and all(r["status"] == "ok" and r["rank"] is not None for r in discovery["results"]) and all(r["status"] == "ok" for r in toxicity["results"])
         manifest["status"] = "complete" if complete else "partial"
-        print(summary(report))
-        print(f"Report: {output / 'combined.html'}")
+        if not quiet:
+            print(summary(report))
+            print(f"Report: {output / 'combined.html'}")
         return 0 if complete else 2
+    except ScreeningCancelled:
+        manifest["status"] = "cancelled"
+        raise
     except Exception:
         manifest["status"] = "failed"
         raise

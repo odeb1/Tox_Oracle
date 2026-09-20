@@ -1,0 +1,13 @@
+{
+  "manifest_version": "1.0",
+  "target_id": "human_abl1_2hyy_A",
+  "seed_compound_id": "LT00107",
+  "seed_source": "demo/examples/abl1_request.json",
+  "source_sha256": "833a760f7fd799d0d524c17825785b2ef7b1d73a8cda3bb91c412cc728b58fc6",
+  "evidence_source": "https://www.rcsb.org/structure/2HYY",
+  "cut_atom_indices": [6, 5],
+  "retain_atom": 5,
+  "atom_index_basis": "zero-based RDKit parsing of canonical_smiles",
+  "rationale": "Keep the imatinib aminopyrimidine/pyridyl-containing fragment; replace the benzamide-side fragment at its amide N-C bond. Structural provenance from the established ABL1 reference, not selection on DILI results. Binding/site retention is unvalidated.",
+  "template_protocol": "verified_single_cut_safe_v1"
+}

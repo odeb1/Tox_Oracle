@@ -1,0 +1,2187 @@
+{
+  "evidence": {
+    "LT00107": {
+      "attribution_status": "available",
+      "features": [
+        {
+          "ambiguous": false,
+          "atom_map_ids": [
+            26,
+            27,
+            28,
+            29,
+            30
+          ],
+          "contribution": 0.025446800415798727,
+          "fragments": [
+            "bit_787_env_0"
+          ],
+          "source": "Morgan_bit_787"
+        },
+        {
+          "ambiguous": false,
+          "atom_map_ids": [
+            30,
+            31,
+            32,
+            36
+          ],
+          "contribution": 0.023717883763523573,
+          "fragments": [
+            "bit_1160_env_0"
+          ],
+          "source": "Morgan_bit_1160"
+        },
+        {
+          "ambiguous": false,
+          "atom_map_ids": [
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            22
+          ],
+          "contribution": -0.01792270439144462,
+          "fragments": [
+            "bit_1795_env_0"
+          ],
+          "source": "Morgan_bit_1795"
+        },
+        {
+          "ambiguous": false,
+          "atom_map_ids": [
+            26,
+            30,
+            37
+          ],
+          "contribution": 0.01581982028703813,
+          "fragments": [
+            "bit_1855_env_0"
+          ],
+          "source": "Morgan_bit_1855"
+        },
+        {
+          "ambiguous": false,
+          "atom_map_ids": [
+            25,
+            26,
+            27,
+            37
+          ],
+          "contribution": 0.015786798774092253,
+          "fragments": [
+            "bit_1582_env_0"
+          ],
+          "source": "Morgan_bit_1582"
+        },
+        {
+          "ambiguous": false,
+          "atom_map_ids": [
+            24,
+            25,
+            26
+          ],
+          "contribution": 0.011865504769280888,
+          "fragments": [
+            "bit_491_env_0"
+          ],
+          "source": "Morgan_bit_491"
+        },
+        {
+          "ambiguous": false,
+          "atom_map_ids": [
+            31,
+            35,
+            36
+          ],
+          "contribution": -0.011503048816503292,
+          "fragments": [
+            "bit_1535_env_0"
+          ],
+          "source": "Morgan_bit_1535"
+        },
+        {
+          "ambiguous": false,
+          "atom_map_ids": [
+            1,
+            2
+          ],
+          "contribution": 0.010947546003096593,
+          "fragments": [
+            "bit_1722_env_0"
+          ],
+          "source": "Morgan_bit_1722"
+        },
+        {
+          "ambiguous": false,
+          "atom_map_ids": [
+            11,
+            12,
+            13,
+            14,
+            15,
+            20,
+            21
+          ],
+          "contribution": -0.010457728884039468,
+          "fragments": [
+            "bit_1771_env_0"
+          ],
+          "source": "Morgan_bit_1771"
+        },
+        {
+          "ambiguous": false,
+          "atom_map_ids": [
+            16,
+            17,
+            18,
+            19
+          ],
+          "contribution": 0.010265338231515621,
+          "fragments": [
+            "bit_207_env_0"
+          ],
+          "source": "Morgan_bit_207"
+        }
+      ],
+      "images": {
+        "Morgan_bit_1160": "molecules/LT00107/Morgan_bit_1160.svg",
+        "Morgan_bit_1160-labels": "molecules/LT00107/Morgan_bit_1160-labels.svg",
+        "Morgan_bit_1535": "molecules/LT00107/Morgan_bit_1535.svg",
+        "Morgan_bit_1535-labels": "molecules/LT00107/Morgan_bit_1535-labels.svg",
+        "Morgan_bit_1582": "molecules/LT00107/Morgan_bit_1582.svg",
+        "Morgan_bit_1582-labels": "molecules/LT00107/Morgan_bit_1582-labels.svg",
+        "Morgan_bit_1722": "molecules/LT00107/Morgan_bit_1722.svg",
+        "Morgan_bit_1722-labels": "molecules/LT00107/Morgan_bit_1722-labels.svg",
+        "Morgan_bit_1771": "molecules/LT00107/Morgan_bit_1771.svg",
+        "Morgan_bit_1771-labels": "molecules/LT00107/Morgan_bit_1771-labels.svg",
+        "Morgan_bit_1795": "molecules/LT00107/Morgan_bit_1795.svg",
+        "Morgan_bit_1795-labels": "molecules/LT00107/Morgan_bit_1795-labels.svg",
+        "Morgan_bit_1855": "molecules/LT00107/Morgan_bit_1855.svg",
+        "Morgan_bit_1855-labels": "molecules/LT00107/Morgan_bit_1855-labels.svg",
+        "Morgan_bit_207": "molecules/LT00107/Morgan_bit_207.svg",
+        "Morgan_bit_207-labels": "molecules/LT00107/Morgan_bit_207-labels.svg",
+        "Morgan_bit_491": "molecules/LT00107/Morgan_bit_491.svg",
+        "Morgan_bit_491-labels": "molecules/LT00107/Morgan_bit_491-labels.svg",
+        "Morgan_bit_787": "molecules/LT00107/Morgan_bit_787.svg",
+        "Morgan_bit_787-labels": "molecules/LT00107/Morgan_bit_787-labels.svg",
+        "molecule": "molecules/LT00107/molecule.svg",
+        "molecule-labels": "molecules/LT00107/molecule-labels.svg"
+      }
+    },
+    "LT00607": {
+      "attribution_status": "available",
+      "features": [
+        {
+          "ambiguous": false,
+          "atom_map_ids": [
+            1,
+            2,
+            3,
+            39
+          ],
+          "contribution": -0.033625765563046,
+          "fragments": [
+            "bit_1731_env_0"
+          ],
+          "source": "Morgan_bit_1731"
+        },
+        {
+          "ambiguous": false,
+          "atom_map_ids": [
+            18,
+            19,
+            20,
+            21,
+            22
+          ],
+          "contribution": 0.028316641416637138,
+          "fragments": [
+            "bit_787_env_0"
+          ],
+          "source": "Morgan_bit_787"
+        },
+        {
+          "ambiguous": false,
+          "atom_map_ids": [
+            22,
+            23,
+            24,
+            28
+          ],
+          "contribution": 0.02387732630455714,
+          "fragments": [
+            "bit_1160_env_0"
+          ],
+          "source": "Morgan_bit_1160"
+        },
+        {
+          "ambiguous": false,
+          "atom_map_ids": [
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            30
+          ],
+          "contribution": -0.016829565908338288,
+          "fragments": [
+            "bit_1795_env_0"
+          ],
+          "source": "Morgan_bit_1795"
+        },
+        {
+          "ambiguous": false,
+          "atom_map_ids": [
+            18,
+            22,
+            29
+          ],
+          "contribution": 0.01663040214607968,
+          "fragments": [
+            "bit_1855_env_0"
+          ],
+          "source": "Morgan_bit_1855"
+        },
+        {
+          "ambiguous": false,
+          "atom_map_ids": [
+            17,
+            18,
+            19,
+            29
+          ],
+          "contribution": 0.01560807294968504,
+          "fragments": [
+            "bit_1582_env_0"
+          ],
+          "source": "Morgan_bit_1582"
+        },
+        {
+          "ambiguous": false,
+          "atom_map_ids": [
+            31,
+            32,
+            33,
+            37
+          ],
+          "contribution": -0.013065286725025774,
+          "fragments": [
+            "bit_1417_env_0"
+          ],
+          "source": "Morgan_bit_1417"
+        },
+        {
+          "ambiguous": false,
+          "atom_map_ids": [
+            23,
+            27,
+            28
+          ],
+          "contribution": -0.012307514086613009,
+          "fragments": [
+            "bit_1535_env_0"
+          ],
+          "source": "Morgan_bit_1535"
+        },
+        {
+          "ambiguous": false,
+          "atom_map_ids": [
+            16,
+            17,
+            18
+          ],
+          "contribution": 0.010189614566616361,
+          "fragments": [
+            "bit_491_env_0"
+          ],
+          "source": "Morgan_bit_491"
+        },
+        {
+          "ambiguous": true,
+          "atom_map_ids": [
+            1,
+            2,
+            14,
+            15
+          ],
+          "contribution": 0.010074856087880307,
+          "fragments": [
+            "bit_1722_env_0",
+            "bit_1722_env_1"
+          ],
+          "source": "Morgan_bit_1722"
+        }
+      ],
+      "images": {
+        "Morgan_bit_1160": "molecules/LT00607/Morgan_bit_1160.svg",
+        "Morgan_bit_1160-labels": "molecules/LT00607/Morgan_bit_1160-labels.svg",
+        "Morgan_bit_1417": "molecules/LT00607/Morgan_bit_1417.svg",
+        "Morgan_bit_1417-labels": "molecules/LT00607/Morgan_bit_1417-labels.svg",
+        "Morgan_bit_1535": "molecules/LT00607/Morgan_bit_1535.svg",
+        "Morgan_bit_1535-labels": "molecules/LT00607/Morgan_bit_1535-labels.svg",
+        "Morgan_bit_1582": "molecules/LT00607/Morgan_bit_1582.svg",
+        "Morgan_bit_1582-labels": "molecules/LT00607/Morgan_bit_1582-labels.svg",
+        "Morgan_bit_1722": "molecules/LT00607/Morgan_bit_1722.svg",
+        "Morgan_bit_1722-labels": "molecules/LT00607/Morgan_bit_1722-labels.svg",
+        "Morgan_bit_1731": "molecules/LT00607/Morgan_bit_1731.svg",
+        "Morgan_bit_1731-labels": "molecules/LT00607/Morgan_bit_1731-labels.svg",
+        "Morgan_bit_1795": "molecules/LT00607/Morgan_bit_1795.svg",
+        "Morgan_bit_1795-labels": "molecules/LT00607/Morgan_bit_1795-labels.svg",
+        "Morgan_bit_1855": "molecules/LT00607/Morgan_bit_1855.svg",
+        "Morgan_bit_1855-labels": "molecules/LT00607/Morgan_bit_1855-labels.svg",
+        "Morgan_bit_491": "molecules/LT00607/Morgan_bit_491.svg",
+        "Morgan_bit_491-labels": "molecules/LT00607/Morgan_bit_491-labels.svg",
+        "Morgan_bit_787": "molecules/LT00607/Morgan_bit_787.svg",
+        "Morgan_bit_787-labels": "molecules/LT00607/Morgan_bit_787-labels.svg",
+        "molecule": "molecules/LT00607/molecule.svg",
+        "molecule-labels": "molecules/LT00607/molecule-labels.svg"
+      }
+    },
+    "LT01248": {
+      "attribution_status": "available",
+      "features": [
+        {
+          "ambiguous": false,
+          "atom_map_ids": [
+            12,
+            13,
+            14,
+            19
+          ],
+          "contribution": -0.03832214748844435,
+          "fragments": [
+            "bit_381_env_0"
+          ],
+          "source": "Morgan_bit_381"
+        },
+        {
+          "ambiguous": false,
+          "atom_map_ids": [
+            6,
+            7,
+            8,
+            9,
+            10,
+            21
+          ],
+          "contribution": -0.017692100915913358,
+          "fragments": [
+            "bit_702_env_0"
+          ],
+          "source": "Morgan_bit_702"
+        },
+        {
+          "ambiguous": false,
+          "atom_map_ids": [
+            21
+          ],
+          "contribution": 0.014887622511564782,
+          "fragments": [
+            "bit_675_env_0"
+          ],
+          "source": "Morgan_bit_675"
+        },
+        {
+          "ambiguous": false,
+          "atom_map_ids": [
+            7,
+            8,
+            9
+          ],
+          "contribution": -0.0144334582564229,
+          "fragments": [
+            "bit_1535_env_0"
+          ],
+          "source": "Morgan_bit_1535"
+        },
+        {
+          "ambiguous": false,
+          "atom_map_ids": [
+            4,
+            5,
+            6
+          ],
+          "contribution": 0.014028420135351728,
+          "fragments": [
+            "bit_491_env_0"
+          ],
+          "source": "Morgan_bit_491"
+        },
+        {
+          "ambiguous": true,
+          "atom_map_ids": [
+            2,
+            3,
+            4,
+            23,
+            33
+          ],
+          "contribution": 0.013385124231650438,
+          "fragments": [
+            "bit_1855_env_0",
+            "bit_1855_env_1"
+          ],
+          "source": "Morgan_bit_1855"
+        },
+        {
+          "ambiguous": false,
+          "atom_map_ids": [
+            28,
+            29,
+            30
+          ],
+          "contribution": -0.011668759498272663,
+          "fragments": [
+            "bit_473_env_0"
+          ],
+          "source": "Morgan_bit_473"
+        },
+        {
+          "ambiguous": true,
+          "atom_map_ids": [
+            1,
+            2,
+            14,
+            15
+          ],
+          "contribution": 0.0110018821048986,
+          "fragments": [
+            "bit_1722_env_0",
+            "bit_1722_env_1"
+          ],
+          "source": "Morgan_bit_1722"
+        },
+        {
+          "ambiguous": true,
+          "atom_map_ids": [
+            3,
+            7,
+            33
+          ],
+          "contribution": 0.010654301994474834,
+          "fragments": [
+            "bit_378_env_0",
+            "bit_378_env_1",
+            "bit_378_env_2"
+          ],
+          "source": "Morgan_bit_378"
+        },
+        {
+          "ambiguous": false,
+          "atom_map_ids": [
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            19
+          ],
+          "contribution": -0.009959866393753278,
+          "fragments": [
+            "bit_1485_env_0"
+          ],
+          "source": "Morgan_bit_1485"
+        }
+      ],
+      "images": {
+        "Morgan_bit_1485": "molecules/LT01248/Morgan_bit_1485.svg",
+        "Morgan_bit_1485-labels": "molecules/LT01248/Morgan_bit_1485-labels.svg",
+        "Morgan_bit_1535": "molecules/LT01248/Morgan_bit_1535.svg",
+        "Morgan_bit_1535-labels": "molecules/LT01248/Morgan_bit_1535-labels.svg",
+        "Morgan_bit_1722": "molecules/LT01248/Morgan_bit_1722.svg",
+        "Morgan_bit_1722-labels": "molecules/LT01248/Morgan_bit_1722-labels.svg",
+        "Morgan_bit_1855": "molecules/LT01248/Morgan_bit_1855.svg",
+        "Morgan_bit_1855-labels": "molecules/LT01248/Morgan_bit_1855-labels.svg",
+        "Morgan_bit_378": "molecules/LT01248/Morgan_bit_378.svg",
+        "Morgan_bit_378-labels": "molecules/LT01248/Morgan_bit_378-labels.svg",
+        "Morgan_bit_381": "molecules/LT01248/Morgan_bit_381.svg",
+        "Morgan_bit_381-labels": "molecules/LT01248/Morgan_bit_381-labels.svg",
+        "Morgan_bit_473": "molecules/LT01248/Morgan_bit_473.svg",
+        "Morgan_bit_473-labels": "molecules/LT01248/Morgan_bit_473-labels.svg",
+        "Morgan_bit_491": "molecules/LT01248/Morgan_bit_491.svg",
+        "Morgan_bit_491-labels": "molecules/LT01248/Morgan_bit_491-labels.svg",
+        "Morgan_bit_675": "molecules/LT01248/Morgan_bit_675.svg",
+        "Morgan_bit_675-labels": "molecules/LT01248/Morgan_bit_675-labels.svg",
+        "Morgan_bit_702": "molecules/LT01248/Morgan_bit_702.svg",
+        "Morgan_bit_702-labels": "molecules/LT01248/Morgan_bit_702-labels.svg",
+        "molecule": "molecules/LT01248/molecule.svg",
+        "molecule-labels": "molecules/LT01248/molecule-labels.svg"
+      }
+    },
+    "LT02349": {
+      "attribution_status": "available",
+      "features": [
+        {
+          "ambiguous": false,
+          "atom_map_ids": [
+            3,
+            5,
+            32,
+            33,
+            34,
+            35,
+            36
+          ],
+          "contribution": -0.04470124166629202,
+          "fragments": [
+            "bit_1362_env_0"
+          ],
+          "source": "Morgan_bit_1362"
+        },
+        {
+          "ambiguous": false,
+          "atom_map_ids": [
+            6,
+            7,
+            8,
+            31
+          ],
+          "contribution": -0.04119479277533007,
+          "fragments": [
+            "bit_381_env_0"
+          ],
+          "source": "Morgan_bit_381"
+        },
+        {
+          "ambiguous": false,
+          "atom_map_ids": [
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            31
+          ],
+          "contribution": -0.017331491285517295,
+          "fragments": [
+            "bit_1498_env_0"
+          ],
+          "source": "Morgan_bit_1498"
+        },
+        {
+          "ambiguous": false,
+          "atom_map_ids": [
+            8,
+            11,
+            12
+          ],
+          "contribution": -0.016096111754065452,
+          "fragments": [
+            "bit_1535_env_0"
+          ],
+          "source": "Morgan_bit_1535"
+        },
+        {
+          "ambiguous": false,
+          "atom_map_ids": [
+            12
+          ],
+          "contribution": 0.01586026922166838,
+          "fragments": [
+            "bit_378_env_0"
+          ],
+          "source": "Morgan_bit_378"
+        },
+        {
+          "ambiguous": false,
+          "atom_map_ids": [
+            22,
+            23,
+            24,
+            25
+          ],
+          "contribution": 0.013230653794026027,
+          "fragments": [
+            "bit_207_env_0"
+          ],
+          "source": "Morgan_bit_207"
+        },
+        {
+          "ambiguous": false,
+          "atom_map_ids": [
+            5,
+            6,
+            7
+          ],
+          "contribution": 0.012026700033901926,
+          "fragments": [
+            "bit_491_env_0"
+          ],
+          "source": "Morgan_bit_491"
+        },
+        {
+          "ambiguous": false,
+          "atom_map_ids": [
+            8,
+            9,
+            10
+          ],
+          "contribution": -0.011654441790029429,
+          "fragments": [
+            "bit_1136_env_0"
+          ],
+          "source": "Morgan_bit_1136"
+        },
+        {
+          "ambiguous": false,
+          "atom_map_ids": [
+            12,
+            13,
+            14,
+            31
+          ],
+          "contribution": 0.010469020935287142,
+          "fragments": [
+            "bit_1097_env_0"
+          ],
+          "source": "Morgan_bit_1097"
+        },
+        {
+          "ambiguous": true,
+          "atom_map_ids": [
+            33,
+            36
+          ],
+          "contribution": 0.010250184152509955,
+          "fragments": [
+            "bit_1683_env_0",
+            "bit_1683_env_1"
+          ],
+          "source": "Morgan_bit_1683"
+        }
+      ],
+      "images": {
+        "Morgan_bit_1097": "molecules/LT02349/Morgan_bit_1097.svg",
+        "Morgan_bit_1097-labels": "molecules/LT02349/Morgan_bit_1097-labels.svg",
+        "Morgan_bit_1136": "molecules/LT02349/Morgan_bit_1136.svg",
+        "Morgan_bit_1136-labels": "molecules/LT02349/Morgan_bit_1136-labels.svg",
+        "Morgan_bit_1362": "molecules/LT02349/Morgan_bit_1362.svg",
+        "Morgan_bit_1362-labels": "molecules/LT02349/Morgan_bit_1362-labels.svg",
+        "Morgan_bit_1498": "molecules/LT02349/Morgan_bit_1498.svg",
+        "Morgan_bit_1498-labels": "molecules/LT02349/Morgan_bit_1498-labels.svg",
+        "Morgan_bit_1535": "molecules/LT02349/Morgan_bit_1535.svg",
+        "Morgan_bit_1535-labels": "molecules/LT02349/Morgan_bit_1535-labels.svg",
+        "Morgan_bit_1683": "molecules/LT02349/Morgan_bit_1683.svg",
+        "Morgan_bit_1683-labels": "molecules/LT02349/Morgan_bit_1683-labels.svg",
+        "Morgan_bit_207": "molecules/LT02349/Morgan_bit_207.svg",
+        "Morgan_bit_207-labels": "molecules/LT02349/Morgan_bit_207-labels.svg",
+        "Morgan_bit_378": "molecules/LT02349/Morgan_bit_378.svg",
+        "Morgan_bit_378-labels": "molecules/LT02349/Morgan_bit_378-labels.svg",
+        "Morgan_bit_381": "molecules/LT02349/Morgan_bit_381.svg",
+        "Morgan_bit_381-labels": "molecules/LT02349/Morgan_bit_381-labels.svg",
+        "Morgan_bit_491": "molecules/LT02349/Morgan_bit_491.svg",
+        "Morgan_bit_491-labels": "molecules/LT02349/Morgan_bit_491-labels.svg",
+        "molecule": "molecules/LT02349/molecule.svg",
+        "molecule-labels": "molecules/LT02349/molecule-labels.svg"
+      }
+    }
+  },
+  "model": {
+    "evaluation": {
+      "data_sha256": "997ad736dc1d282c2a0b3b4a7f9fca2d05740eacb7c6ec9d7cdf7919f312d750",
+      "limitations": [
+        "Small retrospective drug-label dataset; not patient incidence or dose-response.",
+        "Demo cases selected after evaluation; not prespecified independent evidence.",
+        "Calibration is population-dependent; no guarantee under distribution shift."
+      ],
+      "logistic_reference": {
+        "auroc": 0.6429816913687881,
+        "average_precision": 0.8009926313279085,
+        "brier": 0.23601091866311075,
+        "confusion_matrix": [
+          [
+            11,
+            20
+          ],
+          [
+            13,
+            61
+          ]
+        ],
+        "n": 105,
+        "positives": 74,
+        "sensitivity": 0.8243243243243243,
+        "specificity": 0.3548387096774194,
+        "threshold": 0.43973772318665433
+      },
+      "model_sha256": "85eafb17430e29cbff4fe4b7d4a80b524825f44949ac27427ba2d328c51be8fa",
+      "random_forest": {
+        "auroc": 0.7598081952920662,
+        "average_precision": 0.8809698642142693,
+        "brier": 0.17718553883463067,
+        "confusion_matrix": [
+          [
+            17,
+            14
+          ],
+          [
+            16,
+            58
+          ]
+        ],
+        "n": 105,
+        "positives": 74,
+        "sensitivity": 0.7837837837837838,
+        "specificity": 0.5483870967741935,
+        "threshold": 0.558199001521947
+      },
+      "raw_random_forest_brier": 0.17620874554286708
+    },
+    "matching_method_and_data": true,
+    "selection": {
+      "counts": {
+        "test": {
+          "n": 105,
+          "positive": 74
+        },
+        "train": {
+          "n": 539,
+          "positive": 339
+        },
+        "validation": {
+          "n": 158,
+          "positive": 95
+        }
+      },
+      "fingerprint": "Morgan radius=2 bits=2048 chirality=true",
+      "split_kind": "scaffold_and_connectivity"
+    }
+  },
+  "report": {
+    "comparison": {
+      "disagreement": null,
+      "reason": "No preclinical/conventional toxicity comparator supplied",
+      "status": "unavailable"
+    },
+    "discovery_shortlist": [
+      "LT01248",
+      "LT00607"
+    ],
+    "limitations": [
+      "Retrospective workflow demonstration; training and validation membership must be disclosed.",
+      "Provisional screening and triage rules; binding predictions do not establish therapeutic efficacy.",
+      "DILI estimates drug-level liver concern, not dose-specific exposure outcomes or freedom from harm.",
+      "Nearest-training Tanimoto similarity is an applicability indicator, not confidence; no validated cutoff is applied.",
+      "No conventional/preclinical toxicity comparator was supplied; no toxicity disagreement score is computed."
+    ],
+    "policy_status": "provisional",
+    "policy_version": "discovery_dili_triage_v1",
+    "request_id": "privacy_bee18511c062e7c1",
+    "results": [
+      {
+        "atom_mapped_smiles": "[CH3:1][c:2]1[cH:3][cH:4][c:5]([NH:6][C:7](=[O:8])[c:9]2[cH:10][cH:11][c:12]([CH2:13][N:14]3[CH2:15][CH2:16][N:17]([CH3:18])[CH2:19][CH2:20]3)[cH:21][cH:22]2)[cH:23][c:24]1[NH:25][c:26]1[n:27][cH:28][cH:29][c:30](-[c:31]2[cH:32][cH:33][cH:34][n:35][cH:36]2)[n:37]1",
+        "canonical_smiles": "Cc1ccc(NC(=O)c2ccc(CN3CCN(C)CC3)cc2)cc1Nc1nccc(-c2cccnc2)n1",
+        "compound_id": "LT00107",
+        "discovery_result": {
+          "affinity_pic50": [
+            9.63325
+          ],
+          "affinity_pred_value": [
+            -1.0625
+          ],
+          "atom_mapped_smiles": "[CH3:1][c:2]1[cH:3][cH:4][c:5]([NH:6][C:7](=[O:8])[c:9]2[cH:10][cH:11][c:12]([CH2:13][N:14]3[CH2:15][CH2:16][N:17]([CH3:18])[CH2:19][CH2:20]3)[cH:21][cH:22]2)[cH:23][c:24]1[NH:25][c:26]1[n:27][cH:28][cH:29][c:30](-[c:31]2[cH:32][cH:33][cH:34][n:35][cH:36]2)[n:37]1",
+          "binding_probability": [
+            0.75
+          ],
+          "canonical_smiles": "Cc1ccc(NC(=O)c2ccc(CN3CCN(C)CC3)cc2)cc1Nc1nccc(-c2cccnc2)n1",
+          "compound_id": "LT00107",
+          "error": null,
+          "mean_binding_probability": 0.75,
+          "provenance": {
+            "cache_key": "169c01a5e6d9339e5c525247cc94b3daa8c81e727d9cd793895accdada34096e",
+            "endpoint": "https://health.api.nvidia.com/v1/biology/mit/boltz2/predict",
+            "execution_mode": "live",
+            "method_id": "nvidia_nim_boltz2",
+            "response_digest": "a09e0d92e145cfc17dbd8b5ff8676bc2ad45860885eceaa9dc26d5b3344433c5",
+            "served_model_version": null,
+            "version_status": "not_reported"
+          },
+          "rank": 4,
+          "raw_response": {
+            "sha256": "df4a4a6371230486b91977cc3a8d22c3561d038517fd9060e466e650c2c2c85c",
+            "uri": "urn:sha256:df4a4a6371230486b91977cc3a8d22c3561d038517fd9060e466e650c2c2c85c"
+          },
+          "shortlisted": false,
+          "standardization_version": "dilirank_parent_v1",
+          "status": "ok",
+          "structural_confidence": [
+            0.9428408741950989
+          ],
+          "structure_id": "0af895e96bef7b4d06a1e8828b623ba6012a16fe27fa16d2109626cad561b3fd",
+          "structures": [
+            {
+              "atom_mapping_status": "unavailable",
+              "format": "mmcif",
+              "origin": "predicted",
+              "sha256": "c00ae152e985461bb1ff29d81450dcca0fed4ca15e0d7da13f8634af901e3357",
+              "uri": "poses/LT00107-0.cif"
+            }
+          ],
+          "warnings": [
+            "Binding predictions are not measured affinity or therapeutic efficacy.",
+            "Predicted-pose atom mapping and contacts are unavailable; shared input atom IDs are retained."
+          ]
+        },
+        "follow_up": {
+          "decision": "not_shortlisted",
+          "experiment": null,
+          "policy_status": "provisional",
+          "recommendation": "Retain discovery rank; review the DILI assessment alongside the other evidence."
+        },
+        "standardization_version": "dilirank_parent_v1",
+        "structure_id": "0af895e96bef7b4d06a1e8828b623ba6012a16fe27fa16d2109626cad561b3fd",
+        "toxicity_result": {
+          "assessment": {
+            "applicability": {
+              "method": "nearest_train_tanimoto",
+              "value": 1.0
+            },
+            "calibration": {
+              "reference": "evaluation/reports/baseline_test.json",
+              "status": "assessed"
+            },
+            "call": "positive",
+            "context": {
+              "conditions": null,
+              "species": "human",
+              "system": "drug_level_annotation"
+            },
+            "direction": "higher_is_more_toxic",
+            "endpoint_id": "human_dili_binary_v1",
+            "evidence_type": "model_prediction",
+            "negative_definition": "No DILI concern",
+            "positive_definition": "Most or Less DILI concern",
+            "risk_score": 0.8694363635032715,
+            "score_kind": "calibrated_probability",
+            "threshold": 0.558199001521947,
+            "uncertainty": {
+              "method": "not_implemented",
+              "value": null
+            }
+          },
+          "compound_id": "LT00107",
+          "error": null,
+          "provenance": {
+            "data_version": "997ad736dc1d282c2a0b3b4a7f9fca2d05740eacb7c6ec9d7cdf7919f312d750",
+            "evidence_refs": [
+              "data/manifests/dili_baseline_split.json",
+              "evaluation/reports/baseline_test.json"
+            ],
+            "method_id": "toxoracle_dili_rf_v1",
+            "model_origin": "trained",
+            "training_membership": "included"
+          },
+          "status": "ok",
+          "structural_evidence": {
+            "atom_mapped_smiles": "[CH3:1][c:2]1[cH:3][cH:4][c:5]([NH:6][C:7](=[O:8])[c:9]2[cH:10][cH:11][c:12]([CH2:13][N:14]3[CH2:15][CH2:16][N:17]([CH3:18])[CH2:19][CH2:20]3)[cH:21][cH:22]2)[cH:23][c:24]1[NH:25][c:26]1[n:27][cH:28][cH:29][c:30](-[c:31]2[cH:32][cH:33][cH:34][n:35][cH:36]2)[n:37]1",
+            "attribution_method": "TreeSHAP 0.49.1 tree_path_dependent",
+            "attribution_reference": "Training tree path counts; expected raw positive-class value=0.6287792207792227",
+            "attribution_scale": "raw_class_probability",
+            "attribution_status": "available",
+            "attribution_target": "raw_random_forest_positive_class",
+            "canonical_smiles": "Cc1ccc(NC(=O)c2ccc(CN3CCN(C)CC3)cc2)cc1Nc1nccc(-c2cccnc2)n1",
+            "fragments": [
+              {
+                "atom_map_ids": [
+                  26,
+                  27,
+                  28,
+                  29,
+                  30
+                ],
+                "contribution": 0.025446800415798727,
+                "evidence_kind": "feature_attribution",
+                "fragment_id": "bit_787_env_0",
+                "mapping_ambiguous": false,
+                "pattern": "cccnc",
+                "source_ref": "Morgan_bit_787"
+              },
+              {
+                "atom_map_ids": [
+                  30,
+                  31,
+                  32,
+                  36
+                ],
+                "contribution": 0.023717883763523573,
+                "evidence_kind": "feature_attribution",
+                "fragment_id": "bit_1160_env_0",
+                "mapping_ambiguous": false,
+                "pattern": "c-c(c)c",
+                "source_ref": "Morgan_bit_1160"
+              },
+              {
+                "atom_map_ids": [
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  22
+                ],
+                "contribution": -0.01792270439144462,
+                "evidence_kind": "feature_attribution",
+                "fragment_id": "bit_1795_env_0",
+                "mapping_ambiguous": false,
+                "pattern": "cNC(=O)c(c)c",
+                "source_ref": "Morgan_bit_1795"
+              },
+              {
+                "atom_map_ids": [
+                  26,
+                  30,
+                  37
+                ],
+                "contribution": 0.01581982028703813,
+                "evidence_kind": "feature_attribution",
+                "fragment_id": "bit_1855_env_0",
+                "mapping_ambiguous": false,
+                "pattern": "cnc",
+                "source_ref": "Morgan_bit_1855"
+              },
+              {
+                "atom_map_ids": [
+                  25,
+                  26,
+                  27,
+                  37
+                ],
+                "contribution": 0.015786798774092253,
+                "evidence_kind": "feature_attribution",
+                "fragment_id": "bit_1582_env_0",
+                "mapping_ambiguous": false,
+                "pattern": "nc(N)n",
+                "source_ref": "Morgan_bit_1582"
+              },
+              {
+                "atom_map_ids": [
+                  24,
+                  25,
+                  26
+                ],
+                "contribution": 0.011865504769280888,
+                "evidence_kind": "feature_attribution",
+                "fragment_id": "bit_491_env_0",
+                "mapping_ambiguous": false,
+                "pattern": "cNc",
+                "source_ref": "Morgan_bit_491"
+              },
+              {
+                "atom_map_ids": [
+                  31,
+                  35,
+                  36
+                ],
+                "contribution": -0.011503048816503292,
+                "evidence_kind": "feature_attribution",
+                "fragment_id": "bit_1535_env_0",
+                "mapping_ambiguous": false,
+                "pattern": "ccn",
+                "source_ref": "Morgan_bit_1535"
+              },
+              {
+                "atom_map_ids": [
+                  1,
+                  2
+                ],
+                "contribution": 0.010947546003096593,
+                "evidence_kind": "feature_attribution",
+                "fragment_id": "bit_1722_env_0",
+                "mapping_ambiguous": false,
+                "pattern": "cC",
+                "source_ref": "Morgan_bit_1722"
+              },
+              {
+                "atom_map_ids": [
+                  11,
+                  12,
+                  13,
+                  14,
+                  15,
+                  20,
+                  21
+                ],
+                "contribution": -0.010457728884039468,
+                "evidence_kind": "feature_attribution",
+                "fragment_id": "bit_1771_env_0",
+                "mapping_ambiguous": false,
+                "pattern": "cc(CN(C)C)c",
+                "source_ref": "Morgan_bit_1771"
+              },
+              {
+                "atom_map_ids": [
+                  16,
+                  17,
+                  18,
+                  19
+                ],
+                "contribution": 0.010265338231515621,
+                "evidence_kind": "feature_attribution",
+                "fragment_id": "bit_207_env_0",
+                "mapping_ambiguous": false,
+                "pattern": "CN(C)C",
+                "source_ref": "Morgan_bit_207"
+              }
+            ],
+            "interactions": [],
+            "mechanism_hypotheses": [],
+            "standardization_version": "dilirank_parent_v1",
+            "structure_artifacts": []
+          },
+          "structure_id": "0af895e96bef7b4d06a1e8828b623ba6012a16fe27fa16d2109626cad561b3fd",
+          "supplementary_metrics": [],
+          "warnings": [
+            "No patient incidence, exposure response or causal mechanism is inferred.",
+            "Uncertainty intervals are not implemented.",
+            "Fragment evidence shows top present fingerprint features only; repeated bit contributions must not be summed. Calibrated scores have a different explanation scale."
+          ]
+        }
+      },
+      {
+        "atom_mapped_smiles": "[CH3:1][c:2]1[n:3][c:4]([NH:5][c:6]2[n:7][cH:8][c:9]([C:10](=[O:11])[NH:12][c:13]3[c:14]([CH3:15])[cH:16][cH:17][cH:18][c:19]3[Cl:20])[s:21]2)[cH:22][c:23]([N:24]2[CH2:25][CH2:26][N:27]([CH2:28][CH2:29][OH:30])[CH2:31][CH2:32]2)[n:33]1",
+        "canonical_smiles": "Cc1nc(Nc2ncc(C(=O)Nc3c(C)cccc3Cl)s2)cc(N2CCN(CCO)CC2)n1",
+        "compound_id": "LT01248",
+        "discovery_result": {
+          "affinity_pic50": [
+            12.0841875
+          ],
+          "affinity_pred_value": [
+            -2.859375
+          ],
+          "atom_mapped_smiles": "[CH3:1][c:2]1[n:3][c:4]([NH:5][c:6]2[n:7][cH:8][c:9]([C:10](=[O:11])[NH:12][c:13]3[c:14]([CH3:15])[cH:16][cH:17][cH:18][c:19]3[Cl:20])[s:21]2)[cH:22][c:23]([N:24]2[CH2:25][CH2:26][N:27]([CH2:28][CH2:29][OH:30])[CH2:31][CH2:32]2)[n:33]1",
+          "binding_probability": [
+            0.953125
+          ],
+          "canonical_smiles": "Cc1nc(Nc2ncc(C(=O)Nc3c(C)cccc3Cl)s2)cc(N2CCN(CCO)CC2)n1",
+          "compound_id": "LT01248",
+          "error": null,
+          "mean_binding_probability": 0.953125,
+          "provenance": {
+            "cache_key": "d041e6c1dccc13c6d8c0d1734ffea446429283e3fb01fab9c46fe520191e5aac",
+            "endpoint": "https://health.api.nvidia.com/v1/biology/mit/boltz2/predict",
+            "execution_mode": "live",
+            "method_id": "nvidia_nim_boltz2",
+            "response_digest": "2476ca16a4835d9f8f28dfbc4d4da768f9f7ae93d31c38ae45c540bcd1027778",
+            "served_model_version": null,
+            "version_status": "not_reported"
+          },
+          "rank": 1,
+          "raw_response": {
+            "sha256": "ed7290771b75b72fa4b49ad606bbae50c719b5f4fe2d02069e7b76304b24e027",
+            "uri": "urn:sha256:ed7290771b75b72fa4b49ad606bbae50c719b5f4fe2d02069e7b76304b24e027"
+          },
+          "shortlisted": true,
+          "standardization_version": "dilirank_parent_v1",
+          "status": "ok",
+          "structural_confidence": [
+            0.9441334009170532
+          ],
+          "structure_id": "4e2440bf7a2bfb9211731f6ad37b7f25d07771ef5ee820d35a384ee91da1edc5",
+          "structures": [
+            {
+              "atom_mapping_status": "unavailable",
+              "format": "mmcif",
+              "origin": "predicted",
+              "sha256": "369841fd039d71de0e214a74ff6c76cdd23fc2923b4db50d1fbe06495b345d30",
+              "uri": "poses/LT01248-0.cif"
+            }
+          ],
+          "warnings": [
+            "Binding predictions are not measured affinity or therapeutic efficacy.",
+            "Predicted-pose atom mapping and contacts are unavailable; shared input atom IDs are retained."
+          ]
+        },
+        "follow_up": {
+          "decision": "hold_for_liver_validation",
+          "experiment": {
+            "assay": "Human-relevant hepatocyte concentration-response study",
+            "conditions": "Concentrations, duration, controls and replicates require experimental design; not inferred from DILI probability.",
+            "question": "Does this candidate produce concentration-dependent liver injury in a human-relevant system?",
+            "readouts": [
+              "Cell viability",
+              "Liver-injury readouts"
+            ]
+          },
+          "policy_status": "provisional",
+          "recommendation": "Hold for targeted liver-safety validation; this is a provisional risk flag."
+        },
+        "standardization_version": "dilirank_parent_v1",
+        "structure_id": "4e2440bf7a2bfb9211731f6ad37b7f25d07771ef5ee820d35a384ee91da1edc5",
+        "toxicity_result": {
+          "assessment": {
+            "applicability": {
+              "method": "nearest_train_tanimoto",
+              "value": 1.0
+            },
+            "calibration": {
+              "reference": "evaluation/reports/baseline_test.json",
+              "status": "assessed"
+            },
+            "call": "positive",
+            "context": {
+              "conditions": null,
+              "species": "human",
+              "system": "drug_level_annotation"
+            },
+            "direction": "higher_is_more_toxic",
+            "endpoint_id": "human_dili_binary_v1",
+            "evidence_type": "model_prediction",
+            "negative_definition": "No DILI concern",
+            "positive_definition": "Most or Less DILI concern",
+            "risk_score": 0.7127779749661882,
+            "score_kind": "calibrated_probability",
+            "threshold": 0.558199001521947,
+            "uncertainty": {
+              "method": "not_implemented",
+              "value": null
+            }
+          },
+          "compound_id": "LT01248",
+          "error": null,
+          "provenance": {
+            "data_version": "997ad736dc1d282c2a0b3b4a7f9fca2d05740eacb7c6ec9d7cdf7919f312d750",
+            "evidence_refs": [
+              "data/manifests/dili_baseline_split.json",
+              "evaluation/reports/baseline_test.json"
+            ],
+            "method_id": "toxoracle_dili_rf_v1",
+            "model_origin": "trained",
+            "training_membership": "included"
+          },
+          "status": "ok",
+          "structural_evidence": {
+            "atom_mapped_smiles": "[CH3:1][c:2]1[n:3][c:4]([NH:5][c:6]2[n:7][cH:8][c:9]([C:10](=[O:11])[NH:12][c:13]3[c:14]([CH3:15])[cH:16][cH:17][cH:18][c:19]3[Cl:20])[s:21]2)[cH:22][c:23]([N:24]2[CH2:25][CH2:26][N:27]([CH2:28][CH2:29][OH:30])[CH2:31][CH2:32]2)[n:33]1",
+            "attribution_method": "TreeSHAP 0.49.1 tree_path_dependent",
+            "attribution_reference": "Training tree path counts; expected raw positive-class value=0.6287792207792227",
+            "attribution_scale": "raw_class_probability",
+            "attribution_status": "available",
+            "attribution_target": "raw_random_forest_positive_class",
+            "canonical_smiles": "Cc1nc(Nc2ncc(C(=O)Nc3c(C)cccc3Cl)s2)cc(N2CCN(CCO)CC2)n1",
+            "fragments": [
+              {
+                "atom_map_ids": [
+                  12,
+                  13,
+                  14,
+                  19
+                ],
+                "contribution": -0.03832214748844435,
+                "evidence_kind": "feature_attribution",
+                "fragment_id": "bit_381_env_0",
+                "mapping_ambiguous": false,
+                "pattern": "cc(N)c",
+                "source_ref": "Morgan_bit_381"
+              },
+              {
+                "atom_map_ids": [
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  21
+                ],
+                "contribution": -0.017692100915913358,
+                "evidence_kind": "feature_attribution",
+                "fragment_id": "bit_702_env_0",
+                "mapping_ambiguous": false,
+                "pattern": "Cc(s)cnc",
+                "source_ref": "Morgan_bit_702"
+              },
+              {
+                "atom_map_ids": [
+                  21
+                ],
+                "contribution": 0.014887622511564782,
+                "evidence_kind": "feature_attribution",
+                "fragment_id": "bit_675_env_0",
+                "mapping_ambiguous": false,
+                "pattern": "s",
+                "source_ref": "Morgan_bit_675"
+              },
+              {
+                "atom_map_ids": [
+                  7,
+                  8,
+                  9
+                ],
+                "contribution": -0.0144334582564229,
+                "evidence_kind": "feature_attribution",
+                "fragment_id": "bit_1535_env_0",
+                "mapping_ambiguous": false,
+                "pattern": "ccn",
+                "source_ref": "Morgan_bit_1535"
+              },
+              {
+                "atom_map_ids": [
+                  4,
+                  5,
+                  6
+                ],
+                "contribution": 0.014028420135351728,
+                "evidence_kind": "feature_attribution",
+                "fragment_id": "bit_491_env_0",
+                "mapping_ambiguous": false,
+                "pattern": "cNc",
+                "source_ref": "Morgan_bit_491"
+              },
+              {
+                "atom_map_ids": [
+                  2,
+                  3,
+                  4
+                ],
+                "contribution": 0.013385124231650438,
+                "evidence_kind": "feature_attribution",
+                "fragment_id": "bit_1855_env_0",
+                "mapping_ambiguous": true,
+                "pattern": "cnc",
+                "source_ref": "Morgan_bit_1855"
+              },
+              {
+                "atom_map_ids": [
+                  2,
+                  23,
+                  33
+                ],
+                "contribution": 0.013385124231650438,
+                "evidence_kind": "feature_attribution",
+                "fragment_id": "bit_1855_env_1",
+                "mapping_ambiguous": true,
+                "pattern": "cnc",
+                "source_ref": "Morgan_bit_1855"
+              },
+              {
+                "atom_map_ids": [
+                  28,
+                  29,
+                  30
+                ],
+                "contribution": -0.011668759498272663,
+                "evidence_kind": "feature_attribution",
+                "fragment_id": "bit_473_env_0",
+                "mapping_ambiguous": false,
+                "pattern": "CCO",
+                "source_ref": "Morgan_bit_473"
+              },
+              {
+                "atom_map_ids": [
+                  1,
+                  2
+                ],
+                "contribution": 0.0110018821048986,
+                "evidence_kind": "feature_attribution",
+                "fragment_id": "bit_1722_env_0",
+                "mapping_ambiguous": true,
+                "pattern": "cC",
+                "source_ref": "Morgan_bit_1722"
+              },
+              {
+                "atom_map_ids": [
+                  14,
+                  15
+                ],
+                "contribution": 0.0110018821048986,
+                "evidence_kind": "feature_attribution",
+                "fragment_id": "bit_1722_env_1",
+                "mapping_ambiguous": true,
+                "pattern": "cC",
+                "source_ref": "Morgan_bit_1722"
+              },
+              {
+                "atom_map_ids": [
+                  3
+                ],
+                "contribution": 0.010654301994474834,
+                "evidence_kind": "feature_attribution",
+                "fragment_id": "bit_378_env_0",
+                "mapping_ambiguous": true,
+                "pattern": "n",
+                "source_ref": "Morgan_bit_378"
+              },
+              {
+                "atom_map_ids": [
+                  7
+                ],
+                "contribution": 0.010654301994474834,
+                "evidence_kind": "feature_attribution",
+                "fragment_id": "bit_378_env_1",
+                "mapping_ambiguous": true,
+                "pattern": "n",
+                "source_ref": "Morgan_bit_378"
+              },
+              {
+                "atom_map_ids": [
+                  33
+                ],
+                "contribution": 0.010654301994474834,
+                "evidence_kind": "feature_attribution",
+                "fragment_id": "bit_378_env_2",
+                "mapping_ambiguous": true,
+                "pattern": "n",
+                "source_ref": "Morgan_bit_378"
+              },
+              {
+                "atom_map_ids": [
+                  12,
+                  13,
+                  14,
+                  15,
+                  16,
+                  17,
+                  19
+                ],
+                "contribution": -0.009959866393753278,
+                "evidence_kind": "feature_attribution",
+                "fragment_id": "bit_1485_env_0",
+                "mapping_ambiguous": false,
+                "pattern": "ccc(C)c(N)c",
+                "source_ref": "Morgan_bit_1485"
+              }
+            ],
+            "interactions": [],
+            "mechanism_hypotheses": [],
+            "standardization_version": "dilirank_parent_v1",
+            "structure_artifacts": []
+          },
+          "structure_id": "4e2440bf7a2bfb9211731f6ad37b7f25d07771ef5ee820d35a384ee91da1edc5",
+          "supplementary_metrics": [],
+          "warnings": [
+            "No patient incidence, exposure response or causal mechanism is inferred.",
+            "Uncertainty intervals are not implemented.",
+            "Fragment evidence shows top present fingerprint features only; repeated bit contributions must not be summed. Calibrated scores have a different explanation scale."
+          ]
+        }
+      },
+      {
+        "atom_mapped_smiles": "[CH3:1][c:2]1[cH:3][n:4](-[c:5]2[cH:6][c:7]([NH:8][C:9](=[O:10])[c:11]3[cH:12][cH:13][c:14]([CH3:15])[c:16]([NH:17][c:18]4[n:19][cH:20][cH:21][c:22](-[c:23]5[cH:24][cH:25][cH:26][n:27][cH:28]5)[n:29]4)[cH:30]3)[cH:31][c:32]([C:33]([F:34])([F:35])[F:36])[cH:37]2)[cH:38][n:39]1",
+        "canonical_smiles": "Cc1cn(-c2cc(NC(=O)c3ccc(C)c(Nc4nccc(-c5cccnc5)n4)c3)cc(C(F)(F)F)c2)cn1",
+        "compound_id": "LT00607",
+        "discovery_result": {
+          "affinity_pic50": [
+            9.79309375
+          ],
+          "affinity_pred_value": [
+            -1.1796875
+          ],
+          "atom_mapped_smiles": "[CH3:1][c:2]1[cH:3][n:4](-[c:5]2[cH:6][c:7]([NH:8][C:9](=[O:10])[c:11]3[cH:12][cH:13][c:14]([CH3:15])[c:16]([NH:17][c:18]4[n:19][cH:20][cH:21][c:22](-[c:23]5[cH:24][cH:25][cH:26][n:27][cH:28]5)[n:29]4)[cH:30]3)[cH:31][c:32]([C:33]([F:34])([F:35])[F:36])[cH:37]2)[cH:38][n:39]1",
+          "binding_probability": [
+            0.8046875
+          ],
+          "canonical_smiles": "Cc1cn(-c2cc(NC(=O)c3ccc(C)c(Nc4nccc(-c5cccnc5)n4)c3)cc(C(F)(F)F)c2)cn1",
+          "compound_id": "LT00607",
+          "error": null,
+          "mean_binding_probability": 0.8046875,
+          "provenance": {
+            "cache_key": "8905f2b948793e92e6c3b6688a80b415fef6ec9d6ed04e8e85ff8a084b46a3d1",
+            "endpoint": "https://health.api.nvidia.com/v1/biology/mit/boltz2/predict",
+            "execution_mode": "live",
+            "method_id": "nvidia_nim_boltz2",
+            "response_digest": "a07a7dfefe2f4c2b639b6cfd7256a9ba64bc175ffb1c58136899ed02bc298c12",
+            "served_model_version": null,
+            "version_status": "not_reported"
+          },
+          "rank": 2,
+          "raw_response": {
+            "sha256": "eddb6587c75ef007834f6d7d7a8fe2baade771682f66e4e679c4551b7da9c863",
+            "uri": "urn:sha256:eddb6587c75ef007834f6d7d7a8fe2baade771682f66e4e679c4551b7da9c863"
+          },
+          "shortlisted": true,
+          "standardization_version": "dilirank_parent_v1",
+          "status": "ok",
+          "structural_confidence": [
+            0.9490422606468201
+          ],
+          "structure_id": "649918665df879f51b6fb956254779ede685008b231aafd52e482f9d536b526e",
+          "structures": [
+            {
+              "atom_mapping_status": "unavailable",
+              "format": "mmcif",
+              "origin": "predicted",
+              "sha256": "2cc5b48da825f2f43a84b02711722ca8a7afffb711824643b1c59b2829846163",
+              "uri": "poses/LT00607-0.cif"
+            }
+          ],
+          "warnings": [
+            "Binding predictions are not measured affinity or therapeutic efficacy.",
+            "Predicted-pose atom mapping and contacts are unavailable; shared input atom IDs are retained."
+          ]
+        },
+        "follow_up": {
+          "decision": "hold_for_liver_validation",
+          "experiment": {
+            "assay": "Human-relevant hepatocyte concentration-response study",
+            "conditions": "Concentrations, duration, controls and replicates require experimental design; not inferred from DILI probability.",
+            "question": "Does this candidate produce concentration-dependent liver injury in a human-relevant system?",
+            "readouts": [
+              "Cell viability",
+              "Liver-injury readouts"
+            ]
+          },
+          "policy_status": "provisional",
+          "recommendation": "Hold for targeted liver-safety validation; this is a provisional risk flag."
+        },
+        "standardization_version": "dilirank_parent_v1",
+        "structure_id": "649918665df879f51b6fb956254779ede685008b231aafd52e482f9d536b526e",
+        "toxicity_result": {
+          "assessment": {
+            "applicability": {
+              "method": "nearest_train_tanimoto",
+              "value": 1.0
+            },
+            "calibration": {
+              "reference": "evaluation/reports/baseline_test.json",
+              "status": "assessed"
+            },
+            "call": "positive",
+            "context": {
+              "conditions": null,
+              "species": "human",
+              "system": "drug_level_annotation"
+            },
+            "direction": "higher_is_more_toxic",
+            "endpoint_id": "human_dili_binary_v1",
+            "evidence_type": "model_prediction",
+            "negative_definition": "No DILI concern",
+            "positive_definition": "Most or Less DILI concern",
+            "risk_score": 0.8259478347802927,
+            "score_kind": "calibrated_probability",
+            "threshold": 0.558199001521947,
+            "uncertainty": {
+              "method": "not_implemented",
+              "value": null
+            }
+          },
+          "compound_id": "LT00607",
+          "error": null,
+          "provenance": {
+            "data_version": "997ad736dc1d282c2a0b3b4a7f9fca2d05740eacb7c6ec9d7cdf7919f312d750",
+            "evidence_refs": [
+              "data/manifests/dili_baseline_split.json",
+              "evaluation/reports/baseline_test.json"
+            ],
+            "method_id": "toxoracle_dili_rf_v1",
+            "model_origin": "trained",
+            "training_membership": "included"
+          },
+          "status": "ok",
+          "structural_evidence": {
+            "atom_mapped_smiles": "[CH3:1][c:2]1[cH:3][n:4](-[c:5]2[cH:6][c:7]([NH:8][C:9](=[O:10])[c:11]3[cH:12][cH:13][c:14]([CH3:15])[c:16]([NH:17][c:18]4[n:19][cH:20][cH:21][c:22](-[c:23]5[cH:24][cH:25][cH:26][n:27][cH:28]5)[n:29]4)[cH:30]3)[cH:31][c:32]([C:33]([F:34])([F:35])[F:36])[cH:37]2)[cH:38][n:39]1",
+            "attribution_method": "TreeSHAP 0.49.1 tree_path_dependent",
+            "attribution_reference": "Training tree path counts; expected raw positive-class value=0.6287792207792227",
+            "attribution_scale": "raw_class_probability",
+            "attribution_status": "available",
+            "attribution_target": "raw_random_forest_positive_class",
+            "canonical_smiles": "Cc1cn(-c2cc(NC(=O)c3ccc(C)c(Nc4nccc(-c5cccnc5)n4)c3)cc(C(F)(F)F)c2)cn1",
+            "fragments": [
+              {
+                "atom_map_ids": [
+                  1,
+                  2,
+                  3,
+                  39
+                ],
+                "contribution": -0.033625765563046,
+                "evidence_kind": "feature_attribution",
+                "fragment_id": "bit_1731_env_0",
+                "mapping_ambiguous": false,
+                "pattern": "cc(C)n",
+                "source_ref": "Morgan_bit_1731"
+              },
+              {
+                "atom_map_ids": [
+                  18,
+                  19,
+                  20,
+                  21,
+                  22
+                ],
+                "contribution": 0.028316641416637138,
+                "evidence_kind": "feature_attribution",
+                "fragment_id": "bit_787_env_0",
+                "mapping_ambiguous": false,
+                "pattern": "cccnc",
+                "source_ref": "Morgan_bit_787"
+              },
+              {
+                "atom_map_ids": [
+                  22,
+                  23,
+                  24,
+                  28
+                ],
+                "contribution": 0.02387732630455714,
+                "evidence_kind": "feature_attribution",
+                "fragment_id": "bit_1160_env_0",
+                "mapping_ambiguous": false,
+                "pattern": "c-c(c)c",
+                "source_ref": "Morgan_bit_1160"
+              },
+              {
+                "atom_map_ids": [
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  30
+                ],
+                "contribution": -0.016829565908338288,
+                "evidence_kind": "feature_attribution",
+                "fragment_id": "bit_1795_env_0",
+                "mapping_ambiguous": false,
+                "pattern": "cNC(=O)c(c)c",
+                "source_ref": "Morgan_bit_1795"
+              },
+              {
+                "atom_map_ids": [
+                  18,
+                  22,
+                  29
+                ],
+                "contribution": 0.01663040214607968,
+                "evidence_kind": "feature_attribution",
+                "fragment_id": "bit_1855_env_0",
+                "mapping_ambiguous": false,
+                "pattern": "cnc",
+                "source_ref": "Morgan_bit_1855"
+              },
+              {
+                "atom_map_ids": [
+                  17,
+                  18,
+                  19,
+                  29
+                ],
+                "contribution": 0.01560807294968504,
+                "evidence_kind": "feature_attribution",
+                "fragment_id": "bit_1582_env_0",
+                "mapping_ambiguous": false,
+                "pattern": "nc(N)n",
+                "source_ref": "Morgan_bit_1582"
+              },
+              {
+                "atom_map_ids": [
+                  31,
+                  32,
+                  33,
+                  37
+                ],
+                "contribution": -0.013065286725025774,
+                "evidence_kind": "feature_attribution",
+                "fragment_id": "bit_1417_env_0",
+                "mapping_ambiguous": false,
+                "pattern": "cc(C)c",
+                "source_ref": "Morgan_bit_1417"
+              },
+              {
+                "atom_map_ids": [
+                  23,
+                  27,
+                  28
+                ],
+                "contribution": -0.012307514086613009,
+                "evidence_kind": "feature_attribution",
+                "fragment_id": "bit_1535_env_0",
+                "mapping_ambiguous": false,
+                "pattern": "ccn",
+                "source_ref": "Morgan_bit_1535"
+              },
+              {
+                "atom_map_ids": [
+                  16,
+                  17,
+                  18
+                ],
+                "contribution": 0.010189614566616361,
+                "evidence_kind": "feature_attribution",
+                "fragment_id": "bit_491_env_0",
+                "mapping_ambiguous": false,
+                "pattern": "cNc",
+                "source_ref": "Morgan_bit_491"
+              },
+              {
+                "atom_map_ids": [
+                  1,
+                  2
+                ],
+                "contribution": 0.010074856087880307,
+                "evidence_kind": "feature_attribution",
+                "fragment_id": "bit_1722_env_0",
+                "mapping_ambiguous": true,
+                "pattern": "cC",
+                "source_ref": "Morgan_bit_1722"
+              },
+              {
+                "atom_map_ids": [
+                  14,
+                  15
+                ],
+                "contribution": 0.010074856087880307,
+                "evidence_kind": "feature_attribution",
+                "fragment_id": "bit_1722_env_1",
+                "mapping_ambiguous": true,
+                "pattern": "cC",
+                "source_ref": "Morgan_bit_1722"
+              }
+            ],
+            "interactions": [],
+            "mechanism_hypotheses": [],
+            "standardization_version": "dilirank_parent_v1",
+            "structure_artifacts": []
+          },
+          "structure_id": "649918665df879f51b6fb956254779ede685008b231aafd52e482f9d536b526e",
+          "supplementary_metrics": [],
+          "warnings": [
+            "No patient incidence, exposure response or causal mechanism is inferred.",
+            "Uncertainty intervals are not implemented.",
+            "Fragment evidence shows top present fingerprint features only; repeated bit contributions must not be summed. Calibrated scores have a different explanation scale."
+          ]
+        }
+      },
+      {
+        "atom_mapped_smiles": "[CH3:1][O:2][c:3]1[cH:4][c:5]([NH:6][c:7]2[c:8]([C:9]#[N:10])[cH:11][n:12][c:13]3[cH:14][c:15]([O:16][CH2:17][CH2:18][CH2:19][N:20]4[CH2:21][CH2:22][N:23]([CH3:24])[CH2:25][CH2:26]4)[c:27]([O:28][CH3:29])[cH:30][c:31]23)[c:32]([Cl:33])[cH:34][c:35]1[Cl:36]",
+        "canonical_smiles": "COc1cc(Nc2c(C#N)cnc3cc(OCCCN4CCN(C)CC4)c(OC)cc23)c(Cl)cc1Cl",
+        "compound_id": "LT02349",
+        "discovery_result": {
+          "affinity_pic50": [
+            11.082500000000001
+          ],
+          "affinity_pred_value": [
+            -2.125
+          ],
+          "atom_mapped_smiles": "[CH3:1][O:2][c:3]1[cH:4][c:5]([NH:6][c:7]2[c:8]([C:9]#[N:10])[cH:11][n:12][c:13]3[cH:14][c:15]([O:16][CH2:17][CH2:18][CH2:19][N:20]4[CH2:21][CH2:22][N:23]([CH3:24])[CH2:25][CH2:26]4)[c:27]([O:28][CH3:29])[cH:30][c:31]23)[c:32]([Cl:33])[cH:34][c:35]1[Cl:36]",
+          "binding_probability": [
+            0.8046875
+          ],
+          "canonical_smiles": "COc1cc(Nc2c(C#N)cnc3cc(OCCCN4CCN(C)CC4)c(OC)cc23)c(Cl)cc1Cl",
+          "compound_id": "LT02349",
+          "error": null,
+          "mean_binding_probability": 0.8046875,
+          "provenance": {
+            "cache_key": "7d2bc9a32efbec85e09ab093f536ec4df68cb9cfc0535b8fb8b9a876301c4da3",
+            "endpoint": "https://health.api.nvidia.com/v1/biology/mit/boltz2/predict",
+            "execution_mode": "live",
+            "method_id": "nvidia_nim_boltz2",
+            "response_digest": "15dde3b0e0340bfe1348e440f85bf6a9d618bb796f1cd9bfbeb3b7846a3a019a",
+            "served_model_version": null,
+            "version_status": "not_reported"
+          },
+          "rank": 3,
+          "raw_response": {
+            "sha256": "6a57c5ca707aebf864d822b933ccc6dacbe5bdf0307c6f5255ee28d3855a2a19",
+            "uri": "urn:sha256:6a57c5ca707aebf864d822b933ccc6dacbe5bdf0307c6f5255ee28d3855a2a19"
+          },
+          "shortlisted": false,
+          "standardization_version": "dilirank_parent_v1",
+          "status": "ok",
+          "structural_confidence": [
+            0.9387098550796509
+          ],
+          "structure_id": "9e96b99fe3feda8ecc843f24c0ccd17a10b91fc04f5db5c239901641ff2ef042",
+          "structures": [
+            {
+              "atom_mapping_status": "unavailable",
+              "format": "mmcif",
+              "origin": "predicted",
+              "sha256": "5f5fb4cb202e4abbc4a432dfb3fcea4901169144e7a771d5dd718139b5c79bc1",
+              "uri": "poses/LT02349-0.cif"
+            }
+          ],
+          "warnings": [
+            "Binding predictions are not measured affinity or therapeutic efficacy.",
+            "Predicted-pose atom mapping and contacts are unavailable; shared input atom IDs are retained."
+          ]
+        },
+        "follow_up": {
+          "decision": "not_shortlisted",
+          "experiment": null,
+          "policy_status": "provisional",
+          "recommendation": "Retain discovery rank; review the DILI assessment alongside the other evidence."
+        },
+        "standardization_version": "dilirank_parent_v1",
+        "structure_id": "9e96b99fe3feda8ecc843f24c0ccd17a10b91fc04f5db5c239901641ff2ef042",
+        "toxicity_result": {
+          "assessment": {
+            "applicability": {
+              "method": "nearest_train_tanimoto",
+              "value": 0.42857142857142855
+            },
+            "calibration": {
+              "reference": "evaluation/reports/baseline_test.json",
+              "status": "assessed"
+            },
+            "call": "positive",
+            "context": {
+              "conditions": null,
+              "species": "human",
+              "system": "drug_level_annotation"
+            },
+            "direction": "higher_is_more_toxic",
+            "endpoint_id": "human_dili_binary_v1",
+            "evidence_type": "model_prediction",
+            "negative_definition": "No DILI concern",
+            "positive_definition": "Most or Less DILI concern",
+            "risk_score": 0.6087181368030128,
+            "score_kind": "calibrated_probability",
+            "threshold": 0.558199001521947,
+            "uncertainty": {
+              "method": "not_implemented",
+              "value": null
+            }
+          },
+          "compound_id": "LT02349",
+          "error": null,
+          "provenance": {
+            "data_version": "997ad736dc1d282c2a0b3b4a7f9fca2d05740eacb7c6ec9d7cdf7919f312d750",
+            "evidence_refs": [
+              "data/manifests/dili_baseline_split.json",
+              "evaluation/reports/baseline_test.json"
+            ],
+            "method_id": "toxoracle_dili_rf_v1",
+            "model_origin": "trained",
+            "training_membership": "excluded"
+          },
+          "status": "ok",
+          "structural_evidence": {
+            "atom_mapped_smiles": "[CH3:1][O:2][c:3]1[cH:4][c:5]([NH:6][c:7]2[c:8]([C:9]#[N:10])[cH:11][n:12][c:13]3[cH:14][c:15]([O:16][CH2:17][CH2:18][CH2:19][N:20]4[CH2:21][CH2:22][N:23]([CH3:24])[CH2:25][CH2:26]4)[c:27]([O:28][CH3:29])[cH:30][c:31]23)[c:32]([Cl:33])[cH:34][c:35]1[Cl:36]",
+            "attribution_method": "TreeSHAP 0.49.1 tree_path_dependent",
+            "attribution_reference": "Training tree path counts; expected raw positive-class value=0.6287792207792227",
+            "attribution_scale": "raw_class_probability",
+            "attribution_status": "available",
+            "attribution_target": "raw_random_forest_positive_class",
+            "canonical_smiles": "COc1cc(Nc2c(C#N)cnc3cc(OCCCN4CCN(C)CC4)c(OC)cc23)c(Cl)cc1Cl",
+            "fragments": [
+              {
+                "atom_map_ids": [
+                  3,
+                  5,
+                  32,
+                  33,
+                  34,
+                  35,
+                  36
+                ],
+                "contribution": -0.04470124166629202,
+                "evidence_kind": "feature_attribution",
+                "fragment_id": "bit_1362_env_0",
+                "mapping_ambiguous": false,
+                "pattern": "cc(Cl)cc(Cl)c",
+                "source_ref": "Morgan_bit_1362"
+              },
+              {
+                "atom_map_ids": [
+                  6,
+                  7,
+                  8,
+                  31
+                ],
+                "contribution": -0.04119479277533007,
+                "evidence_kind": "feature_attribution",
+                "fragment_id": "bit_381_env_0",
+                "mapping_ambiguous": false,
+                "pattern": "cc(N)c",
+                "source_ref": "Morgan_bit_381"
+              },
+              {
+                "atom_map_ids": [
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  31
+                ],
+                "contribution": -0.017331491285517295,
+                "evidence_kind": "feature_attribution",
+                "fragment_id": "bit_1498_env_0",
+                "mapping_ambiguous": false,
+                "pattern": "cc(N)c(C#N)cn",
+                "source_ref": "Morgan_bit_1498"
+              },
+              {
+                "atom_map_ids": [
+                  8,
+                  11,
+                  12
+                ],
+                "contribution": -0.016096111754065452,
+                "evidence_kind": "feature_attribution",
+                "fragment_id": "bit_1535_env_0",
+                "mapping_ambiguous": false,
+                "pattern": "ccn",
+                "source_ref": "Morgan_bit_1535"
+              },
+              {
+                "atom_map_ids": [
+                  12
+                ],
+                "contribution": 0.01586026922166838,
+                "evidence_kind": "feature_attribution",
+                "fragment_id": "bit_378_env_0",
+                "mapping_ambiguous": false,
+                "pattern": "n",
+                "source_ref": "Morgan_bit_378"
+              },
+              {
+                "atom_map_ids": [
+                  22,
+                  23,
+                  24,
+                  25
+                ],
+                "contribution": 0.013230653794026027,
+                "evidence_kind": "feature_attribution",
+                "fragment_id": "bit_207_env_0",
+                "mapping_ambiguous": false,
+                "pattern": "CN(C)C",
+                "source_ref": "Morgan_bit_207"
+              },
+              {
+                "atom_map_ids": [
+                  5,
+                  6,
+                  7
+                ],
+                "contribution": 0.012026700033901926,
+                "evidence_kind": "feature_attribution",
+                "fragment_id": "bit_491_env_0",
+                "mapping_ambiguous": false,
+                "pattern": "cNc",
+                "source_ref": "Morgan_bit_491"
+              },
+              {
+                "atom_map_ids": [
+                  8,
+                  9,
+                  10
+                ],
+                "contribution": -0.011654441790029429,
+                "evidence_kind": "feature_attribution",
+                "fragment_id": "bit_1136_env_0",
+                "mapping_ambiguous": false,
+                "pattern": "cC#N",
+                "source_ref": "Morgan_bit_1136"
+              },
+              {
+                "atom_map_ids": [
+                  12,
+                  13,
+                  14,
+                  31
+                ],
+                "contribution": 0.010469020935287142,
+                "evidence_kind": "feature_attribution",
+                "fragment_id": "bit_1097_env_0",
+                "mapping_ambiguous": false,
+                "pattern": "cc(c)n",
+                "source_ref": "Morgan_bit_1097"
+              },
+              {
+                "atom_map_ids": [
+                  33
+                ],
+                "contribution": 0.010250184152509955,
+                "evidence_kind": "feature_attribution",
+                "fragment_id": "bit_1683_env_0",
+                "mapping_ambiguous": true,
+                "pattern": "Cl",
+                "source_ref": "Morgan_bit_1683"
+              },
+              {
+                "atom_map_ids": [
+                  36
+                ],
+                "contribution": 0.010250184152509955,
+                "evidence_kind": "feature_attribution",
+                "fragment_id": "bit_1683_env_1",
+                "mapping_ambiguous": true,
+                "pattern": "Cl",
+                "source_ref": "Morgan_bit_1683"
+              }
+            ],
+            "interactions": [],
+            "mechanism_hypotheses": [],
+            "standardization_version": "dilirank_parent_v1",
+            "structure_artifacts": []
+          },
+          "structure_id": "9e96b99fe3feda8ecc843f24c0ccd17a10b91fc04f5db5c239901641ff2ef042",
+          "supplementary_metrics": [],
+          "warnings": [
+            "No patient incidence, exposure response or causal mechanism is inferred.",
+            "Uncertainty intervals are not implemented.",
+            "Fragment evidence shows top present fingerprint features only; repeated bit contributions must not be summed. Calibrated scores have a different explanation scale.",
+            "Compound used for model selection and thresholding; not an unseen evaluation case."
+          ]
+        }
+      }
+    ],
+    "schema_version": "3.0",
+    "target": {
+      "manifest_sha256": "588d9dbe5b823d2cf5899d3f0ae8ab5199901d37f9be29c05d71088f1b8bf3b6",
+      "reference_compound_id": "LT00107",
+      "sequence_sha256": "eab4f833c92a3db389a6701fedc6437c549c67e517d23400b2cca23eacfbd736",
+      "target_id": "human_abl1_2hyy_A"
+    }
+  },
+  "review": {
+    "approved_at": "2026-09-20T05:34:09.646753+00:00",
+    "audit": {
+      "category_counts": {
+        "account_number": 1
+      },
+      "model_revision": "7ffa9a043d54d1be65afb281eddf0ffbe629385b",
+      "policy_version": "toxoracle_privacy_v1",
+      "reviewed_scientific_fields_retained": 1
+    },
+    "request": {
+      "compounds": [
+        {
+          "atom_mapped_smiles": "[CH3:1][c:2]1[cH:3][cH:4][c:5]([NH:6][C:7](=[O:8])[c:9]2[cH:10][cH:11][c:12]([CH2:13][N:14]3[CH2:15][CH2:16][N:17]([CH3:18])[CH2:19][CH2:20]3)[cH:21][cH:22]2)[cH:23][c:24]1[NH:25][c:26]1[n:27][cH:28][cH:29][c:30](-[c:31]2[cH:32][cH:33][cH:34][n:35][cH:36]2)[n:37]1",
+          "canonical_smiles": "Cc1ccc(NC(=O)c2ccc(CN3CCN(C)CC3)cc2)cc1Nc1nccc(-c2cccnc2)n1",
+          "compound_id": "LT00107",
+          "standardization_version": "dilirank_parent_v1",
+          "structure_id": "0af895e96bef7b4d06a1e8828b623ba6012a16fe27fa16d2109626cad561b3fd"
+        },
+        {
+          "atom_mapped_smiles": "[CH3:1][c:2]1[n:3][c:4]([NH:5][c:6]2[n:7][cH:8][c:9]([C:10](=[O:11])[NH:12][c:13]3[c:14]([CH3:15])[cH:16][cH:17][cH:18][c:19]3[Cl:20])[s:21]2)[cH:22][c:23]([N:24]2[CH2:25][CH2:26][N:27]([CH2:28][CH2:29][OH:30])[CH2:31][CH2:32]2)[n:33]1",
+          "canonical_smiles": "Cc1nc(Nc2ncc(C(=O)Nc3c(C)cccc3Cl)s2)cc(N2CCN(CCO)CC2)n1",
+          "compound_id": "LT01248",
+          "standardization_version": "dilirank_parent_v1",
+          "structure_id": "4e2440bf7a2bfb9211731f6ad37b7f25d07771ef5ee820d35a384ee91da1edc5"
+        },
+        {
+          "atom_mapped_smiles": "[CH3:1][c:2]1[cH:3][n:4](-[c:5]2[cH:6][c:7]([NH:8][C:9](=[O:10])[c:11]3[cH:12][cH:13][c:14]([CH3:15])[c:16]([NH:17][c:18]4[n:19][cH:20][cH:21][c:22](-[c:23]5[cH:24][cH:25][cH:26][n:27][cH:28]5)[n:29]4)[cH:30]3)[cH:31][c:32]([C:33]([F:34])([F:35])[F:36])[cH:37]2)[cH:38][n:39]1",
+          "canonical_smiles": "Cc1cn(-c2cc(NC(=O)c3ccc(C)c(Nc4nccc(-c5cccnc5)n4)c3)cc(C(F)(F)F)c2)cn1",
+          "compound_id": "LT00607",
+          "standardization_version": "dilirank_parent_v1",
+          "structure_id": "649918665df879f51b6fb956254779ede685008b231aafd52e482f9d536b526e"
+        },
+        {
+          "atom_mapped_smiles": "[CH3:1][O:2][c:3]1[cH:4][c:5]([NH:6][c:7]2[c:8]([C:9]#[N:10])[cH:11][n:12][c:13]3[cH:14][c:15]([O:16][CH2:17][CH2:18][CH2:19][N:20]4[CH2:21][CH2:22][N:23]([CH3:24])[CH2:25][CH2:26]4)[c:27]([O:28][CH3:29])[cH:30][c:31]23)[c:32]([Cl:33])[cH:34][c:35]1[Cl:36]",
+          "canonical_smiles": "COc1cc(Nc2c(C#N)cnc3cc(OCCCN4CCN(C)CC4)c(OC)cc23)c(Cl)cc1Cl",
+          "compound_id": "LT02349",
+          "standardization_version": "dilirank_parent_v1",
+          "structure_id": "9e96b99fe3feda8ecc843f24c0ccd17a10b91fc04f5db5c239901641ff2ef042"
+        }
+      ],
+      "request_id": "privacy_bee18511c062e7c1",
+      "schema_version": "2.0"
+    },
+    "research_prompt": "Which ABL1 discovery candidates merit follow-up, and how does predicted human DILI concern change that decision?",
+    "target_id": "human_abl1_2hyy_A"
+  },
+  "run": {
+    "assistant": {
+      "explain": {
+        "interpretation_only": true,
+        "provider": "NVIDIA",
+        "requested_model": "nvidia/nemotron-3.5-lightning-30b-a3b",
+        "returned_model": "nvidia/nemotron-3.5-lightning-30b-a3b",
+        "text": "Based on the Boltz-2 ABL1 kinase screen and the local human DILI model, the top-ranked candidates and their follow-up status are:\n\n- **LT01248** (rank 1, binder likelihood 0.95): Flagged *positive* for human DILI risk (risk score 0.71, above threshold 0.56). Policy: **hold_for_liver_validation** pending a concentration-dependent hepatocyte concentration-response study. The DILI concern directly overrides its top binding rank.\n- **LT00607** (rank 2, binder likelihood 0.80): Also *positive* for DILI (risk score 0.83). Policy: **hold_for_liver_validation** with the same hepatocyte assay requirement.\n- **LT00107** (rank 4, binder likelihood 0.75): *Positive* DILI call (risk score 0.87), but decision: **not_shortlisted**. Recommendation retains discovery rank while urging review of the DILI assessment alongside other evidence.\n- **LT02349** (rank 3, binder likelihood 0.80): *Positive* DILI call (risk score 0.61), yet decision: **not_shortlisted**. Applicability is limited (Tanimoto 0.43; excluded from unseen evaluation).\n\n**Limitations**: This is a retrospective workflow demonstration; binding predictions do not establish efficacy. DILI estimates drug-level liver concern, not dose-specific outcomes. Nearest-training Tanimoto is an applicability indicator without a validated cutoff. No toxicity comparator was supplied."
+      },
+      "plan": {
+        "candidate_ids": [
+          "LT00107",
+          "LT01248",
+          "LT00607",
+          "LT02349"
+        ],
+        "explanation": "User asks which ABL1 binders merit follow-up and how predicted human DILI concern changes that decision. This maps to the approved ABL1 screening protocol with DILI assessment; within scope.",
+        "provider": "NVIDIA",
+        "requested_model": "nvidia/nemotron-3.5-lightning-30b-a3b",
+        "returned_model": "nvidia/nemotron-3.5-lightning-30b-a3b",
+        "supported": true,
+        "target_id": "human_abl1_2hyy_A",
+        "text": "User asks which ABL1 binders merit follow-up and how predicted human DILI concern changes that decision. This maps to the approved ABL1 screening protocol with DILI assessment; within scope.",
+        "tool": "prepare_abl1_screening"
+      },
+      "status": "complete"
+    },
+    "candidate_count": 4,
+    "candidates": [
+      {
+        "canonical_smiles": "Cc1ccc(NC(=O)c2ccc(CN3CCN(C)CC3)cc2)cc1Nc1nccc(-c2cccnc2)n1",
+        "compound_id": "LT00107"
+      },
+      {
+        "canonical_smiles": "Cc1nc(Nc2ncc(C(=O)Nc3c(C)cccc3Cl)s2)cc(N2CCN(CCO)CC2)n1",
+        "compound_id": "LT01248"
+      },
+      {
+        "canonical_smiles": "Cc1cn(-c2cc(NC(=O)c3ccc(C)c(Nc4nccc(-c5cccnc5)n4)c3)cc(C(F)(F)F)c2)cn1",
+        "compound_id": "LT00607"
+      },
+      {
+        "canonical_smiles": "COc1cc(Nc2c(C#N)cnc3cc(OCCCN4CCN(C)CC4)c(OC)cc23)c(Cl)cc1Cl",
+        "compound_id": "LT02349"
+      }
+    ],
+    "created_at": "2026-09-20T05:34:09.648262+00:00",
+    "discovery_sha256": "0f3cc098d9d4746e7fbd13ece7c4c827a7d361579361967c0ac70eeacdea3106",
+    "events": [
+      {
+        "at": "2026-09-20T05:34:09.649297+00:00",
+        "stage": "planning"
+      },
+      {
+        "at": "2026-09-20T05:34:23.354189+00:00",
+        "stage": "preparing",
+        "total": 4
+      },
+      {
+        "at": "2026-09-20T05:34:23.354627+00:00",
+        "completed": 0,
+        "stage": "preparing",
+        "total": 4
+      },
+      {
+        "at": "2026-09-20T05:34:26.229482+00:00",
+        "completed": 1,
+        "stage": "preparing",
+        "total": 4
+      },
+      {
+        "at": "2026-09-20T05:34:28.557043+00:00",
+        "completed": 2,
+        "stage": "preparing",
+        "total": 4
+      },
+      {
+        "at": "2026-09-20T05:34:30.886889+00:00",
+        "completed": 3,
+        "stage": "preparing",
+        "total": 4
+      },
+      {
+        "at": "2026-09-20T05:34:33.223254+00:00",
+        "completed": 0,
+        "compound_id": "LT00107",
+        "stage": "reference",
+        "total": 4
+      },
+      {
+        "at": "2026-09-20T05:34:51.265092+00:00",
+        "binding_probability": [
+          0.75
+        ],
+        "completed": 1,
+        "compound_id": "LT00107",
+        "stage": "candidate_finished",
+        "status": "ok",
+        "structural_confidence": [
+          0.9428408741950989
+        ],
+        "total": 4
+      },
+      {
+        "at": "2026-09-20T05:34:51.266235+00:00",
+        "completed": 1,
+        "compound_id": "LT01248",
+        "stage": "screening",
+        "total": 4
+      },
+      {
+        "at": "2026-09-20T05:35:13.080020+00:00",
+        "binding_probability": [
+          0.953125
+        ],
+        "completed": 2,
+        "compound_id": "LT01248",
+        "stage": "candidate_finished",
+        "status": "ok",
+        "structural_confidence": [
+          0.9441334009170532
+        ],
+        "total": 4
+      },
+      {
+        "at": "2026-09-20T05:35:13.081280+00:00",
+        "completed": 2,
+        "compound_id": "LT00607",
+        "stage": "screening",
+        "total": 4
+      },
+      {
+        "at": "2026-09-20T05:35:47.063076+00:00",
+        "binding_probability": [
+          0.8046875
+        ],
+        "completed": 3,
+        "compound_id": "LT00607",
+        "stage": "candidate_finished",
+        "status": "ok",
+        "structural_confidence": [
+          0.9490422606468201
+        ],
+        "total": 4
+      },
+      {
+        "at": "2026-09-20T05:35:47.064736+00:00",
+        "completed": 3,
+        "compound_id": "LT02349",
+        "stage": "screening",
+        "total": 4
+      },
+      {
+        "at": "2026-09-20T05:36:05.471576+00:00",
+        "binding_probability": [
+          0.8046875
+        ],
+        "completed": 4,
+        "compound_id": "LT02349",
+        "stage": "candidate_finished",
+        "status": "ok",
+        "structural_confidence": [
+          0.9387098550796509
+        ],
+        "total": 4
+      },
+      {
+        "at": "2026-09-20T05:36:05.475905+00:00",
+        "discovery_sha256": "0f3cc098d9d4746e7fbd13ece7c4c827a7d361579361967c0ac70eeacdea3106",
+        "shortlist": [
+          "LT01248",
+          "LT00607"
+        ],
+        "stage": "shortlist_frozen"
+      },
+      {
+        "at": "2026-09-20T05:36:05.476757+00:00",
+        "stage": "toxicity"
+      },
+      {
+        "at": "2026-09-20T05:36:10.095002+00:00",
+        "stage": "reporting"
+      },
+      {
+        "at": "2026-09-20T05:36:10.146431+00:00",
+        "stage": "explaining"
+      }
+    ],
+    "finished_at": "2026-09-20T05:37:11.240772+00:00",
+    "job_id": "d8ee241e77134215a8bfe0b3b6bcdc7a",
+    "mode": "live",
+    "research_prompt": "Which ABL1 discovery candidates merit follow-up, and how does predicted human DILI concern change that decision?",
+    "shortlist": [
+      "LT01248",
+      "LT00607"
+    ],
+    "status": "complete",
+    "target_id": "human_abl1_2hyy_A"
+  },
+  "slug": "supplied",
+  "version": 1
+}

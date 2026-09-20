@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+set -euo pipefail
+project_root="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+design_python="${TOXORACLE_PYTHON:-$project_root/toxicity/.venv/bin/python}"
+export PYTHONDONTWRITEBYTECODE=1
+export PYTHONPATH="$project_root/app/src:$project_root/discovery/src:$project_root${PYTHONPATH:+:$PYTHONPATH}"
+exec "$design_python" -m toxoracle_app.design_cli "$@"

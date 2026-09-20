@@ -1,12 +1,21 @@
 # ToxOracle: discovery-first hackathon build plan
 
-Updated: 19 September 2026. This plan supersedes the earlier requirement for Team A
-to supply a second toxicity predictor. The agreed implementation is on
-`feat/rosalind-boltz2-screening`; the trained Team B model stays unchanged.
+Updated: 20 September 2026. The standalone researcher workspace now owns the user
+flow around the completed scientific pipeline. This plan supersedes the earlier
+requirement for Team A to supply a second toxicity predictor. The trained Team B
+model and the frozen discovery/triage rules stay unchanged.
+
+Advanced development is isolated on `feat/target-only-generation` in
+[the target-only generation plan](docs/decisions/target-only-generation-plan.md).
+The new command is documented in the [advanced runbook](docs/runbooks/target-only-generation.md).
+This document remains the frozen MVP/demo scope; advanced acceptance is recorded separately.
 
 ## 1. Objective and demonstration
 
-A researcher prompts Rosalind to assess a fixed candidate panel against one target.
+A researcher names a target in a prompt. Without a dataset, the primary demo generates
+candidates with the existing GenMol protocol, then screens them. Optional CSV/JSON
+candidates select the supplied-panel route. Execution uses the prepared human ABL1
+domain; other targets require preparation. The frozen public panel remains available.
 BioNeMo supplies discovery evidence; the local ToxOracle model adds human DILI
 concern. Show the discovery-only shortlist and how that additional information
 changes follow-up decisions and recommended experiments.
@@ -25,31 +34,47 @@ preclinical-miss claim still needs sourced assay-negative and human-outcome evid
 
 ```mermaid
 flowchart TD
-    U[Researcher prompt and public or approved candidates] --> R[Desktop Rosalind]
-    R --> S[Local toxoracle-screen command]
+    U[ToxOracle web app: prompt, target and candidate upload] --> P[Local privacy filtering]
+    P --> V[Review and explicit approval]
+    V --> S[Local workflow backend]
     S --> A[BioNeMo Boltz-2 hosted NIM]
     A --> D[Discovery evidence and frozen shortlist]
     D --> B[Existing local human DILI predictor]
-    B --> J[Deterministic follow-up policy and v3 report]
-    J --> R
-    P[Optional sensitive input] --> F[Independent local privacy gateway]
-    F --> V[Filtering, review and approval]
-    V --> U
+    B --> J[Results dashboard and v3 report]
+    S -. optional approved context .-> R[NVIDIA Nemotron assistant]
+    R -. validated plan and interpretation .-> J
 ```
 
-Rosalind's reported local shell capability is the first connection mechanism.
-It must have explicit workspace-write and external-network permissions where its
-session requires them. No custom MCP server is needed for the initial implementation.
-The installed Rosalind plugin is a Workbench launcher, not a headless scientific API.
-A terminal run does not itself prove desktop Rosalind integration.
+The standalone workspace runs on loopback beside the privacy filter and DILI
+model. A FastAPI backend reuses the existing screening executor; a same-origin
+browser interface provides input, review, progress and candidate inspection.
+The privacy gateway's session, version and approval checks are shared in process.
+Uploaded datasets support 2–32 candidates and must include the validated imatinib
+reference. ABL1 is the only currently supported target; broader target policies
+need separate validation. The prompt supplies context, not arbitrary executable instructions.
+
+The current demo uses NVIDIA Nemotron 3.5 Lightning for bounded structured planning and
+interpretation after local approval. The backend validates the target and candidates
+and controls every scientific operation. Unsupported plans pause for clarification;
+technical planning failure requires explicit fixed-protocol continuation. An assistant
+cannot alter approval, scientific settings, thresholds or shortlist membership.
+The Workbench launcher is not a backend API; no Rosalind invocation is claimed.
+See [the approved researcher-demo plan](docs/decisions/researcher-demo-workflow-plan.md).
 
 The team has access to Rosalind, NVIDIA/BioNeMo and Brev. Ask for required credentials;
 do not infer lack of entitlement from missing environment variables. The default
 execution route is NVIDIA's hosted Boltz-2 API. Credentials never enter Git, reports
-or logs. Public compounds may be submitted directly; sensitive input must pass the
-separate local gateway. Privacy OFF is local preview only; export requires filtering,
+or logs. Every web study passes the local privacy gateway, including public examples.
+Privacy OFF in the independent gateway is local preview only; export requires filtering,
 review and approval. Scientific false-positive retention needs per-field local
 acknowledgement and audit counts. Exposure-aware training remains deferred.
+
+One study executes at a time. Jobs persist only approved inputs and generated
+artifacts, provide stage events and support cooperative cancellation between
+operations. Cached mode requires all exact-input cache entries and prohibits live
+fallbacks and assistant calls. Restart recovery is report inspection, not automatic
+replay of potentially paid vendor requests. Hosted execution with a local privacy
+companion is a later deployment design; the Streamlit presentation remains available.
 
 ## 3. Frozen discovery experiment
 
@@ -105,8 +130,11 @@ proof; the raw forest attribution is not an explanation of the calibrated score.
   wrapper `./scripts/toxoracle-screen` uses the existing scientific environment.
 - Validate coverage and compound/structure/atom identities strictly. Persist the
   discovery snapshot before invoking the model's existing CLI in a subprocess.
-- Return JSON, standalone HTML and a text summary. Rosalind explains these outputs;
+- Return JSON, standalone HTML and a text summary. The configured assistant explains these outputs;
   it does not invent scores, select thresholds or change scientific records.
+- `python -m toxoracle_app.web` serves the standalone workspace. Its job backend
+  calls the same executor with progress/cancellation hooks; no duplicate ranking or
+  DILI logic. The UI validates imported v3 reports before displaying them.
 
 ## 6. Follow-up policy
 
@@ -138,6 +166,12 @@ calls categorically, or report unavailable. Agreement is not correctness.
 3. Pass a real Boltz-2 reference request, with raw evidence and model-version status.
 4. Run the fixed panel, save genuine discovery and DILI responses and validate v3.
 5. Execute the workflow from a desktop Rosalind prompt, then inspect its report.
+6. Verify the web approval boundary, edit invalidation, job ownership, duplicate
+   submission, offline-only execution, cancellation, partial failures and dashboard.
+7. Run the full web path with the real local assets, separately from offline fixture
+   tests. Offline/backend and browser checks alone do not establish a live web
+   scientific run. Real supplied-panel acceptance was subsequently completed; see
+   `evaluation/reports/researcher_demo_acceptance_v1.json`. Prompt-only acceptance is recorded separately.
 
 Preserve earlier runs. Cache reuse is opt-in and requires exact input/configuration
 hashes and response integrity; cached execution must be explicit. Missing hosted
@@ -145,12 +179,13 @@ version metadata remains unreported. Do not imply reproducibility of a live mode
 version that the service does not expose. Every failed compound remains visible.
 
 Full three-case caching, recording and rehearsal are follow-on demo work. Additional
-targets, generation, new toxicity endpoints, exposure-aware models, custom MCP and
+targets, new toxicity endpoints, exposure-aware models, custom MCP and
 preclinical-miss case curation are outside this initial four-step implementation.
 
 ## 8. Runbooks and sources
 
 - `docs/runbooks/rosalind-screening.md`: current execution and desktop handoff.
+- `docs/runbooks/research-workspace.md`: standalone app, progress, privacy approval and results.
 - `docs/runbooks/team-b-local-mvp.md`: model, privacy and pinned environment.
 - `docs/runbooks/team-a-integration.md`: legacy v2 toxicity-comparison path.
 - `toxicity/model_cards/dili_baseline_v1.md`: model evidence and limitations.

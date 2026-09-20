@@ -2,7 +2,7 @@
 
 An agentic drug-discovery workflow with a separate human liver-toxicity assessment, built for the London AI × Bio Hackathon.
 
-Rosalind coordinates existing BioNeMo discovery tools and a ToxOracle DILI predictor to help researchers prioritise candidates and choose follow-up experiments.
+The researcher workspace coordinates existing BioNeMo discovery tools and a ToxOracle DILI predictor to help researchers prioritise candidates and choose follow-up experiments. NVIDIA Nemotron interprets the approved prompt and explains the computed evidence.
 
 **Status:** The discovery-first workflow now screens a frozen public ABL1 panel with
 BioNeMo Boltz-2, adds the existing local DILI model and produces a v3 before/after
@@ -15,20 +15,74 @@ Start with the [Rosalind screening runbook](docs/runbooks/rosalind-screening.md)
 `./scripts/toxoracle-screen preflight`. The policy is provisional and the demonstration
 is retrospective; candidate training membership is displayed.
 
+**Target-only generation:** supplied-candidate and target-only ABL1 modes are
+available through the prompt-first web app and `./scripts/toxoracle-design`. GenMol proposes
+fragment-derived molecules, Boltz-2 supplies discovery evidence, and the unchanged
+DILI baseline adds liver concern. See the
+[advanced runbook](docs/runbooks/target-only-generation.md) for commands and acceptance
+status. Target-only generation is the primary web demonstration; the frozen supplied-panel experiment remains available.
+
 See the [Team B runbook](docs/runbooks/team-b-local-mvp.md) for reproducible training,
 privacy setup and real cached DILI outputs. The user has passed the browser smoke test.
 
-## Interactive demo
+## Public interactive demo
+
+**[Open ToxOracle](https://toxoracle-demo.vercel.app)** · [Judging QR code](docs/assets/public-demo-qr.png)
+
+Explore the complete prompt-to-results experience using real saved ABL1 evidence.
+The main study contains 20 generated candidates, 18 successful discovery results,
+and two shortlisted candidates held for liver validation. The four-drug supplied
+panel is also available. Playback, Results, molecular features and all 22 available
+3D poses work without an API key or a running laptop. This is an explicitly labelled
+recorded demo; new questions and candidates require the local app below.
+
+[Build, deploy and update the public demo](docs/runbooks/public-demo.md).
+
+## Researcher web app
+
+The standalone Oxford Blue workspace owns study input, local privacy review and
+approval, background execution, progress, and the discovery/DILI results dashboard.
+Name ABL1 in a research question and leave the dataset empty for GenMol proposals;
+optional candidate data selects screening. No target dropdown is needed.
+Binding and DILI remain separate. The top-two discovery shortlist is frozen before
+local DILI inference, making changes in follow-up visible.
+
+```bash
+python3 -m venv app/.venv
+app/.venv/bin/python -m pip install -r app/requirements-web.lock -e app -e discovery
+PYTHONPATH=app/src:discovery/src:. app/.venv/bin/python -m toxoracle_app.web
+```
+
+Open **http://127.0.0.1:8766**. This starts the interface and local report viewer.
+Executing studies additionally requires the existing trained DILI artifact,
+scientific environment and verified local privacy checkpoint/runtime. See the
+[research workspace runbook](docs/runbooks/research-workspace.md) for full setup.
+Missing privacy assets block submission. No models are trained or downloaded at startup.
+
+Nemotron 3.5 Lightning is the web assistant; its model identity is checked on every
+response. The old Rosalind adapter is dormant. The Workbench launcher is not used as
+a backend API, and the app does not claim Rosalind inference.
+
+## Streamlit presentation demo
 
 ```bash
 python3 -m pip install -r requirements.txt
 python3 -m streamlit run streamlit_app.py --server.address 127.0.0.1
 ```
 
-Open **http://127.0.0.1:8501**. The Streamlit dashboard includes candidate comparison,
+Open **http://127.0.0.1:8501**. The dashboard opens on **Target-only discovery**:
+the recorded ABL1 generation study, from 40 GenMol proposals to 29 acceptable unique
+molecules and 20 screened candidates. Switch between discovery-only and human DILI
+views to see why both frozen shortlisted candidates were held for liver validation.
+Download example requests and the recorded evidence. This page presents aggregate
+results; individual generated molecules and their scores are not bundled.
+
+The other pages include candidate comparison,
 interactive molecular feature highlights, a rotatable saved NVIDIA docking pose,
 model evaluation, study imports and HTML/CSV/JSON exports. The bundled public results
-work offline without API credentials or model weights.
+work offline without API credentials or model weights. The demo makes no live
+generation or screening calls, and the public DILI examples remain separate from
+the generated ABL1 study.
 
 Complete discovery/toxicity case folders are picked up from `demo/examples/` and
 `artifacts/runs/`, or can be opened as ZIP bundles in **Load a study**. Use

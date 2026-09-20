@@ -21,33 +21,47 @@ to draw the molecular structures on the Linux host.
 
 ## Presentation sequence
 
-1. **Overview:** introduce the selected study and show the candidate scores. The
+1. **Target-only discovery** is the opening page. Introduce the prepared human
+   ABL1 target and imatinib-derived fragment, then follow the recorded
+   **40 proposals → 29 acceptable unique molecules → 20 screened candidates**.
+   Switch **Evidence shown** from **Discovery only** to **With human DILI**:
+   the same two shortlisted candidates are held for targeted liver validation,
+   with no automatic replacements or combined binding/toxicity score. Open the
+   candidate journey, example input requests and source evidence tabs. The page
+   uses `evaluation/reports/generation_workflow_v1.json`; individual generated
+   structures and scores are not included. The **Active study** selector is
+   disabled here because this recorded study is independent of imported cases.
+2. **Overview:** introduce the selected study and show the candidate scores. The
    dot shows the saved score; the vertical tick marks its recorded threshold. Select a table row
    and choose **Inspect**, or use **Explore a candidate**.
-2. **Candidate explorer:** choose Amoxicillin for a compact molecular view. Select
+3. **Candidate explorer:** choose Amoxicillin for a compact molecular view. Select
    a fingerprint feature and optionally turn on atom-map IDs. Inspect the model
    call, reference category, applicability and training membership.
-3. **Decision & next step:** for a complete case, show discovery-only versus
+4. **Decision & next step:** for a complete case, show discovery-only versus
    revised priority, comparison eligibility and the proposed experiment. The
    built-in DILI-only study explicitly describes the missing discovery stream.
-4. **Discovery lab:** rotate the saved NVIDIA 8G43/ZU6 pose. This is an independent
+5. **Discovery lab:** rotate the saved NVIDIA 8G43/ZU6 pose. This is an independent
    public service example, not docking evidence for the three DILI candidates.
    When a complete study is active, this page instead shows its own discovery
    metrics, structural artifacts, recorded interactions and comparator assessment.
-5. **Model & provenance:** show the held-out aggregate evaluation, confusion
+6. **Model & provenance:** show the held-out aggregate evaluation, confusion
    matrix, provenance and limits. The three illustrated cases were selected after
    evaluation; their performance is not a substitute for the full test set.
-6. Return to **Overview** and download the HTML report, candidate CSV or source
+7. Return to **Overview** and download the HTML report, candidate CSV or source
    JSON. The report opens without Streamlit and includes the underlying evidence.
 
 The sidebar **Presenter notes** switch adds a short talk track to each main view.
 The dashboard never claims a live Rosalind call: it presents recorded science.
+The public DILI examples and saved docking pose are separate studies, not
+candidate-level evidence for the generated ABL1 panel.
 
 ## Load the team's final cases
 
 Use the same case directory as `demo/run_case.py`, with a ready `manifest.json`
 conforming to `demo/case.schema.json`, `result_class: real`, and matching v2 request,
 discovery and toxicity envelopes. Case filenames come from the manifest.
+The importer accepts these v2 case bundles; it does not import v3 generation run
+directories. The target-only opening page reads its bundled aggregate summary.
 
 ```text
 my-study/
@@ -100,6 +114,10 @@ accepted as a scientific study.
 
 - DILI scores, thresholds and calls come directly from the supplied assessment.
   Missing or failed assessments are unavailable, never zero risk.
+- The target-only page preserves the frozen discovery shortlist when revealing
+  the recorded DILI decision. Positive DILI calls indicate predicted concern,
+  not established toxicity in humans; exclusion from model fitting does not make
+  generated candidates a labelled evaluation set.
 - The molecular drawing uses the supplied atom-mapped molecule. Every matching
   environment of an ambiguous fingerprint bit is highlighted. The bar chart
   counts each source feature once rather than summing duplicate environments.
@@ -119,10 +137,14 @@ PATH="$PWD/.venv/bin:$PATH" bash scripts/check-demo.sh
 ```
 
 The ordinary checks cover case import, identity mismatch rejection, artifact
-containment/checksums and export escaping. The Streamlit suite visits every page,
-switches candidates, selects atom highlights and verifies the saved 3D pose.
+containment/checksums, export escaping and reconciliation of the generation counts.
+The Streamlit suite visits every page, checks the target-only landing page and
+evidence switch, follows its link to the separate public study, switches candidates,
+selects atom highlights and verifies the saved 3D pose.
 Both run offline. The dedicated CI job installs the locked demo dependencies.
 
-For browser review, check the overview at desktop and narrow widths, change the
-candidate and highlighted feature, rotate the docking pose, open provenance and
-download a report. The browser tab can be left on **Overview** for the presentation.
+For browser review, check the target-only page at desktop and narrow widths, switch
+the DILI evidence view, open its tabs and follow **Explore DILI examples**. Check
+the overview, change the candidate and highlighted feature, rotate the docking
+pose, open provenance and download a report. Leave the browser tab on
+**Target-only discovery** for the presentation.

@@ -1,0 +1,13 @@
+{
+  "studies": [
+    {
+      "manifest_sha256": "7af21875fe81a080a089b9016e89656f30ad929621098823ec33968e2fd408b4",
+      "slug": "generated"
+    },
+    {
+      "manifest_sha256": "90b1c3bfd5e7d46b3ee7254baeb2d57d84ae56ea1467ded45e82620aab54a8a9",
+      "slug": "supplied"
+    }
+  ],
+  "version": 1
+}

@@ -8,6 +8,7 @@ from pathlib import Path
 import secrets
 import time
 import threading
+from urllib.parse import urlsplit
 
 from fastapi import FastAPI, Request
 from fastapi.responses import HTMLResponse, JSONResponse, Response
@@ -21,7 +22,12 @@ TTL = 1800
 ORIGIN = 'http://127.0.0.1:8765'
 
 
-def create_app(detector=None, token=None, clock=time.monotonic):
+def create_app(detector=None, token=None, clock=time.monotonic, *, origin=ORIGIN, static_dir=STATIC):
+    # Trusted factory configuration only. No public bind, DNS name or browser override.
+    parsed=urlsplit(origin)
+    if parsed.scheme!='http' or parsed.hostname!='127.0.0.1' or not parsed.port or parsed.path or parsed.query or parsed.fragment or parsed.username is not None or parsed.password is not None:
+        raise ValueError('loopback_origin_required')
+    static_dir=Path(static_dir)
     detector = detector or LocalDetector()
     token = token or secrets.token_urlsafe(32)
     sessions = {}
@@ -48,15 +54,15 @@ def create_app(detector=None, token=None, clock=time.monotonic):
 
     @app.middleware('http')
     async def boundary(request: Request, call_next):
-        if request.headers.get('host')!='127.0.0.1:8765':
+        if request.headers.get('host')!=parsed.netloc:
             return JSONResponse({'error':'invalid_host'},status_code=403)
-        origin=request.headers.get('origin')
-        if origin and origin!=ORIGIN:
+        request_origin=request.headers.get('origin')
+        if request_origin and request_origin!=origin:
             return JSONResponse({'error':'invalid_origin'},status_code=403)
         if request.url.path.startswith('/api/'):
             if not hmac.compare_digest(request.headers.get('x-session-token',''),token):
                 return JSONResponse({'error':'invalid_session_token'},status_code=403)
-            if origin!=ORIGIN:
+            if request_origin!=origin:
                 return JSONResponse({'error':'origin_required'},status_code=403)
         # Stream-limit the entire body before parsing (including chunked requests).
         body=bytearray()
@@ -80,9 +86,9 @@ def create_app(detector=None, token=None, clock=time.monotonic):
 
     @app.get('/')
     async def index():
-        return HTMLResponse((STATIC/'index.html').read_text().replace('__LAUNCH_TOKEN__',token))
+        return HTMLResponse((static_dir/'index.html').read_text().replace('__LAUNCH_TOKEN__',token))
 
-    app.mount('/static',StaticFiles(directory=STATIC),name='static')
+    app.mount('/static',StaticFiles(directory=static_dir),name='static')
 
     async def payload(request):
         try:
@@ -125,7 +131,10 @@ def create_app(detector=None, token=None, clock=time.monotonic):
 
     @app.post('/api/scan')
     async def scan_input(request:Request):
-        data=await payload(request); state=session(data)
+        return await scan_payload(await payload(request))
+
+    async def scan_payload(data):
+        state=session(data)
         state.update(version=state['version']+1,snapshot=None,approved=None)
         version=state['version']
         if data.get('enabled') is not True:
@@ -186,6 +195,12 @@ def create_app(detector=None, token=None, clock=time.monotonic):
             raise PrivacyError('prediction_invalidated')
         return result
 
+    # Trusted in-process extensions use the same session and approval boundary.
+    # These capabilities are never exposed to JavaScript or through generic RPC.
+    app.state.privacy_payload=payload
+    app.state.privacy_session=session
+    app.state.privacy_reviewed=reviewed
+    app.state.privacy_scan=scan_payload
     return app
 
 
