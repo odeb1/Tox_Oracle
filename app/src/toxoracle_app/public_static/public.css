@@ -1,4 +1,5 @@
 progress{width:100%;height:8px;accent-color:var(--oxford);margin:10px 0 22px}
+.brand-logo{display:block;width:205px;max-width:100%;height:auto}
 #review-section>.primary{margin-top:24px}.replay-controls{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:16px}
 #planning-note:empty{display:none}#planning-note{white-space:pre-line;margin-bottom:24px}
 #frozen-card{margin-bottom:24px}.event-log li{overflow-wrap:anywhere}.molecule-card strong{overflow-wrap:anywhere}
@@ -6,6 +7,6 @@ progress{width:100%;height:8px;accent-color:var(--oxford);margin:10px 0 22px}
 #dataset-note{overflow-wrap:anywhere}.local-badge{white-space:normal;text-align:center}
 #optional-data .actions{margin-bottom:16px}#progress-message{min-height:32px}
 #notice{white-space:pre-line}#input-section .form-footer p{max-width:200px}
-@media(max-width:720px){.topbar{gap:14px}.local-badge{width:100%;font-size:11px}.step-navigation{flex-wrap:wrap}.stepper{overflow-x:auto}.stepper li{min-width:120px}.intro-note{display:none}.score-row{grid-template-columns:minmax(80px,1fr) minmax(100px,2fr) 50px}.score-row small{grid-column:1/-1}}
+@media(max-width:720px){.topbar{gap:14px}.brand-logo{width:174px}.local-badge{width:100%;font-size:11px}.step-navigation{flex-wrap:wrap}.stepper{overflow-x:auto}.stepper li{min-width:120px}.intro-note{display:none}.score-row{grid-template-columns:minmax(80px,1fr) minmax(100px,2fr) 50px}.score-row small{grid-column:1/-1}}
 @media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;animation:none!important;transition:none!important}}
 @media(max-width:720px){.topbar .local-badge{display:inline-flex;justify-content:center}.stepper{display:flex;flex-wrap:nowrap}.stepper li{flex:0 0 145px}.stepper button{height:100%}.decision-card h4{flex-wrap:wrap;overflow-wrap:anywhere}.score-row>span{overflow-wrap:anywhere;min-width:0}}
