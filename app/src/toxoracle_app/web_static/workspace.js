@@ -3,6 +3,8 @@ const $ = id => document.getElementById(id);
 const token = document.querySelector('meta[name="launch-token"]').content;
 let sid = null, scan = null, generation = 0, invalidations = Promise.resolve();
 let moleculeImages = {}, showDili = true, replayEvidence = null, replayStage = 0;
+const studyNavigation=new StudyNavigation();
+let approvedStudy=null;
 let workspace = null, activeRun = null, report = null, reportRun = null, pollTimer = null;
 const errors = {
   recorded_evidence_unavailable: 'The recorded study failed verification. Restore its original bundle; no live fallback was attempted.',
@@ -78,12 +80,60 @@ function page(name) {
   window.scrollTo({top:0, behavior:'instant'});
 }
 function step(name) {
-  const order = ['input','review','run','assess','results'];
-  document.body.dataset.studyStage = name;
-  document.querySelectorAll('[data-step]').forEach(li => { li.classList.toggle('current',li.dataset.step === name); li.classList.toggle('done',order.indexOf(li.dataset.step) < order.indexOf(name)); });
-  ['input','review','progress'].forEach(s => { $(s+'-section').hidden = s !== (['run','assess'].includes(name) ? 'progress' : name==='results' ? 'input' : name); });
+  studyNavigation.advance(name); renderStep();
+}
+function renderStep(){
+  const nav=studyNavigation, name=nav.viewing, order=nav.order;
+  document.body.dataset.studyStage=nav.latest;
+  document.querySelectorAll('[data-step]').forEach(li=>{li.classList.toggle('current',li.dataset.step===name);li.classList.toggle('done',order.indexOf(li.dataset.step)<nav.reached);});
+  document.querySelectorAll('[data-step-link]').forEach(button=>{button.disabled=order.indexOf(button.dataset.stepLink)>nav.reached;button.setAttribute('aria-pressed',String(button.dataset.stepLink===name));});
+  const history=!!activeRun || !!report && nav.latest==='results';
+  const showHistory=history && (!!nav.selected || nav.latest==='results');
+  ['input','review','progress'].forEach(s=>{$(s+'-section').hidden=showHistory || s!==(['run','assess'].includes(name)?'progress':name==='results'?'input':name);});
+  $('step-history-section').hidden=!showHistory;
+  $('step-back').disabled=order.indexOf(name)===0;
+  $('step-next').disabled=order.indexOf(name)>=nav.reached;
+  $('step-live').hidden=!nav.selected;
+  $('step-view-label').textContent='Step '+(order.indexOf(name)+1)+' of 5'+(nav.selected?' · Viewing saved evidence':' · Current stage');
+  if(showHistory)renderStepHistory(name);
+}
+function selectStep(name){if(!studyNavigation.select(name))return;if(name==='results'){page('results');return;}page('workspace');renderStep();}
+document.querySelectorAll('[data-step-link]').forEach(b=>b.onclick=()=>selectStep(b.dataset.stepLink));
+$('step-back').onclick=()=>selectStep(studyNavigation.order[studyNavigation.order.indexOf(studyNavigation.viewing)-1]);
+$('step-next').onclick=()=>selectStep(studyNavigation.order[studyNavigation.order.indexOf(studyNavigation.viewing)+1]);
+$('step-live').onclick=()=>{studyNavigation.follow();renderStep();if(studyNavigation.latest==='results')page('results');};
+function renderStepHistory(name){
+  const run=activeRun || reportRun;
+  const signature=JSON.stringify([name,run?.job_id,report?.request_id,!!report,approvedStudy?.approved_at,['input','review'].includes(name)?null:run?.events?.length]);
+  if($('step-history-section').dataset.signature===signature)return;
+  const box=clear('step-history-section');box.dataset.signature=signature;
+  box.append(node('p','STUDY RECORD · READ ONLY','eyebrow'),node('h2',({input:'01 · Approved study inputs',review:'02 · Privacy review & approval',run:'03 · Discovery evidence',assess:'04 · Human liver concern',results:'05 · Results ready'})[name]));
+  box.append(node('p','Viewing this step does not rerun models or change approval. Current execution: '+(stageNames[run?.stage] || run?.status || 'Recorded result')+'.','field-note'));
+  if(name==='input'||name==='review'){
+    if(approvedStudy){box.append(node('h3',approvedStudy.research_prompt),node('p','Target: '+run.target_id+' · '+approvedStudy.mode+' · '+approvedStudy.workflow));const summary=node('div',null,'review-readable');summary.append(node('p',name==='input'?'Approved candidate request: '+(approvedStudy.request.compounds?.length || approvedStudy.request.count || 'Unavailable')+' candidates':'Approval: '+approvedStudy.approval.decision+' · '+new Date(approvedStudy.approved_at).toLocaleString()),node('p',name==='input'?'Execution follows the approved target, settings and route.':'Explicitly retained scientific fields: '+approvedStudy.approval.reviewed_scientific_fields_retained+' · Privacy policy: '+approvedStudy.approval.policy_version));box.append(summary);const details=node('details');details.append(node('summary',name==='input'?'Approved input payload':'Recorded approval and privacy audit'),node('pre',JSON.stringify(name==='input'?approvedStudy.request:{approval:approvedStudy.approval,approved_at:approvedStudy.approved_at},null,2),'data-preview'));box.append(details);}
+    else box.append(node('p','The original input and privacy approval record are not available in this imported or recorded view. No new scan or approval is claimed.'));
+    return;
+  }
+  const currentReport=reportRun?.job_id===run?.job_id?report:null;
+  if(name==='run'){
+    box.append(node('p','GenMol proposes candidates when requested; Boltz-2 screens binding. The discovery shortlist is frozen before DILI.'),node('h3',run?.shortlist===null?'Shortlist not yet frozen':'Frozen discovery shortlist'),node('p',(run?.shortlist || currentReport?.discovery_shortlist || []).join(', ') || 'No shortlist is available.'));
+    if(currentReport)box.append(historyEvidenceTable(currentReport,'run'));
+  }else if(name==='assess'){
+    box.append(node('p','The local DILI model assesses human liver concern after discovery is frozen. Binding and DILI scores remain separate.'));
+    if(currentReport)box.append(historyEvidenceTable(currentReport,'assess'));
+    else box.append(node('p','The assessment has started. Candidate DILI values will appear when the validated report is ready.'));
+  }else{const button=node('button','Open Results →','primary');button.onclick=()=>page('results');box.append(button);}
+  const events=(run?.events || []).filter(e=>name==='run'?!['toxicity','reporting','explaining','finished'].includes(e.stage):name==='assess'?['toxicity','reporting','explaining','finished'].includes(e.stage):false),list=node('ol',null,'event-log');
+  events.forEach(e=>list.append(node('li',timeLabel(e.at)+' · '+(stageNames[e.stage]||e.stage)+(e.compound_id?' · '+e.compound_id:'')+(e.binding_probability?.length?' · Binder likelihood '+values(e.binding_probability):'')+(e.status?' · '+e.status:'')+(e.total&&e.completed!==undefined?' · '+e.completed+'/'+e.total:''))));box.append(list);
+}
+function historyEvidenceTable(result,stage){
+  const wrapper=node('div',null,'table-scroll'),table=node('table'),head=node('thead'),tr=node('tr'),body=node('tbody');
+  const headers=stage==='run'?['Candidate','Discovery rank','Binder likelihood','Structural confidence']:['Candidate','Human DILI','Predicted concern','Follow-up'];
+  headers.forEach(text=>{const th=node('th',text);th.scope='col';tr.append(th);});head.append(tr);
+  result.results.forEach(r=>{const row=node('tr'),d=r.discovery_result,t=r.toxicity_result,values=stage==='run'?[r.compound_id,d.rank??'Unavailable',number(d.mean_binding_probability),d.structural_confidence.map(v=>number(v)).join(', ')||'Unavailable']:[r.compound_id,number(t.assessment.risk_score),concern(t),decisions[r.follow_up.decision]];values.forEach(v=>row.append(node('td',v)));body.append(row);});table.append(head,body);wrapper.append(table);return wrapper;
 }
 function edited(event) {
+  if(!activeRun){studyNavigation.reset();approvedStudy=null;renderStep();}
   updateRoute(); generation++; scan = null; if(!event || ['candidate-content','dataset-format'].includes(event.target?.id)){clear('candidate-preview');moleculeImages={};} $('approve-checkbox').checked = false; updateApproval();
   invalidations = invalidations.then(() => api('/api/invalidate'));
   invalidations.catch(showError);
@@ -127,6 +177,7 @@ async function loadDataset(file) {
   $('file-label').textContent=file.name; edited(); await previewCandidates();
 }
 function renderReview(result) {
+  studyNavigation.follow();
   scan=result; $('approve-checkbox').checked=false;
   $('sanitized-preview').textContent=result.sanitized;
   $('outbound-preview').textContent=result.study ? JSON.stringify(result.outbound || result.study,null,2) : 'Resolve blocked fields and scan again.';
@@ -149,7 +200,7 @@ function timeLabel(value) { return new Date(value).toLocaleTimeString([], {hour:
 function renderProgress(run) {
   activeRun=run;
   $('progress-heading').textContent=run.status==='running' || run.status==='queued' ? 'Your study is running' : run.status==='cancelled' ? 'Study stopped' : run.status==='failed'||run.status==='awaiting_plan'||run.status==='partial' ? 'Study needs attention' : 'Study finished';
-  step(['shortlist_frozen','toxicity','reporting','explaining'].includes(run.stage)?'assess':'run');
+  step(run.report_available?'results':run.events.some(e=>['toxicity','reporting','explaining'].includes(e.stage))?'assess':'run');
   const candidateLabel=run.workflow==='generate_screen'&&!run.candidate_count?'20 candidates requested':run.candidate_count+' candidates';
   $('study-context').hidden=false; $('study-context').textContent='Human ABL1 · '+candidateLabel+' · '+run.research_prompt;
   $('run-meta').textContent='Run '+run.job_id.slice(0,8)+' · '+candidateLabel+' · '+(run.mode==='recorded'?'Recorded walkthrough · no inference':run.mode==='live'?'Live NVIDIA':'Verified offline cache');
@@ -188,7 +239,7 @@ async function poll() {
     if(['running','queued','awaiting_plan'].includes(run.status)) pollTimer=setTimeout(poll,1800);
   } catch(error) { showError(error); if(error.message!=='session_expired') pollTimer=setTimeout(poll,5000); }
 }
-async function openRun(run) { clearTimeout(pollTimer); page('workspace'); step('run'); renderProgress(run); await poll(); }
+async function openRun(run) { clearTimeout(pollTimer); studyNavigation.reset();approvedStudy=null;activeRun=run;page('workspace');step('run');renderProgress(run);try{approvedStudy=(await api('/api/run/download',{job_id:run.job_id,kind:'approval'}));approvedStudy=JSON.parse(approvedStudy.content);}catch{approvedStudy=null;}await poll(); }
 function number(value, digits=3) { return typeof value==='number' && Number.isFinite(value) ? value.toFixed(digits) : 'Unavailable'; }
 function values(items) { return Array.isArray(items)&&items.length ? items.map(n=>number(n)).join(', ') : 'Unavailable'; }
 const decisions = {hold_for_liver_validation:'Liver validation first',continue_target_validation:'Continue target validation',not_shortlisted:'Retain discovery rank',safety_assessment_incomplete:'DILI evidence incomplete',discovery_incomplete:'Discovery incomplete'};
@@ -198,7 +249,7 @@ function renderResults(result, run) {
   report=result; reportRun=run; showDili=true;window.scrollTo({top:0,behavior:'instant'});
   $('study-context').hidden=false;$('study-context').textContent=run?.mode==='recorded'?'Recorded public ABL1 study · No inference or new approval':run?.research_prompt || 'Imported study · locally validated'; updateEvidenceSwitch();
   $('download-html').hidden=!run || run.mode==='recorded';
-  clearTimeout(pollTimer); step('results'); $('results-section').hidden=false; $('results-empty').hidden=true; page('results'); resultView('overview'); renderDashboard(result);
+  clearTimeout(pollTimer); step('results'); $('results-section').hidden=false; $('results-empty').hidden=true; if(!studyNavigation.selected)page('results'); resultView('overview'); renderDashboard(result);renderStep();
   $('results-meta').textContent=result.target.target_id+' · '+(run?'Run '+run.job_id.slice(0,8)+' · '+(run.mode==='recorded'?'Recorded walkthrough · no inference':run.mode==='live'?'Live NVIDIA':'Verified offline cache'):'Imported report · source authenticity not verified');
   $('result-notice').hidden=!!run && run.status==='complete';
   $('result-notice').textContent=run ? 'Partial results: one or more operations did not complete. Missing evidence remains unavailable.' : 'Imported result: scores and follow-up passed contract checks. This workspace did not execute or authenticate this report.';
@@ -271,10 +322,10 @@ $('approve-checkbox').onchange=updateApproval;
 $('run-button').onclick=()=>action($('run-button'),async()=>{const version=generation,current=scan;if(!current||!$('approve-checkbox').checked)return;await invalidations;await api('/api/approve',{scan_id:current.scan_id,approve:true,retain_fields:[...document.querySelectorAll('#retention-fields input:checked')].map(c=>c.value)});if(version!==generation)return;const run=await api('/api/study/submit',{scan_id:current.scan_id});scan=null;$('research-prompt').value='';$('candidate-content').value='';$('dataset').value='';$('sanitized-preview').textContent='';$('outbound-preview').textContent='';clear('retention-fields');upsertRun(run);await openRun(run);});
 $('cancel-button').onclick=()=>action($('cancel-button'),async()=>{const run=await api('/api/run/cancel',{job_id:activeRun.job_id});renderProgress(run);});
 $('frozen-download').onclick=()=>action($('frozen-download'),()=>download('discovery'));
-$('download-report').onclick=()=>action($('download-report'),async()=>{if(reportRun && reportRun.mode!=='recorded'){activeRun=reportRun;await download('report');}else saveFile(JSON.stringify(report,null,2),'toxoracle-imported-report.json','application/json');});
+$('download-report').onclick=()=>action($('download-report'),async()=>{if(reportRun && reportRun.mode!=='recorded'){await download('report');}else saveFile(JSON.stringify(report,null,2),'toxoracle-imported-report.json','application/json');});
 $('new-study').onclick=()=>{page('workspace');$('study-context').hidden=true;clearTimeout(pollTimer);activeRun=null;scan=null;$('file-label').textContent='Choose a candidate dataset';edited();step('input');window.scrollTo({top:0,behavior:'instant'});};
 $('candidate-search').oninput=renderRows;$('candidate-filter').onchange=renderRows;
-$('report-file').onchange=()=>action($('report-file'),async()=>{const content=await readFile($('report-file').files[0]);const result=await api('/api/report/inspect',{content});clearTimeout(pollTimer);activeRun=null;page('workspace');renderResults(result.report,null);$('report-file').value='';});
+$('report-file').onchange=()=>action($('report-file'),async()=>{const content=await readFile($('report-file').files[0]);const result=await api('/api/report/inspect',{content});clearTimeout(pollTimer);activeRun=null;approvedStudy=null;studyNavigation.reset();page('workspace');renderResults(result.report,null);$('report-file').value='';});
 $('inspect-report').onclick=()=>action($('inspect-report'),async()=>{const result=await api('/api/report/inspect',{content:$('report-content').value});clearTimeout(pollTimer);activeRun=null;$('report-content').value='';page('workspace');renderResults(result.report,null);});
 $('refresh-setup').onclick=()=>action($('refresh-setup'),refreshWorkspace);
 $('verify-assistant').onclick=()=>action($('verify-assistant'),async()=>{const info=await api('/api/assistant/verify');workspace.assistant=info;applyAssistantStatus(info);});
@@ -323,7 +374,7 @@ const replayNames=['Set up','Review privately','Run discovery','Assess liver con
 $('replay-button').onclick=()=>action($('replay-button'),async()=>{replayEvidence=await api('/api/recorded');replayStage=0;page('replay');renderReplay();});
 $('close-replay').onclick=()=>{page('workspace');};
 $('replay-back').onclick=()=>{replayStage--;renderReplay();};
-$('replay-next').onclick=()=>{if(replayStage<4){replayStage++;renderReplay();}else{moleculeImages=Object.fromEntries(replayEvidence.candidates.filter(c=>c.image).map(c=>[c.compound_id,c.image]));page('workspace');renderResults(replayEvidence.report,{job_id:'recorded-abl1',mode:'recorded',status:'complete',assistant:{status:'off'}});}};
+$('replay-next').onclick=()=>{if(replayStage<4){replayStage++;renderReplay();}else{moleculeImages=Object.fromEntries(replayEvidence.candidates.filter(c=>c.image).map(c=>[c.compound_id,c.image]));activeRun=null;approvedStudy=null;studyNavigation.reset();page('workspace');renderResults(replayEvidence.report,{job_id:'recorded-abl1',mode:'recorded',status:'complete',assistant:{status:'off'}});}};
 function renderReplay(){
   const evidence=replayEvidence,report=evidence.report;
   $('replay-heading').textContent=['A question becomes a study.','Review happens before sharing.','Discovery finds its shortlist.','Human context changes the next step.','One study. Traceable evidence.'][replayStage];
@@ -363,14 +414,16 @@ function scoreGraphic(score, threshold) {
   return svg;
 }
 function renderDashboard(result) {
+  disposePoseViewers();
   const scores=clear('score-overview');scores.append(node('p','HUMAN DILI · ALL CANDIDATES','eyebrow'),node('h3','Concern, in context.'),node('p','Each dot is the candidate’s recorded DILI score. The vertical mark is its own decision threshold. Scores are not patient incidence. Select a candidate to explore its evidence.','field-note'));
   result.results.forEach(r=>{const a=r.toxicity_result.assessment, row=node('button',null,'score-row');row.type='button';row.append(node('span',r.compound_id),scoreGraphic(a.risk_score,a.threshold),node('strong',number(a.risk_score)),node('small',concern(r.toxicity_result)));row.onclick=()=>{resultView('explorer');renderCandidate(r);};scores.append(row);});
-  const lab=clear('discovery-lab');lab.append(node('p','DISCOVERY LAB · CURRENT STUDY','eyebrow'),node('h3','Binding evidence before liver concern.'),node('p','Boltz-2 outputs below belong to this study. Predicted structures and confidence do not establish measured binding. Atom correspondence to DILI features is only available when explicitly recorded.'));
+  const lab=clear('discovery-lab');lab.append(node('p','DISCOVERY LAB · CURRENT STUDY','eyebrow'),node('h3','Binding evidence before liver concern.'),node('p','Expand a candidate below and choose View 3D pose to inspect the predicted ligand inside its protein target.','field-note'),node('p','Boltz-2 outputs below belong to this study. Predicted structures and confidence do not establish measured binding. Atom correspondence to DILI features is only available when explicitly recorded.'));
   result.results.forEach(r=>{const d=r.discovery_result, details=node('details',null,'discovery-record');details.append(node('summary',r.compound_id+' · '+(d.rank===null?'Unranked':'Rank '+d.rank)+(d.shortlisted?' · Frozen shortlist':'')),node('p','Binder likelihood: '+number(d.mean_binding_probability)+' · Structural confidence: '+values(d.structural_confidence)));
     const artifacts=d.structures || [];
     if(!artifacts.length) details.append(node('p','No structure artifact is recorded.','field-note'));
-    artifacts.forEach((a,index)=>{details.append(node('p',(a.format || 'Structure')+' · '+a.origin+' · Atom mapping: '+a.atom_mapping_status),node('p','SHA-256: '+a.sha256,'artifact-checksum'));if(reportRun && reportRun.mode!=='recorded'){const jobId=reportRun.job_id,button=node('button','Download verified structure ↓','secondary');button.onclick=()=>action(button,async()=>{const file=await api('/api/results/structure',{job_id:jobId,compound_id:r.compound_id,index});saveFile(file.content,file.filename,file.mime);});details.append(button);}else details.append(node('p','Structure files are available for runs owned by this session. Imported and recorded reports expose metadata only.','field-note'));});
-    details.append(node('pre',JSON.stringify(d,null,2),'data-preview'));lab.append(details);
+    artifacts.forEach((a,index)=>{details.append(node('p',(a.format || 'Structure')+' · '+a.origin+' · Atom mapping: '+a.atom_mapping_status),node('p','SHA-256: '+a.sha256,'artifact-checksum'));if(reportRun && reportRun.mode!=='recorded'){const jobId=reportRun.job_id,button=node('button','Download verified structure ↓','secondary');button.onclick=()=>action(button,async()=>{const file=await api('/api/results/structure',{job_id:jobId,compound_id:r.compound_id,index});saveFile(file.content,file.filename,file.mime);});details.append(button);}else details.append(node('p','Owned runs and the verified public recording can load saved coordinates. Imported reports require a matching local structure file.','field-note'));});
+    if(artifacts.length)attachPoseViewer(details,r,reportRun);
+    const raw=node('details');raw.append(node('summary','Discovery source record'),node('pre',JSON.stringify(d,null,2),'data-preview'));details.append(raw);lab.append(details);
   });
   const box=clear('model-evaluation');box.append(node('p','MODEL & PROVENANCE','eyebrow'),node('h3','A reference, not a validation of this study.'),node('p','Loading repository evaluation…'));
   api('/api/results/evidence',{report:result,view:'model'}).then(data=>{

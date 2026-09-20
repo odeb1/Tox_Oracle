@@ -7,6 +7,9 @@
   <title>ToxOracle · Research workspace</title>
   <link rel="icon" href="data:,">
   <link rel="stylesheet" href="/static/workspace.css">
+  <script src="/static/vendor/3Dmol-2.5.5.min.js" defer></script>
+  <script src="/static/study-navigation.js" defer></script>
+  <script src="/static/pose-viewer.js" defer></script>
   <script src="/static/workspace.js" defer></script>
 </head>
 <body>
@@ -26,13 +29,15 @@
     <section id="workspace-page">
       <div class="intro"><div><p class="eyebrow">DISCOVERY, WITH HUMAN CONTEXT</p><h1>Start with a target.<br>Find your next experiment.</h1><p class="lead">Propose molecules. Screen binding. Freeze the shortlist.<br>See how human liver concern changes the follow-up.</p></div><div class="intro-note"><span class="note-number">01 — 05</span><p>One research question.<br>Every decision traceable.</p><span class="small">GenMol → Boltz-2 → Local DILI</span></div></div>
       <ol class="stepper" aria-label="Study progress">
-        <li class="current" data-step="input"><span>01</span> Set up</li>
-        <li data-step="review"><span>02</span> Review privately</li>
-        <li data-step="run"><span>03</span> Run discovery</li>
-        <li data-step="assess"><span>04</span> Assess liver concern</li>
-        <li data-step="results"><span>05</span> Results</li>
+        <li class="current" data-step="input"><button type="button" data-step-link="input"><span>01</span> Set up</button></li>
+        <li data-step="review"><button type="button" data-step-link="review" disabled><span>02</span> Review privately</button></li>
+        <li data-step="run"><button type="button" data-step-link="run" disabled><span>03</span> Run discovery</button></li>
+        <li data-step="assess"><button type="button" data-step-link="assess" disabled><span>04</span> Assess liver concern</button></li>
+        <li data-step="results"><button type="button" data-step-link="results" disabled><span>05</span> Results</button></li>
       </ol>
 
+      <div class="step-navigation"><button id="step-back" class="text-button" disabled>← Previous step</button><span id="step-view-label" role="status">Step 1 of 5</span><button id="step-next" class="text-button" disabled>Next step →</button><button id="step-live" class="secondary" hidden>Return to current step</button></div>
+      <section id="step-history-section" class="panel" hidden aria-live="polite"></section>
       <div id="study-context" class="study-context" hidden aria-live="polite"></div>
       <div id="input-section" class="workspace-grid">
         <form id="study-form" class="panel input-panel">

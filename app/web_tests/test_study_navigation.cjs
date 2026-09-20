@@ -1,0 +1,18 @@
+const {readFileSync}=require('node:fs');
+const vm=require('node:vm');
+const assert=require('node:assert/strict');
+const context=vm.createContext({});
+vm.runInContext(readFileSync('app/src/toxoracle_app/web_static/study-navigation.js','utf8')+';this.Navigation=StudyNavigation;',context);
+const n=new context.Navigation();
+assert.equal(n.select('assess'),false,'Future steps must remain inaccessible');
+n.advance('review');n.advance('run');n.advance('assess');
+assert.equal(n.select('run'),true);
+n.advance('assess');
+assert.equal(n.viewing,'run','Polling must not pull a reader out of discovery');
+n.advance('results');
+assert.equal(n.viewing,'run','Completion must retain the selected history view');
+assert.equal(n.reached,4);
+n.follow();assert.equal(n.viewing,'results');
+n.select('review');assert.equal(n.viewing,'review');
+n.reset();assert.equal(n.viewing,'input');assert.equal(n.select('results'),false);
+console.log('Study navigation: future-step gating, polling, completion, backtracking and reset passed.');

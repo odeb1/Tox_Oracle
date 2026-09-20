@@ -83,3 +83,26 @@ def test_structure_download_ownership_integrity_and_path_boundary(env, tmp_path)
     artifact.update(uri=str(outside),sha256=hashlib.sha256(outside.read_bytes()).hexdigest())
     path.write_text(json.dumps(report))
     assert client.post('/api/results/structure',json=payload).status_code == 400
+
+
+def test_recorded_pose_uses_verified_server_report_not_caller_paths(env, tmp_path):
+    client, sid, _, _ = env
+    saved = recorded_study()
+    directory = tmp_path/'artifacts/runs'/saved['manifest']['source_run']
+    directory.mkdir(parents=True)
+    pose = directory/'pose.cif'
+    pose.write_text('data_saved_pose\n')
+    artifact = saved['report']['results'][0]['discovery_result']['structures'][0]
+    artifact.update(uri=str(pose), sha256=hashlib.sha256(pose.read_bytes()).hexdigest())
+    from toxoracle_app import web
+    with patch.object(web, 'ROOT', tmp_path), patch('toxoracle_app.workspace_evidence.recorded_study',return_value=saved):
+        payload = dict(session_id=sid, source='recorded',compound_id=saved['report']['results'][0]['compound_id'],index=0,
+                       uri='/etc/passwd')
+        response=client.post('/api/results/structure',json=payload)
+        assert response.status_code == 200
+        assert response.json()['content'] == 'data_saved_pose\n'
+        assert response.json()['sha256'] == artifact['sha256']
+        assert response.json()['format'] == 'mmcif'
+        pose.write_text('changed')
+        assert client.post('/api/results/structure',json=payload).status_code == 400
+        assert client.post('/api/results/structure',json={**payload,'compound_id':'wrong-study'}).status_code == 400

@@ -210,7 +210,23 @@ partial, recorded and imported v3 reports use the same presentation. Results
 remain available while navigating back to the workspace.
 
 Verified structure downloads require a run owned by the current session. An
-imported report is view-only: paths in it are never opened. The Discovery lab does
+imported report is view-only: paths in it are never opened by the server. To view
+its 3D pose, select the matching local coordinate file; the browser checks its
+SHA-256 against the report before rendering. The Discovery lab does
 not substitute the teammate dashboard's unrelated DiffDock example for missing
 ABL1 evidence. See `docs/decisions/unified-results-and-sharing.md` for the hosting
 recommendation and the separate privacy boundary of a public demo.
+
+### Revisit steps and inspect poses
+
+Click any reached Workspace step to inspect its evidence while execution continues.
+Previous/Next moves among reached steps; Return to current step resumes following
+progress. Completed studies keep input/approval records read-only and expose the
+frozen discovery and DILI evidence separately. Navigation never grants approval,
+resubmits a job or reruns a model. Use New study to edit inputs after submission.
+
+In Results → Discovery lab, expand a candidate and choose View 3D pose. Drag to
+rotate, scroll/pinch to zoom, Focus ligand for the binding pose, and toggle Show
+protein. This requires WebGL and the saved coordinate file; missing artifacts
+are reported without fetching or generating a substitute. The recorded public
+study can use original files under its manifest's source run if still present.

@@ -27,9 +27,9 @@ rules and v3 contracts are unchanged.
 
 The hosted Streamlit site is not embedded or synchronized. Its unrelated saved
 DiffDock example is not evidence for a current ABL1 candidate. Current Boltz-2
-mmCIF poses have downloads and provenance; interactive 3D pose viewing remains a
-separate enhancement. Imported reports cannot instruct the server to read local
-structure paths. Importing also does not authenticate the supplied science.
+mmCIF poses have an interactive local 3D viewer, downloads and provenance. Imported reports cannot instruct the server to read local
+structure paths; they can load a user-selected local file only after a SHA-256
+match to the selected candidate artifact. Importing also does not authenticate the supplied science.
 
 ## Sharing: recommendation and alternatives
 
@@ -95,3 +95,36 @@ Official hosting references (checked 20 September 2026):
   extension's file-access permission; this is not claimed as a completed UI check.
 - JavaScript syntax and Git whitespace checks passed. No new NVIDIA inference was
   needed for this presentation-only change.
+
+## Workspace step history and 3D poses
+
+The Workspace stepper now navigates reached steps. Selecting a prior step changes
+only the view; polling and job completion retain that selection. Previous/Next
+and Return to current step controls are provided. Once a study is submitted,
+inputs and privacy approval are read-only records loaded from the owned run's
+`approved.json`; editing requires a new study and fresh review. Unavailable
+original records in imported or recorded results are explicitly identified.
+
+Discovery lab uses locally vendored 3Dmol.js 2.5.5 (BSD-3-Clause, package integrity
+and browser-build checksum recorded in `web_static/vendor/README.md`). It draws
+the selected candidate's saved Boltz-2 coordinates with protein cartoon and ligand
+sticks, rotation/zoom, Fit complex, Focus ligand and protein visibility controls.
+No structure is fetched from an external viewer, and no new pose is generated.
+
+Owned artifacts remain session-gated and checksum/containment verified. The
+recorded public study can also load its original local artifacts through its
+verified server-side manifest, restricted to that source run. Missing files fail
+visibly. Imported reports can select a matching local structure file, validated
+in the browser without upload. Pose atom mapping to DILI features is unavailable;
+visualization does not imply causal attribution or experimentally measured binding.
+
+Acceptance for the additional features: 85 web/privacy tests passed, plus the
+Node navigation-state checks (future-step gating, polling, completion, backtracking
+and reset). Chrome verified backward navigation from DILI to discovery, pre-run
+input/review navigation, post-run read-only approval, and the protein/ligand viewer
+with ligand focus and protein visibility. A fresh real cached four-compound run
+completed through privacy review and DILI without provider calls; its session-owned
+pose rendered successfully and its study reopened after a page reload. Public
+recorded pose rendering was also verified. Local coordinate file selection remains
+subject to the previously documented browser-extension upload permission; no
+automated file-chooser acceptance is claimed.

@@ -294,25 +294,36 @@ def create_app(config=None, *, detector=None, token=None, manager=None, prefligh
 
     @app.post("/api/results/structure")
     async def results_structure(request: Request):
-        job, data = await owned_job(request)
-        if not job.snapshot()["report_available"]:
-            raise WorkspaceError("report_not_ready")
-        try:
+        data = await payload(request)
+        session(data)
+        if data.get("source") == "recorded":
+            from .workspace_evidence import recorded_study
+            saved = recorded_study()
+            report = saved["report"]
+            boundary = ROOT / "artifacts/runs" / saved["manifest"]["source_run"]
+        else:
+            job = manager.owned(data["session_id"], data.get("job_id"))
+            if not job.snapshot()["report_available"]:
+                raise WorkspaceError("report_not_ready")
             report = load(job.directory / "science/combined.json")
+            boundary = job.directory / "science"
+        try:
             validate_screening_report(report)
             row = next(r for r in report["results"] if r["compound_id"] == data.get("compound_id"))
             index = data.get("index")
             if type(index) is not int or index < 0:
                 raise ValueError("invalid_index")
             artifact = row["discovery_result"]["structures"][index]
-            path = Path(artifact["uri"]).resolve()
+            path = Path(artifact["uri"])
+            path = (path if path.is_absolute() else ROOT / path).resolve()
             # Only owned run artifacts; never dereference an imported report's path or URL.
-            if not path.is_relative_to((job.directory / "science").resolve()) or path.stat().st_size > 10_000_000:
+            if not path.is_relative_to(boundary.resolve()) or path.stat().st_size > 10_000_000:
                 raise ValueError("invalid_artifact")
             raw = path.read_bytes()
             if hashlib.sha256(raw).hexdigest() != artifact["sha256"]:
                 raise ValueError("changed_artifact")
-            return dict(content=raw.decode("utf-8"), filename=path.name, mime="text/plain")
+            return dict(content=raw.decode("utf-8"), filename=path.name, mime="text/plain",
+                        format=artifact["format"], sha256=artifact["sha256"])
         except (ContractValidationError, KeyError, TypeError, ValueError, StopIteration, IndexError, OSError):
             raise WorkspaceError("artifact_not_ready") from None
 
