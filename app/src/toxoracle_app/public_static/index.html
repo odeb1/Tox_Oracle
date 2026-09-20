@@ -31,6 +31,15 @@
 <div class="routing-heading"><div><p class="eyebrow">AGENT-LED DISCOVERY</p><h2>One research goal. The right model pathway.</h2></div><span id="routing-context" class="pill">Route preview</span></div>
 <p class="routing-intro">Your prompt and candidate inputs → LLM agent → BioNeMo workflow → Toxicity assessment</p>
 <p class="field-note">The agent interprets your research goal and plans the supported workflow. The discovery path depends on whether you need new molecules or want to evaluate candidates you already have.</p>
+<fieldset class="agent-picker" aria-describedby="agent-preview-note">
+<legend>Choose your discovery agent <span class="agent-preview-badge">Demo preview</span></legend>
+<div class="agent-options">
+<label class="agent-option"><input type="radio" name="discovery-agent-preview" value="nemotron" checked><span><strong>NVIDIA Nemotron</strong><small>3.5 Lightning</small></span></label>
+<label class="agent-option"><input type="radio" name="discovery-agent-preview" value="astra"><span><strong>OpenAI Astra</strong><small>Discovery agent</small></span></label>
+<label class="agent-option agent-future"><input type="radio" name="discovery-agent-preview" value="rosalind" disabled><span><strong>OpenAI Rosalind</strong><small>Future option · API unavailable</small></span></label>
+</div>
+<p id="agent-preview-note" class="field-note">Preview your preferred agent. This selection does not change execution or the recorded results.</p>
+</fieldset>
 <div class="routing-paths">
 <article class="routing-path" data-route="generated"><div class="routing-path-heading"><h3>Generate and evaluate</h3><span class="routing-selected" hidden>Selected path</span></div><p>“Propose drug candidates for my target.”</p><p class="routing-pipeline"><strong>GenMol</strong> <span>→</span> <strong>Boltz-2</strong> <span>→</span> <strong>Toxicity assessment</strong></p><p class="field-note">Generate molecules, screen target binding, then assess toxicity concern.</p></article>
 <article class="routing-path" data-route="supplied"><div class="routing-path-heading"><h3>Evaluate supplied candidates</h3><span class="routing-selected" hidden>Selected path</span></div><p>“Evaluate these candidates against my target.”</p><p class="routing-pipeline"><strong>Boltz-2</strong> <span>→</span> <strong>Toxicity assessment</strong></p><p class="field-note">Use your candidate structures and target. Screen binding directly, then assess toxicity concern.</p></article>

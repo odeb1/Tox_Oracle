@@ -1334,3 +1334,35 @@ body[data-study-stage="run"] .intro,body[data-study-stage="assess"] .intro,body[
 .result-order-controls select{display:block;width:auto;min-width:170px;margin-top:6px;background:var(--white)}
 .result-order-controls p{flex:1;min-width:200px;margin:0;padding-bottom:8px}
 @media(max-width:600px){.result-order-controls{padding:16px}.result-order-controls label{flex:1}.result-order-controls select{width:100%;min-width:0}}
+
+/* Agent selection previews product choices without changing execution. */
+.agent-picker{margin:22px 0;padding:0;border:0;min-width:0}
+.agent-picker legend{font-weight:600;color:var(--oxford);margin-bottom:12px}
+.agent-preview-badge{display:inline-block;margin-left:8px;padding:3px 8px;border-radius:20px;background:var(--paper);font-size:11px;font-weight:500;color:var(--muted)}
+.agent-options{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.agent-option{display:flex;align-items:center;gap:12px;margin:0;padding:16px;border:1px solid var(--line);border-radius:12px;background:var(--paper);cursor:pointer}
+.agent-option:has(input:checked){border-color:var(--blue);background:var(--light-blue);box-shadow:inset 0 3px var(--blue)}
+.agent-option:has(input:focus-visible){outline:2px solid var(--blue);outline-offset:3px}
+.agent-option input{width:17px;height:17px;margin:0;flex:0 0 auto;accent-color:var(--blue)}
+.agent-option strong,.agent-option small{display:block}.agent-option strong{font-size:14px}.agent-option small{font-size:12px;color:var(--muted);margin-top:5px}
+.agent-future{opacity:.5;cursor:not-allowed}
+#agent-preview-note{margin:12px 0 0}
+#result-metrics{grid-template-columns:minmax(0,1fr) 22px minmax(0,1fr) 22px minmax(0,1fr) 22px minmax(0,1fr);gap:8px;align-items:stretch}
+#result-metrics .metric{min-width:0;padding:22px 18px}
+.metric-connector{align-self:center;text-align:center;font-size:25px;color:var(--blue)}
+.metric-connector.status-connector{color:var(--muted)}
+/* A restrained ivory-to-charcoal progression across the summary cards. */
+#result-metrics .metric:nth-of-type(1){background:#f1f0eb;border-color:#dedfd8}
+#result-metrics .metric:nth-of-type(2){background:#dce5df;border-color:#c4d1c8}
+#result-metrics .metric:nth-of-type(3){background:#526e68;border-color:#48635d}
+#result-metrics .metric:nth-of-type(4){background:#293b38;border:1px solid #293b38}
+#result-metrics .metric span{color:#465750}
+#result-metrics .metric .value{color:#243b33}
+#result-metrics .metric:nth-of-type(n+3) span{color:#f0f5f2}
+#result-metrics .metric:nth-of-type(n+3) .value{color:#fff}
+@media(max-width:900px){
+ .agent-options{grid-template-columns:1fr}
+ #result-metrics{grid-template-columns:1fr;gap:6px}
+ .metric-connector{transform:rotate(90deg);line-height:24px}
+ #result-metrics .metric{padding:18px 22px}
+}
