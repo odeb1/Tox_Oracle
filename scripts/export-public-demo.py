@@ -6,6 +6,7 @@ import hashlib
 import io
 import json
 import re
+import runpy
 from pathlib import Path
 from toxoracle_app.screening import validate_screening_report, render
 from toxoracle_app.workspace_results import candidate_evidence, model_context
@@ -89,7 +90,8 @@ def export(slug, run_id):
     manifest = {'version':1, 'slug':slug, 'source_run':run_id, 'source_report_sha256':digest(report_bytes), 'execution_mode':job['mode'], 'status':job['status'], 'raw_responses':'Not published; URNs identify original content hashes.', 'assets':assets}
     (folder / 'manifest.json').write_bytes(encode(manifest))
     # Reject stale/unreviewed files rather than accidentally packaging them.
-    if {str(p.relative_to(folder)) for p in folder.rglob('*') if p.is_file()} != set(assets) | {'manifest.json'}:
+    derived = {'cohort-study.json', 'cohort-report.json', 'cohort-report.html'} if slug == 'generated' else set()
+    if {str(p.relative_to(folder)) for p in folder.rglob('*') if p.is_file()} - derived != set(assets) | {'manifest.json'}:
         raise ValueError('Unexpected public files; review and remove obsolete assets')
     print(f'{slug}: {len(report["results"])} candidates; {sum(len(r["discovery_result"]["structures"]) for r in report["results"])} verified poses; {len(assets)} assets')
     return {'slug':slug, 'manifest_sha256':digest(encode(manifest))}
@@ -97,3 +99,5 @@ def export(slug, run_id):
 if __name__ == '__main__':
     studies = [export(slug, rid) for slug, rid in SOURCES.items()]
     (OUT / 'index.json').write_bytes(encode({'version':1, 'studies':studies}))
+
+    runpy.run_path(str(ROOT / 'scripts/export-demo-cohort.py'), run_name='__main__')

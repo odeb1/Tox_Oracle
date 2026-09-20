@@ -74,6 +74,32 @@ A Git-connected alternative uses root `vercel.json`: Other framework, Node 22+,
 `node scripts/build-public-demo.mjs`, output `dist`. CLI deployment from `dist`
 is preferred because only reviewed static files are uploaded.
 
+## Complete-evidence demo cohort
+
+The generated walkthrough now uses a derived 18-candidate cohort: only candidates
+with successful discovery and toxicity assessments. Both original shortlisted
+candidates, all ranks, scores and 18 poses are unchanged. The four Overview cards
+show 18 assessed, 2 shortlisted, 2 prioritised for liver validation and 0 incomplete.
+The incomplete count is a separate status, not a downstream shortlist outcome.
+
+The original `generated/study.json`, `report.json`, `report.html` and assets remain
+unchanged. `manifest.json` points the UI to `cohort-study.json`, `cohort-report.json`
+and `cohort-report.html`. Source report and generation-ledger downloads remain in
+Methods & setup. Original privacy approvals and verbatim agent notes refer to the
+full 20-candidate source run; agent notes are labelled and collapsed in the cohort
+walkthrough. Playback filters excluded candidate events and recalculates cohort
+progress counters. Saved playback uses a new storage key to avoid restoring old
+event offsets. This is a presentation export, not a new scientific run.
+
+To rebuild the cohort from the reviewed source recording:
+
+```sh
+PYTHONPATH=app/src:discovery/src:. toxicity/.venv/bin/python scripts/export-demo-cohort.py
+node scripts/build-public-demo.mjs
+```
+
+The full exporter also rebuilds the cohort after exporting both original recordings.
+
 ## Updating the recordings
 
 The exporter is intentionally restricted to the two user-selected source runs:

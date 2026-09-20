@@ -13,6 +13,9 @@ async function main(){
  const transport=async(url,options)=>{assert.equal(options.credentials,'omit');assert.ok(url.startsWith('/studies/'));requests.push(url);try{const data=await fs.readFile(root+url);return {ok:true,arrayBuffer:async()=>data};}catch{return {ok:false};}};
  for(const slug of ['generated','supplied']){
   const source=new StaticStudySource(slug,transport);const study=await source.load();
+  assert.equal(study.report.results.length,slug==='generated'?18:4);
+  assert.equal(study.run.candidate_count,study.report.results.length);
+  assert.ok(study.report.results.every(r=>r.discovery_result.status==='ok'));
   assert.equal(study.run.mode,'live');assert.equal(study.run.assistant.status,'complete');
   checkSavedReview(study);
   let poses=0;

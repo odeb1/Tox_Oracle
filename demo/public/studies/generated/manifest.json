@@ -1,5 +1,17 @@
 {
   "assets": {
+    "cohort-report.html": {
+      "bytes": 261463,
+      "sha256": "983e1bfcf12e883d89ac4d2477d16ea5dcbf07c906bac150f48b40d5a4d2a043"
+    },
+    "cohort-report.json": {
+      "bytes": 219891,
+      "sha256": "d755441d084da5d74c7c7896a82f54aeb6daa484d22929bc6fbe07b61f97fe53"
+    },
+    "cohort-study.json": {
+      "bytes": 353537,
+      "sha256": "18ae7c408ff0d33b89c146a70b15347385060f2c0fa66e317e524a196628c598"
+    },
     "molecules/GEN_116c1ddbcd0f3a73d53f4b12/Morgan_bit_1160-labels.svg": {
       "bytes": 52336,
       "sha256": "5e7c2edd852d4174a4f54aaad7f76ee9e85718f1e457ec96f52f965dae975cb6"
@@ -1846,6 +1858,12 @@
     }
   },
   "execution_mode": "live",
+  "presentation": {
+    "html": "cohort-report.html",
+    "report": "cohort-report.json",
+    "source_study_sha256": "aef571d4785fdd33d23081e6d4a7856e52e014e2ae2f799b40435e0c10d4604b",
+    "study": "cohort-study.json"
+  },
   "raw_responses": "Not published; URNs identify original content hashes.",
   "slug": "generated",
   "source_report_sha256": "9ed73e4ece779f0f714253a457d27d75120796acf00edf6b968319d250686cc5",

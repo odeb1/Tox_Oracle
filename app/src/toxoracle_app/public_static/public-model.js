@@ -20,7 +20,7 @@ class StaticStudySource {
     const pin=index.studies.find(s=>s.slug===this.slug);
     const bytes=await this.verify(await this.request(this.base+'manifest.json'),pin.manifest_sha256);
     this.manifest=JSON.parse(new TextDecoder().decode(bytes));
-    this.study=JSON.parse(await this.text('study.json'));
+    this.study=JSON.parse(await this.text(this.manifest.presentation?.study || 'study.json'));
     return this.study;
   }
   async bytes(path) {

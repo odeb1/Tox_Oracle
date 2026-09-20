@@ -1351,15 +1351,17 @@ body[data-study-stage="run"] .intro,body[data-study-stage="assess"] .intro,body[
 #result-metrics .metric{min-width:0;padding:22px 18px}
 .metric-connector{align-self:center;text-align:center;font-size:25px;color:var(--blue)}
 .metric-connector.status-connector{color:var(--muted)}
-/* A restrained ivory-to-charcoal progression across the summary cards. */
-#result-metrics .metric:nth-of-type(1){background:#f1f0eb;border-color:#dedfd8}
-#result-metrics .metric:nth-of-type(2){background:#dce5df;border-color:#c4d1c8}
-#result-metrics .metric:nth-of-type(3){background:#526e68;border-color:#48635d}
-#result-metrics .metric:nth-of-type(4){background:#293b38;border:1px solid #293b38}
-#result-metrics .metric span{color:#465750}
-#result-metrics .metric .value{color:#243b33}
-#result-metrics .metric:nth-of-type(n+3) span{color:#f0f5f2}
-#result-metrics .metric:nth-of-type(n+3) .value{color:#fff}
+/* Restrained business palette: slate, blue, muted rose and soft coral. */
+#result-metrics .metric:nth-of-type(1){background:#edf2f8;border-color:#cdd8e5}
+#result-metrics .metric:nth-of-type(2){background:#234e78;border-color:#234e78}
+#result-metrics .metric:nth-of-type(3){background:#9a4e5c;border-color:#9a4e5c}
+#result-metrics .metric:nth-of-type(4){background:#f4e5e3;border:1px solid #d7aaa6}
+#result-metrics .metric span{color:#40536b}
+#result-metrics .metric .value{color:#1d3654}
+#result-metrics .metric:nth-of-type(2) span,#result-metrics .metric:nth-of-type(3) span{color:#f8f5f6}
+#result-metrics .metric:nth-of-type(2) .value,#result-metrics .metric:nth-of-type(3) .value{color:#fff}
+#result-metrics .metric:nth-of-type(4) span{color:#794c50}
+#result-metrics .metric:nth-of-type(4) .value{color:#723941}
 @media(max-width:900px){
  .agent-options{grid-template-columns:1fr}
  #result-metrics{grid-template-columns:1fr;gap:6px}

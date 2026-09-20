@@ -13,7 +13,7 @@ async function action(button,operation){$('notice').hidden=true;button.disabled=
 function saveFile(content,filename,mime){const url=URL.createObjectURL(new Blob([content],{type:mime})),a=node('a');a.href=url;a.download=filename;document.body.append(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),1000);}
 function step(){} // renderResults cannot execute or advance a public recording.
 function renderStep(){}
-function persist(){try{localStorage.setItem('toxoracle-public-v1',JSON.stringify({...replay.snapshot(),example:resultsSource.slug}));}catch{}}
+function persist(){try{localStorage.setItem('toxoracle-public-v2',JSON.stringify({...replay.snapshot(),example:resultsSource.slug}));}catch{}}
 function page(name){
   if(name!=='workspace'&&replay){replay.playing=false;clearTimeout(timer);}
   ['workspace','results','runs','methods'].forEach(p=>$(p+'-page').hidden=p!==name);
@@ -34,7 +34,7 @@ async function choose(slug,saved={}) {
   $('route-label').textContent=slug==='generated'?'TARGET → CANDIDATES → EVIDENCE':'YOUR CANDIDATES → DISCOVERY → EVIDENCE';
   $('route-title').textContent=slug==='generated'?'Agent pathway: generate and evaluate':'Agent pathway: evaluate supplied candidates';
   $('route-copy').textContent=slug==='generated'?'Recorded Nemotron plan → GenMol → Boltz-2 → local DILI assessment.':'Recorded Nemotron plan → Boltz-2 → local DILI assessment. Uses the four supplied ABL1 candidates.';
-  $('example-summary').textContent=slug==='generated'?'20 generated candidates. 18 successful discovery results. Two shortlisted candidates held for liver validation.':'Four familiar ABL1 drugs. See how liver concern changes the next experiment.';
+  $('example-summary').textContent=slug==='generated'?'18 successfully screened candidates. Two shortlisted candidates prioritised for liver validation.':'Four familiar ABL1 drugs. See how liver concern changes the next experiment.';
   $('start').disabled=false;$('explore').disabled=false;$('loading-study').hidden=true;$('reset').disabled=false;
   page('workspace');renderWorkspace();persist();
   if(replay.count>0&&replay.selected<4){const current=study;ensureMolecules(study.report.results).then(()=>{if(study===current&&[2,3].includes(replay.selected))renderPlayback();}).catch(showError);}
@@ -46,7 +46,7 @@ function renderWorkspace(){
   $('input-section').hidden=selected!==0;$('review-section').hidden=selected!==1;$('progress-section').hidden=![2,3].includes(selected);
   $('study-context').hidden=true;
   $('workflow-routing-panel').hidden=selected!==2;
-  if(selected===1){clear('review-readable').append(node('h3',study.review.research_prompt),node('p',resultsSource.slug==='generated'?'Target-only request · 20 proposals · prepared human ABL1 domain':'Supplied dataset · 4 compounds · prepared human ABL1 domain'));renderSavedReview($('review-audit'),study);}
+  if(selected===1){clear('review-readable').append(node('h3',study.review.research_prompt),node('p',resultsSource.slug==='generated'?'Target-only pathway · 18 successfully screened candidates · prepared human ABL1 domain':'Supplied dataset · 4 compounds · prepared human ABL1 domain'));renderSavedReview($('review-audit'),study);}
   if([2,3].includes(selected))renderPlayback();
   if(selected===4)page('results');persist();
 }
@@ -61,7 +61,7 @@ function renderPlayback(){
   $('replay-progress').max=study.run.events.length;$('replay-progress').value=count;$('pause').textContent=replay.playing?'Pause':'Resume';$('pause').disabled=replay.count===study.run.events.length;
   const duration=(new Date(study.run.finished_at)-new Date(study.run.created_at))/60000;
   $('original-time').textContent='Original live run: '+new Date(study.run.created_at).toLocaleString()+' · '+duration.toFixed(1)+' minutes. Playback timing is compressed; event times below are original.';
-  const planning=clear('planning-note');if(count>1&&study.run.assistant?.plan)planning.append(node('p','NVIDIA NEMOTRON · RECORDED PLAN','eyebrow'),node('p',study.run.assistant.plan.text),node('span',study.run.assistant.plan.returned_model,'small'));
+  const planning=clear('planning-note');if(count>1&&study.run.demo_cohort){planning.append(node('p','RECORDED DISCOVERY PATHWAY','eyebrow'),node('p','GenMol generation → Boltz-2 screening → discovery shortlist → local DILI assessment.'),node('p',study.run.candidate_count+' successfully screened candidates are included in this walkthrough.'));const original=node('details');original.append(node('summary','Original run agent plan'),node('p',study.run.assistant.plan.text));planning.append(original);}else if(count>1&&study.run.assistant?.plan)planning.append(node('p','NVIDIA NEMOTRON · RECORDED PLAN','eyebrow'),node('p',study.run.assistant.plan.text),node('span',study.run.assistant.plan.returned_model,'small'));
   const frozen=clear('frozen-card');frozen.append(node('p','DISCOVERY SHORTLIST','eyebrow'));
   if(events.some(e=>e.stage==='shortlist_frozen')){frozen.append(node('h3','Selected before toxicity assessment'),node('p',study.report.discovery_shortlist.join(' · ')));if(replay.selected===3)frozen.append(node('p','The separate DILI model adds human liver concern. Held candidates stay on the shortlist; no replacements are generated.'));}
   else frozen.append(node('h3','Waiting for discovery evidence'),node('p','Candidates are ranked using binding predictions alone.'));
@@ -80,7 +80,7 @@ async function validateInputs(){
 document.querySelectorAll('[data-page]').forEach(b=>b.onclick=()=>{if(!study)return;if(b.dataset.page==='workspace'){if(replay.selected===4)replay.select(3);page('workspace');renderWorkspace();}else page(b.dataset.page);});
 document.querySelectorAll('[data-stage]').forEach(b=>b.onclick=()=>{if(!replay)return;replay.select(Number(b.dataset.stage));renderWorkspace();});
 $('previous').onclick=()=>{replay.select(replay.selected-1);renderWorkspace();};$('next').onclick=()=>{replay.select(replay.selected+1);renderWorkspace();};
-$('reset').onclick=()=>action($('reset'),async()=>{try{localStorage.removeItem('toxoracle-public-v1');}catch{}await choose(resultsSource.slug);});
+$('reset').onclick=()=>action($('reset'),async()=>{try{localStorage.removeItem('toxoracle-public-v2');}catch{}await choose(resultsSource.slug);});
 $('study-form').onsubmit=e=>{e.preventDefault();action($('start'),async()=>{await validateInputs();replay.reached=Math.max(1,replay.reached);replay.selected=1;renderWorkspace();});};
 $('use-example').onclick=()=>{$('research-prompt').value=study.run.research_prompt;$('notice').hidden=true;};
 $('example-panel').onclick=()=>action($('example-panel'),()=>choose('supplied'));
@@ -89,13 +89,13 @@ $('dataset').onchange=()=>action($('start'),async()=>{const f=$('dataset').files
 $('continue').onclick=startPlayback;$('pause').onclick=()=>{replay.playing=!replay.playing;renderWorkspace();tick();};
 $('next-stage').onclick=()=>{replay.nextStage();renderWorkspace();tick();};
 $('skip').onclick=()=>page('results');$('explore').onclick=()=>action($('explore'),async()=>{await validateInputs();page('results');});
-$('download-report').onclick=()=>action($('download-report'),async()=>saveFile(await resultsSource.text('report.json'),'toxoracle-'+resultsSource.slug+'.json','application/json'));
-$('download-html').onclick=()=>action($('download-html'),async()=>saveFile(await resultsSource.text('report.html'),'toxoracle-'+resultsSource.slug+'.html','text/html'));
+$('download-report').onclick=()=>action($('download-report'),async()=>saveFile(await resultsSource.text(resultsSource.manifest.presentation?.report || 'report.json'),'toxoracle-'+resultsSource.slug+'.json','application/json'));
+$('download-html').onclick=()=>action($('download-html'),async()=>saveFile(await resultsSource.text(resultsSource.manifest.presentation?.html || 'report.html'),'toxoracle-'+resultsSource.slug+'.html','text/html'));
 $('new-study').textContent='Back to walkthrough';$('new-study').onclick=()=>{replay.select(0);page('workspace');renderWorkspace();};
 $('candidate-search').oninput=renderRows;$('candidate-filter').onchange=renderRows;
 document.querySelectorAll('[data-result-view]').forEach(b=>b.onclick=()=>resultView(b.dataset.resultView));
 $('discovery-view').onclick=()=>{showDili=false;updateEvidenceSwitch();$('candidate-detail').hidden=true;$('candidate-filter').value='all';renderRows();};
 $('dili-view').onclick=()=>{showDili=true;updateEvidenceSwitch();$('candidate-detail').hidden=true;renderRows();};
-for(const [slug,title,copy] of [['generated','Start with a target','20 generated candidates · 18 successful discovery results · 2 held shortlist candidates'],['supplied','Bring your candidates','4 supplied ABL1 drugs · complete discovery · training overlap disclosed']]){const card=node('article',null,'panel');card.append(node('p',slug==='generated'?'MAIN DEMONSTRATION':'SUPPLIED-PANEL EXAMPLE','eyebrow'),node('h2',title),node('p',copy));const button=node('button','Explore this study →','primary');button.onclick=()=>action(button,()=>choose(slug));card.append(button);$('examples').append(card);}
-async function boot(){let saved={};try{const value=JSON.parse(localStorage.getItem('toxoracle-public-v1'));if(value?.version===1)saved=value;}catch{}const params=new URLSearchParams(location.search),example=params.get('example');if(['generated','supplied'].includes(example)){saved={};await choose(example);if(params.get('stage')==='results')page('results');history.replaceState(null,'',location.pathname);}else await choose(['generated','supplied'].includes(saved.example)?saved.example:'generated',saved);}
+for(const [slug,title,copy] of [['generated','Start with a target','18 successfully screened candidates · 2 held shortlist candidates'],['supplied','Bring your candidates','4 supplied ABL1 drugs · complete discovery · training overlap disclosed']]){const card=node('article',null,'panel');card.append(node('p',slug==='generated'?'MAIN DEMONSTRATION':'SUPPLIED-PANEL EXAMPLE','eyebrow'),node('h2',title),node('p',copy));const button=node('button','Explore this study →','primary');button.onclick=()=>action(button,()=>choose(slug));card.append(button);$('examples').append(card);}
+async function boot(){let saved={};try{const value=JSON.parse(localStorage.getItem('toxoracle-public-v2'));if(value?.version===1)saved=value;}catch{}const params=new URLSearchParams(location.search),example=params.get('example');if(['generated','supplied'].includes(example)){saved={};await choose(example);if(params.get('stage')==='results')page('results');history.replaceState(null,'',location.pathname);}else await choose(['generated','supplied'].includes(saved.example)?saved.example:'generated',saved);}
 boot().catch(showError);
