@@ -12,8 +12,10 @@ This document remains the frozen MVP/demo scope; advanced acceptance is recorded
 
 ## 1. Objective and demonstration
 
-A researcher enters a prompt, selects a validated target and uploads a candidate
-dataset in the ToxOracle web app. The public ABL1 panel remains the fixed demo case.
+A researcher names a target in a prompt. Without a dataset, the primary demo generates
+candidates with the existing GenMol protocol, then screens them. Optional CSV/JSON
+candidates select the supplied-panel route. Execution uses the prepared human ABL1
+domain; other targets require preparation. The frozen public panel remains available.
 BioNeMo supplies discovery evidence; the local ToxOracle model adds human DILI
 concern. Show the discovery-only shortlist and how that additional information
 changes follow-up decisions and recommended experiments.
@@ -43,7 +45,7 @@ flowchart TD
     R -. validated plan and interpretation .-> J
 ```
 
-The first standalone release runs on loopback beside the privacy filter and DILI
+The standalone workspace runs on loopback beside the privacy filter and DILI
 model. A FastAPI backend reuses the existing screening executor; a same-origin
 browser interface provides input, review, progress and candidate inspection.
 The privacy gateway's session, version and approval checks are shared in process.
@@ -167,9 +169,9 @@ calls categorically, or report unavailable. Agreement is not correctness.
 6. Verify the web approval boundary, edit invalidation, job ownership, duplicate
    submission, offline-only execution, cancellation, partial failures and dashboard.
 7. Run the full web path with the real local assets, separately from offline fixture
-   tests. In this checkout the DILI artifact, privacy checkpoint/runtime and Boltz-2
-   cache are absent. Offline/backend and browser checks do not establish a live web
-   scientific run; restore the existing artifacts before this acceptance step.
+   tests. Offline/backend and browser checks alone do not establish a live web
+   scientific run. Real supplied-panel acceptance was subsequently completed; see
+   `evaluation/reports/researcher_demo_acceptance_v1.json`. Prompt-only acceptance is recorded separately.
 
 Preserve earlier runs. Cache reuse is opt-in and requires exact input/configuration
 hashes and response integrity; cached execution must be explicit. Missing hosted
@@ -177,7 +179,7 @@ version metadata remains unreported. Do not imply reproducibility of a live mode
 version that the service does not expose. Every failed compound remains visible.
 
 Full three-case caching, recording and rehearsal are follow-on demo work. Additional
-targets, generation, new toxicity endpoints, exposure-aware models, custom MCP and
+targets, new toxicity endpoints, exposure-aware models, custom MCP and
 preclinical-miss case curation are outside this initial four-step implementation.
 
 ## 8. Runbooks and sources

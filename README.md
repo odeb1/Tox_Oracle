@@ -2,7 +2,7 @@
 
 An agentic drug-discovery workflow with a separate human liver-toxicity assessment, built for the London AI × Bio Hackathon.
 
-The researcher workspace coordinates existing BioNeMo discovery tools and a ToxOracle DILI predictor to help researchers prioritise candidates and choose follow-up experiments. Optional Rosalind notes require a verified callable API and explicit sharing approval.
+The researcher workspace coordinates existing BioNeMo discovery tools and a ToxOracle DILI predictor to help researchers prioritise candidates and choose follow-up experiments. NVIDIA Nemotron interprets the approved prompt and explains the computed evidence.
 
 **Status:** The discovery-first workflow now screens a frozen public ABL1 panel with
 BioNeMo Boltz-2, adds the existing local DILI model and produces a v3 before/after
@@ -16,11 +16,11 @@ Start with the [Rosalind screening runbook](docs/runbooks/rosalind-screening.md)
 is retrospective; candidate training membership is displayed.
 
 **Target-only generation:** supplied-candidate and target-only ABL1 modes are
-available through `./scripts/toxoracle-design`. GenMol proposes
+available through the prompt-first web app and `./scripts/toxoracle-design`. GenMol proposes
 fragment-derived molecules, Boltz-2 supplies discovery evidence, and the unchanged
 DILI baseline adds liver concern. See the
 [advanced runbook](docs/runbooks/target-only-generation.md) for commands and acceptance
-status. This does not change the frozen MVP demonstration above.
+status. Target-only generation is the primary web demonstration; the frozen supplied-panel experiment remains available.
 
 See the [Team B runbook](docs/runbooks/team-b-local-mvp.md) for reproducible training,
 privacy setup and real cached DILI outputs. The user has passed the browser smoke test.
@@ -29,6 +29,8 @@ privacy setup and real cached DILI outputs. The user has passed the browser smok
 
 The standalone Oxford Blue workspace owns study input, local privacy review and
 approval, background execution, progress, and the discovery/DILI results dashboard.
+Name ABL1 in a research question and leave the dataset empty for GenMol proposals;
+optional candidate data selects screening. No target dropdown is needed.
 Binding and DILI remain separate. The top-two discovery shortlist is frozen before
 local DILI inference, making changes in follow-up visible.
 
@@ -44,10 +46,9 @@ scientific environment and verified local privacy checkpoint/runtime. See the
 [research workspace runbook](docs/runbooks/research-workspace.md) for full setup.
 Missing privacy assets block submission. No models are trained or downloaded at startup.
 
-Rosalind API aliases were callable in a connection test but returned a GPT-5.5
-identity, so the app does **not** claim verified Rosalind inference. Its optional
-adapter stays disabled until API access and response identity pass verification.
-The Workbench launcher is not used as a backend API.
+Nemotron 3.5 Lightning is the web assistant; its model identity is checked on every
+response. The old Rosalind adapter is dormant. The Workbench launcher is not used as
+a backend API, and the app does not claim Rosalind inference.
 
 ## Streamlit presentation demo
 

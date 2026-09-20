@@ -45,6 +45,10 @@ class WorkspaceError(ValueError):
 
 
 class CachedOnlyClient:
+    def generate(self, payload):
+        from toxoracle_discovery.generation import GenerationError
+        raise GenerationError("Cached-only generation has no network fallback")
+
     def predict(self, payload):
         from toxoracle_discovery.boltz2 import BoltzError
         raise BoltzError("Cached-only execution has no network fallback")
@@ -64,7 +68,11 @@ def check_execution(config, request, target, mode):
             raise WorkspaceError("scientific_environment_unavailable")
     except (OSError, subprocess.TimeoutExpired):
         raise WorkspaceError("scientific_environment_unavailable") from None
-    if mode == "cached":
+    if mode == "cached" and request.get("mode") == "generate_screen":
+        # Every later dynamic cache lookup has a network-denying client.
+        if not (config.cache.parent / "genmol").is_dir():
+            raise WorkspaceError("complete_cache_required")
+    elif mode == "cached":
         from toxoracle_discovery.boltz2 import cache_key, cached_response, BoltzError
         try:
             for compound in request["compounds"]:
@@ -102,6 +110,9 @@ class Job:
     def progress(self, event):
         with self.lock:
             self.state["events"].append(dict(event, at=now()))
+            if event["stage"] == "candidates_ready":
+                self.state["candidates"] = event["candidates"]
+                self.state["candidate_count"] = len(event["candidates"])
             if event["stage"] == "shortlist_frozen":
                 self.state["shortlist"] = event["shortlist"]
                 self.state["discovery_sha256"] = event["discovery_sha256"]
@@ -109,7 +120,9 @@ class Job:
 
 
 class JobManager:
-    def __init__(self, config, *, runner=execute, assistant=None):
+    def __init__(self, config, *, runner=execute, assistant=None, design_runner=None):
+        from .design_cli import execute as design_execute
+        self.design_runner = design_runner or design_execute
         self.config, self.runner, self.assistant = config, runner, assistant
         self.jobs = {}
         self.lock = threading.Lock()
@@ -151,8 +164,9 @@ class JobManager:
             write_json(directory / "target.json", target)
             job = Job(job_id, owner, snapshot["scan_id"], directory, dict(
                 job_id=job_id, status="queued", stage="queued", created_at=now(), events=[],
-                candidates=[dict(compound_id=c["compound_id"], canonical_smiles=c["canonical_smiles"]) for c in approved["request"]["compounds"]],
-                candidate_count=len(approved["request"]["compounds"]), target_id=target["target_id"],
+                candidates=[dict(compound_id=c["compound_id"], canonical_smiles=c["canonical_smiles"]) for c in approved["request"].get("compounds", [])],
+                candidate_count=len(approved["request"].get("compounds", [])), target_id=target["target_id"],
+                workflow=approved.get("workflow", "screen"), requested_count=approved["request"].get("count"),
                 mode=approved["mode"], research_prompt=approved["research_prompt"],
                 shortlist=None, discovery_sha256=None, report_available=False, error=None,
                 assistant={"status": "pending" if approved["use_assistant"] else "off"}))
@@ -208,8 +222,21 @@ class JobManager:
                 target=job.directory / "target.json", output_dir=job.directory / "science",
                 model=self.config.model, model_python=self.config.model_python,
                 cache_dir=self.config.cache if approved["mode"] == "cached" else None)
-            status = self.runner(args, client=CachedOnlyClient() if approved["mode"] == "cached" else None,
-                                 progress=job.progress, cancelled=job.stop.is_set, quiet=True)
+            generating = approved.get("workflow") == "generate_screen"
+            if generating:
+                args.resume = False
+                args.cache_dir = self.config.cache.parent if approved["mode"] == "cached" else None
+                offline = CachedOnlyClient() if approved["mode"] == "cached" else None
+                status = self.design_runner(args, genmol_client=offline, boltz_client=offline,
+                    progress=job.progress, cancelled=job.stop.is_set, quiet=True)
+                wrapper = load(args.output_dir / "design-report.json")
+                job.update(generation=wrapper.get("generation"), workflow_limitations=wrapper["limitations"])
+                if not (args.output_dir / "combined.json").exists():
+                    job.update(status="partial", stage="failed", error="generation_no_assessment", finished_at=now())
+                    return
+            else:
+                status = self.runner(args, client=CachedOnlyClient() if approved["mode"] == "cached" else None,
+                                     progress=job.progress, cancelled=job.stop.is_set, quiet=True)
             report = load(args.output_dir / "combined.json")
             validate_screening_report(report)
             # The report must still be based on the discovery artifact frozen before DILI.
@@ -217,7 +244,7 @@ class JobManager:
             if not job.state["discovery_sha256"] or hashlib.sha256(frozen.read_bytes()).hexdigest() != job.state["discovery_sha256"]:
                 raise WorkspaceError("frozen_discovery_changed")
             discovery = load(frozen)
-            validate_discovery(approved["request"], discovery)
+            validate_discovery(load(args.output_dir / "request.json") if generating else approved["request"], discovery)
             if (report["target"] != discovery["target"] or
                     [r["discovery_result"] for r in report["results"]] != discovery["results"]):
                 raise WorkspaceError("report_discovery_mismatch")

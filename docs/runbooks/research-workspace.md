@@ -1,6 +1,6 @@
 # Standalone researcher workspace
 
-ToxOracle owns prompt entry, target selection, candidate upload, local privacy
+ToxOracle owns prompt entry, target resolution, optional candidate upload, local privacy
 review/approval, workflow progress and the results dashboard. The initial target
 is human ABL1 (2HYY chain A). This is a local application, binding only to
 `http://127.0.0.1:8766`; the public Streamlit demo remains separate.
@@ -48,19 +48,22 @@ an equivalent scientific environment. `--model-python` preserves venv symlinks.
 
 ## Researcher flow
 
-1. Enter a question, choose ABL1 and upload/paste CSV or JSON. CSV requires
+1. Enter a question naming ABL1. Leave the dataset empty to generate candidates.
+   Optionally expand the dataset section to upload/paste CSV or JSON. CSV requires
    `compound_id,smiles`; JSON accepts a list or an envelope with `compounds`.
    Files must be UTF-8, at most 1 MB, with 2–32 candidates. Include `LT00107` with
    the validated imatinib structure; **Use public ABL1 panel** supplies it.
-2. Choose **Live run** or **Cached screening · local DILI**. Live
-   mode makes fresh vendor calls and can incur charges. Offline mode verifies
-   every cache entry first and has a client that refuses all network fallbacks.
+2. **Live run** is the default. **Run settings** also offers **Cached workflow ·
+   local DILI**. Live mode makes fresh vendor calls and can incur charges. Cached
+   mode validates exact cache entries and refuses all network fallbacks; dynamic
+   generation cache misses can produce a partial result.
 3. **Review privately** runs the existing local privacy scanner. Review the
    sanitized data and the prepared molecular request. Confirm each flagged but
    chemically valid scientific field separately. The target, execution mode and
    assistant choice are bound to this snapshot; any edit revokes approval.
-4. **Approve & run** freezes the approved study. NVIDIA receives only the molecular
-   structures and public protein sequence. The raw upload is not persisted.
+4. **Approve & run** freezes the approved study. NVIDIA receives the disclosed
+   structures, public sequence, generation fragment and approved assistant context.
+   The raw upload is not persisted.
    Request IDs, target, model digest and exact discovery artifacts remain local.
 5. Follow real stage events. Imatinib must pass the existing reference gate before
    remaining candidates are screened. `discovery.json` is saved and hashed before
@@ -75,8 +78,7 @@ an equivalent scientific environment. `--model-python` preserves venv symlinks.
 
 The question adds research context to the fixed workflow. It cannot execute arbitrary
 commands or select unvalidated protocols. Only ABL1 currently has a validated target
-manifest, reference and follow-up policy; adding a dropdown item alone is insufficient
-to support another target.
+manifest, reference and follow-up policy. Another target requires preparation.
 
 ## NVIDIA assistant and structured planning
 
@@ -86,15 +88,16 @@ or chat. The server must be restarted to inherit a newly configured key. If you 
 key in a local file, `./scripts/toxoracle-web --nvidia-key-file /path/to/existing-key`
 reads it into process memory only. The app never creates or copies that key file.
 
-In **Methods & setup**, verify the connection with a fixed greeting, then enable
-**Use NVIDIA Nemotron planning** before review. The configured model is
+Nemotron planning defaults on in live mode with a configured key. **Methods & setup**
+offers an optional connection check with a fixed greeting. The configured model is
 `nvidia/nemotron-3.5-lightning-30b-a3b` on NVIDIA's chat-completions endpoint. Requested and
 returned IDs are checked and retained. No Rosalind identity or invocation is claimed.
 The old Rosalind adapter remains dormant for historical compatibility.
 
 Approval covers the sanitized question, candidate IDs and computed evidence shared
 with NVIDIA's assistant, as well as structures and the public sequence sent to Boltz-2.
-The assistant requests one bounded `prepare_abl1_screening` operation, returning the
+The assistant requests one bounded `prepare_abl1_generation` or `prepare_abl1_screening`
+operation, returning the
 approved target, unchanged candidate IDs, support status and a brief explanation.
 The backend validates the response and runs the fixed scientific protocol. Unsupported
 questions pause for a revised study; malformed output or technical failure pauses
@@ -112,8 +115,8 @@ progress is fabricated. The original study reused verified Boltz-2 responses and
 local DILI. Repository-relative artifact pointers are provenance only; the large raw
 vendor files are not bundled or served. All four drugs overlap model fitting/selection.
 
-For a new study, use the public panel (or upload CSV/JSON), preview molecules and correct
-row errors. Review privately, acknowledge each retained scientific field, then approve
+For a new study, enter an ABL1 question without data to generate proposals. For supplied
+candidates, use the public panel or upload CSV/JSON, preview molecules and correct row errors. Review privately, acknowledge each retained scientific field, then approve
 and run. The activity panel shows actual operations and the currently invoked model;
 elapsed time is wall-clock time, never an estimated completion percentage. A browser
 refresh reconnects to active or paused jobs in the same session. Completed runs are
@@ -166,3 +169,33 @@ Current acceptance results are recorded in
 not scientific validation. The real cached web acceptance uses the actual privacy
 filter, exact-input Boltz-2 cache and trained DILI model. Hosted Nemotron and fresh
 Boltz-2 acceptance are separate gates; both passed on 20 September 2026 using the public panel. A key in the server environment is required to repeat them.
+
+## Prompt-first generation demo
+
+Start at `http://127.0.0.1:8766` and choose **Try it: propose candidates for ABL1**,
+or enter a question naming human ABL1. Leave the optional candidate dataset empty.
+Review privately, inspect the resolved target and generation route, then approve.
+Nemotron planning is on by default when a server key is present; its exact model identity
+is checked on every response. The separate greeting check is optional. No scientific
+prompt is sent before local filtering and approval.
+
+The run gates the imatinib reference, asks GenMol for proposals using the documented
+imatinib fragment, validates/diversifies them, screens up to 20 with Boltz-2, freezes the
+top two, then runs local DILI. Counts and molecular structures appear as real operations
+complete. The results include generation provenance and the HTML export includes the
+proposal ledger. This is ligand-fragment-conditioned generation; target conditioning is
+provided by target-specific seed preparation and downstream screening.
+
+To screen supplied candidates, expand **Already have candidates? Add a dataset**.
+The original 2–32 candidate route still requires the prepared imatinib reference;
+**Use public ABL1 panel** supplies it. **Clear dataset · generate instead** returns to
+target-only mode. No target dropdown is needed for either route.
+
+**Run settings** exposes cached mode and the optional assistant. Cached generation uses
+`genmol/` beside the configured `boltz2/` cache directory and never falls back to live
+calls on a miss. A miss can leave a partial generation report. It cannot manufacture a
+complete result. Restarting the server does not resume vendor requests.
+
+Prompt-first web acceptance is recorded in
+`evaluation/reports/prompt_first_web_acceptance_v1.json`, including hosted timeouts
+and partial scientific results separately from passing software checks.

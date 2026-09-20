@@ -8,6 +8,7 @@ import hashlib
 import importlib.util
 import json
 import os
+import re
 from pathlib import Path
 
 from fastapi import Request
@@ -112,57 +113,83 @@ def create_app(config=None, *, detector=None, token=None, manager=None, prefligh
         state = session(data)
         # Even a malformed edit invalidates any older approval.
         state.update(version=state["version"] + 1, snapshot=None, approved=None)
-        if data.get("target_id") != target["target_id"]:
+        if data.get("target_id", target["target_id"]) != target["target_id"]:
             raise WorkspaceError("unsupported_target")
         if data.get("mode") not in {"live", "cached"} or type(data.get("use_assistant")) is not bool:
             raise WorkspaceError("invalid_execution_mode")
         if data["mode"] == "cached" and data["use_assistant"]:
             raise WorkspaceError("cached_mode_is_offline")
-        if data["use_assistant"] and assistant.configuration()["verification"] != "verified":
-            raise WorkspaceError("assistant_interface_not_verified")
+        if data["use_assistant"] and not assistant.configuration()["configured"]:
+            raise WorkspaceError("assistant_not_configured")
         prompt = data.get("research_prompt")
         if not isinstance(prompt, str) or not prompt.strip() or len(prompt) > MAX_FIELD:
             raise WorkspaceError("research_prompt_required")
-        if data.get("format") not in {"csv", "json"}:
+        content = data.get("content", "")
+        if not isinstance(content, str):
             raise WorkspaceError("candidate_format_required")
-        uploaded = parse(data.get("content"), data["format"])
+        generating = not content.strip()
+        if not generating and data.get("format") not in {"csv", "json"}:
+            raise WorkspaceError("candidate_format_required")
+        uploaded = {"compounds": []} if generating else parse(data.get("content"), data["format"])
         envelope = uploaded if isinstance(uploaded, dict) else {"compounds": uploaded}
         compounds = envelope.get("compounds")
-        if not isinstance(compounds, list) or not 2 <= len(compounds) <= MAX_CANDIDATES or any(not isinstance(c, dict) for c in compounds):
+        if not generating and (not isinstance(compounds, list) or not 2 <= len(compounds) <= MAX_CANDIDATES or any(not isinstance(c, dict) for c in compounds)):
             raise WorkspaceError("candidate_count_invalid")
         envelope = dict(envelope, research_prompt=prompt)
         result = await app.state.privacy_scan(dict(session_id=data["session_id"], enabled=True,
             content=json.dumps(envelope, ensure_ascii=False, allow_nan=False), format="json"))
         if result["blocked"]:
             return result
-        prepared = await run_in_threadpool(toxicity_request, result)
+        prepared = None if generating else await run_in_threadpool(toxicity_request, result)
         # An edit/reset during local preparation must revoke submission as well.
         _, current = reviewed(dict(session_id=data["session_id"], scan_id=result["scan_id"]), False)
         if current is not result:
             raise PrivacyError("scan_invalidated")
-        validate_request(prepared)
-        actual_reference = next((c for c in prepared["compounds"] if c["compound_id"] == reference["compound_id"]), None)
-        if actual_reference is None:
-            raise WorkspaceError("reference_required")
-        if actual_reference["structure_id"] != reference["structure_id"]:
-            raise WorkspaceError("reference_identity_mismatch")
+        if not generating:
+            validate_request(prepared)
+            actual_reference = next((c for c in prepared["compounds"] if c["compound_id"] == reference["compound_id"]), None)
+            if actual_reference is None:
+                raise WorkspaceError("reference_required")
+            if actual_reference["structure_id"] != reference["structure_id"]:
+                raise WorkspaceError("reference_identity_mismatch")
         sanitized = json.loads(result["sanitized"])
         safe_prompt = sanitized.get("research_prompt")
         if not isinstance(safe_prompt, str) or not safe_prompt.strip():
             raise WorkspaceError("research_prompt_required")
+        # Resolve only from the filtered question; never default another target to ABL1.
+        if not re.search(r"\bABL[ -]?1\b", safe_prompt, re.I) or re.search(
+                r"\b(mutant|mutation|T315I|mouse|murine|rat)\b", safe_prompt, re.I):
+            raise WorkspaceError("target_preparation_required")
+        if generating:
+            prepared = dict(schema_version="1.0", request_id="design_" + result["audit"]["sanitized_sha256"][:16],
+                mode="generate_screen", target="ABL1", input_provenance="locally_reviewed_and_approved", count=20)
         result["study"] = dict(research_prompt=safe_prompt, request=prepared,
             target_id=target["target_id"], target_sequence_sha256=target["sequence_sha256"],
+            workflow="generate_screen" if generating else "screen",
             mode=data["mode"], use_assistant=data["use_assistant"],
             assistant_model=assistant.configuration()["requested_model"] if data["use_assistant"] else None)
         from toxoracle_discovery.boltz2 import request_payload, ENDPOINT
         result["outbound"] = dict(
             boltz2=[] if data["mode"] == "cached" else [dict(compound_id=c["compound_id"],
-                endpoint=ENDPOINT, payload=request_payload(c, target)) for c in prepared["compounds"]],
+                endpoint=ENDPOINT, payload=request_payload(c, target)) for c in prepared.get("compounds", [])],
             assistant=None if not data["use_assistant"] else dict(provider="NVIDIA",
                 model=assistant.configuration()["requested_model"], research_prompt=safe_prompt,
-                candidate_ids=[c["compound_id"] for c in prepared["compounds"]],
+                candidate_ids=[c["compound_id"] for c in prepared.get("compounds", [])],
                 result_explanation_fields=["candidate_id", "rank", "binding", "affinity", "structural_confidence",
                     "DILI assessment", "training membership", "follow-up", "limitations"]))
+        if generating:
+            from .design_cli import SEED_PATH
+            from toxoracle_discovery.generation import make_template, payload as generation_payload, ENDPOINT as GENMOL_ENDPOINT
+            seed = load(SEED_PATH)
+            template = await run_in_threadpool(make_template, reference,
+                cut_atoms=seed["cut_atom_indices"], retain_atom=seed["retain_atom"])
+            result["outbound"]["generation"] = dict(endpoint=GENMOL_ENDPOINT,
+                payload=generation_payload(template), requested_candidates=20, max_batches=5,
+                conditioning="Documented imatinib fragment; no DILI feedback",
+                execution="offline cache only" if data["mode"] == "cached" else "live")
+            result["outbound"]["generated_screening"] = dict(
+                reference_payload=request_payload(reference, target), max_generated_candidates=20,
+                generated_payload_rule="Each selected generated structure replaces the reference ligand in this Boltz-2 payload. The public protein and model settings stay fixed.")
         result["audit"]["study_sha256"] = hashlib.sha256(json.dumps(result["study"], sort_keys=True).encode()).hexdigest()
         return result
 
@@ -231,6 +258,8 @@ def create_app(config=None, *, detector=None, token=None, manager=None, prefligh
         relative, mime = files[kind]
         if kind in {"report", "html"} and not job.snapshot()["report_available"]:
             raise WorkspaceError("report_not_ready")
+        if kind == "html" and job.state.get("workflow") == "generate_screen":
+            relative = "science/design-report.html"
         path = job.directory / relative
         if not path.is_file():
             raise WorkspaceError("artifact_not_ready")

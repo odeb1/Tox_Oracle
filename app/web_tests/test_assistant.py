@@ -61,3 +61,31 @@ def test_truncated_response_is_rejected():
     def incomplete(*args,**kwargs):
         return io.BytesIO(json.dumps(dict(model=MODEL,choices=[dict(finish_reason='length',message={'content':'partial'})])).encode())
     assert NvidiaAssistant(key='test',transport=incomplete).verify()['verification']=='assistant_incomplete'
+
+
+def test_generation_plan_has_no_invented_candidate_ids_and_uses_generation_tool():
+    captured = []
+    def generate(request, timeout):
+        body = json.loads(request.data); captured.append(body)
+        name = body['tools'][0]['function']['name']
+        assert name == 'prepare_abl1_generation'
+        plan = dict(PLAN, candidate_ids=[], explanation='Generate from the documented fragment, screen, freeze, then assess DILI.')
+        return io.BytesIO(json.dumps(dict(model=MODEL, choices=[dict(finish_reason='tool_calls', message=dict(tool_calls=[dict(type='function', function=dict(name=name, arguments=json.dumps(plan)))]))])).encode())
+    approved = dict(APPROVED, workflow='generate_screen', request={'count':20}, research_prompt='Propose ABL1 candidates')
+    assert NvidiaAssistant(key='test', transport=generate).plan(approved)['candidate_ids'] == []
+    assert json.loads(captured[0]['messages'][1]['content'])['workflow'] == 'generate_screen'
+
+
+def test_explanation_receives_discovery_and_toxicity_availability():
+    from pathlib import Path
+    root = Path(__file__).resolve().parents[2]
+    report = json.loads((root/'demo/examples/abl1_recorded_workspace/report.json').read_text())
+    captured = []
+    def respond(request, timeout):
+        body = json.loads(request.data)
+        captured.append(json.loads(body['messages'][1]['content']))
+        return io.BytesIO(json.dumps(dict(model=MODEL, choices=[dict(finish_reason='stop', message={'content':'Evidence interpretation.'})])).encode())
+    NvidiaAssistant(key='test', transport=respond).explain(APPROVED, report)
+    for evidence, original in zip(captured[0]['results'], report['results']):
+        assert evidence['discovery_status'] == original['discovery_result']['status']
+        assert evidence['toxicity_status'] == original['toxicity_result']['status']

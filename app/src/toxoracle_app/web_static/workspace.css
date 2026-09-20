@@ -1262,3 +1262,10 @@ body[data-study-stage="run"] .intro,body[data-study-stage="assess"] .intro,body[
 .replay-decision { padding:22px; border-left:3px solid var(--gold); background:#faf7ef; margin:20px 0; border-radius:0 10px 10px 0; }
 .replay-decision h3 { color:var(--oxford); }
 .activity-panel .assistant-note { font-size:13px; padding:16px; margin:16px 0; line-height:1.7; overflow-wrap:anywhere; }
+
+/* Prompt-first study setup */
+.prompt-example{display:flex;justify-content:space-between;width:100%;background:var(--paper,#f8f7f3);color:var(--navy,#102a4c);border:1px solid #d6dfdf;border-radius:10px;padding:14px 16px;text-align:left;margin:14px 0 20px}
+.route-preview{padding:22px;border:1px solid #d9e3e4;border-radius:12px;background:#eef3f4;margin:18px 0}.route-preview p:last-child{margin-bottom:0}.route-preview strong{font-size:18px;color:#142e4e}
+.optional-inputs,.execution-options{border-top:1px solid #dce2e3;margin-top:22px;padding-top:18px}.optional-inputs>summary,.execution-options>summary{cursor:pointer;padding:4px 0 12px;font-weight:600}.optional-inputs>summary .small{margin-left:8px;font-weight:400}.dataset-actions{display:flex;gap:18px;align-items:center;flex-wrap:wrap}.optional-inputs[open]>summary{margin-bottom:12px}
+
+#live-candidates{max-height:620px;overflow-y:auto;align-content:start;padding:3px}#live-candidates .molecule-card strong{overflow-wrap:anywhere}@media(max-width:700px){#live-candidates{max-height:480px}}

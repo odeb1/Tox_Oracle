@@ -373,3 +373,123 @@ def test_public_example_uses_minimal_csv_and_preserves_prepared_identities(env):
     assert result['study']['request']['compounds']==EXAMPLE['compounds']
     assert len(result['outbound']['boltz2'])==4 and result['outbound']['assistant'] is None
     assert result['outbound']['boltz2'][0]['payload']['polymers'][0]['sequence']==TARGET['sequence']
+
+
+def test_target_only_review_needs_no_dataset_and_freezes_bounded_generation(env):
+    client, sid, manager, _ = env
+    response = scan(client, sid, content='', research_prompt='Propose drug candidates for human ABL1')
+    assert response.status_code == 200, response.text
+    result = response.json()
+    assert result['study']['workflow'] == 'generate_screen'
+    assert result['study']['request']['count'] == 20
+    assert 'compounds' not in result['study']['request']
+    assert result['outbound']['generation']['max_batches'] == 5
+    assert result['outbound']['generated_screening']['max_generated_candidates'] == 20
+    assert not manager.jobs
+    assert submit(client, sid, result).status_code == 400
+
+
+@pytest.mark.parametrize('prompt', ['Propose candidates for EGFR', 'Propose molecules', 'Design ABL1 T315I inhibitors'])
+def test_prompt_target_is_not_silently_substituted(env, prompt):
+    client, sid, *_ = env
+    assert scan(client, sid, content='', research_prompt=prompt).json()['error'] == 'target_preparation_required'
+
+
+def generated_runner(args, **kwargs):
+    """Synthetic generator only; execute actual reference, scoring, freeze and join code."""
+    from toxoracle_app import design_cli as design
+    def proposals(args, resolved, journal, seeds, client):
+        journal.emit('generating', batch=1, accepted=0, requested=20)
+        design.save(args.output_dir / 'generation.json', dict(status='complete', synthetic=True))
+        return [dict(c, compound_id='GEN_'+str(i)) for i, c in enumerate(EXAMPLE['compounds'][1:3])]
+    with patch.object(design, 'generate', side_effect=proposals), patch.object(design, 'run_model', side_effect=synthetic_model):
+        kwargs['boltz_client'] = SyntheticClient()
+        return design.execute(args, **kwargs)
+
+
+def test_generation_web_run_has_separate_reference_frozen_shortlist_and_export(env):
+    client, sid, manager, _ = env
+    manager.design_runner = generated_runner
+    result = scan(client, sid, content='', research_prompt='Propose ABL1 candidates').json()
+    approve(client, sid, result)
+    first = submit(client, sid, result).json()
+    assert submit(client, sid, result).json()['job_id'] == first['job_id']
+    finished(manager)
+    job = manager.owned(sid, first['job_id']); state = job.snapshot()
+    assert state['status'] == 'complete', state
+    assert state['candidate_count'] == 2
+    assert state['shortlist'] == ['GEN_0', 'GEN_1']
+    assert TARGET['reference_compound_id'] not in state['shortlist']
+    stages = [e['stage'] for e in state['events']]
+    assert stages.index('reference') < stages.index('generating') < stages.index('shortlist_frozen') < stages.index('toxicity')
+    for kind in ('report', 'html'):
+        response = client.post('/api/run/download', json=dict(session_id=sid, job_id=job.job_id, kind=kind))
+        assert response.status_code == 200
+    html = client.post('/api/run/download', json=dict(session_id=sid, job_id=job.job_id, kind='html')).json()
+    assert 'design-report.html' in html['filename']
+
+
+def test_cancel_generation_at_freeze_never_runs_dili(env):
+    client, sid, manager, _ = env
+    def stop(args, **kwargs):
+        callback = kwargs['progress']
+        def event(e):
+            callback(e)
+            if e['stage'] == 'shortlist_frozen':
+                next(iter(manager.jobs.values())).stop.set()
+        kwargs['progress'] = event
+        return generated_runner(args, **kwargs)
+    manager.design_runner = stop
+    result = scan(client, sid, content='', research_prompt='Propose ABL1 candidates').json()
+    approve(client, sid, result)
+    submitted = submit(client, sid, result).json(); finished(manager)
+    job = manager.owned(sid, submitted['job_id'])
+    assert job.snapshot()['status'] == 'cancelled'
+    assert not (job.directory/'science/toxicity.json').exists()
+    assert json.loads((job.directory/'science/workflow.json').read_text())['status'] == 'cancelled'
+
+
+def test_cached_generation_client_cannot_fall_back_to_network():
+    from toxoracle_discovery.generation import GenerationError
+    with pytest.raises(GenerationError, match='no network fallback'):
+        CachedOnlyClient().generate({})
+
+
+def test_generation_approval_is_revoked_when_dataset_changes(env):
+    client, sid, manager, _ = env
+    generated = scan(client, sid, content='', research_prompt='Propose ABL1 candidates').json()
+    approve(client, sid, generated)
+    supplied = scan(client, sid).json()
+    assert supplied['study']['workflow'] == 'screen'
+    assert submit(client, sid, generated).status_code == 400
+    assert not manager.jobs
+
+
+def test_generation_reference_failure_publishes_no_false_assessment(env):
+    from toxoracle_app import design_cli as design
+    from toxoracle_discovery.boltz2 import BoltzError
+    client, sid, manager, _ = env
+    class FailedReference:
+        def predict(self, payload): raise BoltzError('synthetic reference failure')
+    def fail(args, **kwargs):
+        kwargs['boltz_client'] = FailedReference()
+        with patch.object(design, 'generate') as generator:
+            status = design.execute(args, **kwargs)
+            generator.assert_not_called()
+            return status
+    manager.design_runner = fail
+    result = scan(client, sid, content='', research_prompt='Propose ABL1 candidates').json()
+    approve(client, sid, result)
+    run = submit(client, sid, result).json(); finished(manager)
+    state = manager.owned(sid, run['job_id']).snapshot()
+    assert state['status'] == 'partial' and not state['report_available']
+    assert state['shortlist'] is None
+    assert state['error'] == 'generation_no_assessment'
+
+
+def test_prompt_only_api_does_not_need_target_selector_or_dataset_metadata(env):
+    client, sid, *_ = env
+    result = client.post('/api/study/scan', json=dict(session_id=sid,
+        research_prompt='Propose candidates for human ABL1', mode='live', use_assistant=False))
+    assert result.status_code == 200, result.text
+    assert result.json()['study']['workflow'] == 'generate_screen'

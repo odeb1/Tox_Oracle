@@ -1,0 +1,64 @@
+{
+  "schema_version": "1.0",
+  "date": "2026-09-20",
+  "branch": "feat/researcher-demo-workflow",
+  "scope": "Prompt-first target-only GenMol generation; optional supplied-candidate screening",
+  "offline": {
+    "web_privacy": 79,
+    "repository": 125,
+    "generation_science": 23
+  },
+  "browser": {
+    "input": "Prompt-only input and privacy approval verified with real local OPF; no uploaded data or target selector",
+    "routing": "Optional public dataset switches to screening; clearing it switches to generation",
+    "responsive": "Desktop and 390px inspected; narrow document clientWidth=scrollWidth=375",
+    "recovery": "Browser refresh reconnected to the same active generation run",
+    "results": "Generation provenance, partial-result notice, 20-candidate evidence table and unchanged discovery shortlist inspected",
+    "incomplete_results": "Filter displayed both failed candidates as unranked with unavailable binding; local DILI remained available."
+  },
+  "live": {
+    "status": "partial",
+    "run_id": "bf3e06a08c46441facc6e51def76b04d",
+    "earlier_attempt": {
+      "run_id": "ac2b7e9209b94479a05657fd964712ca",
+      "status": "cancelled_after_assistant_timeout",
+      "scientific_calls": 0
+    },
+    "assistant_plan": "Verified NVIDIA Nemotron 3.5 Lightning generation tool",
+    "genmol": {
+      "live_batches": 2,
+      "returned": 40,
+      "acceptable_unique": 25,
+      "selected": 20
+    },
+    "execution_counts": {
+      "boltz_completed_live": 19,
+      "boltz_completed_cached": 0,
+      "boltz_failed_or_unavailable": 2,
+      "genmol_completed_live": 2,
+      "genmol_completed_cached": 0
+    },
+    "dili_successes": 20,
+    "shortlist": [
+      "GEN_e391ee141e35ca355275c63f",
+      "GEN_1be062b8a72206ea06c140aa"
+    ],
+    "held": 2,
+    "frozen_discovery_hash_verified": true,
+    "failed_discovery_candidates": [
+      "GEN_4cd49e9cf971fda2d9fbadb1",
+      "GEN_5ed5d81af9b0d30b4d08d4a8"
+    ],
+    "successful_candidate_discovery": 18,
+    "reference": "live passed; excluded from generated shortlist",
+    "assistant_explanation": "Exact model identity verified; narrative is non-authoritative. Follow-up review recognized both discovery failures but misstated not-shortlisted count; final adapter additionally supplies exact policy category counts.",
+    "events": 52
+  },
+  "limitations": [
+    "Only the prepared human ABL1 target executes; other targets require preparation.",
+    "Generated candidates have no measured efficacy or safety outcomes.",
+    "Supplied-candidate mode retains the frozen reference requirement.",
+    "Hosted latency is variable; the first planning attempt reached the 120-second timeout.",
+    "Two fresh candidate Boltz-2 requests did not produce usable evidence. They remain failed/unranked in the partial report; no automatic retries or replacements."
+  ]
+}

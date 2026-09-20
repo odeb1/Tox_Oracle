@@ -14,7 +14,7 @@ import subprocess
 import sys
 import time
 
-from .screen_cli import ROOT, load, run_model, failed_toxicity
+from .screen_cli import ROOT, load, run_model, failed_toxicity, ScreeningCancelled
 from .screening import combine_screening, render, summary, validate_discovery
 from .validation import DEFAULT_CONTRACTS_DIR, _validate_schema, ContractValidationError, validate_request
 from toxoracle_discovery.boltz2 import (BoltzClient, BoltzError, digest, save, validate_target,
@@ -80,7 +80,9 @@ def resolve(args):
 
 class Journal:
     """Persist call intent before dispatch; an interrupted call is never resubmitted."""
-    def __init__(self, output, resolved, resume):
+    def __init__(self, output, resolved, resume, progress=None, cancelled=None):
+        self.progress = progress
+        self.cancelled = cancelled
         self.output = output
         self.manifest_path = output/'workflow.json'
         if resume:
@@ -112,6 +114,16 @@ class Journal:
             save(output/'resolved.json', resolved)
             self.checkpoint()
 
+    def emit(self, stage, **details):
+        self.check_cancelled()
+        if self.progress:
+            self.progress(dict(stage=stage, **details))
+        self.check_cancelled()
+
+    def check_cancelled(self):
+        if self.cancelled and self.cancelled():
+            raise ScreeningCancelled()
+
     def checkpoint(self):
         self.data['artifacts'] = {str(p.relative_to(self.output)): sha(p) for p in sorted(self.output.rglob('*'))
             if p.is_file() and p.name not in {'workflow.json', '.run.lock', 'workflow.tmp'}}
@@ -120,6 +132,7 @@ class Journal:
         (self.output/'workflow.tmp').replace(self.manifest_path)
 
     def begin_call(self, kind, identity):
+        self.check_cancelled()
         self.data[kind+'_attempts'] += 1
         self.data['pending_call'] = dict(kind=kind, identity=identity, started_at=now())
         self.checkpoint()
@@ -205,6 +218,7 @@ def generate(args, resolved, journal, seeds, client):
         if journal.data['generation_attempts'] >= 5:
             break
         template = state['templates'][i % len(state['templates'])]
+        journal.emit('generating', batch=i + 1, accepted=len(state['accepted']), requested=resolved['count'])
         journal.begin_call('generation', str(i))
         try:
             molecules, meta = generate_batch(template, i, output/'genmol'/str(i), client,
@@ -220,12 +234,14 @@ def generate(args, resolved, journal, seeds, client):
         state['batches'].append(meta)
         save(state_path,state)
         journal.end_call()
+        journal.emit('validating_proposals', batch=i+1, completed=0, total=len(molecules), accepted=len(state['accepted']))
         process_batch(args, resolved, journal, state, i, molecules)
     # Resume any successful batch whose local preprocessing was interrupted.
     for meta in state['batches']:
         i = meta['batch_index']
         raw = load(output/'genmol'/str(i)/'response.json')
         process_batch(args, resolved, journal, state, i, raw['molecules'])
+    journal.emit('selecting', accepted=len(state['accepted']), requested=resolved['count'])
     selected = diverse_subset(state['accepted'], resolved['count'])
     selected_ids = [c['compound_id'] for c in selected]
     for item in state['ledger']:
@@ -254,6 +270,7 @@ def process_batch(args, resolved, journal, state, index, molecules):
         pid = f'b{index:02d}_p{j:03d}'
         if any(x['proposal_id'] == pid for x in state['ledger']):
             continue
+        journal.check_cancelled()
         item = dict(proposal_id=pid, template_id=template['template_id'], status='rejected', raw=molecule)
         try:
             if not isinstance(molecule, dict):
@@ -283,6 +300,8 @@ def process_batch(args, resolved, journal, state, index, molecules):
         state['ledger'].append(item)
         save(output/'generation-state.json',state)
         journal.checkpoint()
+        if (j+1) % 5 == 0 or j+1 == len(molecules):
+            journal.emit('validating_proposals', batch=index+1, completed=j+1, total=len(molecules), accepted=len(state['accepted']))
 
 
 def math_isfinite(value):
@@ -358,7 +377,7 @@ def report_workflow(output, resolved, journal, report=None):
     (output/'summary.txt').write_text(text)
 
 
-def execute(args, *, genmol_client=None, boltz_client=None):
+def execute(args, *, genmol_client=None, boltz_client=None, progress=None, cancelled=None, quiet=False):
     resolved=resolve(args)
     if resolved['model_sha256'] is None:
         raise ValueError('Missing local DILI model; never train implicitly')
@@ -368,13 +387,14 @@ def execute(args, *, genmol_client=None, boltz_client=None):
     elif not output.is_dir():
         raise ValueError('Resume directory missing')
     with run_lock(output):
-        journal=Journal(output,resolved,args.resume)
+        journal=Journal(output,resolved,args.resume,progress,cancelled)
         if journal.data['status'] in {'complete','partial','failed'}:
             print(f'Saved run: {journal.data["status"]}; {output / "design-report.html"}')
             return 0 if journal.data['status']=='complete' else 2
         started=time.monotonic()
         report=None
         try:
+            journal.emit('preparing')
             # All local input preparation precedes external submission.
             prepared_path=output/'prepared-inputs.json'
             if prepared_path.exists():
@@ -392,6 +412,7 @@ def execute(args, *, genmol_client=None, boltz_client=None):
             class LazyBoltz:
                 def predict(self,payload): return BoltzClient().predict(payload)
             client=boltz_client or LazyBoltz()
+            journal.emit('reference', compound_id=resolved['reference']['compound_id'])
             reference=score(args,resolved,journal,resolved['reference'],client,'reference')
             save(output/'reference.json',reference)
             reference_ok=(reference['status']=='ok' and reference['binding_probability'] is not None and
@@ -402,6 +423,7 @@ def execute(args, *, genmol_client=None, boltz_client=None):
                 journal.data['errors'].append(dict(stage='reference',code='reference_failed'))
                 journal.data['status']='partial'
                 return 2
+            journal.emit('reference_finished', status='ok')
             candidate_path=output/'request.json'
             if candidate_path.exists():
                 request=load(candidate_path)
@@ -415,14 +437,18 @@ def execute(args, *, genmol_client=None, boltz_client=None):
                 validate_request(request)
                 save(candidate_path,request)
                 journal.checkpoint()
+            journal.emit('candidates_ready', candidates=[dict(compound_id=c['compound_id'], canonical_smiles=c['canonical_smiles']) for c in request['compounds']])
             discovery_path=output/'discovery.json'
             if discovery_path.exists():
                 discovery=load(discovery_path)
                 validate_discovery(request,discovery)
             else:
                 records=[]
-                for compound in request['compounds']:
-                    records.append(reference.copy() if compound==resolved['reference'] else score(args,resolved,journal,compound,client,'candidate'))
+                for index, compound in enumerate(request['compounds']):
+                    journal.emit('screening', compound_id=compound['compound_id'], completed=index, total=len(request['compounds']))
+                    record = reference.copy() if compound==resolved['reference'] else score(args,resolved,journal,compound,client,'candidate')
+                    records.append(record)
+                    journal.emit('candidate_finished', compound_id=compound['compound_id'], completed=index+1, total=len(request['compounds']), status=record['status'], binding_probability=record['binding_probability'], structural_confidence=record['structural_confidence'])
                 discovery=dict(schema_version='3.0',stream='discovery',request_id=request['request_id'],
                     target=dict(target_id=resolved['target']['target_id'],sequence_sha256=resolved['target']['sequence_sha256'],
                         manifest_sha256=resolved['target_sha256'],reference_compound_id=resolved['reference']['compound_id']),
@@ -431,6 +457,8 @@ def execute(args, *, genmol_client=None, boltz_client=None):
                 save(discovery_path,discovery)
                 journal.data['stages']['discovery_snapshot']=now()
                 journal.checkpoint()
+            journal.emit('shortlist_frozen', shortlist=[r['compound_id'] for r in discovery['results'] if r['shortlisted']], discovery_sha256=sha(discovery_path))
+            journal.emit('toxicity')
             tox_path=output/'toxicity.json'
             if tox_path.exists():
                 toxicity=load(tox_path)
@@ -443,6 +471,7 @@ def execute(args, *, genmol_client=None, boltz_client=None):
                     save(tox_path,toxicity)
                 journal.data['stages']['dili_completed']=now()
                 journal.checkpoint()
+            journal.emit('reporting')
             report=combine_screening(request,discovery,toxicity)
             if resolved['request']['mode']=='generate_screen':
                 report['limitations'][0]='Generated proposals, not labelled evaluation cases; fitting/selection overlap and chemical coverage must be disclosed.'
@@ -453,6 +482,9 @@ def execute(args, *, genmol_client=None, boltz_client=None):
             if (output/'generation.json').exists(): complete=complete and load(output/'generation.json')['status']=='complete'
             journal.data['status']='complete' if complete else 'partial'
             return 0 if complete else 2
+        except ScreeningCancelled:
+            journal.data['status']='cancelled'
+            raise
         except Exception:
             journal.data['status']='failed'
             journal.data['errors'].append(dict(stage='workflow',code='workflow_failed'))
@@ -462,7 +494,7 @@ def execute(args, *, genmol_client=None, boltz_client=None):
             journal.data['finished_at']=now()
             report_workflow(output,resolved,journal,report)
             journal.checkpoint()
-            print(f'Advanced report: {output / "design-report.html"}; status={journal.data["status"]}')
+            if not quiet: print(f'Advanced report: {output / "design-report.html"}; status={journal.data["status"]}')
 
 
 def preflight(args):
