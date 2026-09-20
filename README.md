@@ -23,14 +23,9 @@
 
 ---
 
-<table>
-  <tr>
-    <td align="center" width="25%"><strong>🧬 GENERATE</strong><br /><sub>40 proposals<br />29 acceptable unique molecules</sub></td>
-    <td align="center" width="25%"><strong>🎯 DISCOVER</strong><br /><sub>20 screened candidates<br />18 successful predictions</sub></td>
-    <td align="center" width="25%"><strong>🛡️ ASSESS</strong><br /><sub>Local human DILI evidence<br />kept separate from binding</sub></td>
-    <td align="center" width="25%"><strong>🔬 DECIDE</strong><br /><sub>2 frozen finalists<br />2 held for liver validation</sub></td>
-  </tr>
-</table>
+| 🧬 GENERATE | 🎯 DISCOVER | 🛡️ ASSESS | 🔬 DECIDE |
+| :---: | :---: | :---: | :---: |
+| 40 proposals<br>29 acceptable unique molecules | 20 screened candidates<br>18 successful predictions | Local human DILI evidence<br>kept separate from binding | 2 frozen finalists<br>2 held for liver validation |
 
 ## One question. Two kinds of evidence. A better next experiment.
 
